@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Atomic Pathshala | Admin Course Manager</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist:wght@400;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "outline-variant": "#c2c6d8",
+                "error-container": "#ffdad6",
+                "surface-container": "#eaedff",
+                "on-error-container": "#93000a",
+                "surface-container-high": "#e2e7ff",
+                "surface": "#faf8ff",
+                "on-primary-fixed-variant": "#003fa4",
+                "on-background": "#131b2e",
+                "surface-bright": "#faf8ff",
+                "on-tertiary-fixed": "#002113",
+                "tertiary-fixed": "#6afcb9",
+                "on-primary-container": "#f8f7ff",
+                "outline": "#727687",
+                "on-tertiary-fixed-variant": "#005235",
+                "on-primary": "#ffffff",
+                "primary": "#0050cb",
+                "secondary-fixed-dim": "#4cd6ff",
+                "text-dark": "#F1F5F9",
+                "primary-fixed-dim": "#b3c5ff",
+                "on-tertiary-container": "#e1ffeb",
+                "inverse-primary": "#b3c5ff",
+                "surface-container-low": "#f2f3ff",
+                "text-light": "#0F172A",
+                "surface-tint": "#0054d6",
+                "primary-container": "#0066ff",
+                "on-secondary-fixed-variant": "#004e60",
+                "primary-fixed": "#dae1ff",
+                "inverse-surface": "#283044",
+                "bg-light": "#FFFFFF",
+                "on-surface": "#131b2e",
+                "surface-dark": "#161B22",
+                "surface-container-lowest": "#ffffff",
+                "background": "#faf8ff",
+                "surface-container-highest": "#dae2fd",
+                "border-subtle": "rgba(0, 102, 255, 0.1)",
+                "surface-variant": "#dae2fd",
+                "inverse-on-surface": "#eef0ff",
+                "secondary": "#00677f",
+                "on-surface-variant": "#424656",
+                "secondary-container": "#00ccf9",
+                "tertiary-fixed-dim": "#49df9f",
+                "tertiary": "#006643",
+                "error": "#ba1a1a",
+                "tertiary-container": "#008256",
+                "surface-light": "#F8FAFC",
+                "on-secondary-container": "#005266",
+                "on-primary-fixed": "#001849",
+                "on-error": "#ffffff",
+                "secondary-fixed": "#b7eaff",
+                "surface-dim": "#d2d9f4",
+                "on-secondary-fixed": "#001f28",
+                "on-secondary": "#ffffff",
+                "bg-dark": "#0B0E14",
+                "on-tertiary": "#ffffff"
+              },
+              "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+              },
+              "spacing": {
+                "stack-md": "16px",
+                "stack-lg": "32px",
+                "gutter": "24px",
+                "container-max": "1280px",
+                "stack-sm": "8px",
+                "margin-mobile": "20px",
+                "margin-desktop": "64px"
+              },
+              "fontFamily": {
+                "headline-md": ["Geist"],
+                "display-lg": ["Geist"],
+                "label-md": ["Inter"],
+                "body-md": ["Inter"],
+                "label-sm": ["Inter"],
+                "headline-lg": ["Geist"],
+                "body-lg": ["Inter"]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 80, 203, 0.1);
+        }
+        .drag-handle:hover { cursor: grab; }
+        .drag-handle:active { cursor: grabbing; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #c2c6d8; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+<!-- Sidebar Navigation -->
+<aside class="hidden lg:flex flex-col h-screen w-72 fixed left-0 top-0 border-r border-outline-variant bg-surface dark:bg-bg-dark z-50 py-6">
+<div class="px-6 mb-8">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Atomic Pathshala</h1>
+<p class="font-label-sm text-on-surface-variant opacity-70">Admin Console</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">
+<span class="material-symbols-outlined">group</span> Users
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 text-primary font-bold bg-primary-container/10 border-r-4 border-primary font-label-md translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">book_2</span> Courses
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">
+<span class="material-symbols-outlined">layers</span> Batches
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">
+<span class="material-symbols-outlined">live_tv</span> Live Classes
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">
+<span class="material-symbols-outlined">analytics</span> Analytics
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">
+<span class="material-symbols-outlined">payments</span> Payments
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+            </a>
+</nav>
+<div class="px-6 mt-auto">
+<button class="w-full flex items-center justify-center gap-2 bg-primary text-on-primary py-3 px-4 rounded-xl font-label-md shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform">
+<span class="material-symbols-outlined">add</span> New Course
+            </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="lg:ml-72 min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-40 flex justify-between items-center w-full px-8 py-3 bg-surface/80 backdrop-blur-xl border-b border-outline-variant">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative max-w-md w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-label-md focus:ring-2 focus:ring-primary/20" placeholder="Search courses, modules, or IDs..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="flex items-center gap-3 pl-4 border-l border-outline-variant">
+<div class="text-right hidden sm:block">
+<p class="font-label-md text-on-surface">Admin Profile</p>
+<p class="text-[10px] uppercase tracking-wider text-outline">Super Admin</p>
+</div>
+<img class="w-10 h-10 rounded-full border-2 border-primary/20 object-cover" data-alt="A professional headshot of a female administrator in a modern office environment. She has a confident smile, wearing a sharp charcoal blazer over a crisp white blouse. The lighting is soft and directional, highlighting the contours of her face against a softly blurred background of a high-tech educational command center." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFUk66QdNwoPHZ8bEBYjBXYghWg3NU9ymSaF8BOyD3k7KNVjAzRrDz_rUHe9JHhgrlpSrCgk-1u_Vhr7Y2Ypojam-V1-e4bv0sPhTllKSShuvOM1MTCalnyvDPtk26U0gNt2j94OOQFQdrgECBUfkzLESQAMK3woT0FbSxwoCYckNIutGbI57r1KOhyV7CH0Y6DwBulakjdoRXmGK0Y4WW9cRTuGhIcshXCAR4gGgn4nj38HXMmmuxQN4jmHi7fNAvE9Hl4CPcfiM"/>
+</div>
+</div>
+</header>
+<section class="p-8 max-w-[1440px] mx-auto">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Academic Catalog</h2>
+<p class="text-on-surface-variant font-body-md">Manage your curriculum, content, and student performance across all courses.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-outline-variant hover:bg-surface-container transition-colors font-label-md">
+<span class="material-symbols-outlined text-[20px]">category</span> Course Categories
+                    </button>
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-on-primary font-label-md hover:shadow-lg transition-shadow">
+<span class="material-symbols-outlined text-[20px]">add</span> Create Course
+                    </button>
+</div>
+</div>
+<!-- Bento Grid - Performance Metrics -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+<div class="glass-card p-6 rounded-2xl flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">play_circle</span>
+</div>
+<div>
+<p class="text-label-sm text-outline uppercase tracking-wider">Avg. Watch Time</p>
+<h4 class="font-headline-md text-headline-md">42.5m</h4>
+</div>
+</div>
+<div class="glass-card p-6 rounded-2xl flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">task_alt</span>
+</div>
+<div>
+<p class="text-label-sm text-outline uppercase tracking-wider">Completion Rate</p>
+<h4 class="font-headline-md text-headline-md">78.2%</h4>
+</div>
+</div>
+<div class="glass-card p-6 rounded-2xl flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<div>
+<p class="text-label-sm text-outline uppercase tracking-wider">Active Batches</p>
+<h4 class="font-headline-md text-headline-md">124</h4>
+</div>
+</div>
+<div class="glass-card p-6 rounded-2xl flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-error-container/20 flex items-center justify-center text-error">
+<span class="material-symbols-outlined">groups</span>
+</div>
+<div>
+<p class="text-label-sm text-outline uppercase tracking-wider">Total Students</p>
+<h4 class="font-headline-md text-headline-md">12.8k</h4>
+</div>
+</div>
+</div>
+<!-- Main Course Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+<!-- Course Card 1 -->
+<div class="glass-card rounded-2xl overflow-hidden group hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300">
+<div class="h-48 relative">
+<img class="w-full h-full object-cover" data-alt="A high-quality 3D render of abstract physics concepts like atomic structures and orbital paths, glowing with electric cyan and atomic blue energy. The style is modern, cinematic, and educational, with sharp details and a clean white background that emphasizes scientific precision and premium academic quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuALXdV7I4ILAX02_LKe0uyQz6RTdcZ_ih6d0FGr5iZYSbpGZD6YrSEVgBoJJq2ixFFcjhJNi2UKOR0FyskPVEPxg9QMWxH13elU9T6AeZ3fpCV4hUUsDxnIoqUDG_vkcZqD-5zyoQh3kfwyPi2hY1jrCkmdg_z2kDb9oCHrTfN_JvD5-IDAmfWRt557bJypQl6yomseDmHWHBmnx22GqUhdAhcQNFhrIWdbzDJYUR51YwP8uRMIzZ5k3Aaa_LWUduGQsZY9atPhjMg"/>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 bg-primary text-on-primary text-[10px] font-bold uppercase rounded-full tracking-widest">Premium</span>
+</div>
+<div class="absolute top-4 right-4 flex gap-2">
+<button class="p-2 rounded-full bg-white/20 backdrop-blur-md text-white hover:bg-white/40 transition-colors">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<div>
+<p class="text-label-sm text-primary font-bold uppercase">Physics</p>
+<h3 class="font-headline-md text-on-surface">Target NEET 2025: Quantum Mastery</h3>
+</div>
+<span class="material-symbols-outlined text-tertiary">check_circle</span>
+</div>
+<div class="flex items-center gap-4 mb-6">
+<div class="flex flex-col">
+<span class="text-[10px] text-outline uppercase">Price</span>
+<span class="font-bold text-secondary">₹4,999</span>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant"></div>
+<div class="flex flex-col">
+<span class="text-[10px] text-outline uppercase">Batches</span>
+<span class="font-bold text-on-surface">08 Active</span>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant"></div>
+<div class="flex flex-col">
+<span class="text-[10px] text-outline uppercase">Visibility</span>
+<span class="font-bold text-tertiary">Public</span>
+</div>
+</div>
+<div class="space-y-3">
+<button class="w-full flex justify-between items-center px-4 py-2 bg-surface-container rounded-lg group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+<span class="font-label-md">Manage Content</span>
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+<button class="w-full flex justify-between items-center px-4 py-2 border border-outline-variant rounded-lg hover:bg-surface-container-low transition-colors">
+<span class="font-label-md">View Analytics</span>
+<span class="material-symbols-outlined text-[18px]">bar_chart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Course Card 2 -->
+<div class="glass-card rounded-2xl overflow-hidden group hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300">
+<div class="h-48 relative">
+<img class="w-full h-full object-cover" data-alt="An intricate laboratory glassware setup with vibrant chemical reactions, glowing in shades of emerald green and golden yellow. Floating molecular structures drift in the foreground. The lighting is sophisticated, creating a glassmorphic aesthetic that feels futuristic and deeply academic, against a pristine white studio background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQW6wLxSjWTZRwknN1uYL65XV_v0qfOZswj34L0c_vyf1UbQzwcyevJv9eBgEc1IlFFOf1zrApwwl6pYJyHIxBoVgpXa3uG5DdphVjabHnqOlD50l0-Z00QbpiBebqgGTd9xHqGE7JrHF1ryAW1dWxhEmZiN_giS48elnf8tTUcNhaZUFP3k0hskqbJ6vv6CnPmb1R2fZJvl56meKqVyC8te_1gTd9iUV8-LY-uFWsd_wgyfs_iQHbkin7PKeK0PmpQ4B37ckw92Y"/>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 bg-secondary text-on-secondary text-[10px] font-bold uppercase rounded-full tracking-widest">Organic Special</span>
+</div>
+<div class="absolute top-4 right-4 flex gap-2">
+<button class="p-2 rounded-full bg-white/20 backdrop-blur-md text-white hover:bg-white/40 transition-colors">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<div>
+<p class="text-label-sm text-secondary font-bold uppercase">Chemistry</p>
+<h3 class="font-headline-md text-on-surface">JEE Advanced: Carbon Mechanisms</h3>
+</div>
+<span class="material-symbols-outlined text-outline">visibility_off</span>
+</div>
+<div class="flex items-center gap-4 mb-6">
+<div class="flex flex-col">
+<span class="text-[10px] text-outline uppercase">Price</span>
+<span class="font-bold text-secondary">₹3,499</span>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant"></div>
+<div class="flex flex-col">
+<span class="text-[10px] text-outline uppercase">Batches</span>
+<span class="font-bold text-on-surface">03 Draft</span>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant"></div>
+<div class="flex flex-col">
+<span class="text-[10px] text-outline uppercase">Visibility</span>
+<span class="font-bold text-outline">Private</span>
+</div>
+</div>
+<div class="space-y-3">
+<button class="w-full flex justify-between items-center px-4 py-2 bg-surface-container rounded-lg group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+<span class="font-label-md">Manage Content</span>
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+<button class="w-full flex justify-between items-center px-4 py-2 border border-outline-variant rounded-lg hover:bg-surface-container-low transition-colors">
+<span class="font-label-md">View Analytics</span>
+<span class="material-symbols-outlined text-[18px]">bar_chart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Course Card 3 -->
+<div class="glass-card rounded-2xl overflow-hidden group hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300">
+<div class="h-48 relative">
+<img class="w-full h-full object-cover" data-alt="A stylized DNA double helix illuminated with internal bioluminescent light, weaving through floating microscopic cell organelles. The color palette features deep navy blues and vibrant electric teals. The image has a clean, high-contrast look that suggests professional biology education and advanced molecular research, perfect for a premium academic platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_Oz27QUobWFRD4vsxZ8ovZ8xs0tBjn4_o48W94insjJGGACgdKFg4QDPEhrypktAHPiMVLSlFxZtvGBToiQ2j0bD2dy36XpoAY-4Wla5GMWSO3bgzFLAuzNZXeRBeSNi-AF5VxFTfAgU2LPxCFgXR7vGSyzqLo-raeqBSlE1PizIXVGZ4PWvNfcvSOu_Ihu76LkJb-R6ATjS-17Q8QUyMF4h7piqSs5mK-vUHfmfmUqjcno_NA8HTSSAiUUZBanGavFLuLrFMiNY"/>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 bg-tertiary text-on-tertiary text-[10px] font-bold uppercase rounded-full tracking-widest">Bestseller</span>
+</div>
+<div class="absolute top-4 right-4 flex gap-2">
+<button class="p-2 rounded-full bg-white/20 backdrop-blur-md text-white hover:bg-white/40 transition-colors">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<div>
+<p class="text-label-sm text-tertiary font-bold uppercase">Biology</p>
+<h3 class="font-headline-md text-on-surface">NEET Foundation: Human Physiology</h3>
+</div>
+<span class="material-symbols-outlined text-tertiary">check_circle</span>
+</div>
+<div class="flex items-center gap-4 mb-6">
+<div class="flex flex-col">
+<span class="text-[10px] text-outline uppercase">Price</span>
+<span class="font-bold text-secondary">₹2,999</span>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant"></div>
+<div class="flex flex-col">
+<span class="text-[10px] text-outline uppercase">Batches</span>
+<span class="font-bold text-on-surface">12 Active</span>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant"></div>
+<div class="flex flex-col">
+<span class="text-[10px] text-outline uppercase">Visibility</span>
+<span class="font-bold text-tertiary">Public</span>
+</div>
+</div>
+<div class="space-y-3">
+<button class="w-full flex justify-between items-center px-4 py-2 bg-surface-container rounded-lg group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+<span class="font-label-md">Manage Content</span>
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+<button class="w-full flex justify-between items-center px-4 py-2 border border-outline-variant rounded-lg hover:bg-surface-container-low transition-colors">
+<span class="font-label-md">View Analytics</span>
+<span class="material-symbols-outlined text-[18px]">bar_chart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Sub-section: Content Manager & Batch View -->
+<div class="mt-16 grid grid-cols-1 xl:grid-cols-3 gap-8">
+<!-- Sidebar: Batch Management -->
+<div class="glass-card rounded-2xl p-6 h-fit sticky top-24">
+<div class="flex items-center justify-between mb-6">
+<h4 class="font-headline-md text-on-surface">Assigned Batches</h4>
+<button class="text-primary font-label-md hover:underline">See All</button>
+</div>
+<div class="space-y-4">
+<div class="flex items-center gap-3 p-3 rounded-xl border border-primary/10 bg-primary/5">
+<div class="w-10 h-10 rounded-lg bg-primary text-on-primary flex items-center justify-center font-bold">A1</div>
+<div class="flex-1">
+<p class="font-label-md text-on-surface">Achievers 2.0 (Alpha)</p>
+<p class="text-[10px] text-outline">450 Students • Starts July 1st</p>
+</div>
+<span class="material-symbols-outlined text-outline">more_vert</span>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-xl border border-outline-variant hover:bg-surface-container transition-colors">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest text-primary flex items-center justify-center font-bold">E1</div>
+<div class="flex-1">
+<p class="font-label-md text-on-surface">Elite Rankers (Evening)</p>
+<p class="text-[10px] text-outline">120 Students • Ongoing</p>
+</div>
+<span class="material-symbols-outlined text-outline">more_vert</span>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-xl border border-outline-variant hover:bg-surface-container transition-colors">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest text-primary flex items-center justify-center font-bold">F1</div>
+<div class="flex-1">
+<p class="font-label-md text-on-surface">Fast Track NEET Prep</p>
+<p class="text-[10px] text-outline">890 Students • Ongoing</p>
+</div>
+<span class="material-symbols-outlined text-outline">more_vert</span>
+</div>
+<button class="w-full py-3 rounded-xl border-2 border-dashed border-outline-variant text-outline hover:border-primary hover:text-primary transition-all font-label-md flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">add</span> Assign to New Batch
+                        </button>
+</div>
+</div>
+<!-- Main Section: Content Manager -->
+<div class="xl:col-span-2 space-y-8">
+<!-- Content Upload Tabs -->
+<div class="glass-card rounded-2xl overflow-hidden">
+<div class="flex border-b border-outline-variant">
+<button class="flex-1 py-4 font-label-md text-primary border-b-2 border-primary bg-primary/5 transition-all" id="tab-videos" onclick="switchTab('videos')">Video Lectures</button>
+<button class="flex-1 py-4 font-label-md text-outline hover:bg-surface-container-low transition-all" id="tab-pdfs" onclick="switchTab('pdfs')">PDFs & Notes</button>
+<button class="flex-1 py-4 font-label-md text-outline hover:bg-surface-container-low transition-all" id="tab-dpps" onclick="switchTab('dpps')">DPPs & Tests</button>
+</div>
+<div class="p-8">
+<div class="border-2 border-dashed border-outline-variant rounded-2xl p-10 flex flex-col items-center justify-center text-center bg-surface-container-lowest">
+<div class="w-16 h-16 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-[32px]">cloud_upload</span>
+</div>
+<h5 class="font-headline-md text-on-surface mb-2">Drop your files here</h5>
+<p class="text-outline text-label-md mb-6 max-w-sm">Support for Vimeo, YouTube links, MP4, and PDF. Max file size 500MB.</p>
+<div class="flex gap-4">
+<button class="px-6 py-2.5 bg-primary text-on-primary rounded-xl font-label-md shadow-lg shadow-primary/20">Select Files</button>
+<button class="px-6 py-2.5 border border-outline-variant rounded-xl font-label-md hover:bg-white transition-colors">Import Link</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Drag and Drop Reordering -->
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<h4 class="font-headline-md text-on-surface">Curriculum Builder</h4>
+<div class="flex items-center gap-2">
+<span class="text-[10px] text-outline uppercase font-bold">Auto-Save Enabled</span>
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+</div>
+</div>
+<div class="space-y-4" id="curriculum-list">
+<!-- Chapter 1 -->
+<div class="glass-card rounded-2xl p-4 border-l-4 border-l-primary group">
+<div class="flex items-center gap-4">
+<div class="drag-handle p-2 text-outline-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">drag_indicator</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2">
+<span class="text-[10px] font-bold text-primary uppercase">Chapter 01</span>
+<h5 class="font-label-md text-on-surface">Introduction to Quantum Mechanics</h5>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">4 VIDEOS</span>
+<button class="p-2 text-outline-variant hover:text-primary"><span class="material-symbols-outlined text-[20px]">expand_more</span></button>
+</div>
+</div>
+<!-- Topics Sub-list (Simplified) -->
+<div class="pl-14 pr-4 mt-4 space-y-2">
+<div class="flex items-center justify-between p-3 bg-white rounded-xl border border-outline-variant/30 hover:border-primary/50 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[18px]">play_circle</span>
+<span class="text-label-md text-on-surface-variant">Wave-Particle Duality (Part 1)</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-[10px] text-outline">12:45 MIN</span>
+<button class="text-outline hover:text-error transition-colors"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+</div>
+</div>
+<div class="flex items-center justify-between p-3 bg-white rounded-xl border border-outline-variant/30 hover:border-primary/50 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-[18px]">description</span>
+<span class="text-label-md text-on-surface-variant">Uncertainty Principle Notes</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-[10px] text-outline">PDF • 2.4MB</span>
+<button class="text-outline hover:text-error transition-colors"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+</div>
+</div>
+</div>
+</div>
+<!-- Chapter 2 -->
+<div class="glass-card rounded-2xl p-4 border-l-4 border-l-outline-variant group opacity-80">
+<div class="flex items-center gap-4">
+<div class="drag-handle p-2 text-outline-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">drag_indicator</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2">
+<span class="text-[10px] font-bold text-outline uppercase">Chapter 02</span>
+<h5 class="font-label-md text-on-surface">Schrödinger Wave Equation</h5>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">0 VIDEOS</span>
+<button class="p-2 text-outline-variant hover:text-primary"><span class="material-symbols-outlined text-[20px]">add</span></button>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full py-4 bg-surface-container-lowest border-2 border-dashed border-outline-variant rounded-2xl text-primary font-label-md hover:bg-white transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">add_circle</span> Add New Chapter
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Contextual Footer (Help & Stats) -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant p-8 mt-16">
+<div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+<div>
+<h6 class="font-label-md text-on-surface mb-4">Content Guidelines</h6>
+<ul class="space-y-2 text-label-sm text-on-surface-variant">
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Ensure 1080p minimum resolution</li>
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Use atomic blue accents in slides</li>
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span> PDFs must be OCR searchable</li>
+</ul>
+</div>
+<div class="flex flex-col items-center md:items-start">
+<h6 class="font-label-md text-on-surface mb-4">Storage Usage</h6>
+<div class="w-full bg-surface-container rounded-full h-2 mb-2">
+<div class="bg-primary h-2 rounded-full" style="width: 65%"></div>
+</div>
+<p class="text-label-sm text-outline">1.2 TB of 2.0 TB used (65%)</p>
+</div>
+<div class="flex flex-col items-center md:items-end">
+<p class="text-label-sm text-outline mb-4">Atomic Pathshala v4.2.1 Admin Console</p>
+<div class="flex gap-4">
+<a class="text-primary hover:underline text-label-sm" href="#">Privacy Policy</a>
+<a class="text-primary hover:underline text-label-sm" href="#">System Status</a>
+</div>
+</div>
+</div>
+</footer>
+</main>
+<script>
+        function switchTab(tabId) {
+            const tabs = ['videos', 'pdfs', 'dpps'];
+            tabs.forEach(t => {
+                const el = document.getElementById('tab-' + t);
+                if (t === tabId) {
+                    el.classList.add('text-primary', 'border-b-2', 'border-primary', 'bg-primary/5');
+                    el.classList.remove('text-outline', 'hover:bg-surface-container-low');
+                } else {
+                    el.classList.remove('text-primary', 'border-b-2', 'border-primary', 'bg-primary/5');
+                    el.classList.add('text-outline', 'hover:bg-surface-container-low');
+                }
+            });
+        }
+
+        // Simple mock for "drag-and-drop" visual effect
+        document.querySelectorAll('.drag-handle').forEach(handle => {
+            handle.addEventListener('mousedown', () => {
+                handle.closest('.glass-card').classList.add('scale-[1.01]', 'shadow-xl', 'z-10');
+            });
+            window.addEventListener('mouseup', () => {
+                handle.closest('.glass-card').classList.remove('scale-[1.01]', 'shadow-xl', 'z-10');
+            });
+        });
+    </script>
+
+  <!-- Ecosystem Switched Widget Overlay -->
+  <script src="../ecosystem-hud.js"></script>
+</body></html>

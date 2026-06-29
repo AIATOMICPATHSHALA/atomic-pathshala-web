@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Atomic Pathshala | Admin Overview</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.08);
+            border-color: rgba(0, 102, 255, 0.3);
+        }
+        .pulse-green {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .4; }
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c2c6d8;
+            border-radius: 10px;
+        }
+        .chart-gradient {
+            background: linear-gradient(180deg, rgba(0, 80, 203, 0.1) 0%, rgba(0, 80, 203, 0) 100%);
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#131b2e",
+                    "surface-container": "#eaedff",
+                    "secondary": "#00677f",
+                    "outline-variant": "#c2c6d8",
+                    "surface-variant": "#dae2fd",
+                    "border-subtle": "rgba(0, 102, 255, 0.1)",
+                    "surface-tint": "#0054d6",
+                    "on-primary": "#ffffff",
+                    "background": "#faf8ff",
+                    "on-tertiary-fixed": "#002113",
+                    "surface-dim": "#d2d9f4",
+                    "primary-fixed": "#dae1ff",
+                    "primary": "#0050cb",
+                    "tertiary-fixed-dim": "#49df9f",
+                    "on-tertiary-container": "#e1ffeb",
+                    "on-secondary-fixed": "#001f28",
+                    "on-primary-container": "#f8f7ff",
+                    "surface-container-highest": "#dae2fd",
+                    "secondary-container": "#00ccf9",
+                    "tertiary": "#006643",
+                    "text-light": "#0F172A",
+                    "surface-container-lowest": "#ffffff",
+                    "bg-light": "#FFFFFF",
+                    "on-error-container": "#93000a",
+                    "bg-dark": "#0B0E14",
+                    "surface": "#faf8ff",
+                    "surface-bright": "#faf8ff",
+                    "surface-light": "#F8FAFC",
+                    "on-error": "#ffffff",
+                    "inverse-on-surface": "#eef0ff",
+                    "tertiary-fixed": "#6afcb9",
+                    "inverse-surface": "#283044",
+                    "on-secondary-fixed-variant": "#004e60",
+                    "outline": "#727687",
+                    "on-background": "#131b2e",
+                    "on-primary-fixed": "#001849",
+                    "tertiary-container": "#008256",
+                    "text-dark": "#F1F5F9",
+                    "primary-container": "#0066ff",
+                    "on-primary-fixed-variant": "#003fa4",
+                    "on-secondary-container": "#005266",
+                    "error": "#ba1a1a",
+                    "on-tertiary": "#ffffff",
+                    "on-surface-variant": "#424656",
+                    "surface-dark": "#161B22",
+                    "inverse-primary": "#b3c5ff",
+                    "surface-container-low": "#f2f3ff",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#b7eaff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "stack-md": "16px",
+                    "stack-lg": "32px",
+                    "stack-sm": "8px",
+                    "container-max": "1280px",
+                    "gutter": "24px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Geist"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Geist"],
+                    "display-lg-mobile": ["Geist"],
+                    "display-lg": ["Geist"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- Persistent SideNavBar -->
+<aside class="hidden lg:flex flex-col h-screen w-72 fixed left-0 top-0 py-6 border-r border-outline-variant backdrop-blur-xl bg-surface/50 z-50">
+<div class="px-6 mb-8">
+<img alt="Atomic Pathshala Logo" class="h-10 w-auto object-contain mb-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDh8VC3_CWEnB5xhrc2A9TDoE3qWGe8AWtxp8pCs_ZK-eYhLcrhYlAhFQ9_rsr2pNU_fh9V5FIl1vMV9FBSwfhlvPUiD5TeIyYoYtwb1GdBkCwVFm8bNTxJS39R_ZBJE3MCXA75vjOIgTqR3nnbKefbkjzUn8Ud5XWcZMt4HrTEUmXzO79jgEOmDUrVvWlfE6zrLgkBAoWWcpNYuSCKScXqJnZ3LyPvs_9hWuVE7APhzg8MOwo4_6wOZsmXacGd9PnOQOwmJGvlVnA"/>
+</div>
+<nav class="flex-1 space-y-1 px-3 overflow-y-auto">
+<a class="flex items-center gap-3 px-4 py-3 text-primary font-bold bg-primary-container/10 border-r-4 border-primary translate-x-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md">Users</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">book_2</span>
+<span class="font-label-md">Courses</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">layers</span>
+<span class="font-label-md">Batches</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">live_tv</span>
+<span class="font-label-md">Live Classes</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md">Payments</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md">Settings</span>
+</a>
+</nav>
+<div class="px-6 pt-6 mt-6 border-t border-outline-variant">
+<button class="w-full flex items-center justify-center gap-2 bg-primary text-on-primary py-3 rounded-xl font-label-md hover:shadow-lg transition-all active:scale-95">
+<span class="material-symbols-outlined">add</span>
+                New Course
+            </button>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="sticky top-0 z-40 flex justify-between items-center w-full px-8 py-3 lg:pl-[20rem] bg-surface/80 backdrop-blur-xl border-b border-outline-variant"><div class="flex items-center mr-6 lg:hidden"><img alt="Atomic Pathshala Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDh8VC3_CWEnB5xhrc2A9TDoE3qWGe8AWtxp8pCs_ZK-eYhLcrhYlAhFQ9_rsr2pNU_fh9V5FIl1vMV9FBSwfhlvPUiD5TeIyYoYtwb1GdBkCwVFm8bNTxJS39R_ZBJE3MCXA75vjOIgTqR3nnbKefbkjzUn8Ud5XWcZMt4HrTEUmXzO79jgEOmDUrVvWlfE6zrLgkBAoWWcpNYuSCKScXqJnZ3LyPvs_9hWuVE7APhzg8MOwo4_6wOZsmXacGd9PnOQOwmJGvlVnA"/></div>
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-full text-label-md focus:ring-2 focus:ring-primary outline-none transition-all" placeholder="Search students, courses, or transactions..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6 ml-8">
+<button class="relative p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-all">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full ring-2 ring-surface"></span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-all">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-all">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<div class="flex items-center gap-3 pl-4 border-l border-outline-variant">
+<div class="text-right hidden sm:block">
+<p class="font-label-md text-on-surface">Admin Profile</p>
+<p class="font-label-sm text-on-surface-variant">Super Administrator</p>
+</div>
+<img class="w-10 h-10 rounded-full border-2 border-primary object-cover" data-alt="A professional high-resolution studio portrait of a corporate male administrator in a crisp white shirt and navy blazer, standing against a minimalist light grey background. The lighting is soft and directional, emphasizing professional trust and executive authority in an EdTech context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmiDfx_LTCP6H1qQaCe51prIjGJtSz3AfyZL46z7AGTGBBtJa1x54h8VbImflphfNpMw2_1qkQciqwwHPPI3YTa0Ip3PQINd4XKR74b-Yw8SEg_80JI5B3C538m4xxvMW5VyamDBSP9dJjELBXvA5FILYyGuZoKRaNnNnpqrToxOl5ym_RPaqF-GRNmpQyD9BWAAPYYBZM6Et2tvVUhWWIvs5cx66FCDYErSImK3ocvhiF2Kf9kgW-EbtkTPqKKkaScHBXfyDnv1s"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="lg:pl-72 min-h-screen">
+<div class="p-8 max-w-[1400px] mx-auto space-y-stack-lg">
+<!-- Dashboard Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Admin Overview</h2>
+<p class="font-body-md text-on-surface-variant">Welcome back, here's what's happening on your platform today.</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="bg-surface-container px-4 py-2 rounded-lg flex items-center gap-2 border border-outline-variant">
+<span class="material-symbols-outlined text-primary text-[20px]">calendar_today</span>
+<span class="font-label-md">Oct 24, 2024</span>
+</div>
+<button class="bg-surface-container-lowest border border-outline-variant px-4 py-2 rounded-lg font-label-md flex items-center gap-2 hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-[20px]">download</span>
+                        Export Report
+                    </button>
+</div>
+</div>
+<!-- Top Stat Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-stack-md">
+<!-- Total Students -->
+<div class="glass-card p-5 rounded-2xl">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-primary-container/10 rounded-lg">
+<span class="material-symbols-outlined text-primary">group</span>
+</div>
+<span class="text-tertiary font-label-sm flex items-center gap-1">+12% <span class="material-symbols-outlined text-[14px]">trending_up</span></span>
+</div>
+<p class="font-label-sm text-on-surface-variant uppercase tracking-wider">Total Students</p>
+<h3 class="font-headline-md text-headline-md mt-1">125,430</h3>
+</div>
+<!-- Active Students -->
+<div class="glass-card p-5 rounded-2xl">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-secondary-container/10 rounded-lg">
+<span class="material-symbols-outlined text-secondary">bolt</span>
+</div>
+<span class="text-tertiary font-label-sm flex items-center gap-1">+5% <span class="material-symbols-outlined text-[14px]">trending_up</span></span>
+</div>
+<p class="font-label-sm text-on-surface-variant uppercase tracking-wider">Active Today</p>
+<h3 class="font-headline-md text-headline-md mt-1">84,200</h3>
+</div>
+<!-- Paid vs Free Ratio -->
+<div class="glass-card p-5 rounded-2xl col-span-1">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-tertiary-container/10 rounded-lg">
+<span class="material-symbols-outlined text-tertiary">monetization_on</span>
+</div>
+</div>
+<p class="font-label-sm text-on-surface-variant uppercase tracking-wider">Paid / Free Ratio</p>
+<div class="flex items-end justify-between mt-1">
+<h3 class="font-headline-md text-headline-md">65%</h3>
+<span class="font-label-sm text-on-surface-variant pb-1">35% Free</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full mt-2 overflow-hidden">
+<div class="h-full bg-primary" style="width: 65%"></div>
+</div>
+</div>
+<!-- Revenue -->
+<div class="glass-card p-5 rounded-2xl">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-primary-container/10 rounded-lg">
+<span class="material-symbols-outlined text-primary">payments</span>
+</div>
+<span class="text-tertiary font-label-sm flex items-center gap-1">+18% <span class="material-symbols-outlined text-[14px]">trending_up</span></span>
+</div>
+<p class="font-label-sm text-on-surface-variant uppercase tracking-wider">Today's Revenue</p>
+<h3 class="font-headline-md text-headline-md mt-1">₹4,52,000</h3>
+</div>
+<!-- Live Classes -->
+<div class="glass-card p-5 rounded-2xl">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-error-container/10 rounded-lg">
+<span class="material-symbols-outlined text-error">sensors</span>
+</div>
+<div class="flex items-center gap-1">
+<div class="w-2 h-2 bg-error rounded-full pulse-green"></div>
+<span class="text-error font-label-sm">LIVE</span>
+</div>
+</div>
+<p class="font-label-sm text-on-surface-variant uppercase tracking-wider">Classes Today</p>
+<h3 class="font-headline-md text-headline-md mt-1">42</h3>
+</div>
+</div>
+<!-- Main Charts Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-stack-lg">
+<!-- Revenue Trend -->
+<div class="lg:col-span-2 glass-card p-6 rounded-3xl flex flex-col">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h4 class="font-headline-md text-[20px]">Revenue Trend</h4>
+<p class="font-label-sm text-on-surface-variant">Weekly performance analysis</p>
+</div>
+<select class="bg-surface-container-low border border-outline-variant text-label-sm rounded-lg px-3 py-1.5 focus:ring-primary">
+<option>Last 7 Days</option>
+<option>Last 30 Days</option>
+</select>
+</div>
+<div class="flex-1 relative min-h-[300px] flex items-end justify-between gap-2 px-4">
+<!-- Simulated Chart Bars with Gradients -->
+<div class="flex-1 group relative">
+<div class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-on-surface text-surface text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">₹3.2L</div>
+<div class="w-full bg-primary/20 rounded-t-lg transition-all group-hover:bg-primary/40" style="height: 45%"></div>
+<p class="text-center font-label-sm mt-4 text-on-surface-variant">Mon</p>
+</div>
+<div class="flex-1 group relative">
+<div class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-on-surface text-surface text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">₹4.1L</div>
+<div class="w-full bg-primary/20 rounded-t-lg transition-all group-hover:bg-primary/40" style="height: 60%"></div>
+<p class="text-center font-label-sm mt-4 text-on-surface-variant">Tue</p>
+</div>
+<div class="flex-1 group relative">
+<div class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-on-surface text-surface text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">₹3.8L</div>
+<div class="w-full bg-primary/20 rounded-t-lg transition-all group-hover:bg-primary/40" style="height: 55%"></div>
+<p class="text-center font-label-sm mt-4 text-on-surface-variant">Wed</p>
+</div>
+<div class="flex-1 group relative">
+<div class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-on-surface text-surface text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">₹5.2L</div>
+<div class="w-full bg-primary rounded-t-lg transition-all" style="height: 85%"></div>
+<p class="text-center font-label-sm mt-4 text-on-surface">Thu</p>
+</div>
+<div class="flex-1 group relative">
+<div class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-on-surface text-surface text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">₹4.5L</div>
+<div class="w-full bg-primary/20 rounded-t-lg transition-all group-hover:bg-primary/40" style="height: 70%"></div>
+<p class="text-center font-label-sm mt-4 text-on-surface-variant">Fri</p>
+</div>
+<div class="flex-1 group relative">
+<div class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-on-surface text-surface text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">₹2.1L</div>
+<div class="w-full bg-primary/20 rounded-t-lg transition-all group-hover:bg-primary/40" style="height: 30%"></div>
+<p class="text-center font-label-sm mt-4 text-on-surface-variant">Sat</p>
+</div>
+<div class="flex-1 group relative">
+<div class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-on-surface text-surface text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">₹1.5L</div>
+<div class="w-full bg-primary/20 rounded-t-lg transition-all group-hover:bg-primary/40" style="height: 20%"></div>
+<p class="text-center font-label-sm mt-4 text-on-surface-variant">Sun</p>
+</div>
+</div>
+</div>
+<!-- Subject Enrollment -->
+<div class="glass-card p-6 rounded-3xl">
+<h4 class="font-headline-md text-[20px] mb-6">Subject Enrollment</h4>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-md">Physics</span>
+<span class="font-label-sm text-on-surface-variant">42,500 students</span>
+</div>
+<div class="w-full h-3 bg-surface-container rounded-full">
+<div class="h-full bg-primary rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-md">Chemistry</span>
+<span class="font-label-sm text-on-surface-variant">38,200 students</span>
+</div>
+<div class="w-full h-3 bg-surface-container rounded-full">
+<div class="h-full bg-secondary-container rounded-full" style="width: 76%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-md">Biology</span>
+<span class="font-label-sm text-on-surface-variant">44,730 students</span>
+</div>
+<div class="w-full h-3 bg-surface-container rounded-full">
+<div class="h-full bg-tertiary-container rounded-full" style="width: 90%"></div>
+</div>
+</div>
+</div>
+<div class="mt-10 p-4 rounded-xl bg-primary/5 border border-primary/10">
+<p class="font-label-sm text-primary mb-1">Total Active Courses</p>
+<h5 class="text-headline-md font-bold">156</h5>
+<p class="font-label-sm text-on-surface-variant mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                            Across 12 Categories
+                        </p>
+</div>
+</div>
+</div>
+<!-- Operational & Activity Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-stack-lg">
+<!-- System Health & Status -->
+<div class="space-y-stack-md">
+<!-- Server Status -->
+<div class="glass-card p-5 rounded-2xl">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-full bg-tertiary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary">dns</span>
+</div>
+<div class="flex-1">
+<h5 class="font-label-md">Server Status</h5>
+<div class="flex items-center gap-1.5">
+<div class="w-2 h-2 rounded-full bg-tertiary pulse-green"></div>
+<span class="font-label-sm text-tertiary">All Systems Operational</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 border-t border-outline-variant pt-4">
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase">Uptime</p>
+<p class="font-label-md">99.98%</p>
+</div>
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase">Latency</p>
+<p class="font-label-md">24ms</p>
+</div>
+</div>
+</div>
+<!-- Pending Doubts -->
+<div class="glass-card p-5 rounded-2xl bg-surface-container-low">
+<div class="flex justify-between items-start mb-2">
+<h5 class="font-label-md">Pending Doubts</h5>
+<span class="bg-error text-on-error px-2 py-0.5 rounded text-[10px] font-bold">HIGH PRIORITY</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-4">1,204</h3>
+<div class="space-y-2">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+<span class="font-label-sm text-on-surface-variant flex-1">Urgent (NEET Target)</span>
+<span class="font-label-sm font-bold">412</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-on-surface-variant flex-1">Standard Doubts</span>
+<span class="font-label-sm font-bold">792</span>
+</div>
+</div>
+<button class="w-full mt-4 py-2 border border-primary/20 rounded-lg font-label-sm text-primary hover:bg-primary/5 transition-all">
+                            Assign to Faculty
+                        </button>
+</div>
+</div>
+<!-- Recent Payments -->
+<div class="lg:col-span-2 glass-card rounded-3xl overflow-hidden flex flex-col">
+<div class="p-6 border-b border-outline-variant flex justify-between items-center bg-white/50">
+<h4 class="font-headline-md text-[20px]">Recent Transactions</h4>
+<button class="text-primary font-label-md hover:underline">View All</button>
+</div>
+<div class="overflow-x-auto flex-1">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant text-[11px] uppercase tracking-wider">
+<th class="px-6 py-4 font-semibold">Student</th>
+<th class="px-6 py-4 font-semibold">Course / Item</th>
+<th class="px-6 py-4 font-semibold">Amount</th>
+<th class="px-6 py-4 font-semibold">Status</th>
+<th class="px-6 py-4 font-semibold">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-fixed text-primary flex items-center justify-center font-bold text-[12px]">AR</div>
+<div>
+<p class="font-label-md">Aryan Raj</p>
+<p class="text-[10px] text-on-surface-variant">ary.raj@example.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="font-label-sm">Target NEET 2025 - Physics</p>
+</td>
+<td class="px-6 py-4">
+<p class="font-label-md">₹14,999</p>
+</td>
+<td class="px-6 py-4">
+<span class="bg-tertiary/10 text-tertiary px-2 py-1 rounded-full text-[10px] font-bold">SUCCESS</span>
+</td>
+<td class="px-6 py-4">
+<button class="p-2 hover:bg-surface-container rounded-lg transition-all opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-bold text-[12px]">SN</div>
+<div>
+<p class="font-label-md">Sana Nair</p>
+<p class="text-[10px] text-on-surface-variant">sana.n@example.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="font-label-sm">JEE Advanced Test Series</p>
+</td>
+<td class="px-6 py-4">
+<p class="font-label-md">₹2,499</p>
+</td>
+<td class="px-6 py-4">
+<span class="bg-tertiary/10 text-tertiary px-2 py-1 rounded-full text-[10px] font-bold">SUCCESS</span>
+</td>
+<td class="px-6 py-4">
+<button class="p-2 hover:bg-surface-container rounded-lg transition-all opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-dim text-on-surface-variant flex items-center justify-center font-bold text-[12px]">VK</div>
+<div>
+<p class="font-label-md">Varun Kapoor</p>
+<p class="text-[10px] text-on-surface-variant">vk.edu@example.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="font-label-sm">Module 4: Organic Chemistry</p>
+</td>
+<td class="px-6 py-4">
+<p class="font-label-md">₹599</p>
+</td>
+<td class="px-6 py-4">
+<span class="bg-surface-container text-on-surface-variant px-2 py-1 rounded-full text-[10px] font-bold">PENDING</span>
+</td>
+<td class="px-6 py-4">
+<button class="p-2 hover:bg-surface-container rounded-lg transition-all opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-fixed text-primary flex items-center justify-center font-bold text-[12px]">MP</div>
+<div>
+<p class="font-label-md">Meera Patel</p>
+<p class="text-[10px] text-on-surface-variant">meera.p@example.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="font-label-sm">Target NEET 2025 - Full Batch</p>
+</td>
+<td class="px-6 py-4">
+<p class="font-label-md">₹24,999</p>
+</td>
+<td class="px-6 py-4">
+<span class="bg-tertiary/10 text-tertiary px-2 py-1 rounded-full text-[10px] font-bold">SUCCESS</span>
+</td>
+<td class="px-6 py-4">
+<button class="p-2 hover:bg-surface-container rounded-lg transition-all opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Footer Section: Upcoming Tests & Notifications -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-lg">
+<!-- Upcoming Tests -->
+<div class="glass-card p-6 rounded-3xl">
+<div class="flex justify-between items-center mb-6">
+<h4 class="font-headline-md text-[20px]">Upcoming Tests</h4>
+<span class="material-symbols-outlined text-outline">event_note</span>
+</div>
+<div class="space-y-4">
+<div class="flex items-center gap-4 p-4 rounded-2xl bg-surface-container-low border border-outline-variant hover:border-primary transition-all cursor-pointer group">
+<div class="flex flex-col items-center justify-center bg-white rounded-xl px-3 py-2 border border-outline-variant group-hover:border-primary">
+<span class="font-bold text-headline-md leading-none">28</span>
+<span class="text-[10px] text-on-surface-variant uppercase">Oct</span>
+</div>
+<div class="flex-1">
+<h5 class="font-label-md">Weekly Physics Assessment</h5>
+<p class="text-on-surface-variant text-[12px]">Topic: Thermodynamics &amp; Heat Transfer</p>
+<p class="text-[10px] text-primary mt-1">42,000+ Enrolled</p>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+<div class="flex items-center gap-4 p-4 rounded-2xl bg-surface-container-low border border-outline-variant hover:border-primary transition-all cursor-pointer group">
+<div class="flex flex-col items-center justify-center bg-white rounded-xl px-3 py-2 border border-outline-variant group-hover:border-primary">
+<span class="font-bold text-headline-md leading-none">30</span>
+<span class="text-[10px] text-on-surface-variant uppercase">Oct</span>
+</div>
+<div class="flex-1">
+<h5 class="font-label-md">Biology Flash Quiz</h5>
+<p class="text-on-surface-variant text-[12px]">Topic: Genetics &amp; Evolution</p>
+<p class="text-[10px] text-primary mt-1">15,500+ Enrolled</p>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+<div class="flex items-center gap-4 p-4 rounded-2xl bg-surface-container-low border border-outline-variant hover:border-primary transition-all cursor-pointer group">
+<div class="flex flex-col items-center justify-center bg-white rounded-xl px-3 py-2 border border-outline-variant group-hover:border-primary">
+<span class="font-bold text-headline-md leading-none">02</span>
+<span class="text-[10px] text-on-surface-variant uppercase">Nov</span>
+</div>
+<div class="flex-1">
+<h5 class="font-label-md">Monthly Mock NEET Exam</h5>
+<p class="text-on-surface-variant text-[12px]">Full Syllabus (Mock 04)</p>
+<p class="text-[10px] text-primary mt-1">89,200+ Enrolled</p>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Notifications -->
+<div class="glass-card p-6 rounded-3xl">
+<div class="flex justify-between items-center mb-6">
+<h4 class="font-headline-md text-[20px]">System Alerts</h4>
+<span class="material-symbols-outlined text-outline">notifications_active</span>
+</div>
+<div class="space-y-4">
+<div class="flex gap-4">
+<div class="w-10 h-10 shrink-0 rounded-full bg-error/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-error text-[20px]">warning</span>
+</div>
+<div>
+<p class="font-label-md">Scheduled Maintenance Tonight</p>
+<p class="text-on-surface-variant text-[13px] mt-0.5">Payment gateway downtime from 02:00 AM to 04:00 AM IST.</p>
+<p class="text-[10px] text-outline mt-2">2 hours ago</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-10 h-10 shrink-0 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[20px]">update</span>
+</div>
+<div>
+<p class="font-label-md">Faculty Portal Updated</p>
+<p class="text-on-surface-variant text-[13px] mt-0.5">New 'Real-time Doubts' feature has been deployed for all faculty members.</p>
+<p class="text-[10px] text-outline mt-2">5 hours ago</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-10 h-10 shrink-0 rounded-full bg-tertiary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary text-[20px]">campaign</span>
+</div>
+<div>
+<p class="font-label-md">Newsletter Campaign Sent</p>
+<p class="text-on-surface-variant text-[13px] mt-0.5">'NEET Last Minute Strategy' email sent to 120,000 students.</p>
+<p class="text-[10px] text-outline mt-2">Yesterday</p>
+</div>
+</div>
+<button class="w-full py-3 bg-surface-container rounded-xl font-label-md text-on-surface-variant hover:bg-surface-container-high transition-all">
+                            View All Notifications
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB for quick actions -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined">add</span>
+</button>
+<script>
+        // Simple micro-interaction for card numbers incrementing
+        document.addEventListener('DOMContentLoaded', () => {
+            const stats = document.querySelectorAll('.font-headline-md');
+            stats.forEach(stat => {
+                const finalValue = stat.innerText;
+                if(finalValue.includes('₹') || finalValue.includes('%') || finalValue.includes(',')) return;
+                
+                let count = 0;
+                const target = parseInt(finalValue);
+                const duration = 1500;
+                const increment = target / (duration / 16);
+                
+                const updateCount = () => {
+                    if(count < target) {
+                        count += increment;
+                        stat.innerText = Math.ceil(count).toLocaleString();
+                        requestAnimationFrame(updateCount);
+                    } else {
+                        stat.innerText = finalValue;
+                    }
+                };
+                updateCount();
+            });
+        });
+    </script>
+
+  <!-- Ecosystem Switched Widget Overlay -->
+  <script src="../ecosystem-hud.js"></script>
+</body></html>

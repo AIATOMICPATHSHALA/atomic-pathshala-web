@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Certificate Designer | Atomic Pathshala</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#008256",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "background": "#faf8ff",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-high": "#e2e7ff",
+                    "surface": "#faf8ff",
+                    "outline": "#727687",
+                    "primary-fixed": "#dae1ff",
+                    "surface-tint": "#0054d6",
+                    "inverse-primary": "#b3c5ff",
+                    "tertiary-fixed": "#6afcb9",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#003fa4",
+                    "bg-dark": "#0B0E14",
+                    "surface-container": "#eaedff",
+                    "secondary-fixed-dim": "#4cd6ff",
+                    "on-secondary-fixed-variant": "#004e60",
+                    "surface-light": "#F8FAFC",
+                    "text-light": "#0F172A",
+                    "surface-container-low": "#f2f3ff",
+                    "inverse-on-surface": "#eef0ff",
+                    "error": "#ba1a1a",
+                    "tertiary": "#006643",
+                    "on-tertiary-fixed": "#002113",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#005266",
+                    "on-error-container": "#93000a",
+                    "surface-variant": "#dae2fd",
+                    "inverse-surface": "#283044",
+                    "bg-light": "#FFFFFF",
+                    "on-surface-variant": "#424656",
+                    "surface-container-highest": "#dae2fd",
+                    "surface-bright": "#faf8ff",
+                    "on-primary-fixed": "#001849",
+                    "primary": "#0050cb",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#49df9f",
+                    "on-background": "#131b2e",
+                    "on-primary-container": "#f8f7ff",
+                    "secondary": "#00677f",
+                    "on-surface": "#131b2e",
+                    "on-primary": "#ffffff",
+                    "text-dark": "#F1F5F9",
+                    "surface-dim": "#d2d9f4",
+                    "on-tertiary-container": "#e1ffeb",
+                    "secondary-fixed": "#b7eaff",
+                    "outline-variant": "#c2c6d8",
+                    "surface-dark": "#161B22",
+                    "on-tertiary-fixed-variant": "#005235",
+                    "on-secondary-fixed": "#001f28",
+                    "secondary-container": "#00ccf9",
+                    "border-subtle": "rgba(0, 102, 255, 0.1)",
+                    "primary-container": "#0066ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "8px",
+                    "stack-lg": "32px",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "stack-md": "16px",
+                    "margin-desktop": "64px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "display-lg": ["Geist"],
+                    "label-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Geist"],
+                    "headline-md": ["Geist"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .certificate-canvas {
+            aspect-ratio: 1.414 / 1;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 80, 203, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #c2c6d8; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- Sidebar Navigation (From Shared Components) -->
+<aside class="hidden lg:flex flex-col h-full py-6 bg-surface dark:bg-bg-dark border-r border-outline-variant dark:border-white/10 backdrop-blur-xl h-screen w-72 fixed left-0 top-0 z-50">
+<div class="px-6 mb-8">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Atomic Pathshala</h1>
+<p class="font-label-md text-on-surface-variant opacity-70">Admin Console</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-primary font-bold bg-primary-container/10 border-r-4 border-primary" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-md">Certificates</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md">Users</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">book_2</span>
+<span class="font-label-md">Courses</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md">Settings</span>
+</a>
+</nav>
+<div class="px-6 mt-auto">
+<button class="w-full py-3 bg-primary text-on-primary rounded-xl font-label-md flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">add</span>
+                New Course
+            </button>
+</div>
+</aside>
+<!-- Top Navigation (From Shared Components) -->
+<header class="sticky top-0 z-40 flex justify-between items-center w-full px-8 py-3 lg:pl-80 bg-surface/80 backdrop-blur-xl border-b border-outline-variant shadow-sm">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 focus:ring-2 focus:ring-primary/20 font-body-md" placeholder="Search templates or students..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<div class="h-8 w-px bg-outline-variant mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="font-label-md text-on-surface leading-none">Admin Profile</p>
+<p class="text-xs text-on-surface-variant">Super Administrator</p>
+</div>
+<img class="h-10 w-10 rounded-full border-2 border-primary-fixed object-cover" data-alt="Professional studio portrait of a corporate administrator in formal attire, clean sharp focus, light mode aesthetic, soft blue background tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4_pZNiTDnTyrIeqcDB9DsgryjVukLf1cYG-w2mShd0Dlo7NVdndcrXD6q5uPE-qQOvZSTlkIuvFFOViws9l2OlNmLaR0ppAupUjcUv7WdaNwwPHtapIEJI8ka4boekK9leIKdZ0UxJDcVQjd483aMiEIALBqp4TAEBpcKU5HfwOjwF2Kz81AMpoxr-utM-pB6TtIzolT81G0ZFu0BY7pM7_ee-kmH-PAttVmocsVLseDefmXCO8_eVzvu48PVcrl0hVkVUayCZ54"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="lg:ml-72 p-8 space-y-8 max-w-[1600px] mx-auto">
+<!-- Header -->
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Certificate Designer</h2>
+<p class="font-body-lg text-on-surface-variant">Create and issue professional credentials for your students.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-2.5 border border-primary text-primary rounded-xl font-label-md hover:bg-primary/5 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined">visibility</span> Preview PDF
+                </button>
+<button class="px-6 py-2.5 bg-primary text-on-primary rounded-xl font-label-md shadow-lg shadow-primary/20 hover:scale-105 transition-transform flex items-center gap-2">
+<span class="material-symbols-outlined">send</span> Generate &amp; Issue
+                </button>
+</div>
+</header>
+<!-- Template & Editor Grid -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-8 items-start">
+<!-- Left: Template Gallery (3 cols) -->
+<section class="xl:col-span-3 space-y-4 h-full">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-md text-headline-md">Template Gallery</h3>
+<button class="text-primary font-label-md hover:underline">View All</button>
+</div>
+<div class="space-y-4 overflow-y-auto custom-scrollbar pr-2 max-h-[700px]">
+<!-- Template Item 1 -->
+<div class="group cursor-pointer">
+<div class="rounded-xl overflow-hidden border-2 border-primary p-1 bg-white ring-4 ring-primary/10">
+<div class="bg-cover bg-center aspect-[1.414/1] w-full rounded-lg" data-alt="A professional certificate design with elegant navy blue borders, a gold foil seal on the bottom right, and traditional serif typography. Premium academic aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAodGzj-rIFQxr4KeWxqOnTBwvJJkm9LYLOzpTLvhuAC_A7UglCh5WG1TBOoFJNH_SPX3c_ZxNvLZPwFZ-9sHhKxTa1Tmg3mVKToD231jgBc8JrBlhFVDPI06aEnJIa6XFXHhIftzMg50lOG12cuaDhvyDlsgr6GP-rFx5JeoBpUFlF15PB3j8cFWv1mJEju0LAxG-Nc_TIW86MUNo-fOPuodls0jjUuiRyRWjxdQHiG0RAVzJTBnK9OStFeZxLmOGEbyB4M3QZHpI')"></div>
+</div>
+<p class="mt-2 font-label-md text-on-surface text-center">Merit Excellence</p>
+</div>
+<!-- Template Item 2 -->
+<div class="group cursor-pointer opacity-60 hover:opacity-100 transition-opacity">
+<div class="rounded-xl overflow-hidden border border-outline-variant p-1 bg-white hover:border-primary-fixed">
+<div class="bg-cover bg-center aspect-[1.414/1] w-full rounded-lg" data-alt="Modern minimalist course completion certificate with clean sans-serif fonts, a subtle geometric background pattern in light grey, and a bold blue left-aligned accent stripe." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuChndRe6VtDA2Kvw-2YYwhlSz5WDCp-PQpUkbpaeGYj5t1yubtCPGh2Sj96BaKkGimBILdznkrB_UHcXNBjAlSLXPLNLI-JWql6G900lIXfdUA61Bghnt_Cb3VLrIU_T8D7cPbPgSnzW2lOCJA7mXDfG-1MuKtK0v41xXbdnuPzTnNpIM6LVZwOnkaZpm1S2d9SUIzk0XA3ckLPJlkSndwZy0ifRqxAc_V6qD9K0o6vgPw2bnUFjy4a_Rj-IQELkzKEFyRgO5paPxs')"></div>
+</div>
+<p class="mt-2 font-label-md text-on-surface-variant text-center">Course Completion</p>
+</div>
+<!-- Template Item 3 -->
+<div class="group cursor-pointer opacity-60 hover:opacity-100 transition-opacity">
+<div class="rounded-xl overflow-hidden border border-outline-variant p-1 bg-white hover:border-primary-fixed">
+<div class="bg-cover bg-center aspect-[1.414/1] w-full rounded-lg" data-alt="Elite scholarship award certificate featuring intricate green and gold guilloche patterns, classic calligraphy for the student name, and a formal layout." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDRCGqwcToq8uPkQKH1NkH8-w2gWFOF0zfdSXosEl13gt1Q_tQ66NAGQCUTbaFJ2OlyBmHTu8skdTnSgmmhpOMuQHhjewgU3idTQPRT2eycFEOzYKbCbbuS_hfInh_mHTDqmSgCtgec9WctT3qeUop0y0kyGOqe6zOtNL9ZZ8uKozsNsqUoFPbGTlwxenqT03pHbNSQFqnMx410ivM0kOj5IMdmPhnfPo_YMv8yreZ6KEBbM4-zwXowCceLYF6FZ5tu1A86cAuZB_c')"></div>
+</div>
+<p class="mt-2 font-label-md text-on-surface-variant text-center">Scholarship Award</p>
+</div>
+</div>
+</section>
+<!-- Center: Live Editor (6 cols) -->
+<section class="xl:col-span-6 space-y-6">
+<div class="glass-panel p-8 rounded-3xl relative overflow-hidden flex flex-col items-center">
+<!-- Editor Background Shader Decor -->
+
+<div class="relative z-10 w-full">
+<div class="flex items-center justify-between mb-6">
+<div class="flex gap-2">
+<span class="w-3 h-3 rounded-full bg-error/40"></span>
+<span class="w-3 h-3 rounded-full bg-secondary/40"></span>
+<span class="w-3 h-3 rounded-full bg-tertiary/40"></span>
+</div>
+<span class="px-3 py-1 bg-primary-container/20 text-primary rounded-full font-label-sm">Live Preview (Scale: 65%)</span>
+</div>
+<!-- Main Certificate Canvas -->
+<div class="certificate-canvas p-12 flex flex-col items-center justify-between border-[12px] border-double border-primary/20">
+<!-- Top Decor -->
+<div class="absolute top-0 left-0 w-32 h-32 opacity-10">
+<svg class="w-full h-full fill-primary" viewbox="0 0 100 100"><rect height="100" width="100"></rect></svg>
+</div>
+<!-- Header -->
+<div class="flex flex-col items-center gap-4 mt-8">
+<h1 class="font-headline-md text-headline-md tracking-[0.2em] text-primary">ATOMIC PATHSHALA</h1>
+<div class="h-0.5 w-24 bg-primary"></div>
+</div>
+<!-- Body -->
+<div class="text-center flex flex-col gap-4">
+<p class="uppercase font-label-md tracking-widest text-on-surface-variant italic">This is to certify that</p>
+<h2 class="text-5xl font-display-lg text-on-surface py-2" id="preview-name">Rohan Malhotra</h2>
+<p class="max-w-md mx-auto text-on-surface-variant leading-relaxed">
+                                    has successfully demonstrated exceptional proficiency and commitment by completing the <span class="font-bold text-on-surface" id="preview-course">Advanced NEET Prep 2025</span> with a score of <span class="font-bold">98.4%</span>.
+                                </p>
+</div>
+<!-- Footer -->
+<div class="w-full flex justify-between items-end mt-12 px-8">
+<div class="text-center">
+<div class="mb-2 h-10 flex items-center justify-center">
+<img class="max-h-full opacity-80" data-alt="A clean, digital scan of a formal handwritten signature, black ink on white background, sharp and professional style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBA_NI9dc2BLndJHJxwWoeZDx_V8yV5Iy9u2zD_Ywek4qck63fOXJ0LIRQ0R3pVOOZ5uc4795ZdSJe622w4QnPTwoACe-D8pXKvlnThPA5yvLY57SPM8To1SsBHdnjRopO7aAur31bqupmoD8zSYElDqrVmNxZLiD5ETLZVZB3wBp_sIfrTvsSLUSIZYOICseNNOFbqgrtEvfJ4D8EvRx1OpzT5LnRvIfZ6vazsUhNNhiGNPLzwlM6IaGorQX_YXf_ocgbW97Vg9Kw"/>
+</div>
+<div class="w-32 h-px bg-outline mb-1"></div>
+<p class="font-label-sm text-on-surface">Dr. A. Verma</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Principal Director</p>
+</div>
+<div class="relative flex items-center justify-center">
+<div class="w-20 h-20 rounded-full border-2 border-dashed border-primary/40 flex items-center justify-center text-primary/40">
+<span class="material-symbols-outlined text-4xl">verified_user</span>
+</div>
+<p class="absolute -bottom-4 text-[8px] font-bold text-primary uppercase">Official Seal</p>
+</div>
+<div class="text-center">
+<div class="mb-2 h-10 flex items-center justify-center">
+<span class="font-display-lg text-xl italic opacity-30">Upload Required</span>
+</div>
+<div class="w-32 h-px bg-outline mb-1"></div>
+<p class="font-label-sm text-on-surface">Prof. S. Gupta</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Head of Faculty</p>
+</div>
+</div>
+<p class="absolute bottom-4 left-1/2 -translate-x-1/2 text-[9px] text-on-surface-variant opacity-50 uppercase tracking-widest">Certificate ID: AP-2025-99823-RH</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Right: Controls (3 cols) -->
+<section class="xl:col-span-3 space-y-6">
+<div class="glass-panel p-6 rounded-2xl space-y-6">
+<h3 class="font-label-md text-headline-md border-b border-outline-variant pb-2">Customization</h3>
+<!-- Text Controls -->
+<div class="space-y-4">
+<div>
+<label class="block font-label-md mb-2">Certificate Title</label>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-xl px-4 py-2 font-body-md focus:ring-2 focus:ring-primary/20" type="text" value="Certificate of Merit"/>
+</div>
+<div>
+<label class="block font-label-md mb-2">Description Template</label>
+<textarea class="w-full bg-surface-container-low border border-outline-variant rounded-xl px-4 py-2 font-body-md focus:ring-2 focus:ring-primary/20" rows="3">Has successfully demonstrated exceptional proficiency and commitment...</textarea>
+</div>
+</div>
+<!-- Signature Uploads -->
+<div class="space-y-4">
+<label class="block font-label-md">Signature Assets</label>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex flex-col items-center justify-center p-3 border-2 border-dashed border-outline-variant rounded-xl hover:border-primary hover:bg-primary/5 transition-all group">
+<span class="material-symbols-outlined text-outline group-hover:text-primary mb-1">upload</span>
+<span class="text-[10px] font-bold uppercase text-on-surface-variant">Principal</span>
+</button>
+<button class="flex flex-col items-center justify-center p-3 border-2 border-dashed border-outline-variant rounded-xl hover:border-primary hover:bg-primary/5 transition-all group">
+<span class="material-symbols-outlined text-outline group-hover:text-primary mb-1">upload</span>
+<span class="text-[10px] font-bold uppercase text-on-surface-variant">Faculty</span>
+</button>
+</div>
+</div>
+<!-- Branding Toggle -->
+<div class="space-y-4">
+<label class="block font-label-md">Visual Style</label>
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-xl">
+<span class="text-sm font-medium">Primary Branding</span>
+<button class="w-12 h-6 bg-primary rounded-full relative transition-colors">
+<div class="absolute right-1 top-1 w-4 h-4 bg-white rounded-full"></div>
+</button>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-xl">
+<span class="text-sm font-medium">Monochrome Mode</span>
+<button class="w-12 h-6 bg-outline-variant rounded-full relative transition-colors">
+<div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full"></div>
+</button>
+</div>
+</div>
+<!-- Stamp Selection -->
+<div class="space-y-3">
+<label class="block font-label-md">Official Seal/Stamp</label>
+<div class="flex gap-2">
+<div class="w-12 h-12 rounded-full bg-primary/10 border-2 border-primary flex items-center justify-center text-primary cursor-pointer">
+<span class="material-symbols-outlined">verified</span>
+</div>
+<div class="w-12 h-12 rounded-full bg-surface-container-low border border-outline-variant flex items-center justify-center text-on-surface-variant hover:border-primary cursor-pointer transition-colors">
+<span class="material-symbols-outlined">star</span>
+</div>
+<div class="w-12 h-12 rounded-full bg-surface-container-low border border-outline-variant flex items-center justify-center text-on-surface-variant hover:border-primary cursor-pointer transition-colors">
+<span class="material-symbols-outlined">school</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Bulk Issuance Section (Bento Table) -->
+<section class="glass-panel p-8 rounded-3xl space-y-6">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+<div>
+<h3 class="font-headline-md text-headline-md">Bulk Issuance</h3>
+<p class="font-body-md text-on-surface-variant">Review and issue certificates for eligible students.</p>
+</div>
+<!-- Filters -->
+<div class="flex flex-wrap items-center gap-3">
+<select class="bg-surface-container-low border-outline-variant rounded-xl px-4 py-2 font-label-md focus:ring-primary/20">
+<option>Batch: Target NEET 2025</option>
+<option>Batch: JEE Alpha 2024</option>
+</select>
+<select class="bg-surface-container-low border-outline-variant rounded-xl px-4 py-2 font-label-md focus:ring-primary/20">
+<option>Score: Min 85%</option>
+<option>Score: Min 90%</option>
+</select>
+<button class="px-4 py-2 bg-surface-container-high rounded-xl text-primary font-label-md flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">filter_alt</span> More Filters
+                    </button>
+</div>
+</div>
+<!-- Students Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant">
+<th class="py-4 px-4"><input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/></th>
+<th class="py-4 px-4 font-label-md text-on-surface-variant">Student Name</th>
+<th class="py-4 px-4 font-label-md text-on-surface-variant">Enrollment ID</th>
+<th class="py-4 px-4 font-label-md text-on-surface-variant">Final Score</th>
+<th class="py-4 px-4 font-label-md text-on-surface-variant">Eligibility</th>
+<th class="py-4 px-4 font-label-md text-on-surface-variant">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<tr class="hover:bg-primary-container/5 transition-colors">
+<td class="py-4 px-4"><input checked="" class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="py-4 px-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold text-xs">RM</div>
+<span class="font-body-md font-medium">Rohan Malhotra</span>
+</td>
+<td class="py-4 px-4 font-body-md text-on-surface-variant">AP-NEET-25-091</td>
+<td class="py-4 px-4">
+<span class="font-bold text-tertiary">98.4%</span>
+</td>
+<td class="py-4 px-4">
+<span class="px-3 py-1 bg-tertiary-container/10 text-tertiary rounded-full text-xs font-bold uppercase tracking-wider">Eligible</span>
+</td>
+<td class="py-4 px-4">
+<button class="text-primary hover:underline font-label-md">Preview</button>
+</td>
+</tr>
+<tr class="hover:bg-primary-container/5 transition-colors">
+<td class="py-4 px-4"><input checked="" class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="py-4 px-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary font-bold text-xs">AK</div>
+<span class="font-body-md font-medium">Ananya Kapoor</span>
+</td>
+<td class="py-4 px-4 font-body-md text-on-surface-variant">AP-NEET-25-112</td>
+<td class="py-4 px-4">
+<span class="font-bold text-tertiary">94.2%</span>
+</td>
+<td class="py-4 px-4">
+<span class="px-3 py-1 bg-tertiary-container/10 text-tertiary rounded-full text-xs font-bold uppercase tracking-wider">Eligible</span>
+</td>
+<td class="py-4 px-4">
+<button class="text-primary hover:underline font-label-md">Preview</button>
+</td>
+</tr>
+<tr class="hover:bg-primary-container/5 transition-colors">
+<td class="py-4 px-4"><input checked="" class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="py-4 px-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold text-xs">SS</div>
+<span class="font-body-md font-medium">Siddharth Sharma</span>
+</td>
+<td class="py-4 px-4 font-body-md text-on-surface-variant">AP-NEET-25-045</td>
+<td class="py-4 px-4">
+<span class="font-bold text-tertiary">89.8%</span>
+</td>
+<td class="py-4 px-4">
+<span class="px-3 py-1 bg-tertiary-container/10 text-tertiary rounded-full text-xs font-bold uppercase tracking-wider">Eligible</span>
+</td>
+<td class="py-4 px-4">
+<button class="text-primary hover:underline font-label-md">Preview</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="flex items-center justify-between border-t border-outline-variant pt-6">
+<p class="text-sm text-on-surface-variant">Showing 3 of 42 eligible students in 'Target NEET 2025'</p>
+<div class="flex gap-4">
+<button class="px-6 py-2.5 bg-surface-container text-on-surface rounded-xl font-label-md hover:bg-surface-container-high transition-colors">Download Selection (PDF)</button>
+<button class="px-8 py-2.5 bg-primary text-on-primary rounded-xl font-label-md shadow-lg shadow-primary/20 hover:scale-105 transition-transform">Issue Certificates</button>
+</div>
+</div>
+</section>
+</main>
+<footer class="lg:ml-72 p-8 border-t border-outline-variant/30 flex flex-col md:flex-row justify-between items-center gap-4 text-on-surface-variant">
+<p class="text-sm">© 2024 Atomic Pathshala. Academic Integrity Guaranteed.</p>
+<div class="flex gap-6 text-sm">
+<a class="hover:text-primary" href="#">Policy</a>
+<a class="hover:text-primary" href="#">Documentation</a>
+<a class="hover:text-primary" href="#">Support Center</a>
+</div>
+</footer>
+<script>
+        // Micro-interaction for input tracking
+        const nameInput = document.querySelector('input[value="Certificate of Merit"]'); // Using fixed title for demo
+        const previewName = document.getElementById('preview-name');
+        
+        // This is a simple mock logic to show visual responsiveness
+        document.querySelectorAll('input, textarea').forEach(input => {
+            input.addEventListener('input', (e) => {
+                // In a real app, this would update the preview live
+                console.log('Update preview content:', e.target.value);
+            });
+        });
+
+        // Toggle state logic for buttons
+        document.querySelectorAll('button[class*="w-12 h-6"]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const circle = btn.querySelector('div');
+                if(btn.classList.contains('bg-primary')) {
+                    btn.classList.replace('bg-primary', 'bg-outline-variant');
+                    circle.classList.replace('right-1', 'left-1');
+                } else {
+                    btn.classList.replace('bg-outline-variant', 'bg-primary');
+                    circle.classList.replace('left-1', 'right-1');
+                }
+            });
+        });
+    </script>
+</body></html>

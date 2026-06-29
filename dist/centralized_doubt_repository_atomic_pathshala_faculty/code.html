@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Doubt Hub | Atomic Pathshala Faculty</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist:wght@400;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .custom-shadow {
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.05);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-surface-variant": "#424656",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary-fixed": "#002113",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-low": "#f2f3ff",
+                      "text-light": "#0F172A",
+                      "surface": "#faf8ff",
+                      "bg-light": "#FFFFFF",
+                      "on-primary-fixed": "#001849",
+                      "error": "#ba1a1a",
+                      "border-subtle": "rgba(0, 102, 255, 0.1)",
+                      "bg-dark": "#0B0E14",
+                      "on-tertiary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "primary": "#0050cb",
+                      "outline-variant": "#c2c6d8",
+                      "on-primary": "#ffffff",
+                      "inverse-on-surface": "#eef0ff",
+                      "on-tertiary-container": "#e1ffeb",
+                      "surface-tint": "#0054d6",
+                      "outline": "#727687",
+                      "surface-light": "#F8FAFC",
+                      "primary-container": "#0066ff",
+                      "tertiary": "#006643",
+                      "tertiary-fixed-dim": "#49df9f",
+                      "inverse-primary": "#b3c5ff",
+                      "primary-fixed": "#dae1ff",
+                      "tertiary-fixed": "#6afcb9",
+                      "tertiary-container": "#008256",
+                      "secondary-container": "#00ccf9",
+                      "on-error-container": "#93000a",
+                      "surface-variant": "#dae2fd",
+                      "surface-container": "#eaedff",
+                      "surface-container-high": "#e2e7ff",
+                      "on-primary-fixed-variant": "#003fa4",
+                      "secondary-fixed-dim": "#4cd6ff",
+                      "surface-bright": "#faf8ff",
+                      "surface-dark": "#161B22",
+                      "error-container": "#ffdad6",
+                      "surface-dim": "#d2d9f4",
+                      "primary-fixed-dim": "#b3c5ff",
+                      "on-surface": "#131b2e",
+                      "secondary-fixed": "#b7eaff",
+                      "on-secondary-fixed": "#001f28",
+                      "secondary": "#00677f",
+                      "on-background": "#131b2e",
+                      "background": "#faf8ff",
+                      "on-primary-container": "#f8f7ff",
+                      "inverse-surface": "#283044",
+                      "on-secondary-fixed-variant": "#004e60",
+                      "on-tertiary-fixed-variant": "#005235",
+                      "on-secondary-container": "#005266",
+                      "surface-container-highest": "#dae2fd",
+                      "text-dark": "#F1F5F9"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "container-max": "1280px",
+                      "margin-mobile": "20px",
+                      "stack-lg": "32px",
+                      "margin-desktop": "64px",
+                      "stack-md": "16px",
+                      "stack-sm": "8px"
+              },
+              "fontFamily": {
+                      "label-md": ["Inter"],
+                      "display-lg-mobile": ["Geist"],
+                      "body-lg": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "headline-md": ["Geist"],
+                      "headline-lg": ["Geist"],
+                      "display-lg": ["Geist"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                      "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-bg-dark/80 backdrop-blur-xl border-b border-border-subtle dark:border-white/10 shadow-sm">
+<div class="flex justify-between items-center px-gutter h-16 w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-stack-lg">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed tracking-tight">Atomic Pathshala</span>
+<nav class="hidden md:flex gap-stack-md">
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors" href="#">Live Classes</a>
+<a class="font-label-md text-label-md text-primary dark:text-primary-fixed border-b-2 border-primary dark:border-primary-fixed pb-1" href="#">Doubt Hub</a>
+</nav>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-10 w-10 rounded-full bg-primary-fixed border border-primary/20 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a faculty member for a premium edtech platform. The person is smiling warmly, wearing business casual attire. The background is a soft, blurred office setting with high-key professional lighting, emphasizing a modern and trustworthy educational brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9rbe2kP8Y6_MtXY_lTyelKu3VBC-nzGtPlg1ihRlK_zRYpSBbGIRJ18bQ5yl8Jah9mzLxiYwftVzk1owH6kpGWdQicVLT6lDMddh50aCMK3W_lhfLlIHYCpsyLEBtUFo-MNiro01cHKRNgEcM0SwCnHNGDZg5UCl0N9m369DzKkrpnSr1UXQ6w8aRV4B0zD8AeS8IvDpZNi3m8JWbFoBgC-vpck7sN5ltZ4cqop9ulZi55pApJKsnBT92m2i-HWDIDnA1hGEiK48"/>
+</div>
+</div>
+</div>
+</header>
+<div class="flex pt-16">
+<!-- SideNavBar -->
+<aside class="h-full w-64 fixed left-0 top-16 hidden lg:flex flex-col bg-surface dark:bg-bg-dark border-r border-border-subtle dark:border-white/10 py-stack-lg">
+<div class="px-6 mb-stack-lg">
+<h2 class="font-headline-md text-headline-md text-primary">Doubt Hub</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">NEET 2025 Aspirant Query Feed</p>
+</div>
+<div class="flex flex-col gap-1 px-3">
+<button class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary-container/10 text-primary font-bold border-r-4 border-primary transition-all">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md">All Questions</span>
+</button>
+<button class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined">science</span>
+<span class="font-label-md">Physics</span>
+</button>
+<button class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined">biotech</span>
+<span class="font-label-md">Chemistry</span>
+</button>
+<button class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined">psychiatry</span>
+<span class="font-label-md">Biology</span>
+</button>
+</div>
+<div class="mt-auto px-3 flex flex-col gap-1">
+<button class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-md">Support</span>
+</button>
+<button class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md">Settings</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 lg:ml-64 p-6 md:p-gutter">
+<div class="max-w-4xl mx-auto space-y-stack-lg">
+<!-- Filters & Search -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-stack-md">
+<div class="relative flex-1 max-w-lg">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-12 pr-4 py-3 rounded-full border-border-subtle bg-white focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="Search #doubt..." type="text"/>
+</div>
+<div class="flex items-center gap-stack-sm bg-white p-1 rounded-full border border-border-subtle shadow-sm">
+<button class="px-6 py-2 rounded-full bg-primary text-white font-label-md transition-all shadow-md">Pending (12)</button>
+<button class="px-6 py-2 rounded-full hover:bg-surface-container-low text-on-surface-variant font-label-md transition-all">Resolved</button>
+</div>
+</div>
+<!-- Doubt Cards Container -->
+<div class="space-y-stack-md">
+<!-- Doubt Card 1 -->
+<div class="glass-panel p-6 rounded-2xl custom-shadow transition-transform hover:scale-[1.005] duration-300">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary">AK</div>
+<div>
+<h4 class="font-label-md text-on-surface">Aditi Kulkarni</h4>
+<p class="font-label-sm text-outline text-[11px]">2 hours ago • Physics</p>
+</div>
+</div>
+<span class="px-3 py-1 bg-secondary/10 text-secondary text-[11px] font-bold rounded-full border border-secondary/20">Source: Live Class - Unit & Measurement - Slide 4</span>
+</div>
+<div class="mb-6">
+<p class="font-body-md text-on-surface leading-relaxed">
+                                Can you explain why we use the parallax method for distances greater than 100 light years? I'm getting confused with the angular resolution limits mentioned in the lecture. <span class="text-primary font-bold">#doubt</span>
+</p>
+</div>
+<!-- Response Area -->
+<div class="space-y-4">
+<div class="relative">
+<div class="w-full min-h-[120px] p-4 bg-surface-container-lowest border border-border-subtle rounded-xl focus-within:border-primary transition-all group">
+<div class="flex gap-2 mb-2 border-b border-border-subtle pb-2 opacity-50 group-focus-within:opacity-100 transition-opacity">
+<button class="p-1 hover:bg-primary/5 rounded"><span class="material-symbols-outlined scale-75">format_bold</span></button>
+<button class="p-1 hover:bg-primary/5 rounded"><span class="material-symbols-outlined scale-75">format_italic</span></button>
+<button class="p-1 hover:bg-primary/5 rounded"><span class="material-symbols-outlined scale-75">functions</span></button>
+<button class="p-1 hover:bg-primary/5 rounded"><span class="material-symbols-outlined scale-75">link</span></button>
+<button class="p-1 hover:bg-primary/5 rounded"><span class="material-symbols-outlined scale-75">image</span></button>
+</div>
+<textarea class="w-full bg-transparent border-none focus:ring-0 resize-none font-body-md min-h-[80px]" placeholder="Write your response..."></textarea>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-tertiary"></div>
+<span class="ml-3 font-label-sm text-on-surface-variant">Mark as Resolved</span>
+</label>
+</div>
+<button class="px-8 py-2.5 bg-primary text-white font-label-md rounded-xl hover:shadow-lg transition-all active:scale-95">Send Response</button>
+</div>
+</div>
+</div>
+<!-- Doubt Card 2 (Image Attachment) -->
+<div class="glass-panel p-6 rounded-2xl custom-shadow opacity-90 transition-transform hover:scale-[1.005] duration-300">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary">RV</div>
+<div>
+<h4 class="font-label-md text-on-surface">Rahul Varma</h4>
+<p class="font-label-sm text-outline text-[11px]">5 hours ago • Chemistry</p>
+</div>
+</div>
+<span class="px-3 py-1 bg-secondary/10 text-secondary text-[11px] font-bold rounded-full border border-secondary/20">Source: Practice Test #4</span>
+</div>
+<div class="mb-6">
+<p class="font-body-md text-on-surface leading-relaxed mb-4">
+                                Is the hybridisation of Nitrogen in pyridine sp2 or sp3? I'm confused about the lone pair localization. <span class="text-primary font-bold">#Doubt</span>
+</p>
+<div class="w-full h-48 rounded-xl overflow-hidden border border-border-subtle bg-white">
+<img class="w-full h-full object-contain p-4" data-alt="A clean, scientific illustration of a pyridine molecule showing its atomic structure with clearly defined Nitrogen and Carbon atoms. The visual is designed for a premium educational platform, featuring sharp lines, a clean white background, and professional labeling suitable for a high-performance chemistry textbook." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGHqo5GlFyLh7CtgL2uhbXQar7XlVbTs6BdtbwsNs96c0htG-Fg_R7fqlS48F1pEO-hJggzvq1iy9zSlfVnSFL1ZPhP5yF604y_XMLJb4lm8J1fSTy9FbcJz0L3kNY3EDQ4NkrV4B4gRJ5by5ZR0kqSbjq80SzEF2F4IOighcpEuQmcPYTzZODrLiPl-0Amg2IGBi_b1cFynJwy9W49eTaQ_qTmMKnYxBYn1fKI3M2cqKVvIX_V12vWD91r0JNyDYNbAboe6je65Y"/>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-error font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span> Priority: High
+                            </span>
+<button class="px-6 py-2 bg-primary/10 text-primary font-label-md rounded-xl hover:bg-primary/20 transition-all">Claim Doubt</button>
+</div>
+</div>
+</div>
+<!-- Pagination/Load More -->
+<div class="flex justify-center py-stack-lg">
+<button class="px-8 py-3 rounded-full border border-primary text-primary font-label-md hover:bg-primary/5 transition-all">Load More Pending Doubts</button>
+</div>
+</div>
+</main>
+</div>
+<!-- Mobile Navigation Shell (BottomNavBar) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface/90 backdrop-blur-lg border-t border-border-subtle flex justify-around items-center h-16 px-4 z-50">
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-label-sm">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">live_tv</span>
+<span class="text-[10px] font-label-sm">Live</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">quiz</span>
+<span class="text-[10px] font-label-sm font-bold">Doubts</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="text-[10px] font-label-sm">Study</span>
+</button>
+</nav>
+<!-- Footer -->
+<footer class="w-full py-stack-lg bg-on-primary-fixed dark:bg-bg-dark mt-stack-lg">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-gutter max-w-container-max mx-auto">
+<div class="md:col-span-1">
+<span class="font-headline-md text-headline-md text-white font-bold">Atomic Pathshala</span>
+<p class="text-surface-variant/70 font-body-md text-body-md mt-4">Accelerating Academic Excellence for tomorrow's leaders.</p>
+</div>
+<div class="flex flex-col gap-3">
+<h5 class="text-white font-label-md mb-2">Academic</h5>
+<a class="text-surface-variant/70 hover:text-white transition-colors" href="#">Faculty</a>
+<a class="text-surface-variant/70 hover:text-white transition-colors" href="#">Success Stories</a>
+<a class="text-surface-variant/70 hover:text-white transition-colors" href="#">Courses</a>
+</div>
+<div class="flex flex-col gap-3">
+<h5 class="text-white font-label-md mb-2">Support</h5>
+<a class="text-surface-variant/70 hover:text-white transition-colors" href="#">Contact Support</a>
+<a class="text-surface-variant/70 hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="text-surface-variant/70 hover:text-white transition-colors" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-3">
+<h5 class="text-white font-label-md mb-2">Connect</h5>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-white cursor-pointer hover:text-secondary-fixed transition-colors">public</span>
+<span class="material-symbols-outlined text-white cursor-pointer hover:text-secondary-fixed transition-colors">mail</span>
+<span class="material-symbols-outlined text-white cursor-pointer hover:text-secondary-fixed transition-colors">call</span>
+</div>
+<p class="text-surface-variant/70 font-body-md text-body-md mt-4">© 2024 Atomic Pathshala. All rights reserved.</p>
+</div>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for status toggle
+        document.querySelectorAll('textarea').forEach(area => {
+            area.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = (this.scrollHeight) + 'px';
+            });
+        });
+
+        // Search highlight logic simulation
+        const doubtText = document.querySelectorAll('.font-body-md.text-on-surface');
+        doubtText.forEach(p => {
+            const html = p.innerHTML;
+            const replaced = html.replace(/(#doubt)/gi, '<span class="text-primary font-bold">$1</span>');
+            p.innerHTML = replaced;
+        });
+    </script>
+
+  <!-- Ecosystem Switched Widget Overlay -->
+  <script src="../ecosystem-hud.js"></script>
+</body></html>

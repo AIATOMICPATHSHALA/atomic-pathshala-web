@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Redemption Success | EduAccelerate</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-light": "#F8FAFC",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-variant": "#dae2fd",
+                    "on-primary-fixed": "#001849",
+                    "on-error": "#ffffff",
+                    "surface-container-high": "#e2e7ff",
+                    "on-primary": "#ffffff",
+                    "on-secondary-container": "#005266",
+                    "on-primary-container": "#f8f7ff",
+                    "inverse-primary": "#b3c5ff",
+                    "on-tertiary-fixed-variant": "#005235",
+                    "surface-container": "#eaedff",
+                    "inverse-on-surface": "#eef0ff",
+                    "on-tertiary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "secondary-container": "#00ccf9",
+                    "secondary-fixed": "#b7eaff",
+                    "outline-variant": "#c2c6d8",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed-dim": "#49df9f",
+                    "primary-fixed": "#dae1ff",
+                    "on-tertiary-fixed": "#002113",
+                    "on-tertiary-container": "#e1ffeb",
+                    "tertiary": "#006643",
+                    "primary-container": "#0066ff",
+                    "bg-dark": "#0B0E14",
+                    "surface-bright": "#faf8ff",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "primary": "#0050cb",
+                    "surface": "#faf8ff",
+                    "tertiary-fixed": "#6afcb9",
+                    "on-background": "#131b2e",
+                    "bg-light": "#FFFFFF",
+                    "secondary-fixed-dim": "#4cd6ff",
+                    "background": "#faf8ff",
+                    "secondary": "#00677f",
+                    "inverse-surface": "#283044",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed-variant": "#004e60",
+                    "surface-dim": "#d2d9f4",
+                    "border-subtle": "rgba(0, 102, 255, 0.1)",
+                    "error": "#ba1a1a",
+                    "outline": "#727687",
+                    "surface-container-highest": "#dae2fd",
+                    "text-light": "#0F172A",
+                    "on-primary-fixed-variant": "#003fa4",
+                    "tertiary-container": "#008256",
+                    "on-secondary-fixed": "#001f28",
+                    "surface-dark": "#161B22",
+                    "on-surface-variant": "#424656",
+                    "text-dark": "#F1F5F9",
+                    "on-surface": "#131b2e",
+                    "surface-tint": "#0054d6",
+                    "surface-container-low": "#f2f3ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "8px",
+                    "stack-lg": "32px",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "margin-desktop": "64px",
+                    "margin-mobile": "20px",
+                    "stack-md": "16px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "display-lg-mobile": ["Geist"],
+                    "display-lg": ["Geist"],
+                    "label-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Geist"],
+                    "headline-lg": ["Geist"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .confetti-particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .success-checkmark {
+            animation: scale-up 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes scale-up {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .floating-action {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="bg-surface-light font-body-md text-on-surface overflow-x-hidden min-h-screen flex flex-col">
+<!-- Top Navigation (Shared Component) -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-bg-dark/80 backdrop-blur-xl border-b border-outline-variant/30 dark:border-white/10 shadow-sm">
+<div class="flex justify-between items-center h-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-bold tracking-tight text-primary dark:text-primary-fixed cursor-pointer active:scale-95 duration-200">
+                EduAccelerate
+            </div>
+<div class="hidden md:flex items-center gap-stack-lg">
+<nav class="flex gap-stack-md">
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Courses</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Study Material</a>
+<a class="font-label-md text-label-md text-primary dark:text-primary-fixed border-b-2 border-primary" href="#">Rewards</a>
+</nav>
+</div>
+<div class="flex items-center gap-stack-md">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:text-primary-fixed transition-colors" data-icon="redeem" style="font-variation-settings: 'FILL' 1;">redeem</span>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a young male medical student wearing a white lab coat and a stethoscope, smiling confidently. The lighting is bright and clean with a soft blue gradient background that matches a premium corporate EdTech aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuIqTQ73MmlETBt9GMimcgSgjo-whsn-z4R03K1AwusF_m3s8Lwwie-uVbehMiF7NvN311rFu6NiWT9wk0uMAGSwRfdT_96u3qZKU-CDYx5f6GyNcFyBKE59yEBktV1Tb-nrQoME0z1bSS7aqTm0KMLjnFxYLezUVMm2aJf8hsiEJXL5cgAS107AFMWdrGiKeUNaBq4n4oEUSXLIi19N6r_fSYu1I2fzIuh030EZU4643kDjG-xPhcnvUUA1RY1j-5_MmDwJg_2ac"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Success Content Area -->
+<main class="flex-grow pt-32 pb-stack-lg relative overflow-hidden flex items-center justify-center">
+<!-- Confetti Background Layer -->
+<div class="absolute inset-0 pointer-events-none" id="confetti-container"></div>
+<!-- Animated Background Shader (Ambient Celebration) -->
+
+<div class="relative z-10 w-full max-w-[640px] px-margin-mobile">
+<!-- Central Success Card -->
+<div class="glass-card rounded-[32px] p-stack-lg shadow-2xl text-center border border-white/40">
+<!-- Celebration Graphic -->
+<div class="mb-stack-lg flex justify-center">
+<div class="w-24 h-24 bg-primary rounded-full flex items-center justify-center success-checkmark shadow-lg shadow-primary/30">
+<span class="material-symbols-outlined text-white text-[48px]" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<!-- Headlines -->
+<h1 class="font-headline-lg text-headline-lg text-primary mb-stack-sm font-extrabold tracking-tight">Redemption Successful!</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-stack-lg max-w-[400px] mx-auto">You've successfully claimed the <span class="font-bold text-on-surface">'NEET Biology 100-Question Mastery Pack'</span>.</p>
+<!-- Reward Details Section -->
+<div class="bg-surface-container-low rounded-2xl p-stack-md text-left mb-stack-md border border-outline-variant/20">
+<div class="flex items-start gap-stack-md">
+<div class="w-16 h-16 bg-white rounded-xl flex items-center justify-center shrink-0 border border-primary/10 shadow-sm">
+<span class="material-symbols-outlined text-primary text-[32px]" data-icon="auto_stories">auto_stories</span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface">Reward Summary</h3>
+<ul class="mt-1 space-y-1">
+<li class="flex items-center gap-2 text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-tertiary" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+                                    100 AI-Curated NEET Biology MCQs
+                                </li>
+<li class="flex items-center gap-2 text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-tertiary" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+                                    Detailed Video Solutions for each question
+                                </li>
+<li class="flex items-center gap-2 text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-tertiary" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+                                    PDF Performance Trackers
+                                </li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Updated Balance Widget -->
+<div class="flex items-center justify-between bg-primary-container/10 border border-primary/20 rounded-2xl p-stack-md mb-stack-lg">
+<div class="text-left">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Updated Balance</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-[20px]" data-icon="token" style="font-variation-settings: 'FILL' 1;">token</span>
+<span class="font-headline-md text-headline-md text-primary font-bold">12,450</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Atomic Points</span>
+</div>
+</div>
+<div class="text-right">
+<span class="text-error font-label-md text-label-md">-2,000 pts</span>
+</div>
+</div>
+<!-- CTAs -->
+<div class="flex flex-col gap-stack-md">
+<button class="w-full bg-primary hover:bg-primary-fixed-variant text-white font-label-md text-label-md py-4 rounded-xl transition-all duration-300 shadow-lg shadow-primary/25 active:scale-[0.98] cursor-pointer">
+                        Access My Reward
+                    </button>
+<button class="w-full border border-outline-variant hover:bg-surface-container-low text-on-surface-variant font-label-md text-label-md py-4 rounded-xl transition-all duration-300 active:scale-[0.98] cursor-pointer">
+                        Return to Dashboard
+                    </button>
+</div>
+</div>
+<!-- Fun Floating Elements (Background aesthetic) -->
+<div class="absolute -top-12 -right-12 floating-action opacity-60 pointer-events-none">
+<div class="bg-secondary-fixed/30 w-32 h-32 rounded-full blur-3xl"></div>
+</div>
+<div class="absolute -bottom-12 -left-12 floating-action opacity-60 pointer-events-none" style="animation-delay: -1.5s">
+<div class="bg-primary-fixed/30 w-40 h-40 rounded-full blur-3xl"></div>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="w-full py-stack-lg mt-auto bg-inverse-surface dark:bg-bg-dark border-t border-outline-variant/10">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="font-headline-md text-headline-md text-white font-bold mb-stack-md">EduAccelerate</div>
+<p class="text-outline-variant text-label-sm font-label-sm leading-relaxed">Empowering the next generation of doctors and engineers through high-performance learning pathways.</p>
+</div>
+<div>
+<h4 class="text-white font-bold mb-stack-md font-label-md">Company</h4>
+<ul class="space-y-2">
+<li><a class="text-outline-variant font-label-sm text-label-sm hover:text-secondary-fixed transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="text-outline-variant font-label-sm text-label-sm hover:text-secondary-fixed transition-colors" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-stack-md font-label-md">Support</h4>
+<ul class="space-y-2">
+<li><a class="text-outline-variant font-label-sm text-label-sm hover:text-secondary-fixed transition-colors" href="#">Help Center</a></li>
+<li><a class="text-outline-variant font-label-sm text-label-sm hover:text-secondary-fixed transition-colors" href="#">Contact Us</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-stack-md font-label-md">Newsletter</h4>
+<div class="flex gap-2">
+<input class="bg-white/10 border-none rounded-lg text-white text-label-sm font-label-sm p-2 w-full focus:ring-1 focus:ring-primary" placeholder="Enter email" type="email"/>
+<button class="bg-primary text-white p-2 rounded-lg"><span class="material-symbols-outlined text-[20px]" data-icon="send">send</span></button>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mt-stack-lg pt-stack-md border-t border-white/5 text-center">
+<p class="text-outline-variant font-label-sm text-label-sm">© 2024 EduAccelerate EdTech. All rights reserved.</p>
+</div>
+</footer>
+<script>
+        // Micro-interaction: Confetti Effect
+        function createConfetti() {
+            const container = document.getElementById('confetti-container');
+            const colors = ['#0066ff', '#00ccf9', '#49df9f', '#ffdad6', '#b7eaff'];
+            
+            for (let i = 0; i < 60; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'confetti-particle';
+                
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const left = Math.random() * 100 + 'vw';
+                const size = (Math.random() * 8 + 4) + 'px';
+                const duration = (Math.random() * 3 + 2) + 's';
+                const delay = (Math.random() * 2) + 's';
+                
+                particle.style.backgroundColor = color;
+                particle.style.left = left;
+                particle.style.width = size;
+                particle.style.height = size;
+                particle.style.animationDuration = duration;
+                particle.style.animationDelay = delay;
+                particle.style.top = '-10px';
+                
+                container.appendChild(particle);
+                
+                // Cleanup
+                setTimeout(() => {
+                    particle.remove();
+                }, 5000);
+            }
+        }
+
+        // Initialize confetti on load
+        window.onload = () => {
+            createConfetti();
+            // Burst again after a short delay
+            setTimeout(createConfetti, 1500);
+        };
+    </script>
+</body></html>

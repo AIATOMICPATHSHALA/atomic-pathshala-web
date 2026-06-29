@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Atomic Pathshala | Accelerating Excellence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#b3c5ff",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#eef0ff",
+                    "secondary-container": "#00ccf9",
+                    "primary-container": "#0066ff",
+                    "outline-variant": "#c2c6d8",
+                    "primary": "#0050cb",
+                    "surface-container-highest": "#dae2fd",
+                    "tertiary-container": "#008256",
+                    "surface-tint": "#0054d6",
+                    "surface": "#faf8ff",
+                    "on-surface-variant": "#424656",
+                    "surface-dark": "#161B22",
+                    "error-container": "#ffdad6",
+                    "on-error": "#ffffff",
+                    "background": "#faf8ff",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed": "#001f28",
+                    "outline": "#727687",
+                    "on-secondary": "#ffffff",
+                    "border-subtle": "rgba(0, 102, 255, 0.1)",
+                    "on-tertiary-container": "#e1ffeb",
+                    "on-background": "#131b2e",
+                    "secondary": "#00677f",
+                    "tertiary-fixed": "#6afcb9",
+                    "on-primary-container": "#f8f7ff",
+                    "tertiary": "#006643",
+                    "surface-container": "#eaedff",
+                    "on-tertiary-fixed-variant": "#005235",
+                    "surface-bright": "#faf8ff",
+                    "on-tertiary-fixed": "#002113",
+                    "on-primary-fixed": "#001849",
+                    "surface-dim": "#d2d9f4",
+                    "primary-fixed": "#dae1ff",
+                    "on-primary-fixed-variant": "#003fa4",
+                    "on-primary": "#ffffff",
+                    "text-light": "#0F172A",
+                    "surface-container-low": "#f2f3ff",
+                    "inverse-surface": "#283044",
+                    "surface-light": "#F8FAFC",
+                    "surface-container-high": "#e2e7ff",
+                    "on-secondary-container": "#005266",
+                    "on-secondary-fixed-variant": "#004e60",
+                    "error": "#ba1a1a",
+                    "bg-light": "#FFFFFF",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "secondary-fixed-dim": "#4cd6ff",
+                    "on-error-container": "#93000a",
+                    "on-surface": "#131b2e",
+                    "bg-dark": "#0B0E14",
+                    "surface-variant": "#dae2fd",
+                    "tertiary-fixed-dim": "#49df9f",
+                    "secondary-fixed": "#b7eaff",
+                    "text-dark": "#F1F5F9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "gutter": "24px",
+                    "stack-md": "16px",
+                    "container-max": "1280px",
+                    "margin-desktop": "64px",
+                    "stack-lg": "32px",
+                    "stack-sm": "8px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "display-lg-mobile": ["Geist"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Geist"],
+                    "display-lg": ["Geist"],
+                    "headline-md": ["Geist"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.08);
+            border-color: rgba(0, 102, 255, 0.3);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #0050cb 0%, #00ccf9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant/20 shadow-sm">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-bold tracking-tight text-primary">
+                Atomic Pathshala
+            </div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-label-md text-label-md text-primary font-bold border-b-2 border-primary pb-1" href="#">Explore Courses</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Batches</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Faculty</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Results</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:block font-label-md text-label-md text-primary px-4 py-2 hover:opacity-80 transition-all">Login/Sign Up</button>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-6 py-2.5 rounded-full hover:opacity-90 active:scale-95 transition-all shadow-md">Start Learning</button>
+</div>
+</div>
+</nav>
+<main class="pt-24">
+<!-- Hero Section -->
+<section class="relative px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-stack-lg min-h-[819px] flex flex-col md:flex-row items-center gap-12">
+<div class="flex-1 space-y-stack-md z-10">
+<span class="inline-block bg-primary-container/10 text-primary font-label-md text-label-md px-4 py-1.5 rounded-full mb-4">India's Premium Accelerator for NEET &amp; JEE</span>
+<h1 class="font-display-lg text-display-lg leading-tight">
+                    Accelerate Your Learning with <span class="text-gradient">Atomic Excellence</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                    Master competitive exams like NEET, JEE, and Foundation courses with structured learning paths, top-tier faculty, and performance-driven results.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4 pt-4">
+<button class="bg-primary text-on-primary font-label-md text-label-md px-8 py-4 rounded-xl hover:opacity-90 transition-all flex items-center justify-center gap-2">
+                        Start Learning <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="border-2 border-primary text-primary font-label-md text-label-md px-8 py-4 rounded-xl hover:bg-primary/5 transition-all flex items-center justify-center gap-2">
+                        Explore Courses
+                    </button>
+</div>
+<div class="flex items-center gap-6 pt-8 border-t border-outline-variant/30">
+<div class="flex -space-x-3">
+<div class="w-10 h-10 rounded-full border-2 border-surface bg-surface-container-highest flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close up portrait of a smiling young male student with glasses, in a brightly lit academic environment, representing success and focus. The lighting is soft and natural, with a clean premium edtech background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXUElFwCl3CRo7YlUoH2Xaz7YdKSK3p4Ul3fgFH1gKlS5BmBR4UEJ56KZJaC4ZJ0-J2mK9Bytq9E3Y4k0hpRjm6nLYWLTHAwcmB_aGMYHrZLwmJiJ2ollC5LdjkGoaw1_SiwrFyCCf5xjdjn274jQnZ2Kf_zUbYxn5yih4W6iYNAhJ0y0MsMLZ0-3COHKrRY9ltkz5ZOJ1v5IjIfN3I-w477qxsgdMsu-iFO09Xh4mbCnKpMOqtNB9rNl3KfGAZrIVgNEYBm1M-8o"/>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-surface bg-surface-container-highest flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close up portrait of a young female student looking confidently at the camera, wearing a casual sweater. The lighting is high-key with a modern blue-tinted light mode aesthetic, suggesting intelligence and ambition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMb72NzVy8f_q3SJcAJbHXIL__CeOIXkzxgoecSjFtfA06nlduPLzp9tQVBSA8QnLaDIOd0GhqWjUc0Hscv9AH6r7VGKd_DvcKjKN3fHNpVMazA1HfWw2DKIjjzIWKBeI9Z7WAfRDvfFVZ7A5npFLISfw71C2ulW3PwyN0xMNzf7Nf_55ovekjVjTrCsxpf65pwb4QGpRLuTzjT9uJYjBeK85xVwbZbycnAsiOXx-e7A46XgxCTDbnaQDBS3Q1DMeLNTid5xGUaBU"/>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-surface bg-primary flex items-center justify-center text-on-primary text-[10px] font-bold">10k+</div>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Trusted by 10,000+ students nationwide</p>
+</div>
+</div>
+<div class="flex-1 relative w-full aspect-square md:aspect-auto h-full min-h-[400px]">
+<div class="absolute inset-0 bg-primary/5 rounded-full blur-3xl opacity-50"></div>
+<div class="relative w-full h-full glass-card rounded-[2rem] overflow-hidden flex items-center justify-center shadow-2xl border-4 border-white">
+<img class="w-full h-full object-cover" data-alt="A high-quality 3D render of a futuristic student workspace featuring a holographic display showing biology and physics equations. The scene is bright and minimalist with electric blue accents, matching the premium Atomic Pathshala brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaQQ0fnM9PKiQWi5v5_MOIfPmgCNiTg-MiHXd1KsOR24RT276XjDKGDzklyuDOEYKW68XZzdT8LtQh4mr8y0gdM1deJiK3iRZQUuBUPxOBe31de9ZvD8Q8BPzosmFrTFgqpfSGIVO9K7rykSeP1eF4ZpZZEt3kd3eA79ncDLv_gPLEBVi9umauPRsnvVlVPguRv8x6Ua2ZpUHxTlx-GsAPeIpU8m7B5rfr7VBYvp2YCDkBGOE_1XDoQGa5LyUR0yMJh3-7LJh_Vuo"/>
+</div>
+<!-- Floating Metric Card -->
+<div class="absolute -bottom-6 -left-6 glass-card p-6 rounded-2xl shadow-xl z-20 flex items-center gap-4">
+<div class="w-12 h-12 bg-secondary-container/20 rounded-full flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md text-primary">98.5%</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">Success Rate</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Core Features -->
+<section class="py-stack-lg bg-surface-container-low/30 px-margin-mobile md:px-margin-desktop">
+<div class="max-w-container-max mx-auto">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<div class="glass-card p-8 rounded-2xl text-center space-y-4">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto text-primary">
+<span class="material-symbols-outlined" style="font-size: 32px;">live_tv</span>
+</div>
+<h3 class="font-headline-md text-headline-md">Live Classes</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Interactive real-time sessions with experts</p>
+</div>
+<div class="glass-card p-8 rounded-2xl text-center space-y-4">
+<div class="w-16 h-16 bg-secondary-container/10 rounded-full flex items-center justify-center mx-auto text-secondary">
+<span class="material-symbols-outlined" style="font-size: 32px;">video_library</span>
+</div>
+<h3 class="font-headline-md text-headline-md">Recorded Library</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Access any class, anywhere, anytime</p>
+</div>
+<div class="glass-card p-8 rounded-2xl text-center space-y-4">
+<div class="w-16 h-16 bg-tertiary-container/10 rounded-full flex items-center justify-center mx-auto text-tertiary">
+<span class="material-symbols-outlined" style="font-size: 32px;">quiz</span>
+</div>
+<h3 class="font-headline-md text-headline-md">Test Series</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Weekly mock tests with deep analytics</p>
+</div>
+<div class="glass-card p-8 rounded-2xl text-center space-y-4">
+<div class="w-16 h-16 bg-error-container/10 rounded-full flex items-center justify-center mx-auto text-error">
+<span class="material-symbols-outlined" style="font-size: 32px;">assignment</span>
+</div>
+<h3 class="font-headline-md text-headline-md">Daily DPPs</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Curated problem sets for daily practice</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Batches -->
+<section class="py-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex justify-between items-end mb-12">
+<div>
+<h2 class="font-display-lg text-display-lg mb-2">Upcoming <span class="text-primary">Batches</span></h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Structured curriculum designed by industry veterans.</p>
+</div>
+<button class="hidden md:flex items-center gap-2 text-primary font-label-md text-label-md group">
+                    View All Batches <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Batch Card 1 -->
+<div class="glass-card rounded-2xl overflow-hidden group">
+<div class="h-48 relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Vibrant educational header image for NEET 2027 batch featuring glowing DNA helices and medical symbols in a sleek electric blue and glassmorphic design style. The background is minimalist white with high-tech blue accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMN8o8czbruHfQTHS1JBb6lhovVVv1m6_JsPFec0PDilKsfjxNMVrBx8gK7pvwMt0l698dVsJJzSgXLHmGTO696ojDIkchl70hFXwF4tbdmHIjWVsQSmhm1ct-dMwSQdGW5zs2HBwRPhdC1K8pJksVSUv6X0vThSWAbAJ1q2IIqJycSdjTQa4TLYaf2bRBXdptqlYdR9Mq22q9KP20zIUlT51oKvywjT-REbHzv0-fnNT0uwWrRBDGNa6ZaWsJaqxRm6oWXFqvu-o"/>
+<div class="absolute top-4 left-4 bg-secondary-container text-on-secondary-container font-label-md text-label-md px-3 py-1 rounded-full flex items-center gap-1">
+<span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span> Live Classes
+                        </div>
+</div>
+<div class="p-6 space-y-4">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md">NEET 2027 (Phoenix)</h3>
+<span class="text-primary-fixed-dim bg-primary font-label-sm text-label-sm px-2 py-0.5 rounded">Popular</span>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Comprehensive 2-year program for medical aspirants focusing on concept clarity and speed.</p>
+<div class="flex items-center gap-2 text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-primary text-lg">event_note</span>
+                            Starts Aug 15, 2024
+                        </div>
+<div class="flex items-end justify-between pt-4 border-t border-outline-variant/20">
+<div>
+<span class="text-on-surface-variant line-through text-label-sm font-label-sm">₹49,999</span>
+<div class="text-headline-md font-headline-md text-primary">₹24,999</div>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-6 py-2.5 rounded-lg hover:bg-surface-tint transition-colors">Join Now</button>
+</div>
+</div>
+</div>
+<!-- Batch Card 2 -->
+<div class="glass-card rounded-2xl overflow-hidden group">
+<div class="h-48 relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Dynamic educational header for JEE 2028 batch showcasing mathematical geometric patterns, physics force diagrams, and circuit designs in a sophisticated Atomic Blue theme. Modern high-contrast visuals on a clean white surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJEqyUP_p0TGwbY-dv0GBf_2Mavyyyixidv5UmeTPhNeyUQtuvuh5-L2J_mKHfO4Gc9ERWxzYbTPEPFktZmwobEqqDtFaT_73Asro_EzbGt4YuDYXHLoHnZakLcLr-K83TDOk2JXRASHIdWJuGt1aJWOVSYb4qsEYZhma3ZWbaHE9A9_G1Kk0UTRnuYO5WZ5x13aq6WfKSq1NwL-tU9uf1PTTtm4YbH2E45pQXrHCKtpZuRd2Ik5Cuh-WpD0w5kP9cN7jTalHD-sk"/>
+<div class="absolute top-4 left-4 bg-secondary-container text-on-secondary-container font-label-md text-label-md px-3 py-1 rounded-full flex items-center gap-1">
+<span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span> Live Classes
+                        </div>
+</div>
+<div class="p-6 space-y-4">
+<h3 class="font-headline-md text-headline-md">JEE 2028 (Apex)</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Intensive coaching for JEE Mains &amp; Advanced with heavy emphasis on problem-solving techniques.</p>
+<div class="flex items-center gap-2 text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-primary text-lg">event_note</span>
+                            Starts Sept 01, 2024
+                        </div>
+<div class="flex items-end justify-between pt-4 border-t border-outline-variant/20">
+<div>
+<span class="text-on-surface-variant line-through text-label-sm font-label-sm">₹54,999</span>
+<div class="text-headline-md font-headline-md text-primary">₹29,999</div>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-6 py-2.5 rounded-lg hover:bg-surface-tint transition-colors">Join Now</button>
+</div>
+</div>
+</div>
+<!-- Batch Card 3 -->
+<div class="glass-card rounded-2xl overflow-hidden group">
+<div class="h-48 relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Academic focus background for Foundation Droppers batch, featuring open books, clocks suggesting time management, and minimalist study icons in a clean corporate style. Professional and organized aesthetic using soft blue and white tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdAtS0gcKrFY-44MFBAQnWP4DdUVnQcSL-cG8b9EGdjUHgKkPhmY24ulNOcBhUcsZY5ERQFg4OI6GoVsQF5B1yHMLRRp2sCz27SwtDVSrZnRkq54d3IShDwQ4oTTt9B5bSbpjmY575DIqOod6OEr6Jv4UZP2IJEvnHRFs_6Ud9kGWikWlGNn6xc2gbZebVk8eipztnmQZ5ALzF0wbcFeZC--mjWXxHQHCEYBDq24ZkTVdR6Gj4DCarH2OHlrYA1HYKJ6e8xGoOOTU"/>
+<div class="absolute top-4 left-4 bg-secondary-container text-on-secondary-container font-label-md text-label-md px-3 py-1 rounded-full flex items-center gap-1">
+<span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span> Live Classes
+                        </div>
+</div>
+<div class="p-6 space-y-4">
+<h3 class="font-headline-md text-headline-md">Foundation Droppers</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant">A bridge program for students taking a gap year to strengthen their basics and hit higher ranks.</p>
+<div class="flex items-center gap-2 text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-primary text-lg">event_note</span>
+                            Starts Aug 28, 2024
+                        </div>
+<div class="flex items-end justify-between pt-4 border-t border-outline-variant/20">
+<div>
+<span class="text-on-surface-variant line-through text-label-sm font-label-sm">₹39,999</span>
+<div class="text-headline-md font-headline-md text-primary">₹19,999</div>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-6 py-2.5 rounded-lg hover:bg-surface-tint transition-colors">Join Now</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- AI & Mentorship Section (Bento Style) -->
+<section class="py-stack-lg bg-surface-container px-margin-mobile md:px-margin-desktop">
+<div class="max-w-container-max mx-auto space-y-stack-lg">
+<div class="text-center max-w-2xl mx-auto space-y-4">
+<h2 class="font-display-lg text-display-lg">The <span class="text-primary">Atomic</span> Edge</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Beyond classes, we provide tools and mentorship that make learning personal and effective.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- AI Doubt Solving -->
+<div class="md:col-span-7 glass-card rounded-[2rem] p-8 md:p-12 overflow-hidden relative flex flex-col justify-center">
+<div class="space-y-6 z-10">
+<div class="w-12 h-12 bg-primary-container/20 rounded-xl flex items-center justify-center text-primary mb-4">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+<h3 class="font-display-lg text-display-lg">AI-Powered Doubt Solving</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Scan any problem from your textbook and get instant video solutions and step-by-step explanations 24/7.</p>
+<div class="pt-6">
+<img class="rounded-2xl shadow-2xl border-4 border-white/50 w-full max-w-md" data-alt="A futuristic mobile UI mockup showing a student taking a photo of a physics equation, with AI overlays and glowing scan lines providing an instant step-by-step solution. Bright, premium, and tech-forward visualization." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFZDxLf64KXRo01gU73xx1e1Mibt52O9G4D3hUKeIe4PvN0MMvc4N7Oy0c5RrzeAgusBM3QjOSu3XowiGRLvci1_icalFoYeZxdcpkrxbdPAuycknilF45wYvRgkoE9qWep_nsih0oGpKXUseGO9DGCDMzDX3n-otMpU8skoKLwp3opt9xcq-6WmA7h8xUOCT2BWNpCfQo-q8DLMdo1gDq_DjdPeX618-1vqaCPeobrM7n3h0XsSYDCGxAFWxo1_PZwghfkUlAz4M"/>
+</div>
+</div>
+<div class="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
+</div>
+<!-- Mentorship -->
+<div class="md:col-span-5 bg-primary text-on-primary rounded-[2rem] p-8 md:p-12 overflow-hidden relative flex flex-col justify-end">
+<div class="absolute top-8 right-8">
+<span class="material-symbols-outlined text-[100px] opacity-10">groups</span>
+</div>
+<div class="space-y-6 relative">
+<h3 class="font-headline-lg text-headline-lg">1-on-1 Personal Mentorship</h3>
+<p class="font-body-md text-body-md opacity-90">Every student gets assigned a dedicated academic mentor for planning, strategy, and emotional support throughout their journey.</p>
+<ul class="space-y-3">
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary-container">check_circle</span> Personalized Study Plans</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary-container">check_circle</span> Bi-weekly Progress Reviews</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary-container">check_circle</span> Exam Strategy Sessions</li>
+</ul>
+<button class="bg-on-primary text-primary font-label-md text-label-md px-8 py-4 rounded-xl hover:bg-surface-container-low transition-all w-full mt-4">Book Free Session</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Faculty Showcase -->
+<section class="py-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-display-lg text-display-lg">Learn from the <span class="text-primary">Best</span></h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">Our educators are veteran mentors with 15+ years of experience in producing top AIR ranks.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<!-- Faculty 1 -->
+<div class="text-center group">
+<div class="w-48 h-48 mx-auto mb-6 relative">
+<div class="absolute inset-0 bg-gradient-to-br from-primary to-secondary-container rounded-full opacity-10 group-hover:opacity-20 transition-opacity"></div>
+<img class="w-40 h-40 object-cover rounded-full mx-auto relative z-10 mt-4 border-4 border-white shadow-lg" data-alt="Professional portrait of a senior Physics professor with silver hair and glasses, wearing a formal suit, set against a subtle gradient background of primary to secondary colors. High-quality academic portrait." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHN-SoCQNLRaaimiWMjUruD5lMsduSBL1-RKTkXnMv2vJdzpt44q5gLyN34be3QaQFU-H7GEem3_1IBqjhJ18eeohV9B5wxPjSkGcZ9TJN7QAOHrecTbA_zJjY_AS4gKemz7x3H1Gw32zukEovCzFCjFLNf5dZ9dMIEwJtlziOWPx_ug4y2XZ0c1RqKNKTS1jVpk4Danq2UMOY7XuK2S0U-ehsv9z6Sl4P_cSpGN0RsT7nMPQ5iUNg8gkLQR8LJwTr3PqdOMg3zoE"/>
+</div>
+<h4 class="font-headline-md text-headline-md">Dr. Aryan Sharma</h4>
+<p class="text-primary font-label-md text-label-md">Physics Expert</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">18+ Years Experience</p>
+</div>
+<!-- Faculty 2 -->
+<div class="text-center group">
+<div class="w-48 h-48 mx-auto mb-6 relative">
+<div class="absolute inset-0 bg-gradient-to-br from-primary to-secondary-container rounded-full opacity-10 group-hover:opacity-20 transition-opacity"></div>
+<img class="w-40 h-40 object-cover rounded-full mx-auto relative z-10 mt-4 border-4 border-white shadow-lg" data-alt="Close up professional portrait of a female Chemistry expert with a friendly and intelligent expression, wearing business casual attire. Background removed and replaced with a soft corporate gradient." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJ6M0Z0wp1_Z2HrN0DBPynwrB9IuP7bbnzBWEF8vBn2rn0gbdg8uVSw0yjRP6wDTzXXEQAqN1zoRZ0T99I89tclDhzAUxqb8NuPolbzsoVSJTQObNZ-6L1iaGJ1WCLvX2CN8jQ9NlOGqAAARcbwYvoSsE6A4k4C_WrDRZAdVctFXNUpWIaM8CZSJiNPpS7ZBzyrrg71zI7uOb9SPtlu9FMNTFIWoofgIhbreVttZZ1sji8S4rGpd1olfSvNzdVw5h-s34tmudjcak"/>
+</div>
+<h4 class="font-headline-md text-headline-md">Meera Singhania</h4>
+<p class="text-primary font-label-md text-label-md">Chemistry Maven</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">12+ Years Experience</p>
+</div>
+<!-- Faculty 3 -->
+<div class="text-center group">
+<div class="w-48 h-48 mx-auto mb-6 relative">
+<div class="absolute inset-0 bg-gradient-to-br from-primary to-secondary-container rounded-full opacity-10 group-hover:opacity-20 transition-opacity"></div>
+<img class="w-40 h-40 object-cover rounded-full mx-auto relative z-10 mt-4 border-4 border-white shadow-lg" data-alt="Portrait of a young, energetic Mathematics teacher with a bright smile, wearing a professional polo shirt. Set against a clean modern gradient background in Atomic Pathshala brand colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHcA-fm4t8Pg4ekmaMb0BJEIsVlyiGzQ1dkF4DtERj0blYJQLu3Z_EvoWaDWgV8Rn14bmYalLJEoSXmFBYDnRfnbkmHytb_wnRhwkto8_aBYx_tdd9eYgEdnXaT5tekY9pAcSuHAbiTd1pNufiF8WiPHJJ2WmoF8V5TnLxmxpqb-6axRJdQGsf5vY4hPniY2iJOTaxvktiqAQQonN6dflktkXUVJ_8qtZc_YczAHlLAXzqKRyTOObL-Rl7XROUNLJMD4gA_moWt3Q"/>
+</div>
+<h4 class="font-headline-md text-headline-md">Rajesh Khanna</h4>
+<p class="text-primary font-label-md text-label-md">Math Wizard</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">15+ Years Experience</p>
+</div>
+<!-- Faculty 4 -->
+<div class="text-center group">
+<div class="w-48 h-48 mx-auto mb-6 relative">
+<div class="absolute inset-0 bg-gradient-to-br from-primary to-secondary-container rounded-full opacity-10 group-hover:opacity-20 transition-opacity"></div>
+<img class="w-40 h-40 object-cover rounded-full mx-auto relative z-10 mt-4 border-4 border-white shadow-lg" data-alt="Professional studio portrait of a senior Biology educator with a distinguished appearance, wearing a white coat, signifying academic authority. Soft lighting and clean minimalist background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2I5S-OxHulh389ioAFyxX3ZC0ECModuP9GyUSqVYA_opcCybwUdBfpajTEVN5l94FuZjVKWAZz3FoLwCNmGMt5rNgwUt1SP9ARIBEG1pDLLE7dEvtIFz8sFirRaSVhU_r5cQ5SyxFR9cNFEiz6kY6THRBEMdiwgBAqEr0Yz2-_0t4nK_9x3lINUc9t4lyTOjYxOKe6wMRFW2TZyJP8q2WeE_wDP9NOJCGeAjT8SxNj2JOxLQD1TskLyHgHjyLI0Jx7FaDeSEf084"/>
+</div>
+<h4 class="font-headline-md text-headline-md">Dr. Sneha Patil</h4>
+<p class="text-primary font-label-md text-label-md">Biology Guru</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">20+ Years Experience</p>
+</div>
+</div>
+</section>
+<!-- Performance Analytics & Mobile App Promotion -->
+<section class="py-stack-lg bg-surface-dark text-on-surface-variant px-margin-mobile md:px-margin-desktop overflow-hidden">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row items-center gap-12">
+<div class="flex-1 space-y-stack-md order-2 md:order-1">
+<h2 class="font-display-lg text-display-lg text-surface-container-lowest">Analyze. Adapt. <span class="text-secondary-container">Achieve.</span></h2>
+<p class="font-body-lg text-body-lg text-surface-variant/80">Track your performance with microscopic detail. Our dashboard helps you identify weak spots and predicts your potential AIR with 95% accuracy.</p>
+<div class="flex flex-wrap gap-4 pt-4">
+<img class="h-14 cursor-pointer hover:scale-105 transition-transform" data-alt="Sleek 'Download on App Store' button graphic with a minimalist premium design, matching a corporate tech aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuByPEYedwOXzkTemxgNbdZW1Ft9TCGcZA6jt5HojaH7Ow744FK6HPGHgqIbjVEgSS19ZdLTFVBJCKLSFlTmKUor4LFOaLuqNffh3G8pENM9hU4h8f9PbEJlgx9gGBA1pChOzcUG0AyM6Evs4AKB-bPMk_vrqOHyRHCl6a3toOlPkEt1VJosx4fKUxyVtltvNxUSNoYeUBHYmxSZ5H0DVuWEb6NfM7DNFSWipQsXq0VF9rIzfSWAgTQ1_5s3o3EjJyEHtZAjgJh3nMg"/>
+<img class="h-14 cursor-pointer hover:scale-105 transition-transform" data-alt="Modern 'Get it on Google Play' button badge with a clean design, consistent with a high-end educational brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCG0LjfBWYRc_HZOj3-FFH8RCXLLDPNFCFgW4Qv2f0OX0Oh5SEvbvBnfhJLfLYQ6y2mjkje9A5PUUQ-6k481OiTFF8wh0FT_YOkQVBOfxB6epAtLuZDJCVJAiFE17fPE2Oza0BVw1mZhSdc-iHv4xOQwB3cwjjw4WDSXpe4y8nu9BvwKPJ4zKm9BxhEZ3zKoV48s2UFrpvdCv5esHQ6LLC9FlvbyXD_ThMPsS4TgQoQt2bA1vnJpj6AWnVRISQOcTdQ2J1v3urKffo"/>
+</div>
+</div>
+<div class="flex-1 relative order-1 md:order-2 w-full max-w-lg">
+<div class="absolute inset-0 bg-secondary-container/20 blur-[100px] rounded-full"></div>
+<img class="relative z-10 w-full drop-shadow-2xl rounded-3xl border border-white/10" data-alt="A detailed dashboard UI mockup showing performance analytics with 'Atomic Blue' primary data lines and 'Electric Cyan' metrics. The interface features speed-accuracy trade-off graphs and course progress circles in a premium dark mode theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmOifRK15oJqj7dwAA2xtVdtnsQ8u24so55Eu-BsDFq1firfwk4xVwAumV9DD7zDV1rSCpusIvxorhBAxiNvqiFjx9l9KHajXuBw5cV-Yu5Tnfu0i94kOt_SP77e_hT_YCjle7YI2L6V2K2yzftO8lt1sOLenuJ6C2ap9CTi9F1YnGw37AkMojir0bJEqF_Dn7N88iKusAUpDIBPT1RK3RUptFlWGBtK2KIZTM0AXnNr2D7vM4_ZPMi0bccT1nKVI23KCzkvLCong"/>
+</div>
+</div>
+</section>
+<!-- Testimonials/Results Grid -->
+<section class="py-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-display-lg text-display-lg">Real Results from <span class="text-primary">Real Students</span></h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-stack-lg">
+<!-- Result 1 -->
+<div class="glass-card p-6 rounded-2xl relative">
+<span class="absolute top-4 right-4 text-primary opacity-5 material-symbols-outlined text-6xl">format_quote</span>
+<div class="bg-tertiary text-on-tertiary-container font-label-sm text-label-sm px-3 py-1 rounded-full absolute -top-3 left-6 shadow-sm">AIR 12 (NEET)</div>
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-primary">
+<img class="w-full h-full object-cover" data-alt="Portrait of a young male student who achieved AIR 12 in NEET, with a joyful and proud expression. Professional lighting and high-contrast light mode background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCP5wJORw6Xxp0j9SDDBqbV88gXDlHN0F4ROpWCJobXQPyT28ABDpIF1_j8h7ZGdJYMy3SmTFa6DvSedoqSOzlScSxgXsi-MgbY7PIAXGzOtEezlTXAD1ysjRoYUMmNplCUflyy05UdLTIiUwt6Pdfo4m1uWSHXPZGBNupbeR6yNVOci7i089ylykVlcMJy-tNEi6al9led5x5ja_tD0kT0bc8tuZvGX_sDgtEHQv3W8EO6S-JDrxyFN498b4c53V3ri1v_tVNqh_g"/>
+</div>
+<div>
+<h4 class="font-label-md text-label-md">Ananya Verma</h4>
+<p class="text-[10px] text-on-surface-variant">Class of 2024</p>
+</div>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant italic">"The AI doubt solving was a lifesaver during my late-night study sessions. Atomic Pathshala truly changed how I approach Physics."</p>
+</div>
+<!-- Result 2 -->
+<div class="glass-card p-6 rounded-2xl relative">
+<span class="absolute top-4 right-4 text-primary opacity-5 material-symbols-outlined text-6xl">format_quote</span>
+<div class="bg-tertiary text-on-tertiary-container font-label-sm text-label-sm px-3 py-1 rounded-full absolute -top-3 left-6 shadow-sm">AIR 45 (JEE)</div>
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-primary">
+<img class="w-full h-full object-cover" data-alt="Portrait of a focused male student who achieved AIR 45 in JEE, looking confidently forward. The image uses soft studio lighting and fits a premium academic brand style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoe1Sna0wx-B58sHAC01T2tZOWfkS2a22d0eU03213dvDvCUE5b4au1L474Sd5vMi-jDTpp3zBaVRcAxlhT3DFeisUWqXet3TPStbnM_mYvVDMhaXwlH4D_J9ENhzTv66FvZzuaeojH2aJJvPGCfzVayI6n4RzMjaQgm8W7pbtvST_pXnHiQ0p2wvXiLg-i6oG-akfokxfQfFJIHcepuvOPtorke_1k7Ho7AYvr_WTek6gsmQQRALsCZYJxlei8HZGewmk1Jxi_jE"/>
+</div>
+<div>
+<h4 class="font-label-md text-label-md">Rohit Mehra</h4>
+<p class="text-[10px] text-on-surface-variant">Class of 2024</p>
+</div>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant italic">"Personal mentorship helped me stay sane during the toughest months. My mentor knew exactly when I needed a push or a break."</p>
+</div>
+<!-- Result 3 -->
+<div class="glass-card p-6 rounded-2xl relative">
+<span class="absolute top-4 right-4 text-primary opacity-5 material-symbols-outlined text-6xl">format_quote</span>
+<div class="bg-tertiary text-on-tertiary-container font-label-sm text-label-sm px-3 py-1 rounded-full absolute -top-3 left-6 shadow-sm">AIR 102 (NEET)</div>
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-primary">
+<img class="w-full h-full object-cover" data-alt="Portrait of a smiling female student who achieved AIR 102 in NEET, expressing achievement and happiness. High-key lighting, bright light-mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnUF0zGyVYvuumBXCbL8ueDDGnlp_Ka8hTw5eoWNHfV06moaoRhZrmmhRZkRSWs-1ZE8J30HW6_3ABwe2ah1N7WL7IRwztoo7FMzG0RzcI97mlnKgkaCNbhpAhycmFkFNjzm3DgweZVaMwXpVCER-S2y3ee03Byvk4juFRmqKf_kofTpgPMkQAquiSuThxbvV7ZKwiomXT_yLtdLsv1Y7fPKa2rdyo7C2IZLxRx9sRuhCSPKcrIbjJzGm-y8jkILmlzNFddrU4ep0"/>
+</div>
+<div>
+<h4 class="font-label-md text-label-md">Ishita Jain</h4>
+<p class="text-[10px] text-on-surface-variant">Class of 2024</p>
+</div>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant italic">"The test series analytics were spot on. I knew my weak chapters and worked specifically on them to improve my score from 580 to 705."</p>
+</div>
+<!-- Result 4 -->
+<div class="glass-card p-6 rounded-2xl relative">
+<span class="absolute top-4 right-4 text-primary opacity-5 material-symbols-outlined text-6xl">format_quote</span>
+<div class="bg-tertiary text-on-tertiary-container font-label-sm text-label-sm px-3 py-1 rounded-full absolute -top-3 left-6 shadow-sm">AIR 210 (JEE)</div>
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-primary">
+<img class="w-full h-full object-cover" data-alt="Portrait of a young male student who achieved AIR 210 in JEE, looking calm and motivated. Professional photography with clean academic branding elements." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS4H4Zg3wgNbRSerBL9uqe-yVTvwsOJMW387mzf2DizruXRqQSdiyrn6RHuLyS43nuXP7NnGWKwYUlEr84rCGxef4yo459nnBT6U2fYmMY4MoVoOFeGYkdAq8UNBvM-2T59IqIL7-ng3J4XeWE4Pl67EWHeVFZPXVSaD9I_ZkSpLV5BL3muNBwKUT-34LWflusg0odCLPEgh-0732Vd6xmUHhBjhGB0SD9Y92UrYUR6ix1P8lO5W6WvGCISbUr9OUiwSdS5xa9v30"/>
+</div>
+<div>
+<h4 class="font-label-md text-label-md">Vikram Roy</h4>
+<p class="text-[10px] text-on-surface-variant">Class of 2024</p>
+</div>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant italic">"Live sessions are so interactive that it feels like the teacher is right in front of you. Highly recommend the Phoenix batch."</p>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="py-stack-lg bg-surface-container-low px-margin-mobile md:px-margin-desktop">
+<div class="max-w-3xl mx-auto space-y-8">
+<div class="text-center">
+<h2 class="font-headline-lg text-headline-lg">Frequently Asked Questions</h2>
+</div>
+<div class="space-y-4">
+<div class="bg-surface rounded-xl border border-outline-variant/20 overflow-hidden shadow-sm">
+<button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-primary/5 transition-colors group">
+<span class="font-label-md text-label-md">How can I enroll in a batch?</span>
+<span class="material-symbols-outlined text-primary group-hover:rotate-180 transition-transform">expand_more</span>
+</button>
+<div class="px-6 py-4 text-label-sm font-label-sm text-on-surface-variant border-t border-outline-variant/10">
+                            Simply click on the "Join Now" button on any batch card or navigate to the Batches section to see all available programs.
+                        </div>
+</div>
+<div class="bg-surface rounded-xl border border-outline-variant/20 overflow-hidden shadow-sm">
+<button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-primary/5 transition-colors group">
+<span class="font-label-md text-label-md">Do you offer scholarships?</span>
+<span class="material-symbols-outlined text-primary group-hover:rotate-180 transition-transform">expand_more</span>
+</button>
+</div>
+<div class="bg-surface rounded-xl border border-outline-variant/20 overflow-hidden shadow-sm">
+<button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-primary/5 transition-colors group">
+<span class="font-label-md text-label-md">Are classes live or recorded?</span>
+<span class="material-symbols-outlined text-primary group-hover:rotate-180 transition-transform">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<section class="py-stack-lg bg-surface-container-low/30 px-margin-mobile md:px-margin-desktop">
+<div class="max-w-container-max mx-auto space-y-stack-lg">
+<div class="text-center max-w-2xl mx-auto space-y-4">
+<h2 class="font-display-lg text-display-lg">Free Learning <span class="text-primary">Resources</span></h2>
+<p class="font-body-md text-body-md text-on-surface-variant">High-quality study material and lectures available for everyone, absolutely free.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-gutter">
+<!-- Video Lectures -->
+<div class="glass-card p-8 rounded-2xl flex flex-col items-center text-center space-y-4">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-size: 32px;">play_circle</span>
+</div>
+<h3 class="font-headline-md text-headline-md">Free Video Lectures</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Archived sessions from our official YouTube channel.</p>
+<button class="text-primary font-label-md text-label-md flex items-center gap-1 hover:gap-2 transition-all">Watch Now <span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+<!-- PDF Modules -->
+<div class="glass-card p-8 rounded-2xl flex flex-col items-center text-center space-y-4">
+<div class="w-16 h-16 bg-secondary-container/10 rounded-full flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" style="font-size: 32px;">description</span>
+</div>
+<h3 class="font-headline-md text-headline-md">PDF Modules &amp; Notes</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Chapter-wise formula sheets and detailed theory notes.</p>
+<button class="text-primary font-label-md text-label-md flex items-center gap-1 hover:gap-2 transition-all">Download PDF <span class="material-symbols-outlined">download</span></button>
+</div>
+<!-- Test Series -->
+<div class="glass-card p-8 rounded-2xl flex flex-col items-center text-center space-y-4">
+<div class="w-16 h-16 bg-tertiary-container/10 rounded-full flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" style="font-size: 32px;">timer</span>
+</div>
+<h3 class="font-headline-md text-headline-md">Free Test Series</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Weekly open mocks to test your speed and accuracy.</p>
+<button class="text-primary font-label-md text-label-md flex items-center gap-1 hover:gap-2 transition-all">Start Test <span class="material-symbols-outlined">play_arrow</span></button>
+</div>
+<!-- PYQs -->
+<div class="glass-card p-8 rounded-2xl flex flex-col items-center text-center space-y-4">
+<div class="w-16 h-16 bg-error-container/10 rounded-full flex items-center justify-center text-error">
+<span class="material-symbols-outlined" style="font-size: 32px;">history</span>
+</div>
+<h3 class="font-headline-md text-headline-md">Previous Year Questions</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant">15+ years of solved papers for NEET and JEE.</p>
+<button class="text-primary font-label-md text-label-md flex items-center gap-1 hover:gap-2 transition-all">Access Bank <span class="material-symbols-outlined">folder_open</span></button>
+</div>
+</div>
+<!-- YouTube Banner -->
+<div class="bg-surface-dark rounded-[2rem] p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 overflow-hidden relative">
+<div class="absolute top-0 right-0 w-64 h-64 bg-red-500/10 rounded-full blur-[100px]"></div>
+<div class="relative z-10 space-y-4 text-center md:text-left">
+<h3 class="font-display-lg text-display-lg text-surface-container-lowest">Live Class Archive</h3>
+<p class="font-body-lg text-body-lg text-surface-variant/80 max-w-xl">Missing a live session? Access our entire Live Class vault on YouTube. Never miss a concept again.</p>
+</div>
+<button class="relative z-10 bg-red-500 text-white font-label-md text-label-md px-8 py-4 rounded-xl hover:opacity-90 transition-all flex items-center gap-3 shadow-lg">
+<span class="material-symbols-outlined">smart_display</span>
+        Visit YouTube Channel
+      </button>
+</div>
+</div>
+</section><footer class="bg-inverse-surface text-surface-variant py-stack-lg border-t border-outline-variant/10">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="col-span-2 md:col-span-1 space-y-4">
+<div class="font-headline-md text-headline-md font-bold text-surface-container-lowest">Atomic Pathshala</div>
+<p class="text-label-sm font-label-sm opacity-70">Empowering future doctors and engineers with high-performance learning strategies and premium educational tools.</p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full bg-surface-variant/10 flex items-center justify-center hover:bg-primary transition-colors" href="#"><span class="material-symbols-outlined text-surface-container-lowest">share</span></a>
+<a class="w-10 h-10 rounded-full bg-surface-variant/10 flex items-center justify-center hover:bg-primary transition-colors" href="#"><span class="material-symbols-outlined text-surface-container-lowest">mail</span></a>
+<a class="w-10 h-10 rounded-full bg-surface-variant/10 flex items-center justify-center hover:bg-primary transition-colors" href="#"><span class="material-symbols-outlined text-surface-container-lowest">call</span></a>
+</div>
+</div>
+<div>
+<h4 class="text-surface-container-lowest font-headline-md text-headline-md mb-6">Company</h4>
+<ul class="space-y-3">
+<li><a class="text-label-sm font-label-sm hover:text-surface-container-lowest hover:translate-x-1 transition-all inline-block" href="#">About Us</a></li>
+<li><a class="text-label-sm font-label-sm hover:text-surface-container-lowest hover:translate-x-1 transition-all inline-block" href="#">Career</a></li>
+<li><a class="text-label-sm font-label-sm hover:text-surface-container-lowest hover:translate-x-1 transition-all inline-block" href="#">Privacy Policy</a></li>
+<li><a class="text-label-sm font-label-sm hover:text-surface-container-lowest hover:translate-x-1 transition-all inline-block" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-surface-container-lowest font-headline-md text-headline-md mb-6">Courses</h4>
+<ul class="space-y-3">
+<li><a class="text-label-sm font-label-sm hover:text-surface-container-lowest hover:translate-x-1 transition-all inline-block" href="#">NEET Preperation</a></li>
+<li><a class="text-label-sm font-label-sm hover:text-surface-container-lowest hover:translate-x-1 transition-all inline-block" href="#">JEE Advanced</a></li>
+<li><a class="text-label-sm font-label-sm hover:text-surface-container-lowest hover:translate-x-1 transition-all inline-block" href="#">Foundation (8-10)</a></li>
+<li><a class="text-label-sm font-label-sm hover:text-surface-container-lowest hover:translate-x-1 transition-all inline-block" href="#">Free Resources</a></li>
+</ul>
+</div>
+<div class="col-span-2 md:col-span-1 space-y-6">
+<h4 class="text-surface-container-lowest font-headline-md text-headline-md">Newsletter</h4>
+<p class="text-label-sm font-label-sm opacity-70">Get the latest updates on exam strategies and batch announcements.</p>
+<div class="flex gap-2">
+<input class="bg-surface-variant/10 border-none rounded-lg flex-1 text-label-sm font-label-sm py-3 px-4 focus:ring-2 focus:ring-primary text-surface-container-lowest placeholder-surface-variant/50" placeholder="Enter your email" type="email"/>
+<button class="bg-primary text-on-primary p-3 rounded-lg hover:opacity-90 transition-all">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mt-stack-lg pt-stack-lg border-t border-outline-variant/10 text-center">
+<p class="text-label-sm font-label-sm opacity-50">© 2024 Atomic Pathshala. Accelerating Excellence.</p>
+</div>
+</footer>
+<script>
+        // Micro-interaction for smooth transitions
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Simple scroll reveal observer
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section > div').forEach(section => {
+            section.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+            observer.observe(section);
+        });
+    </script>
+
+  <!-- Ecosystem Switched Widget Overlay -->
+  <script src="../ecosystem-hud.js"></script>
+</body></html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Doubt Expert Workspace | Atomic Pathshala</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(0, 102, 255, 0.2);
+            border-radius: 10px;
+        }
+        .active-glow {
+            box-shadow: 0 0 15px rgba(0, 102, 255, 0.15);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#0066ff",
+                        "on-secondary-fixed": "#001f28",
+                        "on-secondary-container": "#005266",
+                        "inverse-surface": "#283044",
+                        "border-subtle": "rgba(0, 102, 255, 0.1)",
+                        "secondary-fixed": "#b7eaff",
+                        "surface-container": "#eaedff",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#4cd6ff",
+                        "outline-variant": "#c2c6d8",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#49df9f",
+                        "surface-container-low": "#f2f3ff",
+                        "tertiary-fixed": "#6afcb9",
+                        "surface-dark": "#161B22",
+                        "surface-container-high": "#e2e7ff",
+                        "surface-dim": "#d2d9f4",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "primary-fixed": "#dae1ff",
+                        "on-primary-container": "#f8f7ff",
+                        "on-background": "#131b2e",
+                        "bg-dark": "#0B0E14",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#00ccf9",
+                        "on-primary-fixed": "#001849",
+                        "on-tertiary-fixed-variant": "#005235",
+                        "tertiary": "#006643",
+                        "on-tertiary-container": "#e1ffeb",
+                        "on-secondary-fixed-variant": "#004e60",
+                        "surface-bright": "#faf8ff",
+                        "on-surface-variant": "#424656",
+                        "background": "#faf8ff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#003fa4",
+                        "surface-variant": "#dae2fd",
+                        "bg-light": "#FFFFFF",
+                        "text-light": "#0F172A",
+                        "primary": "#0050cb",
+                        "text-dark": "#F1F5F9",
+                        "on-tertiary-fixed": "#002113",
+                        "surface-tint": "#0054d6",
+                        "inverse-on-surface": "#eef0ff",
+                        "surface": "#faf8ff",
+                        "secondary": "#00677f",
+                        "tertiary-container": "#008256",
+                        "outline": "#727687",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#b3c5ff",
+                        "surface-light": "#F8FAFC",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#dae2fd",
+                        "on-surface": "#131b2e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-lg": "32px",
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "stack-md": "16px",
+                        "stack-sm": "8px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "label-md": ["Inter"],
+                        "display-lg-mobile": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-hidden h-screen">
+<!-- Sidebar Navigation -->
+<aside class="h-screen w-64 fixed left-0 top-0 z-40 bg-surface-container-low/90 backdrop-blur-xl border-r border-border-subtle shadow-lg flex flex-col h-full overflow-y-auto">
+<div class="px-gutter py-stack-lg border-b border-border-subtle">
+<img alt="Atomic Pathshala Logo" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnnGgio48Zuhi1ItNLh3quXKjfHmpmVatj4VZk731CPuuQQquTWRLEIyf2NhMf25KfizjpNrZYJ8G7Fc_uOsjX0BWCzj_A5CWlfIZ24PlYvOUZ2rIQYNWYwHG9D0HfmQ66IOVwVBVHG-Ko99Zh26dI6P8j9GdfqGLpamTxkT03RFPO6TqOkFyxERm7GVYUmsw6EtChN-iYaOFUS2lMn423gRrRSSgJ5p4569ib5gEtGKP7uSRx0VBfJBVWP8nb8v_3jN8oY6BNCHQ"/>
+</div>
+<nav class="flex-1 py-stack-md">
+<div class="px-gutter mb-stack-sm text-on-surface-variant font-label-sm uppercase tracking-wider">Main Workspace</div>
+<a class="flex items-center gap-stack-md px-gutter py-stack-md hover:bg-surface-variant/30 text-on-surface-variant transition-all duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-stack-md px-gutter py-stack-md bg-primary-container/20 text-primary font-bold border-r-4 border-primary transition-all duration-200" href="#">
+<span class="material-symbols-outlined">live_help</span>
+<span class="font-label-md text-label-md">Doubt Desk</span>
+<span class="ml-auto bg-primary text-on-primary text-[10px] px-2 py-0.5 rounded-full">12</span>
+</a>
+<a class="flex items-center gap-stack-md px-gutter py-stack-md hover:bg-surface-variant/30 text-on-surface-variant transition-all duration-200" href="#">
+<span class="material-symbols-outlined">database</span>
+<span class="font-label-md text-label-md">Question Bank</span>
+</a>
+<a class="flex items-center gap-stack-md px-gutter py-stack-md hover:bg-surface-variant/30 text-on-surface-variant transition-all duration-200" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-md text-label-md">Batches</span>
+</a>
+<a class="flex items-center gap-stack-md px-gutter py-stack-md hover:bg-surface-variant/30 text-on-surface-variant transition-all duration-200" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+</nav>
+<div class="p-gutter mt-auto border-t border-border-subtle">
+<button class="w-full bg-primary text-on-primary py-3 rounded-xl font-label-md text-label-md shadow-md hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                Create New Task
+            </button>
+<div class="mt-stack-md space-y-1">
+<a class="flex items-center gap-stack-md py-2 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">support</span>
+<span class="font-label-md text-label-md">Help Center</span>
+</a>
+<a class="flex items-center gap-stack-md py-2 text-error hover:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Sign Out</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 flex flex-col h-screen">
+<!-- Top Navbar -->
+<header class="sticky top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-border-subtle shadow-sm flex justify-between items-center px-gutter py-stack-md max-w-full">
+<div class="flex items-center gap-stack-lg">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Doubt Expert Workspace</h1>
+<div class="hidden md:flex items-center bg-surface-container rounded-full px-4 py-2 border border-border-subtle">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-md font-label-md placeholder:text-outline-variant w-64 ml-2" placeholder="Search doubts or question IDs..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-stack-md">
+<div class="flex items-center gap-4 mr-4 px-4 py-1.5 bg-tertiary-container/10 rounded-full border border-tertiary-container/20">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+<span class="font-label-md text-tertiary">Active Session: 42m</span>
+</div>
+<button class="material-symbols-outlined p-2 text-on-surface-variant hover:text-primary transition-colors">notifications</button>
+<button class="material-symbols-outlined p-2 text-on-surface-variant hover:text-primary transition-colors">settings</button>
+<div class="h-10 w-10 rounded-full bg-primary-container/20 border border-primary/20 overflow-hidden ml-2 cursor-pointer">
+<img class="h-full w-full object-cover" data-alt="A professional headshot of a senior academic expert with a friendly expression, wearing a minimalist modern polo shirt. High-end portrait lighting in a bright, tech-oriented studio environment with clean white and soft blue highlights, embodying the premium Atomic Pathshala educational brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuIuT5GoBWCLLps45FAkC9mlswzrKgBSrTe6UhYid6T6tBTVClQsPyCZXRseP4Gmyrzy7vpQiY55rJHK7dMiyE1zElT8XaUJ8orPwsAwKgmCNaUG1VqxP2POnS60A59eo953snWgSDhNplbwU414ih8oUZptsSkfiFyd6ijdzo3Xs7YE2dU-hWaNQ1nJy1n5Qx9lGFqVPWSQfMeD3kN74DLWMd5VJMPTS69eJ4FTTP4_Ou5dBczlBEN5VRHuFRE73XmyAP-Ndxu0k"/>
+</div>
+</div>
+</header>
+<!-- Split View Content -->
+<div class="flex-1 flex overflow-hidden">
+<!-- Left Panel: Feed of Doubts -->
+<section class="w-[400px] border-r border-border-subtle bg-surface-container-low flex flex-col">
+<div class="p-gutter border-b border-border-subtle flex justify-between items-center bg-white/50">
+<h2 class="font-label-md text-label-md text-on-surface uppercase tracking-wider">Pending Doubts (12)</h2>
+<div class="flex gap-2">
+<button class="p-1 hover:bg-surface-container rounded transition-colors material-symbols-outlined text-primary">filter_list</button>
+<button class="p-1 hover:bg-surface-container rounded transition-colors material-symbols-outlined text-primary">sort</button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar p-stack-md space-y-stack-md">
+<!-- Doubt Card 1 (Active) -->
+<div class="glass-card p-4 rounded-xl active-glow border-2 border-primary/30 relative cursor-pointer group">
+<div class="absolute top-4 right-4 flex gap-1">
+<span class="px-2 py-0.5 bg-error-container text-on-error-container text-[10px] font-bold rounded-full">High Priority</span>
+</div>
+<div class="flex items-center gap-3 mb-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary font-bold text-xs">RS</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Rahul Sharma</p>
+<p class="text-[10px] text-on-surface-variant">QID: PHY-NEET-2025-09</p>
+</div>
+</div>
+<p class="text-body-md text-on-surface line-clamp-2 mb-3">
+                            "The integration step in the electromagnetic induction problem seems to skip the boundary conditions. Can you explain why..."
+                        </p>
+<div class="flex justify-between items-center">
+<span class="text-[11px] text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 14 mins ago
+                            </span>
+<span class="text-[11px] font-bold text-primary">NEET / Physics</span>
+</div>
+</div>
+<!-- Doubt Card 2 -->
+<div class="glass-card p-4 rounded-xl border border-border-subtle hover:border-primary/20 transition-all cursor-pointer">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center text-primary font-bold text-xs">AJ</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Ananya Jain</p>
+<p class="text-[10px] text-on-surface-variant">QID: CHE-JEE-2024-44</p>
+</div>
+</div>
+<p class="text-body-md text-on-surface line-clamp-2 mb-3">
+                            "Is there any shortcut to identify the hybridization state in coordinate complexes without drawing the full structure?"
+                        </p>
+<div class="flex justify-between items-center">
+<span class="text-[11px] text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 2 hours ago
+                            </span>
+<span class="text-[11px] font-bold text-secondary">JEE / Organic Chem</span>
+</div>
+</div>
+<!-- Doubt Card 3 -->
+<div class="glass-card p-4 rounded-xl border border-border-subtle hover:border-primary/20 transition-all cursor-pointer">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-8 h-8 rounded-full bg-tertiary-container/20 flex items-center justify-center text-tertiary font-bold text-xs">KM</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Karan Malhotra</p>
+<p class="text-[10px] text-on-surface-variant">QID: BIO-NEET-2025-102</p>
+</div>
+</div>
+<p class="text-body-md text-on-surface line-clamp-2 mb-3">
+                            "The diagram provided for the Calvin Cycle has a typo in the ATP/NADPH ratio on the first step. Please verify."
+                        </p>
+<div class="flex justify-between items-center">
+<span class="text-[11px] text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 5 hours ago
+                            </span>
+<span class="text-[11px] font-bold text-tertiary">NEET / Biology</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Panel: Question Detail & Actions -->
+<section class="flex-1 bg-white overflow-y-auto custom-scrollbar flex flex-col">
+<!-- Header Toolbar -->
+<div class="sticky top-0 z-10 bg-white/90 backdrop-blur px-gutter py-4 border-b border-border-subtle flex justify-between items-center">
+<div class="flex items-center gap-4">
+<span class="bg-surface-container-high px-3 py-1 rounded text-[11px] font-bold text-on-surface-variant">#PHY-NEET-2025-09</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-warning text-yellow-500" style="font-variation-settings: 'FILL' 1;">flag</span>
+<span class="text-label-md font-label-md">Flagged by 4 Students</span>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 border border-border-subtle rounded-xl text-label-md font-label-md hover:bg-surface transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">history</span> History
+                        </button>
+<button class="px-4 py-2 bg-primary text-on-primary rounded-xl text-label-md font-label-md shadow-md hover:opacity-90 transition-opacity flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">check_circle</span> Mark as Resolved
+                        </button>
+</div>
+</div>
+<!-- Detail Content -->
+<div class="p-gutter space-y-stack-lg max-w-[1000px] mx-auto w-full">
+<!-- Question Display -->
+<div class="space-y-stack-md">
+<div class="flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-on-surface">Question Content</h3>
+<button class="text-primary font-label-md flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-[18px]">edit</span> Edit LaTeX
+                            </button>
+</div>
+<div class="glass-card p-gutter rounded-2xl bg-surface-container-low/50">
+<p class="text-body-lg text-on-surface leading-relaxed mb-stack-lg">
+                                A circular coil of radius 10 cm, 500 turns and resistance 2 Ω is placed with its plane perpendicular to the horizontal component of the earth's magnetic field. It is rotated about its vertical diameter through 180° in 0.25 s. Estimate the magnitudes of the emf and current induced in the coil.
+                            </p>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-white p-4 rounded-xl border border-border-subtle hover:border-primary-container/30 transition-colors cursor-pointer">
+<span class="text-[10px] text-outline-variant font-bold block mb-1">A</span>
+<p class="text-body-md text-on-surface">3.8 × 10⁻³ V, 1.9 × 10⁻³ A</p>
+</div>
+<div class="bg-primary-container/5 p-4 rounded-xl border border-primary-container shadow-sm cursor-pointer ring-1 ring-primary-container">
+<div class="flex justify-between">
+<span class="text-[10px] text-primary font-bold block mb-1">B (CORRECT)</span>
+<span class="material-symbols-outlined text-primary text-[16px]">check_circle</span>
+</div>
+<p class="text-body-md text-primary font-bold">4.2 × 10⁻³ V, 2.1 × 10⁻³ A</p>
+</div>
+<div class="bg-white p-4 rounded-xl border border-border-subtle hover:border-primary-container/30 transition-colors cursor-pointer">
+<span class="text-[10px] text-outline-variant font-bold block mb-1">C</span>
+<p class="text-body-md text-on-surface">5.1 × 10⁻³ V, 2.5 × 10⁻³ A</p>
+</div>
+<div class="bg-white p-4 rounded-xl border border-border-subtle hover:border-primary-container/30 transition-colors cursor-pointer">
+<span class="text-[10px] text-outline-variant font-bold block mb-1">D</span>
+<p class="text-body-md text-on-surface">2.9 × 10⁻³ V, 1.4 × 10⁻³ A</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Solution & Video Upload -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="space-y-stack-md">
+<h3 class="font-headline-md text-headline-md text-on-surface">Expert Explanation</h3>
+<div class="bg-surface-container-high/30 border border-border-subtle rounded-2xl p-gutter">
+<textarea class="w-full h-48 bg-transparent border-none focus:ring-0 text-body-md p-0 resize-none" placeholder="Provide a detailed step-by-step solution here...">The magnetic flux linked with the coil φ = NBA cos θ.
+Initially θ = 0°, so φ1 = NBA.
+Finally θ = 180°, so φ2 = -NBA.
+Change in flux Δφ = φ2 - φ1 = -2NBA.
+Induced emf ε = -Δφ/Δt = 2NBA / Δt.
+Substituting values: N=500, B=3e-5 T (assumed), A=πr²...
+                                </textarea>
+</div>
+</div>
+<div class="space-y-stack-md">
+<h3 class="font-headline-md text-headline-md text-on-surface">Video Walkthrough</h3>
+<div class="aspect-video bg-inverse-surface rounded-2xl flex flex-col items-center justify-center text-on-primary-container border-2 border-dashed border-primary-container/30 group hover:border-primary-container transition-all cursor-pointer overflow-hidden relative">
+<img class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-50 transition-opacity" data-alt="A professional video editor interface showing a timeline and preview window with educational annotations. The lighting is dark with vibrant neon blue highlights, suggesting a high-tech video production suite within a modern education company. Minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2kn0Weh5sgqLiLSHsdlQYy5uS_YMcxIH2Z2ZqgXxSZpJ2XQtLxTNsmOkd84hRnwlhQJL4gBQGnXTXE8erzV8EzNP9qplOWOIJS1BE3ZCcWGtp782aHOjY8mdvXKEz2pRHJI8_aDHgaxAoERZ1zryvWrYXP3zZicfQFoEnZNcn4o_BI_56AKqzkiYKRSBLMaE0OS81MZyiTBwe0sTTt-icSgqwCF8KxYkAsjtJ7HPe9tLPOT4SKvTd3iDR059tKPaGrFgvxRbymbk"/>
+<div class="relative z-10 flex flex-col items-center">
+<span class="material-symbols-outlined text-[48px] text-primary-fixed mb-2">video_call</span>
+<p class="font-label-md">Click to Upload Video</p>
+<p class="text-[10px] opacity-70">MP4, MOV up to 100MB</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Difficulty Audit Bento Section -->
+<div class="bg-surface-container rounded-3xl p-gutter space-y-stack-md">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary bg-white p-2 rounded-lg shadow-sm">monitoring</span>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Difficulty Audit Tool</h3>
+<p class="text-label-sm text-on-surface-variant">Based on real student performance data (n=1,450)</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-stack-md">
+<!-- Metric 1 -->
+<div class="bg-white p-stack-md rounded-2xl shadow-sm border border-border-subtle">
+<p class="text-label-sm text-outline mb-1">Success Rate</p>
+<div class="flex items-end gap-2">
+<span class="font-display-lg text-display-lg text-error">18.4%</span>
+<span class="text-label-sm text-error mb-2 flex items-center">
+<span class="material-symbols-outlined text-[16px]">trending_down</span> -12%
+                                    </span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full mt-2">
+<div class="bg-error h-full rounded-full w-[18%]"></div>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-white p-stack-md rounded-2xl shadow-sm border border-border-subtle">
+<p class="text-label-sm text-outline mb-1">Avg. Time Spent</p>
+<span class="font-display-lg text-display-lg text-on-surface">142s</span>
+<p class="text-label-sm text-on-surface-variant mt-2">Target: 90s for NEET</p>
+</div>
+<!-- Action Selection -->
+<div class="bg-primary p-stack-md rounded-2xl shadow-md text-on-primary flex flex-col justify-between">
+<p class="text-label-sm opacity-80 mb-1">Expert Re-Classification</p>
+<div class="space-y-1">
+<select class="w-full bg-white/10 border-white/20 rounded-lg text-label-md py-1 focus:ring-white">
+<option>Current: Intermediate</option>
+<option class="text-on-surface">Change to: Advanced</option>
+<option class="text-on-surface">Change to: Master</option>
+</select>
+<button class="w-full bg-white text-primary py-2 rounded-lg font-bold text-label-md mt-2 hover:bg-secondary-fixed transition-colors">Apply Level Change</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Sticky Interaction -->
+<div class="mt-auto p-gutter border-t border-border-subtle bg-white/80 backdrop-blur-sm flex justify-between items-center">
+<div class="flex items-center gap-stack-md">
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">thumb_up</span>
+<span class="font-label-md text-label-md">Endorse Answer</span>
+</button>
+<span class="h-4 w-[1px] bg-outline-variant"></span>
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined">report_problem</span>
+<span class="font-label-md text-label-md">Report Content Error</span>
+</button>
+</div>
+<div class="flex gap-4">
+<span class="text-label-sm text-outline-variant flex items-center">Auto-saving...</span>
+<button class="px-6 py-2 border border-primary text-primary rounded-xl font-bold text-label-md hover:bg-primary-container/5 transition-colors">Draft Only</button>
+<button class="px-8 py-2 bg-primary text-on-primary rounded-xl font-bold text-label-md shadow-lg shadow-primary/20 hover:-translate-y-0.5 transition-all">Publish Resolution</button>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Floating Tooltip Context for Expert -->
+<div class="fixed bottom-10 right-10 z-50">
+<button class="w-14 h-14 bg-secondary text-on-secondary rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all group">
+<span class="material-symbols-outlined text-[28px] group-hover:rotate-12 transition-transform">auto_awesome</span>
+<div class="absolute right-16 bg-inverse-surface text-on-primary-container px-4 py-2 rounded-xl text-label-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-xl">
+                AI Suggestion: "Ref 2.4.1 Magnetic Induction"
+            </div>
+</button>
+</div>
+<script>
+        // Micro-interaction for doubt cards
+        const cards = document.querySelectorAll('.glass-card');
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                cards.forEach(c => {
+                    c.classList.remove('active-glow', 'border-2', 'border-primary/30');
+                    c.classList.add('border', 'border-border-subtle');
+                });
+                card.classList.add('active-glow', 'border-2', 'border-primary/30');
+                card.classList.remove('border', 'border-border-subtle');
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Educator Compliance &amp; Earnings Impact - Atomic Pathshala</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#424656",
+                    "bg-light": "#FFFFFF",
+                    "surface-variant": "#dae2fd",
+                    "inverse-surface": "#283044",
+                    "on-secondary": "#ffffff",
+                    "primary": "#0050cb",
+                    "surface-container-highest": "#dae2fd",
+                    "surface-bright": "#faf8ff",
+                    "on-primary-fixed": "#001849",
+                    "on-background": "#131b2e",
+                    "tertiary-fixed-dim": "#49df9f",
+                    "on-primary-container": "#f8f7ff",
+                    "surface-dim": "#d2d9f4",
+                    "text-dark": "#F1F5F9",
+                    "on-primary": "#ffffff",
+                    "secondary": "#00677f",
+                    "on-surface": "#131b2e",
+                    "outline-variant": "#c2c6d8",
+                    "secondary-fixed": "#b7eaff",
+                    "on-tertiary-container": "#e1ffeb",
+                    "on-tertiary-fixed-variant": "#005235",
+                    "on-secondary-fixed": "#001f28",
+                    "surface-dark": "#161B22",
+                    "primary-container": "#0066ff",
+                    "border-subtle": "rgba(0, 102, 255, 0.1)",
+                    "secondary-container": "#00ccf9",
+                    "tertiary-container": "#008256",
+                    "surface-container-high": "#e2e7ff",
+                    "surface": "#faf8ff",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "background": "#faf8ff",
+                    "outline": "#727687",
+                    "tertiary-fixed": "#6afcb9",
+                    "on-error": "#ffffff",
+                    "surface-tint": "#0054d6",
+                    "inverse-primary": "#b3c5ff",
+                    "primary-fixed": "#dae1ff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#003fa4",
+                    "bg-dark": "#0B0E14",
+                    "surface-container-low": "#f2f3ff",
+                    "text-light": "#0F172A",
+                    "surface-light": "#F8FAFC",
+                    "on-secondary-fixed-variant": "#004e60",
+                    "surface-container": "#eaedff",
+                    "secondary-fixed-dim": "#4cd6ff",
+                    "on-tertiary-fixed": "#002113",
+                    "error-container": "#ffdad6",
+                    "tertiary": "#006643",
+                    "error": "#ba1a1a",
+                    "inverse-on-surface": "#eef0ff",
+                    "on-secondary-container": "#005266",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "margin-desktop": "64px",
+                    "stack-md": "16px",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "stack-sm": "8px",
+                    "stack-lg": "32px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Geist"],
+                    "headline-lg": ["Geist"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "display-lg": ["Geist"],
+                    "display-lg-mobile": ["Geist"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #faf8ff;
+            color: #131b2e;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(218, 226, 253, 0.5);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .sparkline-svg {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: dash 3s ease-in-out forwards;
+        }
+        @keyframes dash {
+            to { stroke-dashoffset: 0; }
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="sticky top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm">
+<div class="flex justify-between items-center px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="flex items-center gap-stack-md">
+<span class="font-headline-md text-headline-md font-bold text-primary">Atomic Pathshala</span>
+</div>
+<div class="hidden md:flex items-center gap-gutter">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-all duration-200" href="#">Dashboard</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-all duration-200" href="#">Penalty Rules</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-all duration-200" href="#">Educator Insights</a>
+<a class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary pb-1" href="#">Financials</a>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="cursor-pointer active:scale-95 transition-all duration-200 hover:opacity-80">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+<button class="cursor-pointer active:scale-95 transition-all duration-200 hover:opacity-80">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="settings">settings</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-primary/20">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a senior academic administrator with a warm and authoritative expression. The individual is wearing a charcoal suit against a clean, soft-lit office background with blurred educational certificates in the distance. The lighting is sophisticated and professional, reflecting the high-trust corporate environment of Atomic Pathshala." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaDIt_Un4DNUhw2eaykoBkLWgk0_Dh3sCJAPfzU09c2AU-MN8ya0nkOYX4JMUIaWh3PaiGbotQZ8ynvtRfKgskRl4NxGCHle3z1bPYA-StIFy8okjoxWMbfNwcLiXdl3s6DTBCgMfCUBn0mHuSZzq262Br23fC2X1Zf1Ytim0XOCnNxeLhlyXR5IJ8xk2ONZdEk4g-v3kE7S1vUvf6jYTUDKLDCyTB-xUQsQjvEwcKsV5omTRxNuzRGC7x1-IlEoDRiOPW9M2FeuQ"/>
+</div>
+</div>
+</div>
+</nav>
+<main class="max-w-container-max mx-auto px-margin-desktop py-stack-lg flex flex-col md:flex-row gap-gutter">
+<!-- SideNav - Fixed on Large Screens -->
+<aside class="hidden lg:flex flex-col gap-stack-md w-64 shrink-0">
+<div class="p-4 rounded-xl bg-surface-container-low/50 backdrop-blur-lg border border-outline-variant/20 shadow-lg flex flex-col gap-stack-md">
+<div class="flex flex-col gap-1 mb-4">
+<span class="font-headline-md text-headline-md font-extrabold text-primary">Penalty Hub</span>
+<span class="font-label-md text-label-md text-outline">Admin Control</span>
+</div>
+<nav class="flex flex-col gap-stack-sm">
+<a class="flex items-center gap-3 p-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Overview</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg bg-primary-container text-on-primary-container font-bold" href="#">
+<span class="material-symbols-outlined" data-icon="gavel">gavel</span>
+<span class="font-label-md text-label-md">Rule Engine</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="verified_user" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="font-label-md text-label-md">Educator Compliance</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-label-md text-label-md">Earnings Impact</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-label-md text-label-md">Support</span>
+</a>
+</nav>
+<button class="mt-6 w-full py-3 bg-primary text-on-primary rounded-lg font-bold active:bg-primary-container/80 transition-all">Generate Report</button>
+</div>
+</aside>
+<!-- Content Canvas -->
+<div class="flex-grow space-y-stack-lg">
+<!-- Dashboard Header Section -->
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-stack-md">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Compliance &amp; Earnings</h1>
+<p class="text-on-surface-variant">Review your monthly performance metrics and payout adjustments.</p>
+</div>
+<div class="flex gap-stack-sm">
+<div class="px-4 py-2 bg-surface-container rounded-lg border border-outline-variant/30 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="calendar_month">calendar_month</span>
+<span class="font-label-md text-label-md">October 2024</span>
+</div>
+</div>
+</header>
+<!-- Key Metrics (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Compliance Score -->
+<div class="glass-card p-stack-lg rounded-xl flex flex-col justify-between shadow-sm border-l-4 border-l-tertiary">
+<div class="flex justify-between items-start">
+<span class="text-on-surface-variant font-label-md">Compliance Score</span>
+<span class="material-symbols-outlined text-tertiary" data-icon="verified">verified</span>
+</div>
+<div class="mt-4 flex items-baseline gap-2">
+<span class="font-display-lg text-display-lg text-on-surface">94%</span>
+<span class="px-2 py-0.5 bg-tertiary-container/20 text-tertiary text-label-sm rounded-full">Excellent</span>
+</div>
+<div class="mt-6 h-12 w-full">
+<svg class="w-full h-full overflow-visible" viewbox="0 0 100 40">
+<path class="sparkline-svg" d="M0 35 Q10 32 20 25 T40 28 T60 15 T80 20 T100 5" fill="none" stroke="#008256" stroke-width="3"></path>
+</svg>
+</div>
+</div>
+<!-- Earnings Impact Summary -->
+<div class="glass-card p-stack-lg rounded-xl flex flex-col justify-between shadow-sm border-l-4 border-l-error">
+<div class="flex justify-between items-start">
+<span class="text-on-surface-variant font-label-md">Penalty Deductions</span>
+<span class="material-symbols-outlined text-error" data-icon="trending_down">trending_down</span>
+</div>
+<div class="mt-4">
+<span class="font-display-lg text-display-lg text-on-surface">-$340.50</span>
+<p class="text-label-sm text-on-surface-variant mt-1">Impact on Oct Payout</p>
+</div>
+<div class="mt-6 flex items-center gap-2">
+<div class="w-full bg-surface-container rounded-full h-2">
+<div class="bg-error h-2 rounded-full" style="width: 12%"></div>
+</div>
+<span class="text-label-sm text-error font-bold">12%</span>
+</div>
+</div>
+<!-- Monthly Payout Forecast -->
+<div class="glass-card p-stack-lg rounded-xl flex flex-col justify-between shadow-sm border-l-4 border-l-primary">
+<div class="flex justify-between items-start">
+<span class="text-on-surface-variant font-label-md">Projected Payout</span>
+<span class="material-symbols-outlined text-primary" data-icon="payments">payments</span>
+</div>
+<div class="mt-4">
+<span class="font-display-lg text-display-lg text-on-surface">$2,850.00</span>
+<p class="text-label-sm text-on-surface-variant mt-1">Expected disbursement: Nov 1st</p>
+</div>
+<div class="mt-6 flex items-center gap-4">
+<div class="flex flex-col">
+<span class="text-label-sm text-outline">Base</span>
+<span class="font-label-md">$3,190.50</span>
+</div>
+<div class="flex flex-col">
+<span class="text-label-sm text-outline">Penalties</span>
+<span class="font-label-md text-error">-$340.50</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Penalty History Log -->
+<section class="glass-card rounded-xl overflow-hidden shadow-md">
+<div class="px-stack-lg py-4 border-b border-outline-variant/30 flex justify-between items-center bg-surface-container-low/50">
+<h2 class="font-headline-md text-headline-md text-on-surface">Penalty History</h2>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-surface-container rounded-lg transition-colors">
+<span class="material-symbols-outlined" data-icon="filter_list">filter_list</span>
+</button>
+<button class="p-2 hover:bg-surface-container rounded-lg transition-colors">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-high/30 border-b border-outline-variant/20">
+<tr>
+<th class="px-stack-lg py-4 font-label-md text-on-surface-variant">Date</th>
+<th class="px-stack-lg py-4 font-label-md text-on-surface-variant">Class Name</th>
+<th class="px-stack-lg py-4 font-label-md text-on-surface-variant">Infraction Type</th>
+<th class="px-stack-lg py-4 font-label-md text-on-surface-variant">Amount</th>
+<th class="px-stack-lg py-4 font-label-md text-on-surface-variant">Status</th>
+<th class="px-stack-lg py-4 font-label-md text-on-surface-variant text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-stack-lg py-5 text-on-surface font-body-md">Oct 14, 2024</td>
+<td class="px-stack-lg py-5 text-on-surface font-label-md">Physics 101: Kinematics</td>
+<td class="px-stack-lg py-5">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="text-on-surface-variant">Late Start (15m)</span>
+</div>
+</td>
+<td class="px-stack-lg py-5 font-bold text-error">-$75.00</td>
+<td class="px-stack-lg py-5">
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-label-sm rounded-full border border-outline-variant/20">Deducted</span>
+</td>
+<td class="px-stack-lg py-5 text-right">
+<button class="px-4 py-2 border border-primary text-primary font-label-md rounded-lg hover:bg-primary/5 transition-colors">Appeal</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-stack-lg py-5 text-on-surface font-body-md">Oct 11, 2024</td>
+<td class="px-stack-lg py-5 text-on-surface font-label-md">NEET Prep: Cell Biology</td>
+<td class="px-stack-lg py-5">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-orange-500"></span>
+<span class="text-on-surface-variant">Unapproved Reschedule</span>
+</div>
+</td>
+<td class="px-stack-lg py-5 font-bold text-error">-$150.00</td>
+<td class="px-stack-lg py-5">
+<span class="px-3 py-1 bg-secondary-container/20 text-on-secondary-fixed-variant text-label-sm rounded-full border border-secondary-fixed-dim/30">In Review</span>
+</td>
+<td class="px-stack-lg py-5 text-right">
+<button class="px-4 py-2 text-on-surface-variant font-label-md opacity-50 cursor-not-allowed">Appealed</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-stack-lg py-5 text-on-surface font-body-md">Oct 05, 2024</td>
+<td class="px-stack-lg py-5 text-on-surface font-label-md">Advanced Calculus II</td>
+<td class="px-stack-lg py-5">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="text-on-surface-variant">Audio Quality Issues</span>
+</div>
+</td>
+<td class="px-stack-lg py-5 font-bold text-error">-$115.50</td>
+<td class="px-stack-lg py-5">
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-label-sm rounded-full border border-outline-variant/20">Deducted</span>
+</td>
+<td class="px-stack-lg py-5 text-right">
+<button class="px-4 py-2 border border-primary text-primary font-label-md rounded-lg hover:bg-primary/5 transition-colors">Appeal</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 bg-surface-container-lowest text-center">
+<button class="text-primary font-label-md hover:underline">View Full History</button>
+</div>
+</section>
+<!-- Guidelines & Compliance Tips (Visual Bento Element) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="bg-inverse-surface text-on-primary-container p-stack-lg rounded-xl flex items-center gap-6">
+<div class="w-16 h-16 shrink-0 rounded-full bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-fixed" data-icon="lightbulb">lightbulb</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-white">Compliance Tip</h3>
+<p class="text-outline-variant mt-1">Starting classes just 3 minutes early boosts your 'Reliability Index' and can nullify minor technical infractions.</p>
+</div>
+</div>
+<div class="glass-card p-stack-lg rounded-xl flex items-center gap-6 border-l-4 border-l-secondary-container">
+<div class="w-16 h-16 shrink-0 rounded-full bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container" data-icon="policy">policy</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md">Policy Update</h3>
+<p class="text-on-surface-variant mt-1">New rescheduling policies take effect from Nov 1st. Reschedules requested &gt;48h in advance incur 0 penalty.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-inverse-surface dark:bg-bg-dark border-t border-outline-variant/10 w-full py-stack-lg mt-stack-lg">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop gap-stack-md max-w-container-max mx-auto">
+<div class="flex flex-col items-center md:items-start gap-1">
+<span class="text-primary-fixed font-bold">Atomic Pathshala</span>
+<span class="font-label-sm text-label-sm text-outline-variant">© 2024 Atomic Pathshala. Academic Excellence via Precision.</span>
+</div>
+<div class="flex flex-wrap justify-center gap-gutter">
+<a class="font-label-sm text-label-sm text-outline-variant hover:text-tertiary-fixed transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-outline-variant hover:text-tertiary-fixed transition-colors" href="#">Compliance Standards</a>
+<a class="font-label-sm text-label-sm text-outline-variant hover:text-tertiary-fixed transition-colors" href="#">Audit Logs</a>
+<a class="font-label-sm text-label-sm text-outline-variant hover:text-tertiary-fixed transition-colors" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions and simple sparkle effect for high-trust metrics
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+                card.style.transition = 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                card.classList.add('shadow-xl');
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0px)';
+                card.classList.remove('shadow-xl');
+            });
+        });
+
+        // Simple animation for the sparkline path
+        const paths = document.querySelectorAll('.sparkline-svg');
+        paths.forEach(path => {
+            const length = path.getTotalLength();
+            path.style.strokeDasharray = length;
+            path.style.strokeDashoffset = length;
+            setTimeout(() => {
+                path.style.transition = 'stroke-dashoffset 2s ease-in-out';
+                path.style.strokeDashoffset = '0';
+            }, 300);
+        });
+    </script>
+
+  <!-- Ecosystem Switched Widget Overlay -->
+  <script src="../ecosystem-hud.js"></script>
+</body></html>

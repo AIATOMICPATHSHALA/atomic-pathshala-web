@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Atomic Pathshala | Infinite Whiteboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#0054d6",
+                    "text-light": "#0F172A",
+                    "primary-container": "#0066ff",
+                    "text-dark": "#F1F5F9",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "surface-container-low": "#f2f3ff",
+                    "on-tertiary-container": "#e1ffeb",
+                    "inverse-primary": "#b3c5ff",
+                    "inverse-surface": "#283044",
+                    "bg-light": "#FFFFFF",
+                    "on-secondary-fixed-variant": "#004e60",
+                    "primary-fixed": "#dae1ff",
+                    "surface": "#faf8ff",
+                    "on-primary-fixed-variant": "#003fa4",
+                    "on-background": "#131b2e",
+                    "outline-variant": "#c2c6d8",
+                    "error-container": "#ffdad6",
+                    "surface-container-low": "#f2f3ff",
+                    "surface-container-high": "#e2e7ff",
+                    "surface-container": "#eaedff",
+                    "on-error-container": "#93000a",
+                    "on-primary-container": "#f8f7ff",
+                    "primary": "#0050cb",
+                    "secondary-fixed-dim": "#4cd6ff",
+                    "outline": "#727687",
+                    "on-tertiary-fixed-variant": "#005235",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#faf8ff",
+                    "tertiary-fixed": "#6afcb9",
+                    "on-tertiary-fixed": "#002113",
+                    "on-error": "#ffffff",
+                    "on-secondary-container": "#005266",
+                    "on-primary-fixed": "#001849",
+                    "tertiary": "#006643",
+                    "error": "#ba1a1a",
+                    "surface-light": "#F8FAFC",
+                    "tertiary-container": "#008256",
+                    "on-tertiary": "#ffffff",
+                    "bg-dark": "#0B0E14",
+                    "secondary-fixed": "#b7eaff",
+                    "surface-dim": "#d2d9f4",
+                    "on-secondary-fixed": "#001f28",
+                    "on-secondary": "#ffffff",
+                    "surface-dark": "#161B22",
+                    "on-surface": "#131b2e",
+                    "border-subtle": "rgba(0, 102, 255, 0.1)",
+                    "surface-variant": "#dae2fd",
+                    "inverse-on-surface": "#eef0ff",
+                    "tertiary-fixed-dim": "#49df9f",
+                    "secondary": "#00677f",
+                    "on-surface-variant": "#424656",
+                    "surface-container-lowest": "#ffffff",
+                    "background": "#faf8ff",
+                    "surface-container-highest": "#dae2fd"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "16px",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "stack-lg": "32px",
+                    "margin-mobile": "20px",
+                    "margin-desktop": "64px",
+                    "stack-sm": "8px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["Geist"],
+                    "headline-md": ["Geist"],
+                    "display-lg": ["Geist"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #faf8ff;
+            background-image: 
+                radial-gradient(#dae2fd 0.5px, transparent 0.5px), 
+                radial-gradient(#dae2fd 0.5px, #faf8ff 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(0, 102, 255, 0.05);
+        }
+
+        .tool-active {
+            @apply bg-primary text-on-primary shadow-lg scale-110;
+        }
+
+        .infinite-canvas {
+            cursor: crosshair;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .active-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+
+        /* Smooth slide for sidebars */
+        .sidebar-transition {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-background">
+<!-- Top Navigation Bar (Shared Component Strategy) -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant/20 shadow-sm">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md font-bold tracking-tight text-primary">Atomic Pathshala</span>
+<div class="h-6 w-px bg-outline-variant/30 hidden md:block"></div>
+<div class="hidden md:flex gap-6 items-center">
+<span class="text-on-surface-variant font-label-md text-label-md">NEET Batch 2025: Physics Lab</span>
+<div class="flex items-center gap-2 px-3 py-1 bg-tertiary-container/10 text-tertiary rounded-full">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1">fiber_manual_record</span>
+<span class="font-label-sm text-label-sm">Live Class</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">share</span>
+</button>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:opacity-90 active:scale-95 transition-all">
+                    Start Learning
+                </button>
+</div>
+</div>
+</header>
+<!-- Main Canvas Area -->
+<main class="relative h-screen w-full pt-20 infinite-canvas overflow-hidden">
+<!-- Background Animation Element -->
+<div class="absolute inset-0 z-[-1] opacity-20">
+
+</div>
+<!-- Floating Vertical Toolbar (Left) -->
+<aside class="fixed left-6 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-3 p-3 glass-panel rounded-2xl">
+<button class="group relative flex items-center justify-center w-12 h-12 rounded-xl tool-active transition-all" title="Pen">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">edit</span>
+<div class="absolute left-14 bg-inverse-surface text-inverse-on-surface text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity">Pen</div>
+</button>
+<button class="group relative flex items-center justify-center w-12 h-12 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-all" title="Highlighter">
+<span class="material-symbols-outlined">brush</span>
+</button>
+<button class="group relative flex items-center justify-center w-12 h-12 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-all" title="Laser Pointer">
+<span class="material-symbols-outlined">magic_button</span>
+</button>
+<div class="w-8 h-px bg-outline-variant/30 mx-auto my-1"></div>
+<button class="group relative flex items-center justify-center w-12 h-12 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-all" title="Shapes">
+<span class="material-symbols-outlined">category</span>
+</button>
+<button class="group relative flex items-center justify-center w-12 h-12 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-all" title="Math Formulas">
+<span class="material-symbols-outlined">functions</span>
+</button>
+<button class="group relative flex items-center justify-center w-12 h-12 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-all" title="Text Input">
+<span class="material-symbols-outlined">title</span>
+</button>
+<div class="w-8 h-px bg-outline-variant/30 mx-auto my-1"></div>
+<button class="group relative flex items-center justify-center w-12 h-12 rounded-xl text-error hover:bg-error-container/20 transition-all" title="Eraser">
+<span class="material-symbols-outlined">ink_eraser</span>
+</button>
+</aside>
+<!-- Quiz Mode Sidebar (Right) -->
+<aside class="fixed right-6 top-1/2 -translate-y-1/2 z-40 w-80 h-[716px] glass-panel rounded-3xl flex flex-col overflow-hidden shadow-xl sidebar-transition translate-x-0" id="quiz-sidebar">
+<div class="p-6 border-b border-outline-variant/20 flex justify-between items-center bg-primary/5">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary">Quiz Mode</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Real-time engagement</p>
+</div>
+<button class="p-1 hover:bg-surface-container rounded-full" onclick="toggleQuiz()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-4">
+<!-- Question Card -->
+<div class="p-4 rounded-2xl border border-primary/20 bg-surface-container-lowest">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Question 1</span>
+<p class="font-body-md text-body-md mt-2">What is the net force on an object in static equilibrium?</p>
+<div class="mt-4 grid grid-cols-2 gap-2">
+<button class="p-2 border border-outline-variant rounded-lg text-sm hover:border-primary">Zero</button>
+<button class="p-2 border border-outline-variant rounded-lg text-sm hover:border-primary">Infinite</button>
+<button class="p-2 border border-outline-variant rounded-lg text-sm hover:border-primary">Changing</button>
+<button class="p-2 border border-outline-variant rounded-lg text-sm hover:border-primary">Constant</button>
+</div>
+<button class="w-full mt-4 bg-primary text-on-primary py-2 rounded-xl font-label-md text-label-md">Push to Students</button>
+</div>
+<!-- Stats -->
+<div class="p-4 rounded-2xl bg-surface-container">
+<h4 class="font-label-md text-label-md mb-2">Live Response Tracking</h4>
+<div class="flex items-end gap-2 h-20">
+<div class="flex-1 bg-primary rounded-t-sm" style="height: 60%"></div>
+<div class="flex-1 bg-outline-variant rounded-t-sm" style="height: 20%"></div>
+<div class="flex-1 bg-outline-variant rounded-t-sm" style="height: 10%"></div>
+<div class="flex-1 bg-outline-variant rounded-t-sm" style="height: 30%"></div>
+</div>
+</div>
+</div>
+</aside>
+<!-- AI Assistant Panel (Bottom Left) -->
+<div class="fixed bottom-24 left-6 z-40 w-72 glass-panel rounded-2xl p-4 shadow-lg border border-primary/10">
+<div class="flex items-center gap-2 mb-3">
+<div class="p-1.5 bg-primary rounded-lg">
+<span class="material-symbols-outlined text-on-primary text-[20px]" style="font-variation-settings: 'FILL' 1">auto_awesome</span>
+</div>
+<h4 class="font-label-md text-label-md text-primary">Atomic AI Assistant</h4>
+</div>
+<div class="space-y-2">
+<button class="w-full flex items-center justify-between p-2 hover:bg-primary/5 rounded-xl transition-colors text-left">
+<span class="font-label-sm text-label-sm">Convert Handwriting to Text</span>
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-2 hover:bg-primary/5 rounded-xl transition-colors text-left">
+<span class="font-label-sm text-label-sm">Generate Diagram from Sketch</span>
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Canvas Interaction Layer (Empty for Demo) -->
+<div class="flex items-center justify-center h-full w-full pointer-events-none">
+<div class="text-center opacity-10">
+<span class="material-symbols-outlined text-9xl">draw</span>
+<p class="font-display-lg text-display-lg">Start Writing Anywhere</p>
+</div>
+</div>
+</main>
+<!-- Multi-Page Management Bottom Nav -->
+<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 glass-panel rounded-2xl px-6 py-3 flex items-center gap-6 shadow-xl">
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-surface-container rounded-lg transition-colors">
+<span class="material-symbols-outlined">first_page</span>
+</button>
+<button class="p-2 hover:bg-surface-container rounded-lg transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<div class="px-4 py-1.5 bg-surface-container-high rounded-full font-label-md text-label-md min-w-[80px] text-center">
+                Page 01 / 12
+            </div>
+<button class="p-2 hover:bg-surface-container rounded-lg transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+<button class="p-2 hover:bg-surface-container rounded-lg transition-colors">
+<span class="material-symbols-outlined">last_page</span>
+</button>
+</div>
+<div class="w-px h-8 bg-outline-variant/30"></div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-3 py-2 hover:bg-surface-container rounded-xl transition-colors text-primary" title="Add Page">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-label-sm text-label-sm hidden md:inline">Add</span>
+</button>
+<button class="flex items-center gap-2 px-3 py-2 hover:bg-surface-container rounded-xl transition-colors" title="Duplicate Page">
+<span class="material-symbols-outlined">content_copy</span>
+<span class="font-label-sm text-label-sm hidden md:inline">Duplicate</span>
+</button>
+<button class="flex items-center gap-2 px-3 py-2 hover:bg-surface-container rounded-xl transition-colors" title="Thumbnail View">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-label-sm text-label-sm hidden md:inline">Grid</span>
+</button>
+</div>
+</nav>
+<!-- Footer Component (Shared Strategy - Simplified for Shell) -->
+<footer class="fixed bottom-0 w-full z-[5] h-12 bg-inverse-surface flex items-center px-6 pointer-events-none opacity-50">
+<span class="text-surface-variant/50 font-label-sm text-label-sm">© 2024 Atomic Pathshala. Accelerating Excellence.</span>
+</footer>
+<script>
+        function toggleQuiz() {
+            const sidebar = document.getElementById('quiz-sidebar');
+            if (sidebar.classList.contains('translate-x-0')) {
+                sidebar.classList.remove('translate-x-0');
+                sidebar.classList.add('translate-x-[120%]');
+            } else {
+                sidebar.classList.remove('translate-x-[120%]');
+                sidebar.classList.add('translate-x-0');
+            }
+        }
+
+        // Lightweight Pen Interaction Simulation
+        const canvas = document.querySelector('.infinite-canvas');
+        canvas.addEventListener('mousedown', (e) => {
+            // Simple visual feedback for interaction
+            const ripple = document.createElement('div');
+            ripple.className = 'absolute w-4 h-4 bg-primary/20 rounded-full pointer-events-none transition-transform duration-500 scale-[5] opacity-0';
+            ripple.style.left = `${e.clientX - 8}px`;
+            ripple.style.top = `${e.clientY - 8}px`;
+            document.body.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 500);
+        });
+
+        // Close quiz mode by default on small screens
+        if (window.innerWidth < 1024) {
+            document.getElementById('quiz-sidebar').classList.add('translate-x-[120%]');
+        }
+    </script>
+</body></html>

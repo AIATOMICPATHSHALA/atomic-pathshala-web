@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Faculty Onboarding Queue | Atomic Pathshala Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#008256",
+                        "surface-light": "#F8FAFC",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#eaedff",
+                        "on-tertiary-fixed": "#002113",
+                        "secondary-fixed-dim": "#4cd6ff",
+                        "inverse-on-surface": "#eef0ff",
+                        "primary-fixed": "#dae1ff",
+                        "inverse-surface": "#283044",
+                        "secondary": "#00677f",
+                        "on-tertiary": "#ffffff",
+                        "bg-light": "#FFFFFF",
+                        "secondary-fixed": "#b7eaff",
+                        "tertiary-fixed-dim": "#49df9f",
+                        "background": "#faf8ff",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#dae2fd",
+                        "tertiary": "#006643",
+                        "on-primary-fixed-variant": "#003fa4",
+                        "outline": "#727687",
+                        "on-primary-container": "#f8f7ff",
+                        "on-surface-variant": "#424656",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "error": "#ba1a1a",
+                        "bg-dark": "#0B0E14",
+                        "surface-bright": "#faf8ff",
+                        "surface-dark": "#161B22",
+                        "surface-container-high": "#e2e7ff",
+                        "on-secondary-fixed": "#001f28",
+                        "surface-variant": "#dae2fd",
+                        "surface-dim": "#d2d9f4",
+                        "primary-container": "#0066ff",
+                        "tertiary-fixed": "#6afcb9",
+                        "on-tertiary-fixed-variant": "#005235",
+                        "secondary-container": "#00ccf9",
+                        "text-dark": "#F1F5F9",
+                        "on-primary-fixed": "#001849",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#b3c5ff",
+                        "surface-tint": "#0054d6",
+                        "surface-container-low": "#f2f3ff",
+                        "surface": "#faf8ff",
+                        "on-surface": "#131b2e",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-container": "#005266",
+                        "on-tertiary-container": "#e1ffeb",
+                        "text-light": "#0F172A",
+                        "on-background": "#131b2e",
+                        "primary": "#0050cb",
+                        "border-subtle": "rgba(0, 102, 255, 0.1)",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#004e60",
+                        "outline-variant": "#c2c6d8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "stack-sm": "8px",
+                        "stack-lg": "32px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "stack-md": "16px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Geist"],
+                        "display-lg-mobile": ["Geist"],
+                        "display-lg": ["Geist"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-hidden">
+<!-- TopNavBar Implementation -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm h-16">
+<div class="flex justify-between items-center px-margin-desktop h-full w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-stack-lg">
+<img alt="Atomic Pathshala Logo" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBI0n1C2f8dJF4p0RqCC4eXkHZgn2VCmqQog7t2oTgTR2nVF9bQSdfwBNYumF0lCubBXighg-SM_19IFVg-tCPNSX9XJXB3qQ94HHmZkcTj2c-NiiJjjkEK5gIooVFEuM_viQqPY9c5SfPYX92gOsSj4l5aALi81eza6asjNfO-8c5D3IIuFAH_PCLmlmLleyx2ixYM6WLd7_28HL5ouCaxfJakc6nQyoBFg8F8DjF9JB7zi_lyFDIMv4OLUKqT6ILG85oOf8CfoM4"/>
+<nav class="hidden lg:flex items-center space-x-6">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1" href="#">Faculty Queue</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Analytics</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Batch Manager</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-10 w-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a senior academic administrator with silver hair, wearing a navy blue blazer. The background is a soft-focus modern office setting with blue ambient lighting. High-end professional photography style, sharp focus, corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhEGbhJt16qurfxZNiBEFhxf3_fLAiohe12fB2KPJ0tiKQnAdjXEffrjewFM3UunEWGb3gphXui6Clzvivkyo114p8iiR-0i31bJ151YcieGXCXBTJG4IiRQ_My3OZv8EsjdM4slQolXE_lonP-rmK2nkm66EFvubb87ESYvSm37MI-dYHuYc_Uyskmo737HmFi4yPPGHZGD6Fuhq7_MwPu7ak_t3f6dhPEZ9gUcJLRrxiEzmzIh-8fT_xrMXcIhuJxcbPI00_wGw"/>
+</div>
+</div>
+</div>
+</header>
+<!-- SideNavBar Implementation -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 bg-surface-container-low border-r border-outline-variant/20 flex flex-col py-stack-md px-4 space-y-2">
+<div class="px-4 mb-stack-lg">
+<h2 class="font-headline-md text-headline-md text-primary font-bold">Faculty Management</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Onboarding Control</p>
+</div>
+<nav class="space-y-1 flex-1">
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container font-bold rounded-xl translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">pending_actions</span>
+<span class="font-label-md text-label-md">Applications</span>
+<span class="ml-auto bg-primary text-white text-[10px] px-2 py-0.5 rounded-full">42</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-xl" href="#">
+<span class="material-symbols-outlined">verified_user</span>
+<span class="font-label-md text-label-md">Verified</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-xl" href="#">
+<span class="material-symbols-outlined">person_off</span>
+<span class="font-label-md text-label-md">Rejected</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-xl" href="#">
+<span class="material-symbols-outlined">video_chat</span>
+<span class="font-label-md text-label-md">Interviewing</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-xl" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-md text-label-md">Archived</span>
+</a>
+</nav>
+<div class="pt-stack-lg border-t border-outline-variant/10">
+<button class="w-full py-3 px-4 bg-primary text-white rounded-xl font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-primary/90 transition-all active:scale-95">
+<span class="material-symbols-outlined">add</span>
+                Add New Faculty
+            </button>
+<a class="flex items-center gap-3 px-4 py-3 mt-2 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-xl" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-label-md text-label-md">Help Center</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 mt-16 p-stack-lg h-[calc(100vh-64px)] overflow-y-auto custom-scrollbar">
+<div class="max-w-container-max mx-auto space-y-stack-lg">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-gutter">
+<div>
+<h1 class="font-display-lg text-headline-lg text-on-surface tracking-tight">Faculty Onboarding Queue</h1>
+<p class="text-on-surface-variant font-body-md mt-1">Review and manage expert educators entering the Atomic Pathshala ecosystem.</p>
+</div>
+<!-- Stats Bento -->
+<div class="grid grid-cols-3 gap-stack-md">
+<div class="glass-card p-4 rounded-xl min-w-[140px]">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Total Pending</span>
+<span class="font-display-lg text-headline-md text-primary">42</span>
+</div>
+<div class="glass-card p-4 rounded-xl min-w-[140px]">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Processing</span>
+<span class="font-display-lg text-headline-md text-secondary">12</span>
+</div>
+<div class="glass-card p-4 rounded-xl border-l-4 border-error min-w-[140px]">
+<span class="font-label-sm text-label-sm text-error block">Urgent</span>
+<span class="font-display-lg text-headline-md text-error">5</span>
+</div>
+</div>
+</div>
+<!-- Filter Bar -->
+<section class="glass-card p-4 rounded-2xl flex flex-wrap items-center gap-4">
+<div class="flex-1 min-w-[200px]">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 rounded-xl border-outline-variant/30 focus:ring-primary focus:border-primary bg-white/50" placeholder="Search applicant name..." type="text"/>
+</div>
+</div>
+<select class="rounded-xl border-outline-variant/30 py-2 pl-4 pr-10 focus:ring-primary focus:border-primary bg-white/50 text-label-md font-label-md">
+<option>Subject: All</option>
+<option>Physics</option>
+<option>Chemistry</option>
+<option>Biology</option>
+</select>
+<select class="rounded-xl border-outline-variant/30 py-2 pl-4 pr-10 focus:ring-primary focus:border-primary bg-white/50 text-label-md font-label-md">
+<option>Experience: Any</option>
+<option>0-5 Years</option>
+<option>5-10 Years</option>
+<option>10+ Years</option>
+</select>
+<select class="rounded-xl border-outline-variant/30 py-2 pl-4 pr-10 focus:ring-primary focus:border-primary bg-white/50 text-label-md font-label-md">
+<option>Date Applied: Newest</option>
+<option>Date Applied: Oldest</option>
+</select>
+<button class="p-2 bg-surface-container-high rounded-xl hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">tune</span>
+</button>
+</section>
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-gutter items-start">
+<!-- List View (Left/Middle Columns) -->
+<div class="xl:col-span-2 space-y-4">
+<!-- Applicant Card 1 -->
+<div class="group relative bg-white rounded-2xl p-4 border border-outline-variant/20 hover:border-primary/40 hover:shadow-lg transition-all cursor-pointer" onclick="togglePanel('panel-1')">
+<div class="flex items-center gap-4">
+<div class="relative h-16 w-16 rounded-full overflow-hidden ring-2 ring-primary-container">
+<img class="w-full h-full object-cover" data-alt="A studio-lit professional headshot of a female physics professor in her late 30s. She is smiling confidently, wearing modern dark-framed glasses and a professional gray sweater. High-performance edtech branding aesthetic with a soft blue gradient background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdfl6_mEexkxQnzwqXzTf987W4bxII-_p2ArQAf5pMo0CykKVePbHe8yWap5qwLZUIpArGTn_PyVk5EsLkS2aqM2nI06xgHzmCs5AfbXUfNEbhI0Xa1nef2MfLSXaKsoZuHNiTAzaN-x25x8u-Ct3zzi4B6fRzvHmyC68xt47pq6CbE8nJjMXMFZUR4KSnIdrLmygdqfLZy_MIL-rFJWcERCPrRxx8ZemSXj66ysAt5_IBDxeLTgQFoGbClS6CP_j7ECdUBYSx_EI"/>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Dr. Sarah Thompson</h3>
+<span class="px-3 py-1 bg-surface-container text-primary rounded-full font-label-sm text-label-sm">Background Check</span>
+</div>
+<div class="flex gap-4 mt-2 text-on-surface-variant font-label-md text-label-md">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">psychology</span> Physics Expertise</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">history_edu</span> 8+ Years Exp.</span>
+</div>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-outline-variant/10 flex justify-between items-center">
+<div class="flex -space-x-2">
+<span class="w-6 h-6 rounded-full bg-tertiary-container flex items-center justify-center text-[10px] text-white border border-white">ST</span>
+<div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center text-[10px] text-primary border border-white">
+<span class="material-symbols-outlined text-[12px]">verified</span>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="px-4 py-1.5 rounded-lg border border-outline-variant/30 font-label-sm text-label-sm hover:bg-surface-container transition-colors">Schedule Interview</button>
+<button class="px-4 py-1.5 rounded-lg bg-primary text-white font-label-sm text-label-sm hover:bg-primary/90 transition-colors shadow-sm">View Profile</button>
+</div>
+</div>
+</div>
+<!-- Applicant Card 2 -->
+<div class="group relative bg-white rounded-2xl p-4 border border-outline-variant/20 hover:border-primary/40 hover:shadow-lg transition-all cursor-pointer" onclick="togglePanel('panel-2')">
+<div class="flex items-center gap-4">
+<div class="relative h-16 w-16 rounded-full overflow-hidden ring-2 ring-primary-container">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of a male chemistry lecturer, aged 45, with a warm and approachable expression. He has short-cropped hair and wears a sharp white dress shirt. The setting is a clean, minimal chemistry lab with glass apparatus visible in the background blur. Soft daylight lighting, premium corporate style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFtFRS4lZQpHp4tUsI7jTjkk2bQCBBPC1FFaPEbXL2cqVseiN0vr5hgXQIYZhTuDp62HEOqCk-Tgd_h6edUjgi1esDzlCDl8GWTvZLhJgeL5c9McpAb5JvqOsZc3uyoJjrAZAAFtX9cXBvbQ10Mu3ONxQ19OJfJ-Z4t89bP5roid31q6nn4BwClAEwI_H0xz7vnVz9SAOyStfqYThVrsXlLjviPM9rYp31MnTyAOuhKdK1Ws8oGz_4bi6lk3q_tdB4bJBO5MDtNB4"/>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Prof. Amitabh Verma</h3>
+<span class="px-3 py-1 bg-surface-container-high text-on-surface-variant rounded-full font-label-sm text-label-sm">Pending Review</span>
+</div>
+<div class="flex gap-4 mt-2 text-on-surface-variant font-label-md text-label-md">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">science</span> Organic Chemistry</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">history_edu</span> 15+ Years Exp.</span>
+</div>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-outline-variant/10 flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant opacity-60">Applied 2 days ago</span>
+<div class="flex gap-2">
+<button class="px-4 py-1.5 rounded-lg border border-outline-variant/30 font-label-sm text-label-sm hover:bg-surface-container transition-colors">Schedule Interview</button>
+<button class="px-4 py-1.5 rounded-lg bg-primary text-white font-label-sm text-label-sm hover:bg-primary/90 transition-colors shadow-sm">View Profile</button>
+</div>
+</div>
+</div>
+<!-- Applicant Card 3 -->
+<div class="group relative bg-white rounded-2xl p-4 border border-outline-variant/20 hover:border-primary/40 hover:shadow-lg transition-all cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="relative h-16 w-16 rounded-full overflow-hidden ring-2 ring-error-container">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a female biology teacher in her late 20s, with long dark hair tied back. She wears a teal business casual shirt. Background is a bright, airy office with subtle botanical elements. Cinematic lighting, modern edtech high-contrast visual style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJ-4Ji3crMmVSWElFlqAwteTTUnweJZ37YiXfKL-DLazCS7v-k0t6zPTB1TNm_nJYmZL783OV34CDOTggzeFr7T8XLymWBP1ghhMfzwdiPzvz0sb82k-Be6V3IBAPNPG_Gbtg0OCExhg5-uZLn-oa32tMysu0fnTw7v5q-ppXsMJq_Rcy1jvrLfJIOyI85ZY9ifuhhh31ThR17br59gb-UaymNvwsfRYr8tMdRPWfk0BV_GY2AzrB7zf-xawxrJZVlkF7GKgfup-Y"/>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Neha Kapur</h3>
+<span class="px-3 py-1 bg-error-container text-error rounded-full font-label-sm text-label-sm">Interview Scheduled</span>
+</div>
+<div class="flex gap-4 mt-2 text-on-surface-variant font-label-md text-label-md">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">biotech</span> Botany &amp; Zoology</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">history_edu</span> 4 Years Exp.</span>
+</div>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-outline-variant/10 flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-error font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span> Today at 4:30 PM
+                            </span>
+<div class="flex gap-2">
+<button class="px-4 py-1.5 rounded-lg border border-outline-variant/30 font-label-sm text-label-sm hover:bg-surface-container transition-colors">Reschedule</button>
+<button class="px-4 py-1.5 rounded-lg bg-primary text-white font-label-sm text-label-sm hover:bg-primary/90 transition-colors shadow-sm">View Profile</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Detailed View Panel (Right Column) -->
+<div class="sticky top-0 bg-white rounded-3xl border border-outline-variant/30 shadow-2xl overflow-hidden h-fit transition-all duration-300 transform scale-100 opacity-100" id="detail-panel">
+<div class="bg-primary/5 p-6 border-b border-outline-variant/10 relative">
+<div class="flex items-start justify-between">
+<div class="flex gap-4 items-center">
+<div class="w-20 h-20 rounded-2xl overflow-hidden ring-4 ring-white shadow-md">
+<img class="w-full h-full object-cover" data-alt="Close up high-end professional photography of a faculty member for an edtech company. Bright, crisp lighting with a soft blue tint. Professional attire, friendly and authoritative expression. Studio background with geometric patterns." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbx9cAjFsKC3j7M2sj38Q8NixsBr0rKAa-hjc66SL5MtClmODbv97gi2rurg5Ca2FQQHAs8j_DS8Q1AEU_C0CPktOnINu7WTXnYWUl8OHhTFnHFWWkvpUUuHc9SU7mtYd7wXSj4CEZIl4T4U_L7JLgg8wCLoMcDeU5QW2DqB2Ka3RkQQ13VVxX8bG1vIIU-6OjEsGgR5j06SWYa-DvyI7ltBXpRuQ98Uv6JxyvOO0_A58WQrzvr03I_KwyptBz1rN_fqRj83XplcQ"/>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Dr. Sarah Thompson</h3>
+<p class="text-primary font-label-md text-label-md">Ph.D. in Astrophysics</p>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+</div>
+<div class="p-6 space-y-6 max-h-[60vh] overflow-y-auto custom-scrollbar">
+<!-- Documents Section -->
+<div>
+<h4 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-3">Verification Documents</h4>
+<div class="grid grid-cols-2 gap-3">
+<div class="p-3 border border-outline-variant/20 rounded-xl flex items-center gap-3 hover:bg-surface-container-low transition-all cursor-pointer">
+<span class="material-symbols-outlined text-primary">picture_as_pdf</span>
+<div class="overflow-hidden">
+<p class="font-label-sm text-label-sm truncate">Resume_Sarah_T.pdf</p>
+<p class="text-[10px] text-on-surface-variant">2.4 MB</p>
+</div>
+</div>
+<div class="p-3 border border-outline-variant/20 rounded-xl flex items-center gap-3 hover:bg-surface-container-low transition-all cursor-pointer">
+<span class="material-symbols-outlined text-primary">badge</span>
+<div class="overflow-hidden">
+<p class="font-label-sm text-label-sm truncate">ID_Verification.jpg</p>
+<p class="text-[10px] text-on-surface-variant">1.1 MB</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Video Thumbnail -->
+<div>
+<h4 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-3">Teaching Sample Video</h4>
+<div class="relative rounded-2xl overflow-hidden group cursor-pointer aspect-video bg-inverse-surface">
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity" data-alt="A clean, cinematic screen capture of a virtual classroom. A digital whiteboard displays complex physics equations in bright neon blue and white. In the corner, a small circular video inset shows the instructor lecturing enthusiastically. High-tech educational aesthetic, 4k resolution." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyCVkJLNQHXtnWuApD_xoNxzqv1NSOoIcpajKPr0vTqURfQDOuZhcFJb1PwW642pRo7PLuRlyQw_N10kVHPAH43aMjE4UQiohXuaMC92om6FUzJGHvMZ58UyX5lT51ymhVb0aJqXW3eNg72Rh1wSCT1i0qjhX1s7WcMqzSqrMi8lL32dFv8-5TOFUAXRV9vAI_f9M81t3uZuFx9SKVOkKXfuCWvpmSm7r616MPkz33UhxpHC0bREouBKd4CWBCeFyTgfYZrHl9KSc"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-14 h-14 rounded-full bg-primary/90 text-white flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[32px]">play_arrow</span>
+</div>
+</div>
+<div class="absolute bottom-3 left-3 bg-black/50 backdrop-blur-md text-white text-[10px] px-2 py-1 rounded-md">
+                                    12:45 • Quantum Mechanics Intro
+                                </div>
+</div>
+</div>
+<!-- Verification Stats -->
+<div class="space-y-3">
+<div class="flex items-center justify-between p-3 bg-surface-container rounded-xl">
+<span class="font-label-md text-label-md">Background Status</span>
+<span class="flex items-center gap-1 text-tertiary font-bold text-label-sm">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> Verified
+                                </span>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface-container rounded-xl">
+<span class="font-label-md text-label-md">Academic Credentials</span>
+<span class="flex items-center gap-1 text-tertiary font-bold text-label-sm">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> Verified
+                                </span>
+</div>
+</div>
+</div>
+<div class="p-6 bg-surface-container-low border-t border-outline-variant/10 grid grid-cols-2 gap-4">
+<button class="py-3 rounded-xl border-2 border-error text-error font-bold text-label-md hover:bg-error-container/20 transition-all active:scale-95">Reject Application</button>
+<button class="py-3 rounded-xl bg-primary text-white font-bold text-label-md shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all active:scale-95">Approve Faculty</button>
+</div>
+</div>
+</div>
+<!-- Footer Implementation -->
+<footer class="w-full py-stack-lg border-t border-outline-variant/10 bg-surface-dark mt-stack-lg">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop max-w-container-max mx-auto gap-stack-md">
+<div class="text-primary-fixed font-label-sm text-label-sm">
+                        © 2024 Atomic Pathshala. Admin Panel v2.1.0
+                    </div>
+<div class="flex gap-stack-lg">
+<a class="font-label-sm text-label-sm text-outline-variant hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-outline-variant hover:text-white transition-colors" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-outline-variant hover:text-white transition-colors" href="#">Security Audit</a>
+</div>
+</div>
+</footer>
+</div>
+</main>
+<script>
+        function togglePanel(applicantId) {
+            const panel = document.getElementById('detail-panel');
+            // Simplified animation logic for demo
+            panel.classList.add('animate-pulse');
+            setTimeout(() => {
+                panel.classList.remove('animate-pulse');
+            }, 500);
+        }
+
+        // Add micro-interactions
+        document.querySelectorAll('.group').forEach(card => {
+            card.addEventListener('mousedown', () => {
+                card.style.transform = 'scale(0.98)';
+            });
+            card.addEventListener('mouseup', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+
+  <!-- Ecosystem Switched Widget Overlay -->
+  <script src="../ecosystem-hud.js"></script>
+</body></html>

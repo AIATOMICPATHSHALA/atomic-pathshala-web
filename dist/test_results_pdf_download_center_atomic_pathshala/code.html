@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Test Analysis &amp; Resource Center | Atomic Pathshala</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+        }
+        .bg-gradient-mesh {
+            background-color: #faf8ff;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(0, 102, 255, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(0, 204, 249, 0.05) 0px, transparent 50%);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "bg-light": "#FFFFFF",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#004e60",
+                        "on-surface": "#131b2e",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#4cd6ff",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "bg-dark": "#0B0E14",
+                        "text-dark": "#F1F5F9",
+                        "secondary-fixed": "#b7eaff",
+                        "tertiary-fixed-dim": "#49df9f",
+                        "surface-variant": "#dae2fd",
+                        "on-tertiary-fixed-variant": "#005235",
+                        "surface-container": "#eaedff",
+                        "tertiary": "#006643",
+                        "on-primary-container": "#f8f7ff",
+                        "tertiary-fixed": "#6afcb9",
+                        "primary-fixed": "#dae1ff",
+                        "surface-dim": "#d2d9f4",
+                        "on-primary-fixed": "#001849",
+                        "on-tertiary-fixed": "#002113",
+                        "surface-bright": "#faf8ff",
+                        "text-light": "#0F172A",
+                        "surface-container-low": "#f2f3ff",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed-variant": "#003fa4",
+                        "on-secondary-container": "#005266",
+                        "surface-container-high": "#e2e7ff",
+                        "surface-light": "#F8FAFC",
+                        "inverse-surface": "#283044",
+                        "error-container": "#ffdad6",
+                        "surface-dark": "#161B22",
+                        "on-surface-variant": "#424656",
+                        "outline": "#727687",
+                        "on-secondary-fixed": "#001f28",
+                        "on-tertiary": "#ffffff",
+                        "background": "#faf8ff",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "border-subtle": "rgba(0, 102, 255, 0.1)",
+                        "secondary": "#00677f",
+                        "on-background": "#131b2e",
+                        "on-tertiary-container": "#e1ffeb",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#eef0ff",
+                        "inverse-primary": "#b3c5ff",
+                        "primary-container": "#0066ff",
+                        "secondary-container": "#00ccf9",
+                        "surface-container-highest": "#dae2fd",
+                        "primary": "#0050cb",
+                        "outline-variant": "#c2c6d8",
+                        "surface": "#faf8ff",
+                        "surface-tint": "#0054d6",
+                        "tertiary-container": "#008256"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-lg": "32px",
+                        "margin-desktop": "64px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Geist"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg-mobile": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-gradient-mesh text-on-surface font-body-md antialiased min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-bg-dark/80 backdrop-blur-xl border-b border-outline-variant/20 shadow-sm">
+<nav class="flex justify-between items-center px-margin-desktop h-16 w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-gutter">
+<img alt="Atomic Pathshala Logo" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfpfBrWHCOHt4TZqOg43W3BY88IP9I4f6EMggSB7tCKGJfnxZ5Ch6AIMtCO2xDqeQbQnh8zSmlpZyxAfYfuKH8eixIWy8vo7-qL-eGsr_GqzOkmycpB3cCrWMCJ3btTxf8vnsuRpPZeWGtFYbjWHfce6s9F8QUVKGqfBHFs1ku10sIHK_k98RYdhrq2_oFYk9qi-gDsTApc0b1y0urUZkdUa1ET0A-PDTX5ZBSozHl4X6LqM7njDlm9w4lWbV1m4cvI-87_d661pE"/>
+<div class="hidden md:flex gap-stack-md">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1" href="#">Analysis</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Tests</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Resources</a>
+</div>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-primary-container/10 p-2 rounded-full transition-all active:scale-95">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-primary-container/10 p-2 rounded-full transition-all active:scale-95">account_circle</button>
+</div>
+</nav>
+</header>
+<main class="pt-24 pb-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Hero Section: Detailed Test Report -->
+<section class="mb-12">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-stack-md mb-8">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary">Performance Analysis</h1>
+<p class="text-on-surface-variant font-body-md">Real-time breakdown of your latest mock attempt</p>
+</div>
+<button class="flex items-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-xl font-label-md hover:shadow-lg transition-all active:scale-95 group">
+<span class="material-symbols-outlined">download</span>
+                    Download PDF Report
+                </button>
+</div>
+<div class="glass-card rounded-2xl p-8 border border-primary/10 shadow-xl overflow-hidden relative">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32 blur-3xl"></div>
+<div class="relative z-10 grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<!-- Core Stats -->
+<div class="md:col-span-1 border-b md:border-b-0 md:border-r border-outline-variant/20 pb-stack-md md:pb-0">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Most Recent Test</span>
+<h2 class="text-headline-md font-headline-md text-on-surface mt-1 mb-4">NEET Full Syllabus Mock 08</h2>
+<div class="flex items-baseline gap-1">
+<span class="text-5xl font-display-lg text-primary">685</span>
+<span class="text-on-surface-variant font-body-md">/ 720</span>
+</div>
+</div>
+<!-- Metric Bento Grid -->
+<div class="md:col-span-3 grid grid-cols-2 md:grid-cols-3 gap-gutter">
+<div class="flex flex-col justify-center items-center p-4 rounded-xl bg-surface-container-low border border-outline-variant/10">
+<span class="material-symbols-outlined text-primary mb-2" style="font-variation-settings: 'FILL' 1;">leaderboard</span>
+<span class="text-label-sm text-on-surface-variant">All India Rank</span>
+<span class="text-headline-md font-headline-md text-on-surface">142</span>
+</div>
+<div class="flex flex-col justify-center items-center p-4 rounded-xl bg-surface-container-low border border-outline-variant/10">
+<span class="material-symbols-outlined text-secondary mb-2" style="font-variation-settings: 'FILL' 1;">percent</span>
+<span class="text-label-sm text-on-surface-variant">Percentile</span>
+<span class="text-headline-md font-headline-md text-on-surface">99.8th</span>
+</div>
+<div class="flex flex-col justify-center items-center p-4 rounded-xl bg-surface-container-low border border-outline-variant/10">
+<span class="material-symbols-outlined text-tertiary mb-2" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-label-sm text-on-surface-variant">Accuracy</span>
+<span class="text-headline-md font-headline-md text-on-surface">94%</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Content: PDF Resource Vault -->
+<section>
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center gap-3">
+<div class="bg-primary/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-primary">inventory_2</span>
+</div>
+<h2 class="font-headline-md text-headline-md">PDF Resource Vault</h2>
+</div>
+<div class="hidden md:flex bg-surface-container rounded-lg p-1">
+<button class="px-4 py-1.5 text-label-sm font-label-md bg-white rounded shadow-sm text-primary">All Tests</button>
+<button class="px-4 py-1.5 text-label-sm font-label-md text-on-surface-variant hover:text-primary transition-colors">Daily Practice</button>
+</div>
+</div>
+<!-- Grid Layout -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<div class="glass-card rounded-2xl p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 group">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-surface-container-high rounded-lg p-2">
+<img alt="Atomic Pathshala Logo" class="h-4 w-auto opacity-70" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfpfBrWHCOHt4TZqOg43W3BY88IP9I4f6EMggSB7tCKGJfnxZ5Ch6AIMtCO2xDqeQbQnh8zSmlpZyxAfYfuKH8eixIWy8vo7-qL-eGsr_GqzOkmycpB3cCrWMCJ3btTxf8vnsuRpPZeWGtFYbjWHfce6s9F8QUVKGqfBHFs1ku10sIHK_k98RYdhrq2_oFYk9qi-gDsTApc0b1y0urUZkdUa1ET0A-PDTX5ZBSozHl4X6LqM7njDlm9w4lWbV1m4cvI-87_d661pE"/>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Oct 24, 2024</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface text-lg mb-2">Physics: Rotation &amp; Kinematics</h3>
+<div class="flex items-center gap-4 mb-6 py-3 border-y border-outline-variant/10">
+<div>
+<span class="block text-[10px] uppercase text-on-surface-variant font-bold">Score</span>
+<span class="text-body-lg font-bold text-primary">162/180</span>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant/20"></div>
+<div>
+<span class="block text-[10px] uppercase text-on-surface-variant font-bold">Time Spent</span>
+<span class="text-body-lg font-bold text-on-surface">42m</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 py-2.5 rounded-lg border border-primary/20 text-primary font-label-md hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined text-sm">description</span>
+                            Paper
+                        </button>
+<button class="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-primary/10 text-primary font-label-md hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-sm">analytics</span>
+                            Analysis
+                        </button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="glass-card rounded-2xl p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 group">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-surface-container-high rounded-lg p-2">
+<img alt="Atomic Pathshala Logo" class="h-4 w-auto opacity-70" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfpfBrWHCOHt4TZqOg43W3BY88IP9I4f6EMggSB7tCKGJfnxZ5Ch6AIMtCO2xDqeQbQnh8zSmlpZyxAfYfuKH8eixIWy8vo7-qL-eGsr_GqzOkmycpB3cCrWMCJ3btTxf8vnsuRpPZeWGtFYbjWHfce6s9F8QUVKGqfBHFs1ku10sIHK_k98RYdhrq2_oFYk9qi-gDsTApc0b1y0urUZkdUa1ET0A-PDTX5ZBSozHl4X6LqM7njDlm9w4lWbV1m4cvI-87_d661pE"/>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Oct 20, 2024</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface text-lg mb-2">Organic Chemistry: Basic GOC</h3>
+<div class="flex items-center gap-4 mb-6 py-3 border-y border-outline-variant/10">
+<div>
+<span class="block text-[10px] uppercase text-on-surface-variant font-bold">Score</span>
+<span class="text-body-lg font-bold text-primary">175/180</span>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant/20"></div>
+<div>
+<span class="block text-[10px] uppercase text-on-surface-variant font-bold">Time Spent</span>
+<span class="text-body-lg font-bold text-on-surface">35m</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 py-2.5 rounded-lg border border-primary/20 text-primary font-label-md hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined text-sm">description</span>
+                            Paper
+                        </button>
+<button class="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-primary/10 text-primary font-label-md hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-sm">analytics</span>
+                            Analysis
+                        </button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="glass-card rounded-2xl p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 group">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-surface-container-high rounded-lg p-2">
+<img alt="Atomic Pathshala Logo" class="h-4 w-auto opacity-70" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfpfBrWHCOHt4TZqOg43W3BY88IP9I4f6EMggSB7tCKGJfnxZ5Ch6AIMtCO2xDqeQbQnh8zSmlpZyxAfYfuKH8eixIWy8vo7-qL-eGsr_GqzOkmycpB3cCrWMCJ3btTxf8vnsuRpPZeWGtFYbjWHfce6s9F8QUVKGqfBHFs1ku10sIHK_k98RYdhrq2_oFYk9qi-gDsTApc0b1y0urUZkdUa1ET0A-PDTX5ZBSozHl4X6LqM7njDlm9w4lWbV1m4cvI-87_d661pE"/>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Oct 15, 2024</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface text-lg mb-2">Biology: Genetics &amp; Evolution</h3>
+<div class="flex items-center gap-4 mb-6 py-3 border-y border-outline-variant/10">
+<div>
+<span class="block text-[10px] uppercase text-on-surface-variant font-bold">Score</span>
+<span class="text-body-lg font-bold text-primary">348/360</span>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant/20"></div>
+<div>
+<span class="block text-[10px] uppercase text-on-surface-variant font-bold">Time Spent</span>
+<span class="text-body-lg font-bold text-on-surface">58m</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 py-2.5 rounded-lg border border-primary/20 text-primary font-label-md hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined text-sm">description</span>
+                            Paper
+                        </button>
+<button class="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-primary/10 text-primary font-label-md hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-sm">analytics</span>
+                            Analysis
+                        </button>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="glass-card rounded-2xl p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 group">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-surface-container-high rounded-lg p-2">
+<img alt="Atomic Pathshala Logo" class="h-4 w-auto opacity-70" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfpfBrWHCOHt4TZqOg43W3BY88IP9I4f6EMggSB7tCKGJfnxZ5Ch6AIMtCO2xDqeQbQnh8zSmlpZyxAfYfuKH8eixIWy8vo7-qL-eGsr_GqzOkmycpB3cCrWMCJ3btTxf8vnsuRpPZeWGtFYbjWHfce6s9F8QUVKGqfBHFs1ku10sIHK_k98RYdhrq2_oFYk9qi-gDsTApc0b1y0urUZkdUa1ET0A-PDTX5ZBSozHl4X6LqM7njDlm9w4lWbV1m4cvI-87_d661pE"/>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Oct 08, 2024</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface text-lg mb-2">Complete Syllabus Mock 07</h3>
+<div class="flex items-center gap-4 mb-6 py-3 border-y border-outline-variant/10">
+<div>
+<span class="block text-[10px] uppercase text-on-surface-variant font-bold">Score</span>
+<span class="text-body-lg font-bold text-primary">645/720</span>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant/20"></div>
+<div>
+<span class="block text-[10px] uppercase text-on-surface-variant font-bold">Percentile</span>
+<span class="text-body-lg font-bold text-on-surface">98.4th</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 py-2.5 rounded-lg border border-primary/20 text-primary font-label-md hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined text-sm">description</span>
+                            Paper
+                        </button>
+<button class="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-primary/10 text-primary font-label-md hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-sm">analytics</span>
+                            Analysis
+                        </button>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="glass-card rounded-2xl p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 group">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-surface-container-high rounded-lg p-2">
+<img alt="Atomic Pathshala Logo" class="h-4 w-auto opacity-70" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfpfBrWHCOHt4TZqOg43W3BY88IP9I4f6EMggSB7tCKGJfnxZ5Ch6AIMtCO2xDqeQbQnh8zSmlpZyxAfYfuKH8eixIWy8vo7-qL-eGsr_GqzOkmycpB3cCrWMCJ3btTxf8vnsuRpPZeWGtFYbjWHfce6s9F8QUVKGqfBHFs1ku10sIHK_k98RYdhrq2_oFYk9qi-gDsTApc0b1y0urUZkdUa1ET0A-PDTX5ZBSozHl4X6LqM7njDlm9w4lWbV1m4cvI-87_d661pE"/>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Oct 01, 2024</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface text-lg mb-2">Maths: Integration &amp; Series</h3>
+<div class="flex items-center gap-4 mb-6 py-3 border-y border-outline-variant/10">
+<div>
+<span class="block text-[10px] uppercase text-on-surface-variant font-bold">Score</span>
+<span class="text-body-lg font-bold text-primary">155/180</span>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant/20"></div>
+<div>
+<span class="block text-[10px] uppercase text-on-surface-variant font-bold">Accuracy</span>
+<span class="text-body-lg font-bold text-on-surface">88%</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 py-2.5 rounded-lg border border-primary/20 text-primary font-label-md hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined text-sm">description</span>
+                            Paper
+                        </button>
+<button class="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-primary/10 text-primary font-label-md hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-sm">analytics</span>
+                            Analysis
+                        </button>
+</div>
+</div>
+<!-- Empty/CTA Card -->
+<div class="glass-card rounded-2xl p-6 border-dashed border-2 border-outline-variant/30 flex flex-col items-center justify-center text-center bg-transparent group cursor-pointer hover:border-primary/50 transition-colors">
+<div class="bg-primary-container/20 p-4 rounded-full mb-4 group-hover:bg-primary-container/30 transition-colors">
+<span class="material-symbols-outlined text-primary text-3xl">add_circle</span>
+</div>
+<span class="font-headline-md text-headline-md text-lg text-on-surface-variant">Archive Requests</span>
+<p class="text-label-sm text-on-surface-variant mt-2">Need older reports? <br/> Request access to full archive.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 rounded-t-xl bg-surface/90 dark:bg-surface-dark/90 backdrop-blur-lg border-t border-outline-variant/20 shadow-[0_-4px_20px_rgba(0,102,255,0.05)] flex justify-around items-center py-stack-sm pb-safe">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span class="font-label-sm text-label-sm">My Tests</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary font-bold" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-label-sm text-label-sm">Analysis</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<!-- Footer -->
+<footer class="bg-on-surface dark:bg-bg-dark text-surface-variant py-stack-lg border-t border-outline/10 mt-12">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop w-full max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<img alt="Atomic Pathshala Logo" class="h-8 w-auto brightness-0 invert mb-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfpfBrWHCOHt4TZqOg43W3BY88IP9I4f6EMggSB7tCKGJfnxZ5Ch6AIMtCO2xDqeQbQnh8zSmlpZyxAfYfuKH8eixIWy8vo7-qL-eGsr_GqzOkmycpB3cCrWMCJ3btTxf8vnsuRpPZeWGtFYbjWHfce6s9F8QUVKGqfBHFs1ku10sIHK_k98RYdhrq2_oFYk9qi-gDsTApc0b1y0urUZkdUa1ET0A-PDTX5ZBSozHl4X6LqM7njDlm9w4lWbV1m4cvI-87_d661pE"/>
+<p class="font-body-md text-body-md text-surface-variant/70">Empowering NEET &amp; JEE aspirants with precision data analytics and top-tier pedagogical resources.</p>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="text-primary-fixed font-headline-md text-lg">Platform</h4>
+<a class="text-surface-variant hover:text-bg-light transition-all hover:underline underline-offset-4" href="#">Dashboard</a>
+<a class="text-surface-variant hover:text-bg-light transition-all hover:underline underline-offset-4" href="#">Test Series</a>
+<a class="text-surface-variant hover:text-bg-light transition-all hover:underline underline-offset-4" href="#">Study Planner</a>
+<a class="text-surface-variant hover:text-bg-light transition-all hover:underline underline-offset-4" href="#">Mentorship</a>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="text-primary-fixed font-headline-md text-lg">Support</h4>
+<a class="text-surface-variant hover:text-bg-light transition-all hover:underline underline-offset-4" href="#">Help Center</a>
+<a class="text-surface-variant hover:text-bg-light transition-all hover:underline underline-offset-4" href="#">Contact Us</a>
+<a class="text-surface-variant hover:text-bg-light transition-all hover:underline underline-offset-4" href="#">Privacy Policy</a>
+<a class="text-surface-variant hover:text-bg-light transition-all hover:underline underline-offset-4" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="text-primary-fixed font-headline-md text-lg">Newsletter</h4>
+<p class="text-label-sm text-surface-variant/60">Get weekly strategy tips and updates.</p>
+<div class="flex gap-2">
+<input class="bg-surface/10 border border-surface/20 rounded-lg px-4 py-2 text-sm w-full focus:ring-2 focus:ring-primary-container outline-none transition-all" placeholder="Email address" type="email"/>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg material-symbols-outlined">send</button>
+</div>
+</div>
+</div>
+<div class="px-margin-desktop mt-stack-lg pt-6 border-t border-outline/10 text-center text-surface-variant/50 text-label-sm">
+            © 2024 Atomic Pathshala. All Rights Reserved.
+        </div>
+</footer>
+<script>
+        // Micro-interactions for glassmorphic elements
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // Search bar interaction toggle
+        function toggleSearch() {
+            const searchInput = document.getElementById('search-input');
+            searchInput.classList.toggle('w-0');
+            searchInput.classList.toggle('w-48');
+            searchInput.focus();
+        }
+    </script>
+</body></html>

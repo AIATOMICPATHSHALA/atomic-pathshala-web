@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Weak Area Analysis | Atomic Pathshala</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed": "#dae1ff",
+                      "tertiary-fixed-dim": "#49df9f",
+                      "tertiary": "#006643",
+                      "surface": "#faf8ff",
+                      "border-subtle": "rgba(0, 102, 255, 0.1)",
+                      "surface-container-high": "#e2e7ff",
+                      "on-secondary-fixed-variant": "#004e60",
+                      "on-surface": "#131b2e",
+                      "surface-tint": "#0054d6",
+                      "error-container": "#ffdad6",
+                      "surface-light": "#F8FAFC",
+                      "on-tertiary-container": "#e1ffeb",
+                      "primary": "#0050cb",
+                      "on-tertiary": "#ffffff",
+                      "text-dark": "#F1F5F9",
+                      "primary-container": "#0066ff",
+                      "on-secondary-container": "#005266",
+                      "surface-container-highest": "#dae2fd",
+                      "text-light": "#0F172A",
+                      "on-surface-variant": "#424656",
+                      "on-secondary-fixed": "#001f28",
+                      "bg-dark": "#0B0E14",
+                      "surface-dark": "#161B22",
+                      "on-primary": "#ffffff",
+                      "on-tertiary-fixed": "#002113",
+                      "on-primary-fixed-variant": "#003fa4",
+                      "on-error-container": "#93000a",
+                      "on-background": "#131b2e",
+                      "primary-fixed-dim": "#b3c5ff",
+                      "secondary-fixed": "#b7eaff",
+                      "outline": "#727687",
+                      "outline-variant": "#c2c6d8",
+                      "on-tertiary-fixed-variant": "#005235",
+                      "error": "#ba1a1a",
+                      "surface-variant": "#dae2fd",
+                      "inverse-on-surface": "#eef0ff",
+                      "secondary": "#00677f",
+                      "tertiary-container": "#008256",
+                      "on-error": "#ffffff",
+                      "bg-light": "#FFFFFF",
+                      "surface-bright": "#faf8ff",
+                      "tertiary-fixed": "#6afcb9",
+                      "surface-dim": "#d2d9f4",
+                      "surface-container-low": "#f2f3ff",
+                      "secondary-container": "#00ccf9",
+                      "inverse-surface": "#283044",
+                      "inverse-primary": "#b3c5ff",
+                      "background": "#faf8ff",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container": "#eaedff",
+                      "on-secondary": "#ffffff",
+                      "on-primary-fixed": "#001849",
+                      "on-primary-container": "#f8f7ff",
+                      "secondary-fixed-dim": "#4cd6ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-desktop": "64px",
+                      "stack-lg": "32px",
+                      "stack-sm": "8px",
+                      "container-max": "1280px",
+                      "stack-md": "16px",
+                      "margin-mobile": "20px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Inter"],
+                      "display-lg": ["Geist"],
+                      "label-md": ["Inter"],
+                      "headline-md": ["Geist"],
+                      "headline-lg": ["Geist"],
+                      "label-sm": ["Inter"],
+                      "body-md": ["Inter"],
+                      "display-lg-mobile": ["Geist"]
+              },
+              "fontSize": {
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body { background-color: #faf8ff; color: #131b2e; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.08);
+            box-shadow: 0 4px 24px -1px rgba(0, 80, 203, 0.04);
+        }
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #b3c5ff; border-radius: 10px; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="font-body-md">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-border-subtle shadow-sm flex justify-between items-center px-margin-desktop h-16 max-w-container-max mx-auto left-0 right-0">
+<div class="h-8 flex items-center">https://lh3.googleusercontent.com/aida-public/AB6AXuDh8VC3_CWEnB5xhrc2A9TDoE3qWGe8AWtxp8pCs_ZK-eYhLcrhYlAhFQ9_rsr2pNU_fh9V5FIl1vMV9FBSwfhlvPUiD5TeIyYoYtwb1GdBkCwVFm8bNTxJS39R_ZBJE3MCXA75vjOIgTqR3nnbKefbkjzUn8Ud5XWcZMt4HrTEUmXzO79jgEOmDUrVvWlfE6zrLgkBAoWWcpNYuSCKScXqJnZ3LyPvs_9hWuVE7APhzg8MOwo4_6wOZsmXacGd9PnOQOwmJGvlVnA</div>
+<div class="hidden md:flex gap-gutter items-center">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Courses</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Tests</a>
+<a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1" href="#">Analytics</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Resources</a>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="p-2 hover:bg-primary-container/10 rounded-lg transition-all"><span class="material-symbols-outlined">notifications</span></button>
+<button class="p-2 hover:bg-primary-container/10 rounded-lg transition-all"><span class="material-symbols-outlined">settings</span></button>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-white font-bold text-xs overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A clean professional studio portrait of a young Indian male student with a bright smile, wearing a casual polo shirt, against a soft neutral studio background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsy5hdBJINAkczhQR2dKAFEXyg1bGB200uHHmcaMOyqlAd-2cYsuKlyMmYDkpQTYsLNesTgzMNlYAhlvofzLtgeSC_nqAwfFn-iuF2eXy2ezKVqp-kLGy2fh9EYQF3ExL7HhmXd_VWaizPaSGy6xiruH_vrkVHoDXOzNb9WgxpwMacF_rK5hubaJmiGhtyUvNqSKV_lMgMZ9JD1BcdEjVplRfwCyBH1I8CfCBbrF4TgGxC99gSN84H0zPX-ZVY2WJuHdjyhaty0gw"/>
+</div>
+</div>
+</nav>
+<!-- Sidebar Navigation -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface-container-low border-r border-border-subtle shadow-md flex flex-col gap-stack-sm py-stack-md pt-20">
+<div class="px-6 mb-stack-lg">
+<div class="text-primary font-display-lg text-headline-md font-bold">Atomic Analytics</div>
+<div class="text-on-surface-variant font-body-md text-sm">Precision Learning</div>
+</div>
+<div class="flex-1 flex flex-col gap-1">
+<a class="flex items-center gap-3 py-3 px-4 text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 duration-200 transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span> Performance Overview
+            </a>
+<a class="flex items-center gap-3 py-3 px-4 text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 duration-200 transition-all" href="#">
+<span class="material-symbols-outlined">analytics</span> Subject Analysis
+            </a>
+<a class="flex items-center gap-3 py-3 px-4 bg-primary-container text-on-primary-container rounded-xl mx-2 font-semibold duration-200 transition-all shadow-sm" href="#">
+<span class="material-symbols-outlined">trending_down</span> Weak Areas
+            </a>
+<a class="flex items-center gap-3 py-3 px-4 text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 duration-200 transition-all" href="#">
+<span class="material-symbols-outlined">timer</span> Time Analytics
+            </a>
+<a class="flex items-center gap-3 py-3 px-4 text-on-surface-variant hover:bg-surface-container-high rounded-xl mx-2 duration-200 transition-all" href="#">
+<span class="material-symbols-outlined">auto_fix_high</span> Improvement Plan
+            </a>
+</div>
+<div class="mt-auto px-2 flex flex-col gap-1">
+<a class="flex items-center gap-3 py-3 px-4 text-on-surface-variant hover:bg-surface-container-high rounded-xl duration-200 transition-all" href="#">
+<span class="material-symbols-outlined">help</span> Help Center
+            </a>
+<a class="flex items-center gap-3 py-3 px-4 text-error hover:bg-error-container rounded-xl duration-200 transition-all" href="#">
+<span class="material-symbols-outlined">logout</span> Sign Out
+            </a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="ml-64 pt-24 px-margin-desktop pb-stack-lg min-h-screen">
+<!-- Header & Filters -->
+<header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-stack-lg gap-4">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Weak Area Analysis</h1>
+<p class="text-on-surface-variant font-body-md mt-1">Deep-dive into performance bottlenecks and personalized remediation.</p>
+</div>
+<div class="flex gap-stack-md">
+<select class="glass-card rounded-lg px-4 py-2 text-sm font-label-md outline-none focus:ring-2 ring-primary">
+<option>All Subjects</option>
+<option>Physics</option>
+<option>Chemistry</option>
+<option>Biology</option>
+</select>
+<select class="glass-card rounded-lg px-4 py-2 text-sm font-label-md outline-none focus:ring-2 ring-primary">
+<option>Last 30 Days</option>
+<option>Last 3 Months</option>
+<option>Year to Date</option>
+</select>
+</div>
+</header>
+<!-- Top Overview Rings -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-stack-lg">
+<div class="glass-card p-stack-md rounded-xl flex items-center gap-stack-md">
+<div class="relative w-20 h-20">
+<svg class="w-full h-full" viewbox="0 0 100 100">
+<circle class="text-surface-container-high stroke-current" cx="50" cy="50" fill="transparent" r="40" stroke-width="8"></circle>
+<circle class="text-error stroke-current progress-ring-circle" cx="50" cy="50" fill="transparent" r="40" stroke-dasharray="251.2" stroke-dashoffset="150" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center font-bold text-headline-md">42%</div>
+</div>
+<div>
+<h3 class="font-headline-md text-error">Physics</h3>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider">Critical Accuracy</p>
+</div>
+</div>
+<div class="glass-card p-stack-md rounded-xl flex items-center gap-stack-md">
+<div class="relative w-20 h-20">
+<svg class="w-full h-full" viewbox="0 0 100 100">
+<circle class="text-surface-container-high stroke-current" cx="50" cy="50" fill="transparent" r="40" stroke-width="8"></circle>
+<circle class="text-secondary stroke-current progress-ring-circle" cx="50" cy="50" fill="transparent" r="40" stroke-dasharray="251.2" stroke-dashoffset="100" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center font-bold text-headline-md">58%</div>
+</div>
+<div>
+<h3 class="font-headline-md text-secondary">Chemistry</h3>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider">Needs Improvement</p>
+</div>
+</div>
+<div class="glass-card p-stack-md rounded-xl flex items-center gap-stack-md">
+<div class="relative w-20 h-20">
+<svg class="w-full h-full" viewbox="0 0 100 100">
+<circle class="text-surface-container-high stroke-current" cx="50" cy="50" fill="transparent" r="40" stroke-width="8"></circle>
+<circle class="text-tertiary stroke-current progress-ring-circle" cx="50" cy="50" fill="transparent" r="40" stroke-dasharray="251.2" stroke-dashoffset="50" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center font-bold text-headline-md">78%</div>
+</div>
+<div>
+<h3 class="font-headline-md text-tertiary">Biology</h3>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider">Near Optimal</p>
+</div>
+</div>
+</section>
+<!-- Gap Analysis & Breakdown Bento -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter mb-stack-lg">
+<!-- Gap Analysis Chart -->
+<section class="lg:col-span-8 glass-card rounded-xl p-stack-lg">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-headline-md text-on-surface">Topper Gap Analysis</h2>
+<div class="flex gap-4 text-xs font-label-md">
+<div class="flex items-center gap-1"><span class="w-3 h-3 bg-primary rounded-full"></span> You</div>
+<div class="flex items-center gap-1"><span class="w-3 h-3 bg-surface-container-highest rounded-full"></span> Topper</div>
+</div>
+</div>
+<div class="space-y-6">
+<!-- Dynamic Bar Group -->
+<div class="space-y-2">
+<div class="flex justify-between text-sm font-label-md">
+<span>Rotational Dynamics</span>
+<span class="text-error">-34% Gap</span>
+</div>
+<div class="relative h-4 bg-surface-container rounded-full overflow-hidden">
+<div class="absolute inset-y-0 left-0 bg-surface-container-highest rounded-full w-[94%]"></div>
+<div class="absolute inset-y-0 left-0 bg-primary rounded-full w-[60%] transition-all duration-1000"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-sm font-label-md">
+<span>Ionic Equilibrium</span>
+<span class="text-error">-28% Gap</span>
+</div>
+<div class="relative h-4 bg-surface-container rounded-full overflow-hidden">
+<div class="absolute inset-y-0 left-0 bg-surface-container-highest rounded-full w-[88%]"></div>
+<div class="absolute inset-y-0 left-0 bg-primary rounded-full w-[60%] transition-all duration-1000"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-sm font-label-md">
+<span>Optics &amp; Waves</span>
+<span class="text-secondary">-15% Gap</span>
+</div>
+<div class="relative h-4 bg-surface-container rounded-full overflow-hidden">
+<div class="absolute inset-y-0 left-0 bg-surface-container-highest rounded-full w-[91%]"></div>
+<div class="absolute inset-y-0 left-0 bg-primary rounded-full w-[76%] transition-all duration-1000"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-sm font-label-md">
+<span>Plant Physiology</span>
+<span class="text-secondary">-10% Gap</span>
+</div>
+<div class="relative h-4 bg-surface-container rounded-full overflow-hidden">
+<div class="absolute inset-y-0 left-0 bg-surface-container-highest rounded-full w-[96%]"></div>
+<div class="absolute inset-y-0 left-0 bg-primary rounded-full w-[86%] transition-all duration-1000"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Insight Widget -->
+<section class="lg:col-span-4 flex flex-col gap-gutter">
+<div class="glass-card rounded-xl p-stack-md flex-1 relative overflow-hidden">
+<div class="absolute -right-4 -bottom-4 opacity-5 text-primary scale-150">
+<span class="material-symbols-outlined" style="font-size: 120px;">lightbulb</span>
+</div>
+<h3 class="font-headline-md mb-2">AI Diagnostic</h3>
+<p class="text-body-md text-on-surface-variant">Your bottleneck in <span class="font-bold text-primary">Rotational Dynamics</span> stems from 14 missed questions involving "Moment of Inertia" calculations. Average time spent on these is 185s vs 45s benchmark.</p>
+<div class="mt-4 p-3 bg-primary-container/10 border border-primary/20 rounded-lg">
+<span class="text-xs font-bold text-primary uppercase">Strategy Tip</span>
+<p class="text-sm font-label-md mt-1 italic">"Focus on dimensional analysis to eliminate 2 incorrect options instantly."</p>
+</div>
+</div>
+<div class="glass-card rounded-xl p-stack-md bg-inverse-surface text-primary-fixed">
+<h4 class="font-label-md uppercase tracking-widest text-xs opacity-70 mb-2">Predicted Score Impact</h4>
+<div class="text-display-lg-mobile font-bold">+45 Marks</div>
+<p class="text-sm opacity-80">If accuracy in current weak areas improves by 20%.</p>
+</div>
+</section>
+</div>
+<!-- Granular Topic Breakdown Table -->
+<section class="glass-card rounded-xl overflow-hidden mb-stack-lg">
+<div class="px-stack-lg py-stack-md border-b border-border-subtle flex justify-between items-center bg-surface-container-low">
+<h2 class="font-headline-md">Granular Topic Performance</h2>
+<button class="text-primary font-label-md flex items-center gap-1 hover:underline"><span class="material-symbols-outlined text-sm">download</span> Export Data</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface text-on-surface-variant text-xs uppercase tracking-wider font-label-md">
+<tr>
+<th class="px-stack-lg py-4">Sub-Topic</th>
+<th class="px-stack-lg py-4">Status</th>
+<th class="px-stack-lg py-4">Accuracy</th>
+<th class="px-stack-lg py-4">Avg Time/Q</th>
+<th class="px-stack-lg py-4">Attempts</th>
+<th class="px-stack-lg py-4 text-right">Trend</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-subtle">
+<tr class="hover:bg-primary-container/5 transition-colors">
+<td class="px-stack-lg py-4 font-semibold">Moment of Inertia</td>
+<td class="px-stack-lg py-4"><span class="px-2 py-1 bg-error-container text-on-error-container text-[10px] font-bold rounded-full uppercase">Critical</span></td>
+<td class="px-stack-lg py-4">28%</td>
+<td class="px-stack-lg py-4 text-error">185s</td>
+<td class="px-stack-lg py-4">42</td>
+<td class="px-stack-lg py-4 text-right text-error"><span class="material-symbols-outlined align-middle">trending_down</span></td>
+</tr>
+<tr class="hover:bg-primary-container/5 transition-colors">
+<td class="px-stack-lg py-4 font-semibold">Chemical Kinetics</td>
+<td class="px-stack-lg py-4"><span class="px-2 py-1 bg-orange-100 text-orange-700 text-[10px] font-bold rounded-full uppercase">Warning</span></td>
+<td class="px-stack-lg py-4">52%</td>
+<td class="px-stack-lg py-4">112s</td>
+<td class="px-stack-lg py-4">68</td>
+<td class="px-stack-lg py-4 text-right text-primary"><span class="material-symbols-outlined align-middle">trending_flat</span></td>
+</tr>
+<tr class="hover:bg-primary-container/5 transition-colors">
+<td class="px-stack-lg py-4 font-semibold">Vector Algebra</td>
+<td class="px-stack-lg py-4"><span class="px-2 py-1 bg-primary-container/10 text-primary text-[10px] font-bold rounded-full uppercase">Needs Improvement</span></td>
+<td class="px-stack-lg py-4">64%</td>
+<td class="px-stack-lg py-4">95s</td>
+<td class="px-stack-lg py-4">120</td>
+<td class="px-stack-lg py-4 text-right text-tertiary"><span class="material-symbols-outlined align-middle">trending_up</span></td>
+</tr>
+<tr class="hover:bg-primary-container/5 transition-colors">
+<td class="px-stack-lg py-4 font-semibold">Genetics: Mendelian Inheritance</td>
+<td class="px-stack-lg py-4"><span class="px-2 py-1 bg-error-container text-on-error-container text-[10px] font-bold rounded-full uppercase">Critical</span></td>
+<td class="px-stack-lg py-4">31%</td>
+<td class="px-stack-lg py-4 text-error">210s</td>
+<td class="px-stack-lg py-4">35</td>
+<td class="px-stack-lg py-4 text-right text-error"><span class="material-symbols-outlined align-middle">trending_down</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- AI Remediation Path -->
+<h2 class="font-headline-lg mb-6">Recommended Actions</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Remediation Card 1 -->
+<div class="glass-card rounded-xl overflow-hidden flex flex-col group hover:shadow-xl transition-all border-l-4 border-error">
+<div class="h-40 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A clean, minimalist 3D rendering of spinning geometric shapes illustrating rotational dynamics. The lighting is professional studio style with high contrast and blue accents. Educational concept visual." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvUess3skdK0SXPkDkndiHcIpHXqxS_LzX9T2SkMUe9kJ1Hl3sY1sGBqgK92sCAhpq2-dngZuMRPmxLmd2Ea_xtBaRxgF6xQ6282RhPzfqQYzgUWlH940YJibDV6HYn1_vXHQl_IdAfWpdWPRygtuufkNDBRIfEr2CyBnIztX2qfNFHbRe87lRczUZtwl5exsrvl-ppZRRHGnbvTO68__lMTsxESW2gaEVqRHBXPpv5F_HCSdOMm5afyT-VvyvJSwdK5ufhxYqKIo"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-3 left-3 flex items-center gap-2 text-white">
+<span class="material-symbols-outlined text-sm">play_circle</span>
+<span class="text-xs font-label-md">18m Duration</span>
+</div>
+</div>
+<div class="p-stack-md flex-1 flex flex-col">
+<h3 class="font-headline-md mb-2">Moment of Inertia: Deep Dive</h3>
+<p class="text-body-md text-on-surface-variant text-sm mb-4 line-clamp-2">Master integration methods for complex bodies with simplified visualization shortcuts.</p>
+<div class="mt-auto space-y-2">
+<button class="w-full py-2 bg-primary text-white rounded-lg font-label-md hover:bg-on-primary-fixed-variant transition-colors">Watch Concept Video</button>
+<button class="w-full py-2 border border-primary text-primary rounded-lg font-label-md hover:bg-primary-container/10 transition-colors">Practice Drills</button>
+</div>
+</div>
+</div>
+<!-- Remediation Card 2 -->
+<div class="glass-card rounded-xl overflow-hidden flex flex-col group hover:shadow-xl transition-all border-l-4 border-orange-400">
+<div class="h-40 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A digital scientific illustration of laboratory apparatus, beakers, and chemical equilibrium equations displayed on a glass board with neon blue and cyan glow. High tech education style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCq2PJCNhLfRtIoMb4E8E1tYXFQBPJdgDrAFhOmHplWjpgb7HI8ht37QyqhygWsSjJmylVhEOw5b1YGdIqJxBKHN1LxmYvmmhro0IA2S9DcsmUvPPjMOHH7kS3ttyB_pcuo0WV_BhAjY4ovIgRXQeQYRii-Fhqbcx7XRf0JRJT0XibS00oEiQw0FOVluQen4uD081KDg_EEOwaFQGbEbJPpb1pqhHuEFL1zT7OLXh2RmVRy6v5GbyDGR0VAV2Y0gYLUXzZQA2DMtj4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-3 left-3 flex items-center gap-2 text-white">
+<span class="material-symbols-outlined text-sm">description</span>
+<span class="text-xs font-label-md">Interactive Module</span>
+</div>
+</div>
+<div class="p-stack-md flex-1 flex flex-col">
+<h3 class="font-headline-md mb-2">Chemical Kinetics Mastery</h3>
+<p class="text-body-md text-on-surface-variant text-sm mb-4 line-clamp-2">Visualizing reaction rates and activation energy barriers through interactive simulations.</p>
+<div class="mt-auto space-y-2">
+<button class="w-full py-2 bg-primary text-white rounded-lg font-label-md hover:bg-on-primary-fixed-variant transition-colors">Start Simulation</button>
+<button class="w-full py-2 border border-primary text-primary rounded-lg font-label-md hover:bg-primary-container/10 transition-colors">Download Summary PDF</button>
+</div>
+</div>
+</div>
+<!-- Remediation Card 3 -->
+<div class="glass-card rounded-xl overflow-hidden flex flex-col group hover:shadow-xl transition-all border-l-4 border-error">
+<div class="h-40 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A detailed microscopic view of DNA double helix structures with highlighted chromosomal regions representing Mendelian inheritance. Bright, airy high-key medical aesthetic with teal and blue tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQyfjQ7AUITdBjrmnljEE4gpToixn4Al_QFUUqA_VVRLbvuZ2vuNvOykWJTIse3Jm1mEKVZE8E0e2vzvZ5MNKZli4-ZGDL1j5oP6MuAZ-tGSTXw4Lwz1jSZRFG9oARmmUmBtnoOLbm27BezeTzllIx8Ii-1-B472LTcqMfIVyL0N94q0Kiah2Ufu1t93zy_DXtgwhJ-kWcMn3FYognjFzNr9uNxWF9AVZ6HEWM2y2xNC5jsJ7AHEshNLgE7h8aik5NEUocoEAV5EI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-3 left-3 flex items-center gap-2 text-white">
+<span class="material-symbols-outlined text-sm">quiz</span>
+<span class="text-xs font-label-md">Adaptive Quiz</span>
+</div>
+</div>
+<div class="p-stack-md flex-1 flex flex-col">
+<h3 class="font-headline-md mb-2">Genetics: Problem Solving</h3>
+<p class="text-body-md text-on-surface-variant text-sm mb-4 line-clamp-2">Solving pedigree charts and probability-based inheritance questions with speed.</p>
+<div class="mt-auto space-y-2">
+<button class="w-full py-2 bg-primary text-white rounded-lg font-label-md hover:bg-on-primary-fixed-variant transition-colors">Take Mastery Quiz</button>
+<button class="w-full py-2 border border-primary text-primary rounded-lg font-label-md hover:bg-primary-container/10 transition-colors">Review Previous Errors</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-inverse-surface text-primary-fixed w-full border-t border-outline/20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="h-8 flex items-center mb-4">https://lh3.googleusercontent.com/aida-public/AB6AXuDh8VC3_CWEnB5xhrc2A9TDoE3qWGe8AWtxp8pCs_ZK-eYhLcrhYlAhFQ9_rsr2pNU_fh9V5FIl1vMV9FBSwfhlvPUiD5TeIyYoYtwb1GdBkCwVFm8bNTxJS39R_ZBJE3MCXA75vjOIgTqR3nnbKefbkjzUn8Ud5XWcZMt4HrTEUmXzO79jgEOmDUrVvWlfE6zrLgkBAoWWcpNYuSCKScXqJnZ3LyPvs_9hWuVE7APhzg8MOwo4_6wOZsmXacGd9PnOQOwmJGvlVnA</div>
+<p class="text-body-md opacity-70">Empowering NEET/JEE aspirants through data-driven academic excellence.</p>
+</div>
+<div class="flex flex-col gap-2">
+<h4 class="font-label-md text-white mb-2">Platform</h4>
+<a class="text-outline-variant hover:text-white transition-all text-sm" href="#">Student Dashboard</a>
+<a class="text-outline-variant hover:text-white transition-all text-sm" href="#">Course Library</a>
+<a class="text-outline-variant hover:text-white transition-all text-sm" href="#">Test Analytics</a>
+</div>
+<div class="flex flex-col gap-2">
+<h4 class="font-label-md text-white mb-2">Support</h4>
+<a class="text-outline-variant hover:text-white transition-all text-sm" href="#">Help Center</a>
+<a class="text-outline-variant hover:text-white transition-all text-sm" href="#">Privacy Policy</a>
+<a class="text-outline-variant hover:text-white transition-all text-sm" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-md text-white">Join Newsletter</h4>
+<div class="flex gap-2">
+<input class="bg-white/10 border-none rounded-lg px-3 py-2 text-sm w-full text-white placeholder:text-white/40 focus:ring-1 ring-primary" placeholder="Your email" type="email"/>
+<button class="bg-primary text-white px-4 py-2 rounded-lg text-sm hover:brightness-110 transition-all">Join</button>
+</div>
+</div>
+</div>
+<div class="px-margin-desktop py-4 border-t border-outline/10 text-center text-xs opacity-50">
+            © 2024 Atomic Pathshala. Accelerated Learning Systems.
+        </div>
+</footer>
+<script>
+        // Micro-interactions and data visualization triggers
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animate progress rings
+            const circles = document.querySelectorAll('.progress-ring-circle');
+            circles.forEach(circle => {
+                const percentage = circle.parentElement.parentElement.querySelector('.text-headline-md').textContent.replace('%', '');
+                const radius = circle.r.baseVal.value;
+                const circumference = 2 * Math.PI * radius;
+                const offset = circumference - (percentage / 100 * circumference);
+                circle.style.strokeDasharray = `${circumference} ${circumference}`;
+                circle.style.strokeDashoffset = circumference; // Start empty
+                
+                setTimeout(() => {
+                    circle.style.strokeDashoffset = offset;
+                }, 500);
+            });
+
+            // Active nav logic (Already hardcoded for 'Weak Areas' as per requirements)
+        });
+    </script>
+
+  <!-- Ecosystem Switched Widget Overlay -->
+  <script src="../ecosystem-hud.js"></script>
+</body></html>

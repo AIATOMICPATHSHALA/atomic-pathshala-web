@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Mentor - Atomic Pathshala</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#faf8ff",
+                    "tertiary-container": "#008256",
+                    "surface-container-low": "#f2f3ff",
+                    "inverse-primary": "#b3c5ff",
+                    "on-secondary": "#ffffff",
+                    "on-primary-container": "#f8f7ff",
+                    "bg-light": "#FFFFFF",
+                    "on-background": "#131b2e",
+                    "on-secondary-fixed": "#001f28",
+                    "primary-container": "#0066ff",
+                    "error-container": "#ffdad6",
+                    "surface-container-highest": "#dae2fd",
+                    "on-secondary-container": "#005266",
+                    "inverse-on-surface": "#eef0ff",
+                    "secondary": "#00677f",
+                    "on-tertiary-fixed-variant": "#005235",
+                    "on-primary-fixed-variant": "#003fa4",
+                    "tertiary-fixed-dim": "#49df9f",
+                    "on-primary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "tertiary": "#006643",
+                    "outline-variant": "#c2c6d8",
+                    "text-light": "#0F172A",
+                    "on-tertiary-container": "#e1ffeb",
+                    "secondary-fixed": "#b7eaff",
+                    "primary": "#0050cb",
+                    "on-error-container": "#93000a",
+                    "surface-container-high": "#e2e7ff",
+                    "border-subtle": "rgba(0, 102, 255, 0.1)",
+                    "tertiary-fixed": "#6afcb9",
+                    "inverse-surface": "#283044",
+                    "on-surface": "#131b2e",
+                    "on-surface-variant": "#424656",
+                    "text-dark": "#F1F5F9",
+                    "on-tertiary-fixed": "#002113",
+                    "outline": "#727687",
+                    "bg-dark": "#0B0E14",
+                    "surface": "#faf8ff",
+                    "primary-fixed": "#dae1ff",
+                    "secondary-container": "#00ccf9",
+                    "surface-variant": "#dae2fd",
+                    "on-primary-fixed": "#001849",
+                    "secondary-fixed-dim": "#4cd6ff",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "on-secondary-fixed-variant": "#004e60",
+                    "surface-dark": "#161B22",
+                    "surface-light": "#F8FAFC",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#eaedff",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#d2d9f4",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-tint": "#0054d6",
+                    "background": "#faf8ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-lg": "32px",
+                    "gutter": "24px",
+                    "margin-desktop": "64px",
+                    "container-max": "1280px",
+                    "stack-md": "16px",
+                    "margin-mobile": "20px",
+                    "stack-sm": "8px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Geist"],
+                    "display-lg-mobile": ["Geist"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Geist"],
+                    "display-lg": ["Geist"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #faf8ff;
+            color: #131b2e;
+            overflow: hidden; /* Main container handles scroll */
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 102, 255, 0.05);
+        }
+        .chat-bubble-ai {
+            background: rgba(0, 102, 255, 0.04);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+            border-bottom-left-radius: 4px;
+        }
+        .chat-bubble-user {
+            background: #0066ff;
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+        .radar-shape {
+            clip-path: polygon(50% 10%, 90% 35%, 85% 85%, 15% 85%, 10% 35%);
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.4), rgba(0, 204, 249, 0.4));
+        }
+    </style>
+</head>
+<body class="h-screen w-full flex font-body-md overflow-hidden">
+<!-- Column 1: SideNavBar -->
+<aside class="h-screen w-72 flex-shrink-0 bg-surface-container border-r border-outline-variant backdrop-blur-xl shadow-sm flex flex-col p-stack-md gap-stack-md">
+<!-- Brand Header -->
+<div class="flex items-center gap-3 px-2 py-4">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Atomic Pathshala</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-70">AI Mentor Pro</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex-1 mt-4 flex flex-col gap-1">
+<!-- Note: AI Mentor is active here. From labels: ["Recent Sessions", "Study Plans", "Resource Library", "Performance Analytics", "Settings"] -->
+<!-- Adding AI Mentor specifically as requested for the dashboard context -->
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container rounded-lg font-bold transition-all" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="font-label-md text-label-md">AI Mentor</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="font-label-md text-label-md">Study Plans</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-md text-label-md">Recent Sessions</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-label-md text-label-md">Resource Library</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span class="font-label-md text-label-md">Performance Analytics</span>
+</a>
+<div class="mt-auto">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</div>
+</nav>
+<!-- CTA Button -->
+<button class="mt-2 w-full bg-primary text-on-primary py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:scale-[1.02] transition-transform active:scale-95">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span class="font-label-md text-label-md">New Mentorship Session</span>
+</button>
+<!-- User Profile -->
+<div class="mt-4 p-3 glass-card rounded-2xl flex items-center gap-3">
+<img class="w-10 h-10 rounded-full border-2 border-primary-container object-cover" data-alt="A portrait of a high-achieving student in a bright modern workspace, wearing headphones and looking focused. The student has a clean, approachable academic appearance with warm studio lighting and a subtle blue background glow." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcwk23zec19nPIGGkQ_KCBmEip_mvlDksB7oXKu4i-CqgqMx4zTMMLwFfGkTrjL2bqIK1qSFl2D7rxBHiH9VNEf31NAJxIebNqnhJbuMlv3iMLL3HzMW9uw-9MQrNBk2hSvDvjE7WO_mIId289vmT9z72anhXQ9ruJ5VW7gzb7bnFn8VVg5HR0Ixb-7RMv-Bj_yZTfpZ4JqjkJI7doD5zqBA_u90JhSBjU6use48ZMriQWrrKypoKiQcMuwNZXzcxfHYctpHrHkWQ"/>
+<div class="flex-1 overflow-hidden">
+<p class="font-label-md text-label-md truncate">Aarav Sharma</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">NEET 2025 Aspirant</p>
+</div>
+<span class="material-symbols-outlined text-outline">more_vert</span>
+</div>
+</aside>
+<!-- Column 2: Center Chat Area -->
+<main class="flex-1 flex flex-col relative bg-surface-bright">
+<!-- Animated Background Shader (Embedded via custom tag as per instructions) -->
+
+<!-- Chat Header -->
+<header class="sticky top-0 z-10 glass-panel border-b-0 px-gutter py-4 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<div class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-tertiary-container border-2 border-white rounded-full"></div>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary">AI Academic Mentor</h2>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 bg-tertiary-container rounded-full animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-tertiary-container">Online</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+</header>
+<!-- Chat Messages -->
+<section class="flex-1 overflow-y-auto p-gutter flex flex-col gap-stack-lg custom-scrollbar">
+<!-- AI Message 1 -->
+<div class="flex items-start gap-4 max-w-[85%] animate-fade-in">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container shrink-0 mt-1">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<div class="chat-bubble-ai px-5 py-4 rounded-2xl glassmorphism">
+<p class="font-body-md text-body-md leading-relaxed">
+                        Based on your recent Physics mock test, I recommend focusing on <strong class="text-primary">Rotational Dynamics</strong> for the next 2 hours. I've adjusted your study plan to accommodate this.
+                    </p>
+<div class="mt-3 flex gap-2">
+<button class="text-primary font-label-md text-label-sm bg-white/50 px-3 py-1.5 rounded-lg border border-primary/10 hover:bg-white transition-colors">View Adjusted Plan</button>
+<button class="text-primary font-label-md text-label-sm bg-white/50 px-3 py-1.5 rounded-lg border border-primary/10 hover:bg-white transition-colors">Practice Problems</button>
+</div>
+</div>
+</div>
+<!-- AI Message 2 -->
+<div class="flex items-start gap-4 max-w-[85%] animate-fade-in">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container shrink-0 mt-1">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<div class="chat-bubble-ai px-5 py-4 rounded-2xl glassmorphism">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-tertiary-container" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<span class="font-label-md text-label-md text-tertiary-container font-bold">Streak Milestone</span>
+</div>
+<p class="font-body-md text-body-md leading-relaxed">
+                        You're on a <strong class="text-primary">14-day streak</strong>! Consistency is key to reaching the 700+ club. Keep this momentum for the NEET Mock Test on Oct 12.
+                    </p>
+</div>
+</div>
+<!-- User Message -->
+<div class="flex items-start gap-4 self-end flex-row-reverse max-w-[85%] animate-fade-in">
+<div class="w-8 h-8 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container shrink-0 mt-1">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<div class="chat-bubble-user px-5 py-4 rounded-2xl shadow-lg shadow-primary/20">
+<p class="font-body-md text-body-md leading-relaxed">
+                        How can I improve my Chemistry score?
+                    </p>
+</div>
+</div>
+<!-- AI Thinking indicator placeholder -->
+<div class="flex items-start gap-4 max-w-[85%] opacity-50">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container shrink-0 mt-1">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<div class="flex gap-1.5 py-4">
+<div class="w-2 h-2 bg-primary rounded-full animate-bounce"></div>
+<div class="w-2 h-2 bg-primary rounded-full animate-bounce [animation-delay:0.2s]"></div>
+<div class="w-2 h-2 bg-primary rounded-full animate-bounce [animation-delay:0.4s]"></div>
+</div>
+</div>
+</section>
+<!-- Chat Input Area -->
+<footer class="p-gutter pt-0">
+<div class="glass-panel rounded-3xl p-2 flex items-center gap-2 shadow-xl shadow-primary/5 border-primary/10">
+<div class="flex items-center">
+<button class="p-3 text-outline hover:text-primary hover:bg-primary-container/10 rounded-2xl transition-all">
+<span class="material-symbols-outlined">add_circle</span>
+</button>
+<button class="p-3 text-outline hover:text-primary hover:bg-primary-container/10 rounded-2xl transition-all">
+<span class="material-symbols-outlined">image</span>
+</button>
+</div>
+<input class="flex-1 bg-transparent border-none focus:ring-0 font-body-md text-body-md placeholder:text-outline-variant" placeholder="Ask your AI Mentor anything about your NEET preparation..." type="text"/>
+<div class="flex items-center gap-2">
+<button class="p-3 text-outline hover:text-primary hover:bg-primary-container/10 rounded-2xl transition-all">
+<span class="material-symbols-outlined">mic</span>
+</button>
+<button class="w-12 h-12 bg-primary text-on-primary rounded-2xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-lg shadow-primary/30">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span>
+</button>
+</div>
+</div>
+<p class="text-center font-label-sm text-label-sm text-outline-variant py-3">
+                AI Mentor can make mistakes. Verify critical facts with your official NCERT books.
+            </p>
+</footer>
+</main>
+<!-- Column 3: Mentor Context Panel -->
+<aside class="w-80 flex-shrink-0 bg-surface-container-low border-l border-outline-variant p-stack-lg flex flex-col gap-stack-lg overflow-y-auto">
+<!-- Mastery Radar Chart Widget -->
+<section class="glass-panel p-stack-md rounded-2xl">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-4">Subject Mastery</h3>
+<div class="relative w-full aspect-square flex items-center justify-center">
+<!-- Radar Background (Simulated) -->
+<div class="absolute inset-0 border border-outline-variant/30 rounded-full scale-100"></div>
+<div class="absolute inset-0 border border-outline-variant/30 rounded-full scale-75"></div>
+<div class="absolute inset-0 border border-outline-variant/30 rounded-full scale-50"></div>
+<!-- Actual Radar Polygon (CSS Clip Path) -->
+<div class="radar-shape w-full h-full relative z-10 animate-pulse"></div>
+<!-- Labels -->
+<span class="absolute top-0 font-label-sm text-label-sm font-bold">Physics</span>
+<span class="absolute top-1/3 -right-2 font-label-sm text-label-sm font-bold">Biology</span>
+<span class="absolute bottom-0 right-4 font-label-sm text-label-sm font-bold">Chemistry</span>
+<span class="absolute bottom-0 left-4 font-label-sm text-label-sm font-bold">Maths</span>
+<span class="absolute top-1/3 -left-2 font-label-sm text-label-sm font-bold">Logic</span>
+</div>
+<div class="mt-4 grid grid-cols-2 gap-2">
+<div class="p-2 bg-surface-container rounded-lg">
+<p class="font-label-sm text-label-sm text-outline">Avg Score</p>
+<p class="font-headline-md text-[18px] font-bold text-primary">82%</p>
+</div>
+<div class="p-2 bg-surface-container rounded-lg">
+<p class="font-label-sm text-label-sm text-outline">Percentile</p>
+<p class="font-headline-md text-[18px] font-bold text-secondary">98.4</p>
+</div>
+</div>
+</section>
+<!-- Current Streak Widget -->
+<section class="glass-panel p-stack-md rounded-2xl flex items-center gap-4 bg-gradient-to-br from-white to-primary/5">
+<div class="w-14 h-14 bg-secondary-fixed rounded-2xl flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-on-secondary-fixed text-3xl" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Current Streak</p>
+<p class="font-headline-md text-headline-md font-black text-on-surface">14 Days</p>
+</div>
+</section>
+<!-- Next Big Goal Widget -->
+<section class="glass-panel p-stack-md rounded-2xl border-l-4 border-l-primary">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-3">Next Big Goal</h3>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">event</span>
+<span class="font-label-md text-label-md font-bold">NEET Mock Test</span>
+</div>
+<p class="font-label-sm text-label-sm text-outline pl-8">October 12, 2024</p>
+<div class="mt-2 pl-8">
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="w-3/4 h-full bg-primary rounded-full"></div>
+</div>
+<p class="font-label-sm text-label-sm text-primary mt-1 font-bold text-right">75% Ready</p>
+</div>
+</div>
+</section>
+<!-- Recent Mentorship History -->
+<section class="flex-1 flex flex-col gap-stack-md min-h-0">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Focus Topics</h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-surface-container-high rounded-full font-label-sm text-label-sm border border-outline-variant/30">Thermodynamics</span>
+<span class="px-3 py-1 bg-surface-container-high rounded-full font-label-sm text-label-sm border border-outline-variant/30">Organic Chem</span>
+<span class="px-3 py-1 bg-surface-container-high rounded-full font-label-sm text-label-sm border border-outline-variant/30">Genetics</span>
+<span class="px-3 py-1 bg-surface-container-high rounded-full font-label-sm text-label-sm border border-outline-variant/30">Optics</span>
+</div>
+</section>
+<!-- Mini Support Card -->
+<div class="mt-auto glass-panel p-stack-md rounded-2xl bg-primary text-on-primary">
+<p class="font-label-md text-label-md mb-1 font-bold">Need a human expert?</p>
+<p class="font-label-sm text-label-sm opacity-80 mb-3">Book a 1:1 session with a faculty member.</p>
+<button class="w-full py-2 bg-white text-primary font-bold rounded-lg font-label-md hover:bg-primary-fixed transition-colors">Book Now</button>
+</div>
+</aside>
+<script>
+        // Micro-interactions for chat scrolling and input
+        const chatContainer = document.querySelector('section');
+        
+        // Auto scroll to bottom
+        window.addEventListener('load', () => {
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        });
+
+        // Simple button hover effect script
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => btn.classList.add('scale-95'));
+            btn.addEventListener('mouseup', () => btn.classList.remove('scale-95'));
+            btn.addEventListener('mouseleave', () => btn.classList.remove('scale-95'));
+        });
+
+        // Handle text area focus animations
+        const input = document.querySelector('input');
+        input.addEventListener('focus', () => {
+            input.parentElement.classList.add('ring-2', 'ring-primary/20', 'border-primary/30');
+        });
+        input.addEventListener('blur', () => {
+            input.parentElement.classList.remove('ring-2', 'ring-primary/20', 'border-primary/30');
+        });
+    </script>
+
+  <!-- Ecosystem Switched Widget Overlay -->
+  <script src="../ecosystem-hud.js"></script>
+</body></html>

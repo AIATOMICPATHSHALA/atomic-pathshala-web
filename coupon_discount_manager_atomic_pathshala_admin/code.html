@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Coupon Management | Atomic Pathshala Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#0050cb",
+                        "secondary-container": "#00ccf9",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#4cd6ff",
+                        "on-surface-variant": "#424656",
+                        "on-background": "#131b2e",
+                        "inverse-surface": "#283044",
+                        "background": "#faf8ff",
+                        "secondary": "#00677f",
+                        "border-subtle": "rgba(0, 102, 255, 0.1)",
+                        "tertiary-container": "#008256",
+                        "on-primary-fixed": "#001849",
+                        "on-primary-container": "#f8f7ff",
+                        "primary-fixed": "#dae1ff",
+                        "tertiary": "#006643",
+                        "surface-dark": "#161B22",
+                        "primary-container": "#0066ff",
+                        "on-tertiary-container": "#e1ffeb",
+                        "on-tertiary-fixed-variant": "#005235",
+                        "surface-tint": "#0054d6",
+                        "surface-container": "#eaedff",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "inverse-on-surface": "#eef0ff",
+                        "surface-container-high": "#e2e7ff",
+                        "outline": "#727687",
+                        "on-secondary-fixed-variant": "#004e60",
+                        "bg-dark": "#0B0E14",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#faf8ff",
+                        "tertiary-fixed-dim": "#49df9f",
+                        "surface-container-low": "#f2f3ff",
+                        "outline-variant": "#c2c6d8",
+                        "surface": "#faf8ff",
+                        "tertiary-fixed": "#6afcb9",
+                        "inverse-primary": "#b3c5ff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#131b2e",
+                        "surface-container-highest": "#dae2fd",
+                        "on-tertiary-fixed": "#002113",
+                        "surface-dim": "#d2d9f4",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed": "#b7eaff",
+                        "text-dark": "#F1F5F9",
+                        "on-secondary-fixed": "#001f28",
+                        "surface-variant": "#dae2fd",
+                        "on-primary-fixed-variant": "#003fa4",
+                        "bg-light": "#FFFFFF",
+                        "surface-light": "#F8FAFC",
+                        "on-secondary-container": "#005266",
+                        "text-light": "#0F172A",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "stack-lg": "32px",
+                        "margin-desktop": "64px",
+                        "stack-sm": "8px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Geist"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg-mobile": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "headline-md": ["Geist"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+        }
+        .sidebar-active-gradient {
+            background: linear-gradient(90deg, rgba(0, 80, 203, 0.1) 0%, rgba(0, 80, 203, 0) 100%);
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c2c6d8;
+            border-radius: 10px;
+        }
+        .custom-shadow {
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-background min-h-screen">
+<!-- SideNavBar Shell -->
+<aside class="hidden lg:flex flex-col h-full py-6 bg-surface dark:bg-bg-dark h-screen w-72 fixed left-0 top-0 border-r border-outline-variant dark:border-white/10 backdrop-blur-xl z-50">
+<div class="px-6 mb-8">
+<img alt="Atomic Pathshala Logo" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAwy0zawSH4pY4-m_bUKSZw2HN_XQudhUq9apn6rLjsyMmjlO6JrW9Cda1aCO-Ba5GUlqWvLrtR-E9OVf64m9QkDHjKHuVp6iM5SXr0Nk0JtJjw-5pnj2Zq_6a_tziOIHO8Th_Jy_lNxK2I0H9gxAE_RywwhUu_ay8BYMSk1WzzoOBj9N8Pq4U9MFIpy41Hvb1NPhcbGcLM7pL4JF8R8TK1adgzkGA2floX5wXiKRk7LSU7EK934WsJdZ5jx36daow-5B-vyu1r7k"/>
+<div class="mt-4">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">Atomic Pathshala</h1>
+<p class="text-on-surface-variant font-label-sm text-label-sm">Admin Console</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1 px-2">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed transition-colors hover:bg-surface-container dark:hover:bg-surface-dark/50 rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed transition-colors hover:bg-surface-container dark:hover:bg-surface-dark/50 rounded-lg" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Users</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed transition-colors hover:bg-surface-container dark:hover:bg-surface-dark/50 rounded-lg" href="#">
+<span class="material-symbols-outlined">book_2</span>
+<span class="font-label-md text-label-md">Courses</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed transition-colors hover:bg-surface-container dark:hover:bg-surface-dark/50 rounded-lg" href="#">
+<span class="material-symbols-outlined">layers</span>
+<span class="font-label-md text-label-md">Batches</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed transition-colors hover:bg-surface-container dark:hover:bg-surface-dark/50 rounded-lg" href="#">
+<span class="material-symbols-outlined">live_tv</span>
+<span class="font-label-md text-label-md">Live Classes</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed transition-colors hover:bg-surface-container dark:hover:bg-surface-dark/50 rounded-lg" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-primary dark:text-primary-fixed font-bold bg-primary-container/10 dark:bg-primary-container/20 border-r-4 border-primary transition-transform duration-200 translate-x-1 rounded-l-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">payments</span>
+<span class="font-label-md text-label-md">Payments</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed transition-colors hover:bg-surface-container dark:hover:bg-surface-dark/50 rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="px-4 mt-auto">
+<button class="w-full py-4 bg-primary text-on-primary rounded-xl font-label-md text-label-md shadow-lg hover:bg-primary-container transition-all flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                New Course
+            </button>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="lg:pl-72 min-h-screen">
+<!-- TopNavBar Shell -->
+<header class="sticky top-0 z-40 flex justify-between items-center w-full px-8 py-3 bg-surface/80 dark:bg-bg-dark/80 backdrop-blur-xl border-b border-outline-variant dark:border-white/10 shadow-sm">
+<div class="flex items-center gap-8 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low dark:bg-surface-dark border-none rounded-full focus:ring-2 focus:ring-primary/20 text-body-md transition-all" placeholder="Search coupons, codes, or batches..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4 border-r border-outline-variant pr-6">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+</div>
+<div class="flex items-center gap-3 cursor-pointer group">
+<div class="text-right hidden sm:block">
+<p class="font-label-md text-label-md text-on-background">Admin Profile</p>
+<p class="text-[11px] text-on-surface-variant">Super Administrator</p>
+</div>
+<img class="w-10 h-10 rounded-full object-cover border-2 border-primary-container group-hover:scale-105 transition-transform" data-alt="A professional close-up portrait of a corporate administrator in a modern office setting. High-key lighting, soft focus background with architectural glass elements. The subject has a confident expression, wearing a minimalist navy suit. Premium photography style with natural skin tones and sharp detail." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQpEx5O-ZQYn8ql9V1K__NVJhUfN4zrVDrWsGU5JEcfN-Pd83mVQckNPA9tJHBpanH8HHh-dQBaDOlr0OM36T_CQSAk9K16FSagwt_5HFj-yPR8KAlUfEywXb0Gg1faUmCL76FB4VkRci6U5-OXveT-6mS6kyyPjadOIFejS2kzZbCvx9JO_nsan5BtE1wIcYFN9Qt4aJqVkKgXREwOr6ovKFjq5K9aWmjjpIbgvTVfI_5AyVF_4aYuePlxpwvoDc_-mf9vt-qtnE"/>
+</div>
+</div>
+</header>
+<!-- Screen Content -->
+<div class="p-8 max-w-container-max mx-auto">
+<!-- Page Title & CTA -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary tracking-tight">Coupon Management</h2>
+<p class="text-on-surface-variant font-body-md mt-1">Manage discounts, promotional codes, and performance tracking.</p>
+</div>
+<button class="flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-xl font-label-md shadow-lg hover:shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+                    Create New Coupon
+                </button>
+</div>
+<!-- Stats Header -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+<div class="glass-card p-6 rounded-2xl custom-shadow">
+<div class="flex items-center justify-between mb-4">
+<div class="p-3 bg-primary-container/10 rounded-xl">
+<span class="material-symbols-outlined text-primary">confirmation_number</span>
+</div>
+<span class="text-tertiary font-label-sm">+12% vs last month</span>
+</div>
+<p class="text-on-surface-variant font-label-md">Total Coupons Active</p>
+<h3 class="text-[32px] font-bold mt-1">1,284</h3>
+</div>
+<div class="glass-card p-6 rounded-2xl custom-shadow">
+<div class="flex items-center justify-between mb-4">
+<div class="p-3 bg-tertiary-container/10 rounded-xl">
+<span class="material-symbols-outlined text-tertiary">payments</span>
+</div>
+<span class="text-tertiary font-label-sm">Live data</span>
+</div>
+<p class="text-on-surface-variant font-label-md">Revenue via Coupons</p>
+<h3 class="text-[32px] font-bold mt-1">₹4,82,900</h3>
+</div>
+<div class="glass-card p-6 rounded-2xl custom-shadow">
+<div class="flex items-center justify-between mb-4">
+<div class="p-3 bg-secondary-container/10 rounded-xl">
+<span class="material-symbols-outlined text-secondary">trending_up</span>
+</div>
+<span class="text-primary font-label-sm">High conversion</span>
+</div>
+<p class="text-on-surface-variant font-label-md">Most Popular Code</p>
+<h3 class="text-[32px] font-bold mt-1">ATOMIC20</h3>
+</div>
+</div>
+<!-- Filters & Tools -->
+<div class="glass-card p-4 rounded-xl mb-6 flex flex-wrap items-center gap-4">
+<div class="flex items-center gap-2 px-3 py-2 bg-surface-container-low rounded-lg border border-outline-variant/30">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">filter_list</span>
+<select class="bg-transparent border-none focus:ring-0 text-label-md text-on-surface-variant py-0">
+<option>All Status</option>
+<option>Active</option>
+<option>Expired</option>
+</select>
+</div>
+<div class="flex items-center gap-2 px-3 py-2 bg-surface-container-low rounded-lg border border-outline-variant/30">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">school</span>
+<select class="bg-transparent border-none focus:ring-0 text-label-md text-on-surface-variant py-0">
+<option>All Batches</option>
+<option>NEET 2025</option>
+<option>JEE 2025</option>
+<option>Foundation</option>
+</select>
+</div>
+<div class="ml-auto flex items-center gap-3">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors">
+<span class="material-symbols-outlined">download</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors">
+<span class="material-symbols-outlined">print</span>
+</button>
+</div>
+</div>
+<!-- Coupon Table Container -->
+<div class="glass-card rounded-2xl overflow-hidden custom-shadow">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low border-b border-outline-variant/30">
+<tr>
+<th class="px-6 py-4 font-label-md text-on-surface-variant">Code Name</th>
+<th class="px-6 py-4 font-label-md text-on-surface-variant">Applied Batches</th>
+<th class="px-6 py-4 font-label-md text-on-surface-variant">Discount</th>
+<th class="px-6 py-4 font-label-md text-on-surface-variant">Usage</th>
+<th class="px-6 py-4 font-label-md text-on-surface-variant">Expiry</th>
+<th class="px-6 py-4 font-label-md text-on-surface-variant">Status</th>
+<th class="px-6 py-4 font-label-md text-on-surface-variant text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary/5 flex items-center justify-center font-bold text-primary">A</div>
+<div>
+<p class="font-bold text-on-background">ATOMIC20</p>
+<p class="text-[12px] text-on-surface-variant">Founder's Launch Special</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-wrap gap-1">
+<span class="px-2 py-0.5 bg-primary-container/10 text-primary rounded-full text-[11px] font-medium">NEET 2025</span>
+<span class="px-2 py-0.5 bg-primary-container/10 text-primary rounded-full text-[11px] font-medium">JEE 2025</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<p class="font-semibold text-tertiary">20% OFF</p>
+<p class="text-[12px] text-on-surface-variant">Up to ₹2000</p>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<span class="font-medium">452</span>
+<div class="w-16 h-1.5 bg-outline-variant/20 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[70%]"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 text-on-surface-variant text-sm">31 Dec, 2024</td>
+<td class="px-6 py-5">
+<span class="flex items-center gap-1.5 text-tertiary">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+                                        Active
+                                    </span>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors hover:bg-primary/5 rounded-lg" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-secondary transition-colors hover:bg-secondary/5 rounded-lg" title="Deactivate">
+<span class="material-symbols-outlined text-[20px]">block</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-error transition-colors hover:bg-error/5 rounded-lg" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-secondary/5 flex items-center justify-center font-bold text-secondary">E</div>
+<div>
+<p class="font-bold text-on-background">EARLYBIRD</p>
+<p class="text-[12px] text-on-surface-variant">Early registrations</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-2 py-0.5 bg-primary-container/10 text-primary rounded-full text-[11px] font-medium">All Courses</span>
+</td>
+<td class="px-6 py-5">
+<p class="font-semibold text-tertiary">₹500 Flat</p>
+<p class="text-[12px] text-on-surface-variant">No Min. Value</p>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<span class="font-medium">1,204</span>
+<div class="w-16 h-1.5 bg-outline-variant/20 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[95%]"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 text-on-surface-variant text-sm">Expired</td>
+<td class="px-6 py-5">
+<span class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+                                        Inactive
+                                    </span>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors hover:bg-primary/5 rounded-lg">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-secondary transition-colors hover:bg-secondary/5 rounded-lg">
+<span class="material-symbols-outlined text-[20px]">play_circle</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-error transition-colors hover:bg-error/5 rounded-lg">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-tertiary/5 flex items-center justify-center font-bold text-tertiary">F</div>
+<div>
+<p class="font-bold text-on-background">FESTIVE50</p>
+<p class="text-[12px] text-on-surface-variant">Diwali Campaign</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-2 py-0.5 bg-primary-container/10 text-primary rounded-full text-[11px] font-medium">Foundation</span>
+</td>
+<td class="px-6 py-5">
+<p class="font-semibold text-tertiary">50% OFF</p>
+<p class="text-[12px] text-on-surface-variant">Max ₹5000</p>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<span class="font-medium">89</span>
+<div class="w-16 h-1.5 bg-outline-variant/20 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[15%]"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 text-on-surface-variant text-sm">15 Nov, 2024</td>
+<td class="px-6 py-5">
+<span class="flex items-center gap-1.5 text-tertiary">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+                                        Active
+                                    </span>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors hover:bg-primary/5 rounded-lg">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-secondary transition-colors hover:bg-secondary/5 rounded-lg">
+<span class="material-symbols-outlined text-[20px]">block</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-error transition-colors hover:bg-error/5 rounded-lg">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 bg-surface-container-low/50 flex items-center justify-between">
+<p class="text-label-sm text-on-surface-variant">Showing 1-10 of 128 coupons</p>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-lg hover:bg-surface-container-high transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-primary text-white text-label-md">1</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-high text-on-surface-variant text-label-md">2</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-high text-on-surface-variant text-label-md">3</button>
+<span class="text-on-surface-variant">...</span>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-high text-on-surface-variant text-label-md">13</button>
+<button class="p-2 rounded-lg hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Performance Chart Area (Mini Bento) -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-10">
+<div class="glass-card p-6 rounded-2xl custom-shadow">
+<h4 class="font-headline-md text-headline-md mb-6">Coupon Usage Trends</h4>
+<div class="h-64 flex items-end justify-between gap-2">
+<div class="flex-1 bg-primary/20 hover:bg-primary/40 transition-colors rounded-t-lg relative group" style="height: 40%;">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-inverse-surface text-white px-2 py-1 rounded text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">120 Uses</div>
+</div>
+<div class="flex-1 bg-primary/20 hover:bg-primary/40 transition-colors rounded-t-lg relative group" style="height: 65%;"></div>
+<div class="flex-1 bg-primary/20 hover:bg-primary/40 transition-colors rounded-t-lg relative group" style="height: 35%;"></div>
+<div class="flex-1 bg-primary/20 hover:bg-primary/40 transition-colors rounded-t-lg relative group" style="height: 90%;"></div>
+<div class="flex-1 bg-primary/20 hover:bg-primary/40 transition-colors rounded-t-lg relative group" style="height: 55%;"></div>
+<div class="flex-1 bg-primary/20 hover:bg-primary/40 transition-colors rounded-t-lg relative group" style="height: 75%;"></div>
+<div class="flex-1 bg-primary/20 hover:bg-primary/40 transition-colors rounded-t-lg relative group" style="height: 45%;"></div>
+<div class="flex-1 bg-primary/20 hover:bg-primary/40 transition-colors rounded-t-lg relative group" style="height: 60%;"></div>
+</div>
+<div class="flex justify-between mt-4 text-[12px] text-on-surface-variant">
+<span>Week 1</span>
+<span>Week 2</span>
+<span>Week 3</span>
+<span>Week 4</span>
+</div>
+</div>
+<div class="glass-card p-6 rounded-2xl custom-shadow">
+<h4 class="font-headline-md text-headline-md mb-6">Conversion by Batch</h4>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between mb-2">
+<span class="font-label-md">NEET 2025</span>
+<span class="text-primary font-bold">24%</span>
+</div>
+<div class="w-full h-3 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[24%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="font-label-md">JEE Main &amp; Adv</span>
+<span class="text-primary font-bold">18%</span>
+</div>
+<div class="w-full h-3 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[18%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="font-label-md">Foundation (9-10)</span>
+<span class="text-primary font-bold">42%</span>
+</div>
+<div class="w-full h-3 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[42%]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="mt-20 py-10 px-8 bg-inverse-surface text-inverse-on-surface">
+<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+<div class="col-span-1 md:col-span-1">
+<img alt="Atomic Pathshala Logo" class="h-8 w-auto mb-4 invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAwy0zawSH4pY4-m_bUKSZw2HN_XQudhUq9apn6rLjsyMmjlO6JrW9Cda1aCO-Ba5GUlqWvLrtR-E9OVf64m9QkDHjKHuVp6iM5SXr0Nk0JtJjw-5pnj2Zq_6a_tziOIHO8Th_Jy_lNxK2I0H9gxAE_RywwhUu_ay8BYMSk1WzzoOBj9N8Pq4U9MFIpy41Hvb1NPhcbGcLM7pL4JF8R8TK1adgzkGA2floX5wXiKRk7LSU7EK934WsJdZ5jx36daow-5B-vyu1r7k"/>
+<p class="text-label-sm opacity-60">High-performance accelerator for NEET and JEE aspirants. Built for excellence.</p>
+</div>
+<div>
+<h5 class="font-label-md mb-4">Admin Resources</h5>
+<ul class="space-y-2 text-label-sm opacity-80">
+<li><a class="hover:text-primary-fixed transition-colors" href="#">Documentation</a></li>
+<li><a class="hover:text-primary-fixed transition-colors" href="#">Policy Manager</a></li>
+<li><a class="hover:text-primary-fixed transition-colors" href="#">Batch Archives</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-md mb-4">Support</h5>
+<ul class="space-y-2 text-label-sm opacity-80">
+<li><a class="hover:text-primary-fixed transition-colors" href="#">Tech Helpdesk</a></li>
+<li><a class="hover:text-primary-fixed transition-colors" href="#">Billing Queries</a></li>
+<li><a class="hover:text-primary-fixed transition-colors" href="#">Compliance</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-md mb-4">Internal Newsletter</h5>
+<div class="flex gap-2">
+<input class="bg-white/10 border-none rounded-lg text-sm px-4 py-2 w-full focus:ring-1 focus:ring-primary-fixed" placeholder="Email" type="email"/>
+<button class="bg-primary px-4 py-2 rounded-lg text-sm font-bold">Join</button>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto mt-10 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-[12px] opacity-40">© 2024 Atomic Pathshala. All rights reserved.</p>
+<div class="flex gap-6 opacity-40 text-[12px]">
+<a href="#">Privacy</a>
+<a href="#">Terms</a>
+<a href="#">Security</a>
+</div>
+</div>
+</footer>
+</main>
+<!-- Floating Action Button for Mobile -->
+<button class="lg:hidden fixed bottom-6 right-6 w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center z-50 animate-bounce">
+<span class="material-symbols-outlined">add</span>
+</button>
+<script>
+        // Simple Micro-interactions
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.style.transform = 'translateY(-2px)';
+                row.style.transition = 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+            row.addEventListener('mouseleave', () => {
+                row.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+
+  <!-- Ecosystem Switched Widget Overlay -->
+  <script src="../ecosystem-hud.js"></script>
+</body></html>

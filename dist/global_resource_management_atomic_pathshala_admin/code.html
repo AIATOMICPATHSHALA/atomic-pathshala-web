@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Resource Management Hub | Atomic Pathshala Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dark": "#161B22",
+                        "text-dark": "#F1F5F9",
+                        "primary-container": "#0066ff",
+                        "surface-tint": "#0054d6",
+                        "on-surface": "#131b2e",
+                        "surface-container-highest": "#dae2fd",
+                        "secondary-fixed": "#b7eaff",
+                        "inverse-surface": "#283044",
+                        "error": "#ba1a1a",
+                        "surface": "#faf8ff",
+                        "tertiary-container": "#008256",
+                        "on-primary-fixed": "#001849",
+                        "surface-container": "#eaedff",
+                        "surface-bright": "#faf8ff",
+                        "bg-dark": "#0B0E14",
+                        "on-background": "#131b2e",
+                        "border-subtle": "rgba(0, 102, 255, 0.1)",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#003fa4",
+                        "on-tertiary-fixed-variant": "#005235",
+                        "tertiary-fixed": "#6afcb9",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#b3c5ff",
+                        "surface-dim": "#d2d9f4",
+                        "on-secondary-fixed": "#001f28",
+                        "on-secondary-container": "#005266",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#4cd6ff",
+                        "outline-variant": "#c2c6d8",
+                        "on-primary-container": "#f8f7ff",
+                        "on-surface-variant": "#424656",
+                        "on-error-container": "#93000a",
+                        "outline": "#727687",
+                        "tertiary": "#006643",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#002113",
+                        "surface-light": "#F8FAFC",
+                        "secondary-container": "#00ccf9",
+                        "background": "#faf8ff",
+                        "tertiary-fixed-dim": "#49df9f",
+                        "secondary": "#00677f",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "inverse-on-surface": "#eef0ff",
+                        "bg-light": "#FFFFFF",
+                        "surface-variant": "#dae2fd",
+                        "surface-container-low": "#f2f3ff",
+                        "on-tertiary-container": "#e1ffeb",
+                        "surface-container-high": "#e2e7ff",
+                        "primary-fixed": "#dae1ff",
+                        "text-light": "#0F172A",
+                        "primary": "#0050cb",
+                        "on-secondary-fixed-variant": "#004e60"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "stack-lg": "32px",
+                        "container-max": "1280px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg-mobile": ["Geist"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Geist"],
+                        "display-lg": ["Geist"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-white">
+<!-- Left Sidebar (SideNavBar) -->
+<aside class="hidden lg:flex flex-col h-screen w-72 fixed left-0 top-0 border-r border-outline-variant bg-surface py-6 z-50">
+<div class="px-6 mb-8">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Atomic Pathshala</h1>
+<p class="font-label-sm text-outline">Admin Console</p>
+</div>
+<nav class="flex-1 px-4 space-y-1 overflow-y-auto custom-scrollbar">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">
+<span class="material-symbols-outlined">group</span> Users
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-primary font-bold bg-primary-container/10 border-r-4 border-primary translate-x-1 transition-transform duration-200 font-label-md" href="#">
+<span class="material-symbols-outlined">book_2</span> Courses
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">
+<span class="material-symbols-outlined">layers</span> Batches
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">
+<span class="material-symbols-outlined">live_tv</span> Live Classes
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">
+<span class="material-symbols-outlined">analytics</span> Analytics
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">
+<span class="material-symbols-outlined">payments</span> Payments
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+            </a>
+</nav>
+<div class="px-6 mt-auto">
+<button class="w-full py-3 bg-primary text-white rounded-xl font-label-md shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                New Course
+            </button>
+</div>
+</aside>
+<!-- Top Navigation Bar (TopNavBar) -->
+<header class="sticky top-0 z-40 flex justify-between items-center w-full px-8 py-3 lg:pl-80 bg-surface/80 backdrop-blur-xl border-b border-outline-variant">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container rounded-lg border-none focus:ring-2 focus:ring-primary/20 font-body-md transition-all" placeholder="Search resources, students, or versions..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-all">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-all">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="font-label-md text-on-surface">Admin Profile</p>
+<p class="font-label-sm text-outline">Super Admin</p>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-primary/20 p-0.5 overflow-hidden">
+<img class="w-full h-full object-cover rounded-full" data-alt="A professional studio portrait of a corporate male administrator in a tailored navy blue suit, set against a soft, out-of-focus modern office background. High-key lighting, clean aesthetic, reflecting authority and approachability in an EdTech context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_1CYNv2XMO88UBWtSvZpo8iWuENHUw2QJSCbKTUrXqy6UyxIZkfh9SNW_TRO5Cy-kNGHOHZvXS47vZKmfPGGEak7OBLWex93RhV1l9yulsIKIh_YN8DZMU2kF8wEZ_UQ2Yg3VdHWtjVC_xfLCQdjsoRF6Ae0sVLD-c2y2nVSETxgSjZSQPdTkfM7e0mA3uh14EkT-VBGVlzjgrCsX0kkNOAfk2NEqn4YtTtwYLtjcTItu1A6z2UTm4B7WIzhvxDqt2h4iLIQD1es"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="lg:ml-72 min-h-screen p-8 bg-surface-light">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-stack-lg gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Resource Management</h2>
+<p class="font-body-md text-on-surface-variant mt-1">Manage, audit, and broadcast materials across the entire platform.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-2.5 bg-surface text-primary border border-primary font-label-md rounded-xl hover:bg-primary/5 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined">history</span>
+                    Audit Log
+                </button>
+<button class="px-6 py-2.5 bg-primary text-white font-label-md rounded-xl shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform flex items-center gap-2" onclick="toggleUploadModal()">
+<span class="material-symbols-outlined">cloud_upload</span>
+                    Bulk Upload
+                </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Global View - Resource Explorer -->
+<div class="lg:col-span-8 space-y-gutter">
+<div class="glass-card rounded-2xl p-6 overflow-hidden">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-md text-headline-md flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">folder_open</span>
+                            Global Library
+                        </h3>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 bg-surface-container rounded-lg text-on-surface-variant font-label-sm hover:text-primary transition-colors">All Types</button>
+<button class="px-3 py-1.5 hover:bg-surface-container rounded-lg text-on-surface-variant font-label-sm transition-colors">PDFs</button>
+<button class="px-3 py-1.5 hover:bg-surface-container rounded-lg text-on-surface-variant font-label-sm transition-colors">DPPs</button>
+</div>
+</div>
+<!-- Resource Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant">
+<th class="pb-4 font-label-md text-outline">Name</th>
+<th class="pb-4 font-label-md text-outline">Type</th>
+<th class="pb-4 font-label-md text-outline">Course/Batch</th>
+<th class="pb-4 font-label-md text-outline">Last Modified</th>
+<th class="pb-4 font-label-md text-outline text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="group hover:bg-primary-container/[0.02] transition-colors">
+<td class="py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-red-100 flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined text-red-600">picture_as_pdf</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Physics_Notes_V2.pdf</p>
+<p class="font-label-sm text-outline">12.4 MB</p>
+</div>
+</div>
+</td>
+<td class="py-4"><span class="px-2 py-1 bg-surface-container-highest text-primary font-label-sm rounded-md">Revision Note</span></td>
+<td class="py-4 font-body-md text-on-surface-variant">Target NEET 2025</td>
+<td class="py-4 font-body-md text-on-surface-variant">2 hrs ago</td>
+<td class="py-4 text-right">
+<button class="p-2 text-outline hover:text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-2 text-outline hover:text-error transition-colors"><span class="material-symbols-outlined">delete</span></button>
+</td>
+</tr>
+<tr class="group hover:bg-primary-container/[0.02] transition-colors">
+<td class="py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-blue-100 flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined text-blue-600">quiz</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Organic_DPP_04.docx</p>
+<p class="font-label-sm text-outline">450 KB</p>
+</div>
+</div>
+</td>
+<td class="py-4"><span class="px-2 py-1 bg-surface-container-highest text-secondary font-label-sm rounded-md">DPP</span></td>
+<td class="py-4 font-body-md text-on-surface-variant">JEE Advanced 2024</td>
+<td class="py-4 font-body-md text-on-surface-variant">Yesterday</td>
+<td class="py-4 text-right">
+<button class="p-2 text-outline hover:text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-2 text-outline hover:text-error transition-colors"><span class="material-symbols-outlined">delete</span></button>
+</td>
+</tr>
+<tr class="group hover:bg-primary-container/[0.02] transition-colors">
+<td class="py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-green-100 flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined text-green-600">article</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Bio_Flashcards_Set1.zip</p>
+<p class="font-label-sm text-outline">85.2 MB</p>
+</div>
+</div>
+</td>
+<td class="py-4"><span class="px-2 py-1 bg-surface-container-highest text-tertiary font-label-sm rounded-md">Flashcards</span></td>
+<td class="py-4 font-body-md text-on-surface-variant">Medical Prep A</td>
+<td class="py-4 font-body-md text-on-surface-variant">3 days ago</td>
+<td class="py-4 text-right">
+<button class="p-2 text-outline hover:text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-2 text-outline hover:text-error transition-colors"><span class="material-symbols-outlined">delete</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-6 flex justify-center">
+<button class="text-primary font-label-md hover:underline">View 1,240 more resources</button>
+</div>
+</div>
+<!-- Bulk Management Stats -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-stack-md">
+<div class="glass-card p-6 rounded-2xl">
+<p class="font-label-sm text-outline uppercase tracking-wider">Total Files</p>
+<h4 class="font-display-lg text-headline-lg text-on-surface mt-2">12,842</h4>
+<div class="flex items-center gap-1 text-tertiary font-label-sm mt-2">
+<span class="material-symbols-outlined text-[16px]">trending_up</span> +24% from last month
+                        </div>
+</div>
+<div class="glass-card p-6 rounded-2xl">
+<p class="font-label-sm text-outline uppercase tracking-wider">Active Folders</p>
+<h4 class="font-display-lg text-headline-lg text-on-surface mt-2">156</h4>
+<div class="flex items-center gap-1 text-secondary font-label-sm mt-2">
+<span class="material-symbols-outlined text-[16px]">sync</span> 12 batch syncs in progress
+                        </div>
+</div>
+<div class="glass-card p-6 rounded-2xl">
+<p class="font-label-sm text-outline uppercase tracking-wider">Storage Used</p>
+<h4 class="font-display-lg text-headline-lg text-on-surface mt-2">1.2 TB</h4>
+<div class="w-full bg-surface-container h-1.5 rounded-full mt-4">
+<div class="bg-primary h-full w-[65%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Side Panels: Notes Editor & Audit Log -->
+<div class="lg:col-span-4 space-y-gutter">
+<!-- Global Notes Editor -->
+<div class="glass-card rounded-2xl flex flex-col h-[500px]">
+<div class="p-6 border-b border-outline-variant bg-white/30 backdrop-blur-md rounded-t-2xl">
+<h3 class="font-headline-md text-headline-md flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">stylus</span>
+                            Master Editor
+                        </h3>
+<p class="font-label-sm text-outline">Platform-wide announcements</p>
+</div>
+<div class="flex-1 p-6 flex flex-col gap-4">
+<input class="w-full bg-surface-container rounded-lg border-none focus:ring-1 focus:ring-primary font-label-md p-3" placeholder="Title of Announcement..." type="text"/>
+<textarea class="flex-1 w-full bg-surface-container rounded-lg border-none focus:ring-1 focus:ring-primary font-body-md p-4 resize-none custom-scrollbar" placeholder="Start typing the master material or global note here..."></textarea>
+<div class="flex items-center justify-between">
+<div class="flex gap-2">
+<button class="p-2 hover:bg-surface-container rounded-lg text-on-surface-variant"><span class="material-symbols-outlined">format_bold</span></button>
+<button class="p-2 hover:bg-surface-container rounded-lg text-on-surface-variant"><span class="material-symbols-outlined">link</span></button>
+<button class="p-2 hover:bg-surface-container rounded-lg text-on-surface-variant"><span class="material-symbols-outlined">image</span></button>
+</div>
+<button class="px-4 py-2 bg-secondary text-white font-label-md rounded-lg shadow-md shadow-secondary/20 hover:scale-95 transition-transform">Push to All</button>
+</div>
+</div>
+</div>
+<!-- Mini Audit Log -->
+<div class="glass-card rounded-2xl p-6">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-md text-headline-md">Audit Log</h3>
+<button class="text-primary font-label-sm">View Full</button>
+</div>
+<div class="space-y-6">
+<div class="flex gap-4 relative">
+<div class="absolute left-4 top-8 bottom-0 w-[1px] bg-outline-variant/30"></div>
+<div class="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center flex-shrink-0 z-10">
+<span class="material-symbols-outlined text-[18px] text-primary">upload</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Bulk Upload: 12 Files</p>
+<p class="font-body-md text-on-surface-variant">Admin Sarah pushed notes to 24 student folders.</p>
+<p class="font-label-sm text-outline mt-1">10:45 AM • Nov 24</p>
+</div>
+</div>
+<div class="flex gap-4 relative">
+<div class="absolute left-4 top-8 bottom-0 w-[1px] bg-outline-variant/30"></div>
+<div class="w-8 h-8 rounded-full bg-secondary-container/20 flex items-center justify-center flex-shrink-0 z-10">
+<span class="material-symbols-outlined text-[18px] text-secondary">edit_note</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Modified Revision Note</p>
+<p class="font-body-md text-on-surface-variant">Admin John updated "Organic_Chem_V1" to V2.</p>
+<p class="font-label-sm text-outline mt-1">09:12 AM • Nov 24</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-8 h-8 rounded-full bg-error-container/20 flex items-center justify-center flex-shrink-0 z-10">
+<span class="material-symbols-outlined text-[18px] text-error">delete</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Asset Deleted</p>
+<p class="font-body-md text-on-surface-variant">System auto-purged 45 cached versions.</p>
+<p class="font-label-sm text-outline mt-1">Yesterday • 06:30 PM</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bulk Upload Modal Overlay (Hidden by default) -->
+<div class="fixed inset-0 bg-on-surface/40 backdrop-blur-sm z-[60] flex items-center justify-center hidden opacity-0 transition-opacity duration-300" id="uploadModal">
+<div class="bg-surface w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl scale-95 transition-transform duration-300" id="modalContent">
+<div class="p-8 border-b border-outline-variant flex justify-between items-center">
+<div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Bulk Resource Push</h3>
+<p class="font-body-md text-on-surface-variant">Upload once, distribute to thousands instantly.</p>
+</div>
+<button class="p-2 hover:bg-surface-container rounded-full" onclick="toggleUploadModal()"><span class="material-symbols-outlined">close</span></button>
+</div>
+<div class="p-8 space-y-6">
+<!-- Dropzone -->
+<div class="border-2 border-dashed border-primary/30 bg-primary-container/5 rounded-2xl p-12 flex flex-col items-center justify-center cursor-pointer hover:bg-primary-container/10 transition-colors">
+<span class="material-symbols-outlined text-[48px] text-primary mb-4">cloud_upload</span>
+<p class="font-label-md text-on-surface">Drag and drop files here</p>
+<p class="font-body-md text-on-surface-variant">Or click to browse from your computer</p>
+</div>
+<div class="space-y-4">
+<label class="font-label-md text-on-surface block">Select Target Destinations</label>
+<div class="grid grid-cols-2 gap-3">
+<div class="flex items-center gap-3 p-3 bg-surface-container rounded-xl">
+<input class="w-5 h-5 rounded text-primary border-outline-variant focus:ring-primary" type="checkbox"/>
+<span class="font-body-md">NEET - 2025 (All Batches)</span>
+</div>
+<div class="flex items-center gap-3 p-3 bg-surface-container rounded-xl">
+<input class="w-5 h-5 rounded text-primary border-outline-variant focus:ring-primary" type="checkbox"/>
+<span class="font-body-md">JEE Main - 2024</span>
+</div>
+<div class="flex items-center gap-3 p-3 bg-surface-container rounded-xl">
+<input class="w-5 h-5 rounded text-primary border-outline-variant focus:ring-primary" type="checkbox"/>
+<span class="font-body-md">Physics Foundation</span>
+</div>
+<div class="flex items-center gap-3 p-3 bg-surface-container rounded-xl">
+<input class="w-5 h-5 rounded text-primary border-outline-variant focus:ring-primary" type="checkbox"/>
+<span class="font-body-md">Global Public Folder</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-8 bg-surface-container-low flex justify-end gap-4">
+<button class="px-6 py-2.5 text-on-surface-variant font-label-md" onclick="toggleUploadModal()">Cancel</button>
+<button class="px-8 py-2.5 bg-primary text-white font-label-md rounded-xl shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">Start Processing</button>
+</div>
+</div>
+</div>
+<!-- Micro-interactions Script -->
+<script>
+        function toggleUploadModal() {
+            const modal = document.getElementById('uploadModal');
+            const content = document.getElementById('modalContent');
+            
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    content.classList.remove('scale-95');
+                }, 10);
+            } else {
+                modal.classList.add('opacity-0');
+                content.classList.add('scale-95');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        // Add visual feedback to table rows
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.querySelector('button').classList.remove('opacity-0');
+            });
+        });
+    </script>
+
+  <!-- Ecosystem Switched Widget Overlay -->
+  <script src="../ecosystem-hud.js"></script>
+</body></html>

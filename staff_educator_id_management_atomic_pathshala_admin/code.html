@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ID Management | Atomic Pathshala Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#dae2fd",
+                    "on-secondary-container": "#005266",
+                    "surface-container": "#eaedff",
+                    "inverse-primary": "#b3c5ff",
+                    "primary-container": "#0066ff",
+                    "bg-light": "#FFFFFF",
+                    "on-background": "#131b2e",
+                    "on-tertiary-container": "#e1ffeb",
+                    "outline-variant": "#c2c6d8",
+                    "on-surface": "#131b2e",
+                    "on-tertiary-fixed": "#002113",
+                    "surface-dark": "#161B22",
+                    "on-error-container": "#93000a",
+                    "secondary": "#00677f",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "surface-container-high": "#e2e7ff",
+                    "inverse-surface": "#283044",
+                    "bg-dark": "#0B0E14",
+                    "tertiary-container": "#008256",
+                    "surface-tint": "#0054d6",
+                    "surface-variant": "#dae2fd",
+                    "error": "#ba1a1a",
+                    "text-light": "#0F172A",
+                    "on-secondary-fixed": "#001f28",
+                    "surface-dim": "#d2d9f4",
+                    "tertiary": "#006643",
+                    "secondary-fixed": "#b7eaff",
+                    "surface-light": "#F8FAFC",
+                    "background": "#faf8ff",
+                    "on-secondary-fixed-variant": "#004e60",
+                    "primary": "#0050cb",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#005235",
+                    "primary-fixed": "#dae1ff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#001849",
+                    "tertiary-fixed": "#6afcb9",
+                    "on-surface-variant": "#424656",
+                    "on-error": "#ffffff",
+                    "text-dark": "#F1F5F9",
+                    "surface-bright": "#faf8ff",
+                    "outline": "#727687",
+                    "tertiary-fixed-dim": "#49df9f",
+                    "on-primary-container": "#f8f7ff",
+                    "border-subtle": "rgba(0, 102, 255, 0.1)",
+                    "secondary-container": "#00ccf9",
+                    "secondary-fixed-dim": "#4cd6ff",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#eef0ff",
+                    "on-primary-fixed-variant": "#003fa4",
+                    "surface-container-low": "#f2f3ff",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "surface": "#faf8ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-lg": "32px",
+                    "stack-md": "16px",
+                    "gutter": "24px",
+                    "stack-sm": "8px",
+                    "container-max": "1280px",
+                    "margin-mobile": "20px",
+                    "margin-desktop": "64px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "display-lg": ["Geist"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Geist"],
+                    "headline-lg": ["Geist"],
+                    "label-sm": ["Inter"],
+                    "display-lg-mobile": ["Geist"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+        }
+        
+        .id-card-gradient {
+            background: linear-gradient(135deg, #0050cb 0%, #00677f 100%);
+        }
+
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .scroll-hide::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+<!-- Top Navigation Bar -->
+<nav class="sticky top-0 z-40 flex justify-between items-center w-full px-8 py-3 lg:pl-80 bg-surface/80 backdrop-blur-xl border-b border-outline-variant shadow-sm">
+<div class="flex items-center gap-4">
+<span class="lg:hidden material-symbols-outlined text-primary cursor-pointer">menu</span>
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full w-64 focus:ring-2 focus:ring-primary/20 text-label-md" placeholder="Search staff or ID..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-all"><span class="material-symbols-outlined">notifications</span></button>
+<button class="text-on-surface-variant hover:text-primary transition-all"><span class="material-symbols-outlined">help</span></button>
+<button class="text-on-surface-variant hover:text-primary transition-all"><span class="material-symbols-outlined">dark_mode</span></button>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="font-label-md text-label-md">Admin Profile</p>
+<p class="text-xs text-outline">Super Admin</p>
+</div>
+<img class="w-10 h-10 rounded-full border-2 border-primary-container object-cover" data-alt="A professional high-resolution studio portrait of a confident male administrator in business formal attire. The lighting is sophisticated and directional, highlighting his features against a clean, neutral background. The aesthetic is corporate and modern, consistent with a premium educational institution's administrative leadership branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDgBpwKy8SPvnJ74683L5d_v5mtMfIbLGkif9XpE9sQjhn2gJ0flGh9HGYsGQyiKovt31_CiNlK2hn0fo4JdEnikNCembl-r1C7qnOV_EGnyXD52_Y2zLUClTk8W6FYpRFYJPk71569OUHw8SSmFkRKtqjdiVXP258jFko_u5zcqeSjIZKZGBr5CN_EgyBItMWY0KFAmGg3dlk60zbUwAYG2PUgE7JiGeEi0m162fTSz2RgQHD1PBmOoPr_2h8EqC7HCUD0IzRHSE"/>
+</div>
+</div>
+</nav>
+<!-- Side Navigation Bar -->
+<aside class="hidden lg:flex flex-col h-screen w-72 fixed left-0 top-0 border-r border-outline-variant bg-surface py-6 z-50">
+<div class="px-6 mb-10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">electric_bolt</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tight">Atomic Pathshala</h1>
+<p class="text-xs font-label-sm text-outline uppercase tracking-widest">Admin Console</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1 px-4">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-primary font-bold bg-primary-container/10 border-r-4 border-primary rounded-r-none rounded-xl translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-label-md">Users</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined">book_2</span>
+<span class="font-label-md">Courses</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined">layers</span>
+<span class="font-label-md">Batches</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined">live_tv</span>
+<span class="font-label-md">Live Classes</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md">Payments</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md">Settings</span>
+</a>
+</nav>
+<div class="px-6 mt-auto">
+<button class="w-full py-4 bg-primary text-white rounded-2xl font-label-md flex items-center justify-center gap-2 shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all">
+<span class="material-symbols-outlined">add</span>
+                New Course
+            </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="lg:pl-72 min-h-screen">
+<div class="max-w-container-max mx-auto px-8 py-10">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-stack-lg">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Staff ID Management</h2>
+<p class="text-body-md text-on-surface-variant mt-1">Review and manage digital credentials for educators and administrative staff.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-2.5 border border-outline-variant rounded-xl font-label-md text-on-surface-variant hover:bg-surface-container-low transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">print</span>
+                        Bulk Print
+                    </button>
+<button class="px-6 py-2.5 bg-primary text-white rounded-xl font-label-md hover:bg-primary-container transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">id_card</span>
+                        Issue New ID
+                    </button>
+</div>
+</div>
+<!-- Dashboard Content: Bento Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Profile Section & Digital Card (LHS) -->
+<div class="lg:col-span-5 space-y-8">
+<!-- Digital ID Card Container -->
+<div class="relative group">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+<div class="relative id-card-gradient rounded-3xl p-8 text-white overflow-hidden shadow-2xl">
+<!-- Glass Shimmer -->
+<div class="shimmer absolute inset-0 opacity-10 rotate-12"></div>
+<div class="flex justify-between items-start relative z-10">
+<div>
+<div class="flex items-center gap-2 mb-6">
+<div class="w-8 h-8 bg-white/20 backdrop-blur-md rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-sm" style="font-variation-settings: 'FILL' 1;">electric_bolt</span>
+</div>
+<p class="font-headline-md text-lg font-bold tracking-tight">Atomic Pathshala</p>
+</div>
+<div class="mb-8">
+<p class="text-white/60 text-[10px] uppercase tracking-widest font-bold mb-1">Educator ID</p>
+<p class="text-xl font-mono font-bold tracking-wider">AP-EDU-1024</p>
+</div>
+</div>
+<div class="bg-white p-1 rounded-xl shadow-lg">
+<div class="w-20 h-20 bg-surface-container-highest rounded-lg flex items-center justify-center border-2 border-primary/10">
+<!-- Mock QR Code -->
+<div class="grid grid-cols-4 gap-1">
+<div class="w-3 h-3 bg-primary"></div><div class="w-3 h-3 bg-primary"></div><div class="w-3 h-3 bg-white"></div><div class="w-3 h-3 bg-primary"></div>
+<div class="w-3 h-3 bg-white"></div><div class="w-3 h-3 bg-primary"></div><div class="w-3 h-3 bg-primary"></div><div class="w-3 h-3 bg-white"></div>
+<div class="w-3 h-3 bg-primary"></div><div class="w-3 h-3 bg-white"></div><div class="w-3 h-3 bg-primary"></div><div class="w-3 h-3 bg-primary"></div>
+<div class="w-3 h-3 bg-primary"></div><div class="w-3 h-3 bg-primary"></div><div class="w-3 h-3 bg-white"></div><div class="w-3 h-3 bg-primary"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-6 relative z-10">
+<div class="w-24 h-24 rounded-2xl overflow-hidden border-4 border-white/20 shadow-xl">
+<img class="w-full h-full object-cover" data-alt="A dignified close-up portrait of Dr. Vikram Singh, an experienced Physics educator with a kind but authoritative expression. He is wearing a professional grey Nehru jacket over a white shirt. The background is a soft blue-to-teal gradient, conveying a premium academic feel. The image is crisp, professional, and captures his intellectual presence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkLnwzqMLSbktaF39WzbDmIiaI6WGvpATxsPIZWv65T0FYb9ahPpoXpFAL7K5isavK_9W6yHeDRXS-RDvMsEYQI0wlmq5Ln6QauJ4DI9svkpLdQYGM7Fb7sIwl8Ep-WvVQLlz-tjGJeI5dXOffx-dPPgZNsI4oTnCunFvdId14OXTKcwRSYV0CgABiwBy3O1Y1E3L9D5Rm2b3hrauxRa9RlrDGP86QZc_9jHOcEhD-QuyTw4rdL4dptWiWDq7gzi3BSc_eZi9saVA"/>
+</div>
+<div>
+<h3 class="font-headline-md text-2xl font-extrabold">Dr. Vikram Singh</h3>
+<p class="text-white/80 font-label-md">Senior Faculty, Physics</p>
+<div class="mt-4 flex gap-4 text-[10px] uppercase tracking-widest text-white/50 font-bold">
+<div>
+<p>Joined</p>
+<p class="text-white">10 Jan 2024</p>
+</div>
+<div class="w-[1px] bg-white/20 h-8"></div>
+<div>
+<p>Status</p>
+<p class="text-tertiary-fixed font-bold">Active</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Logo Pattern -->
+<div class="absolute -bottom-8 -right-8 opacity-10">
+<span class="material-symbols-outlined text-[120px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+</div>
+</div>
+<!-- Profile Detailed Actions -->
+<div class="glass-card rounded-3xl p-8 space-y-6">
+<h4 class="font-headline-md text-lg font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">person_edit</span>
+                            Management Actions
+                        </h4>
+<div class="grid grid-cols-2 gap-4">
+<button class="p-4 bg-surface-container-low hover:bg-primary-container/10 rounded-2xl transition-all group text-left border border-transparent hover:border-primary/20">
+<span class="material-symbols-outlined text-primary mb-2">sync</span>
+<p class="font-label-md block">Renew Card</p>
+<p class="text-xs text-outline">Expires in 10 months</p>
+</button>
+<button class="p-4 bg-surface-container-low hover:bg-error-container/10 rounded-2xl transition-all group text-left border border-transparent hover:border-error/20">
+<span class="material-symbols-outlined text-error mb-2">block</span>
+<p class="font-label-md block">Revoke Access</p>
+<p class="text-xs text-outline">Emergency lockout</p>
+</button>
+<button class="p-4 bg-surface-container-low hover:bg-secondary-container/10 rounded-2xl transition-all group text-left border border-transparent hover:border-secondary/20">
+<span class="material-symbols-outlined text-secondary mb-2">badge</span>
+<p class="font-label-md block">Digital Twin</p>
+<p class="text-xs text-outline">Share via NFC/Link</p>
+</button>
+<button class="p-4 bg-surface-container-low hover:bg-tertiary-container/10 rounded-2xl transition-all group text-left border border-transparent hover:border-tertiary/20">
+<span class="material-symbols-outlined text-tertiary mb-2">history</span>
+<p class="font-label-md block">Log History</p>
+<p class="text-xs text-outline">Entry/Exit records</p>
+</button>
+</div>
+</div>
+</div>
+<!-- Staff List/Table Section (RHS) -->
+<div class="lg:col-span-7">
+<div class="glass-card rounded-3xl overflow-hidden flex flex-col h-full border border-outline-variant">
+<div class="p-8 border-b border-outline-variant flex justify-between items-center bg-white/50">
+<div>
+<h4 class="font-headline-md text-xl font-bold">Staff Directory</h4>
+<p class="text-label-sm text-outline">Showing 128 registered members</p>
+</div>
+<div class="flex gap-2">
+<button class="p-2 rounded-lg hover:bg-surface-container-low text-outline hover:text-primary transition-all"><span class="material-symbols-outlined">filter_list</span></button>
+<button class="p-2 rounded-lg hover:bg-surface-container-low text-outline hover:text-primary transition-all"><span class="material-symbols-outlined">sort</span></button>
+</div>
+</div>
+<div class="flex-1 overflow-x-auto scroll-hide">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-lowest/50 text-label-sm text-outline uppercase tracking-wider">
+<th class="px-8 py-4 font-bold">Member</th>
+<th class="px-6 py-4 font-bold">ID Number</th>
+<th class="px-6 py-4 font-bold">Designation</th>
+<th class="px-6 py-4 font-bold">Status</th>
+<th class="px-8 py-4 font-bold">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<tr class="hover:bg-primary-container/5 transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden border border-primary/10">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of Firoz Ali, a focused administrative professional in his late 30s wearing a crisp white dress shirt. He has a friendly, professional demeanor. The image follows a high-key lighting style with a subtle grey background, maintaining the minimalist premium look of the Atomic Pathshala brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCab2uYwqy5MCGOLwVydPrOvKaCXFo3wH5kF86kGN4SDrpopEbbiSbv8yiZMAYhwuKaIvB3NEr5nEeiileILPho5Hr_rfIj0vKDq2fHk-hdz6L9_EWHhI8NK5diAMgn0TK_zxMgOHsxLZjhf2EIPJb7zOUDBUPcgD7bv7E3Cm-x6j3qwP27qbrzdx0Poo7CUbzoZrzQv1IUUWHuV4qC_OperrlwABAM5uJoVqgkV9zA7M-74YGI3mIJttfQu60xoLvfR7b_YTBD8uk"/>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Firoz Ali</p>
+<p class="text-xs text-outline">firoz.a@atomic.edu</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="font-mono text-xs font-bold text-on-surface-variant bg-surface-container-low px-2 py-1 rounded">AP-ADM-001</span>
+</td>
+<td class="px-6 py-5">
+<span class="text-label-sm px-3 py-1 rounded-full bg-secondary-container/10 text-secondary border border-secondary/20">Lead Admin</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-1.5">
+<div class="w-1.5 h-1.5 rounded-full bg-tertiary"></div>
+<span class="text-xs font-bold text-tertiary">Active</span>
+</div>
+</td>
+<td class="px-8 py-5">
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-primary/10 text-outline hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- More Staff Rows -->
+<tr class="hover:bg-primary-container/5 transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden border border-primary/10">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a female educator, Anjali Sharma, in her early 40s. She is wearing a mustard yellow traditional saree with a professional appearance. Her expression is welcoming and intellectual. The lighting is soft and flattering against a minimalist, clean white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYYyjlQ7JC-l1-JwMeicCUgv9JlrQgixuOmSuiDYv_6jRF40vHEEEkeN5qKBHWcPfb2aW6C1p9XzsDBtgpcQcOwQaXpnjN5q-hQDJON8cTO86zNfve11g61QlxWyZbm4EmD06u5pIUoqQ9vqBzwY7xzcgiJcT4_2TdZ2g55n0CkSCA3UTJL2SLHWJil4t7LhEseH27Wesj5116Q7iiOvQm8yriFfE3wtNzZHCnMVEeXqLfvwzea77Pm-VPNV60hHRFB3TkvoRr8YE"/>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Anjali Sharma</p>
+<p class="text-xs text-outline">anjali.s@atomic.edu</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="font-mono text-xs font-bold text-on-surface-variant bg-surface-container-low px-2 py-1 rounded">AP-EDU-1025</span>
+</td>
+<td class="px-6 py-5">
+<span class="text-label-sm px-3 py-1 rounded-full bg-primary-container/10 text-primary border border-primary/20">Faculty</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-1.5">
+<div class="w-1.5 h-1.5 rounded-full bg-tertiary"></div>
+<span class="text-xs font-bold text-tertiary">Active</span>
+</div>
+</td>
+<td class="px-8 py-5">
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-primary/10 text-outline hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-primary-container/5 transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden border border-primary/10">
+<img class="w-full h-full object-cover" data-alt="A portrait of a male support staff member, Ravi Kumar, in his late 20s, wearing a clean navy blue polo shirt with a small company logo. He has a friendly and helpful expression. The lighting is bright and modern, consistent with high-end corporate photography standards." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGRU12YO4cIaIFpcrKJEvhbtWbmEIqan5a8poijPTZeyA0EVzgvB-ywRZa87f-WtlRNZR3Me1UZUZjbZPp-z3jVnvTMJCFMNEn6nosIGiZHCBpjlsYJ4vjUe7PvHujnd4l06du9dE3e89QlFKdVSQT7oFCqi5ShxTqdYia3uoHEwFSHuomwISmqfrg6rudBCtx91-kDwKtFD6rwS2uV795xKxXgNmAgDsrdnwCjXyC8_55ljDwrdWifl1eQKWMbuwSfOJMrPVcz0E"/>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Ravi Kumar</p>
+<p class="text-xs text-outline">ravi.k@atomic.edu</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="font-mono text-xs font-bold text-on-surface-variant bg-surface-container-low px-2 py-1 rounded">AP-SUP-3001</span>
+</td>
+<td class="px-6 py-5">
+<span class="text-label-sm px-3 py-1 rounded-full bg-outline/10 text-outline border border-outline/20">IT Support</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-1.5">
+<div class="w-1.5 h-1.5 rounded-full bg-error"></div>
+<span class="text-xs font-bold text-error">Suspended</span>
+</div>
+</td>
+<td class="px-8 py-5">
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-primary/10 text-outline hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-primary-container/5 transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden border border-primary/10">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of Priya Das, a young academic coordinator in her 30s. She is wearing a smart black blazer over a light blue shirt. She looks professional and organized. The background is a soft, blurred office environment with cool blue tones, matching the brand's aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrMsda-aLEu8XGiTniMeFwM8DX6LgVAYsraWSITipnOUYT2rSPKGc8LJU-IeIJv8Pu8HWdLbAqHw-51SWqcMcH58fPKXum6bIjgHO8JOtCwhhqp08fN1E8r2d2MAuwOAfChfxlJjbirUjlWMihGUbq1iX-Dx0e2kJ2WGh1JCFGXUjoScmY5lwdY3i3pNsIDmDJ-bZAKgZUWprDyRM9eazAYurOf9BtE9Y2ZtcRd3R1Gn-K0ADKMUsPrF3O7-yjsnTFFIPrwaQhkho"/>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Priya Das</p>
+<p class="text-xs text-outline">priya.d@atomic.edu</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="font-mono text-xs font-bold text-on-surface-variant bg-surface-container-low px-2 py-1 rounded">AP-ADM-042</span>
+</td>
+<td class="px-6 py-5">
+<span class="text-label-sm px-3 py-1 rounded-full bg-secondary-container/10 text-secondary border border-secondary/20">Coordinator</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-1.5">
+<div class="w-1.5 h-1.5 rounded-full bg-tertiary"></div>
+<span class="text-xs font-bold text-tertiary">Active</span>
+</div>
+</td>
+<td class="px-8 py-5">
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-primary/10 text-outline hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-6 border-t border-outline-variant bg-white/30 flex items-center justify-between">
+<span class="text-label-sm text-outline">Page 1 of 8</span>
+<div class="flex gap-2">
+<button class="px-4 py-1.5 border border-outline-variant rounded-lg text-label-sm hover:bg-surface-container-low transition-all disabled:opacity-50" disabled="">Previous</button>
+<button class="px-4 py-1.5 border border-outline-variant rounded-lg text-label-sm hover:bg-surface-container-low transition-all">Next</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Analytics Section: ID Utilization -->
+<div class="mt-stack-lg grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="glass-card rounded-3xl p-6 flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-primary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">id_card</span>
+</div>
+<div>
+<p class="text-xs text-outline font-bold uppercase tracking-wider">Total IDs Issued</p>
+<h5 class="text-2xl font-extrabold text-on-surface">1,284</h5>
+</div>
+</div>
+<div class="glass-card rounded-3xl p-6 flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-tertiary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary">login</span>
+</div>
+<div>
+<p class="text-xs text-outline font-bold uppercase tracking-wider">Scans (Today)</p>
+<h5 class="text-2xl font-extrabold text-on-surface">432</h5>
+</div>
+</div>
+<div class="glass-card rounded-3xl p-6 flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-error-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-error">warning</span>
+</div>
+<div>
+<p class="text-xs text-outline font-bold uppercase tracking-wider">Expiring Soon</p>
+<h5 class="text-2xl font-extrabold text-on-surface">18</h5>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button for Mobile -->
+<button class="md:hidden fixed bottom-8 right-8 w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center z-50">
+<span class="material-symbols-outlined">add</span>
+</button>
+<script>
+        // Simple Micro-interaction for ID Card Hover
+        const card = document.querySelector('.id-card-gradient');
+        if(card) {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+            });
+        }
+
+        // Toggle sidebar on mobile
+        const menuBtn = document.querySelector('.material-symbols-outlined[textContent="menu"]');
+        const sidebar = document.querySelector('aside');
+        if(menuBtn && sidebar) {
+            menuBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('hidden');
+                sidebar.classList.toggle('fixed');
+                sidebar.classList.toggle('inset-0');
+            });
+        }
+    </script>
+</body></html>

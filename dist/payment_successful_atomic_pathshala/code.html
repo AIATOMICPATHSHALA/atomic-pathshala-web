@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Payment Successful - Atomic Pathshala</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "text-light": "#0F172A",
+                "on-background": "#131b2e",
+                "bg-light": "#FFFFFF",
+                "outline": "#727687",
+                "on-tertiary": "#ffffff",
+                "error": "#ba1a1a",
+                "tertiary-fixed-dim": "#49df9f",
+                "surface-container": "#eaedff",
+                "on-error": "#ffffff",
+                "on-secondary": "#ffffff",
+                "on-secondary-fixed": "#001f28",
+                "surface-dim": "#d2d9f4",
+                "inverse-surface": "#283044",
+                "tertiary-fixed": "#6afcb9",
+                "surface-container-high": "#e2e7ff",
+                "surface": "#faf8ff",
+                "secondary-container": "#00ccf9",
+                "bg-dark": "#0B0E14",
+                "primary-fixed-dim": "#b3c5ff",
+                "tertiary-container": "#008256",
+                "secondary": "#00677f",
+                "surface-container-low": "#f2f3ff",
+                "surface-container-lowest": "#ffffff",
+                "secondary-fixed": "#b7eaff",
+                "on-surface": "#131b2e",
+                "on-tertiary-fixed": "#002113",
+                "on-primary-fixed-variant": "#003fa4",
+                "surface-bright": "#faf8ff",
+                "error-container": "#ffdad6",
+                "on-primary": "#ffffff",
+                "on-tertiary-fixed-variant": "#005235",
+                "border-subtle": "rgba(0, 102, 255, 0.1)",
+                "outline-variant": "#c2c6d8",
+                "text-dark": "#F1F5F9",
+                "on-tertiary-container": "#e1ffeb",
+                "primary-container": "#0066ff",
+                "on-secondary-fixed-variant": "#004e60",
+                "on-secondary-container": "#005266",
+                "on-primary-container": "#f8f7ff",
+                "background": "#faf8ff",
+                "surface-dark": "#161B22",
+                "surface-variant": "#dae2fd",
+                "secondary-fixed-dim": "#4cd6ff",
+                "primary-fixed": "#dae1ff",
+                "on-primary-fixed": "#001849",
+                "surface-tint": "#0054d6",
+                "inverse-on-surface": "#eef0ff",
+                "surface-light": "#F8FAFC",
+                "on-surface-variant": "#424656",
+                "inverse-primary": "#b3c5ff",
+                "surface-container-highest": "#dae2fd",
+                "primary": "#0050cb",
+                "on-error-container": "#93000a",
+                "tertiary": "#006643"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "stack-md": "16px",
+                "margin-mobile": "20px",
+                "container-max": "1280px",
+                "stack-lg": "32px",
+                "margin-desktop": "64px",
+                "stack-sm": "8px",
+                "gutter": "24px"
+            },
+            "fontFamily": {
+                "headline-lg": ["Geist"],
+                "headline-md": ["Geist"],
+                "display-lg-mobile": ["Geist"],
+                "body-md": ["Inter"],
+                "label-md": ["Inter"],
+                "display-lg": ["Geist"],
+                "body-lg": ["Inter"],
+                "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        @keyframes drawCheck {
+            0% { stroke-dashoffset: 48; }
+            100% { stroke-dashoffset: 0; }
+        }
+        @keyframes scaleIn {
+            0% { transform: scale(0); opacity: 0; }
+            60% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-check {
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: drawCheck 0.6s cubic-bezier(0.65, 0, 0.45, 1) 0.5s forwards;
+        }
+        .animate-success-circle {
+            animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .confetti {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: #0066ff;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface min-h-screen flex flex-col overflow-x-hidden">
+<!-- Atmospheric Background Decoration -->
+<div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+<div class="absolute top-[-10%] left-[-5%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[100px]"></div>
+<div class="absolute bottom-[-10%] right-[-5%] w-[40%] h-[40%] bg-tertiary-fixed-dim/10 rounded-full blur-[100px]"></div>
+</div>
+<!-- Navigation Header (Filtered/Simplified for Success Screen) -->
+<header class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-border-subtle h-16 flex items-center px-margin-mobile md:px-margin-desktop">
+<div class="max-w-container-max mx-auto w-full flex justify-between items-center">
+<img alt="Atomic Pathshala Logo" class="h-8 md:h-10 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIvV80lkeHkaW0Kx6YrNt6l_pLIwt-udZNzwgQqCj9OAZqAWDJpXFKfpGGeFUTM8YfVIrXORt80vqlOPVd73z4cpaIQnrKFyRx4fVVRQg6ESIU2uy_8Y00I1mpD_VU-kcXtO45QBNb2CUcWrk3IjulG5q_WEtudBjSZACmKG-AJo71FW4Eu2_thjNaUfagdc5J3mQ0v9a1w_eQ8uCDPER28W7m-thrqCk97A_NgFZ9hhun2wUfFqFA3AYRoPW09e1_MPov5pc0uc4"/>
+<div class="flex items-center gap-stack-md">
+<div class="hidden md:flex items-center gap-2 text-on-surface-variant font-label-md">
+<span class="material-symbols-outlined text-[20px]">verified_user</span>
+                    Secure Transaction
+                </div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col items-center justify-center pt-24 pb-stack-lg px-margin-mobile z-10">
+<div class="max-w-2xl w-full text-center space-y-stack-lg">
+<!-- Success Animation Cluster -->
+<div class="relative inline-block mb-stack-md">
+<div class="w-24 h-24 md:w-32 md:h-32 bg-tertiary-container/10 rounded-full flex items-center justify-center animate-success-circle mx-auto">
+<svg class="w-12 h-12 md:w-16 md:h-16 text-tertiary" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24">
+<polyline class="animate-check" points="20 6 9 17 4 12"></polyline>
+</svg>
+</div>
+<!-- Celebration Particles -->
+<div class="absolute inset-0 pointer-events-none" id="confetti-container"></div>
+</div>
+<!-- Heading & Welcome Text -->
+<div class="space-y-stack-sm">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary tracking-tight">Payment Successful</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg mx-auto">
+                    Welcome to the Batch, <span class="font-bold text-on-surface">Aryan!</span> Your journey to NEET 2025 starts now.
+                </p>
+</div>
+<!-- Transaction Details Card -->
+<div class="glass-card rounded-xl p-stack-lg shadow-sm text-left space-y-stack-md relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-5">
+<span class="material-symbols-outlined text-[120px]">receipt_long</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md relative z-10">
+<div class="space-y-1">
+<p class="text-label-sm font-label-sm text-outline uppercase tracking-wider">Transaction ID</p>
+<p class="font-label-md text-label-md text-on-surface select-all">TXN_992104588210</p>
+</div>
+<div class="space-y-1">
+<p class="text-label-sm font-label-sm text-outline uppercase tracking-wider">Order ID</p>
+<p class="font-label-md text-label-md text-on-surface select-all">ORD_NEET25_AXP</p>
+</div>
+<div class="space-y-1">
+<p class="text-label-sm font-label-sm text-outline uppercase tracking-wider">Amount Paid</p>
+<p class="font-headline-md text-headline-md text-primary">₹24,999</p>
+</div>
+<div class="space-y-1">
+<p class="text-label-sm font-label-sm text-outline uppercase tracking-wider">Payment Method</p>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">credit_card</span>
+<p class="font-label-md text-label-md text-on-surface">Visa ending in •••• 4242</p>
+</div>
+</div>
+</div>
+<div class="pt-stack-md border-t border-border-subtle flex items-center justify-between">
+<div class="flex items-center gap-2 text-tertiary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-sm text-label-sm font-bold">Authenticated by Atomic Secure</span>
+</div>
+<span class="text-label-sm text-outline italic">Feb 24, 2024 • 14:32 IST</span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col md:flex-row items-center justify-center gap-gutter pt-stack-md">
+<button class="w-full md:w-auto px-10 h-14 bg-primary text-on-primary rounded-lg font-label-md text-label-md flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+                    Go to Dashboard
+                </button>
+<button class="w-full md:w-auto px-10 h-14 bg-white border border-outline-variant text-on-surface rounded-lg font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-surface transition-all active:scale-95">
+<span class="material-symbols-outlined text-[20px]">download</span>
+                    Download Invoice
+                </button>
+</div>
+<!-- Help Footer -->
+<p class="text-label-sm text-outline-variant mt-stack-lg">
+                Need help? <a class="text-primary hover:underline underline-offset-4" href="#">Contact Student Support</a> or call 1800-ATOMIC-PATH.
+            </p>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-stack-lg bg-text-light mt-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto items-start">
+<div class="col-span-1 md:col-span-1">
+<h3 class="font-headline-sm text-headline-sm text-bg-light mb-stack-md">Atomic Pathshala</h3>
+<p class="font-body-md text-body-md text-surface-variant/70">
+                    Empowering the next generation of doctors and engineers through high-performance learning.
+                </p>
+</div>
+<div class="col-span-1 space-y-2">
+<p class="text-secondary-fixed font-bold mb-4">Quick Links</p>
+<a class="block text-surface-variant/70 hover:text-bg-light transition-colors text-body-md font-body-md" href="#">My Learning</a>
+<a class="block text-surface-variant/70 hover:text-bg-light transition-colors text-body-md font-body-md" href="#">Course Schedule</a>
+<a class="block text-surface-variant/70 hover:text-bg-light transition-colors text-body-md font-body-md" href="#">Resources</a>
+</div>
+<div class="col-span-1 space-y-2">
+<p class="text-secondary-fixed font-bold mb-4">Support</p>
+<a class="block text-surface-variant/70 hover:text-bg-light transition-colors text-body-md font-body-md" href="#">Privacy Policy</a>
+<a class="block text-surface-variant/70 hover:text-bg-light transition-colors text-body-md font-body-md" href="#">Refund Policy</a>
+<a class="block text-surface-variant/70 hover:text-bg-light transition-colors text-body-md font-body-md" href="#">Contact Support</a>
+</div>
+<div class="col-span-1 flex flex-col items-start md:items-end">
+<p class="text-surface-variant/70 font-body-md text-body-md text-left md:text-right">
+                    © 2024 Atomic Pathshala. Secure Academic Environment.
+                </p>
+<div class="flex gap-4 mt-stack-md">
+<span class="material-symbols-outlined text-secondary-fixed cursor-pointer">face_nod</span>
+<span class="material-symbols-outlined text-secondary-fixed cursor-pointer">share</span>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Confetti micro-interaction
+        function createConfetti() {
+            const container = document.getElementById('confetti-container');
+            const colors = ['#0066ff', '#4cd6ff', '#00ccf9', '#49df9f'];
+            
+            for (let i = 0; i < 40; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti rounded-full';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = '50%';
+                confetti.style.top = '50%';
+                
+                const destinationX = (Math.random() - 0.5) * 300;
+                const destinationY = (Math.random() - 0.5) * 300;
+                const rotation = Math.random() * 360;
+                const delay = Math.random() * 0.2;
+                
+                container.appendChild(confetti);
+                
+                confetti.animate([
+                    { transform: 'translate(0, 0) scale(0)', opacity: 0 },
+                    { transform: `translate(${destinationX}px, ${destinationY}px) rotate(${rotation}deg) scale(1)`, opacity: 1, offset: 0.2 },
+                    { transform: `translate(${destinationX * 1.2}px, ${destinationY * 1.2 + 100}px) rotate(${rotation * 2}deg) scale(0)`, opacity: 0 }
+                ], {
+                    duration: 1500 + Math.random() * 1000,
+                    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                    delay: (0.5 + delay) * 1000,
+                    fill: 'forwards'
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            createConfetti();
+        });
+    </script>
+
+  <!-- Ecosystem Switched Widget Overlay -->
+  <script src="../ecosystem-hud.js"></script>
+</body></html>

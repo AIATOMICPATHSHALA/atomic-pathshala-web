@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EduPulse | Create Poll</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dark": "#161B22",
+                    "secondary-container": "#00ccf9",
+                    "tertiary-fixed-dim": "#49df9f",
+                    "surface-container-highest": "#dae2fd",
+                    "surface": "#faf8ff",
+                    "primary-container": "#0066ff",
+                    "outline-variant": "#c2c6d8",
+                    "surface-dim": "#d2d9f4",
+                    "secondary": "#00677f",
+                    "surface-tint": "#0054d6",
+                    "surface-container-high": "#e2e7ff",
+                    "inverse-on-surface": "#eef0ff",
+                    "on-secondary-container": "#005266",
+                    "bg-dark": "#0B0E14",
+                    "error": "#ba1a1a",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "on-background": "#131b2e",
+                    "outline": "#727687",
+                    "on-primary-container": "#f8f7ff",
+                    "bg-light": "#FFFFFF",
+                    "surface-bright": "#faf8ff",
+                    "on-secondary-fixed": "#001f28",
+                    "on-secondary": "#ffffff",
+                    "text-light": "#0F172A",
+                    "secondary-fixed": "#b7eaff",
+                    "primary": "#0050cb",
+                    "on-tertiary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#003fa4",
+                    "tertiary-fixed": "#6afcb9",
+                    "on-surface-variant": "#424656",
+                    "primary-fixed": "#dae1ff",
+                    "on-secondary-fixed-variant": "#004e60",
+                    "tertiary": "#006643",
+                    "surface-light": "#F8FAFC",
+                    "text-dark": "#F1F5F9",
+                    "on-tertiary-fixed": "#002113",
+                    "inverse-surface": "#283044",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed-dim": "#4cd6ff",
+                    "on-primary-fixed": "#001849",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#131b2e",
+                    "on-error": "#ffffff",
+                    "surface-variant": "#dae2fd",
+                    "tertiary-container": "#008256",
+                    "on-tertiary-container": "#e1ffeb",
+                    "surface-container": "#eaedff",
+                    "background": "#faf8ff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed-variant": "#005235",
+                    "surface-container-low": "#f2f3ff",
+                    "border-subtle": "rgba(0, 102, 255, 0.1)",
+                    "inverse-primary": "#b3c5ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "8px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "stack-md": "16px",
+                    "stack-lg": "32px",
+                    "margin-mobile": "20px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "display-lg-mobile": ["Geist"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Geist"],
+                    "headline-md": ["Geist"],
+                    "display-lg": ["Geist"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .chat-bg-blur {
+            filter: blur(8px);
+            pointer-events: none;
+            user-select: none;
+        }
+        input:focus {
+            outline: none;
+            border-color: #0066ff !important;
+            box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface selection:bg-primary/20">
+<!-- BACKGROUND: Simulated Chat Interface (Blurred) -->
+<div class="fixed inset-0 chat-bg-blur flex h-screen w-full bg-white">
+<!-- Sidebar -->
+<aside class="w-72 bg-surface-container-low border-r border-outline-variant/20 flex flex-col p-4">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white font-bold">EP</div>
+<div>
+<h1 class="font-headline-md text-primary text-label-md">EduPulse Academy</h1>
+<p class="text-xs text-on-surface-variant">Premium Learning</p>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex items-center gap-3 bg-primary-container text-on-primary-container rounded-lg px-4 py-3">
+<span class="material-symbols-outlined">forum</span>
+<span class="font-label-md">Community</span>
+</div>
+<div class="flex items-center gap-3 text-on-surface-variant px-4 py-3">
+<span class="material-symbols-outlined">school</span>
+<span class="font-label-md">Courses</span>
+</div>
+</div>
+</aside>
+<!-- Main Chat Area -->
+<main class="flex-1 flex flex-col bg-white">
+<header class="h-16 border-b border-outline-variant/30 flex items-center px-6 justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of a young medical student smiling in a modern study environment, high resolution corporate photography with bright and clean lighting, symbolizing academic excellence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA46wJir79_bUvMO_REPofsiZL-uhxo8FmlaJlV8p2FS-DYnC5_YOXhx_UHfoGkbfNYtg49LZTiPjPjqlAqDwHPvxeVTkbrG8IqclKcxfaLsriML_GFKeKnxEbYu1bbNVVqOXmX3tojrU2esI-nt6woweqnHwBMxubbXPvbSPamBFBPQdmac5HufPWm5zUj4dlh_JK-pLxd4zGRJyivhHRy1GIQf8TxYnEs3w3m3i2E5rp1IOyNdfF1Xu56krtNKAkN0yRN2koa6GU"/>
+</div>
+<div>
+<h2 class="font-headline-md text-label-md">NEET Group Session</h2>
+<span class="text-xs text-secondary">Active: 124 students</span>
+</div>
+</div>
+</header>
+<div class="flex-1 p-6 space-y-6 overflow-y-auto">
+<div class="flex gap-4">
+<div class="w-8 h-8 rounded-full bg-surface-variant"></div>
+<div class="bg-surface-container rounded-2xl rounded-tl-none p-4 max-w-md">
+<p class="text-body-md">Has anyone solved the thermodynamics section from today's mock test?</p>
+</div>
+</div>
+<div class="flex flex-row-reverse gap-4">
+<div class="w-8 h-8 rounded-full bg-primary-container"></div>
+<div class="bg-primary-container text-on-primary-container rounded-2xl rounded-tr-none p-4 max-w-md">
+<p class="text-body-md">Working on it now. Question 14 is tricky!</p>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-outline-variant/30">
+<div class="h-12 bg-surface-container rounded-full px-6 flex items-center">
+<span class="text-on-surface-variant">Type a message...</span>
+</div>
+</div>
+</main>
+</div>
+<!-- MODAL OVERLAY -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-gutter bg-black/5 animate-in fade-in duration-300">
+<!-- MODAL CONTAINER -->
+<div class="w-full max-w-[520px] glass-panel rounded-3xl shadow-2xl overflow-hidden flex flex-col ring-1 ring-white/50 animate-in zoom-in-95 slide-in-from-bottom-4 duration-500">
+<!-- HEADER -->
+<div class="px-8 py-6 flex items-center justify-between border-b border-white/20">
+<div>
+<h2 class="font-headline-md text-primary text-[20px] tracking-tight">Create a Poll</h2>
+<p class="text-label-sm text-on-surface-variant font-medium mt-0.5">Engage your study group with questions</p>
+</div>
+<button aria-label="Close modal" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-black/5 transition-colors cursor-pointer active:scale-90">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- MODAL CONTENT -->
+<div class="p-8 space-y-stack-lg overflow-y-auto max-h-[716px]">
+<!-- POLL QUESTION -->
+<div class="space-y-stack-sm">
+<label class="font-label-md text-on-surface-variant flex items-center gap-2" for="poll-question">
+                        Poll Question
+                        <span class="w-1 h-1 rounded-full bg-primary"></span>
+</label>
+<div class="relative group">
+<textarea class="w-full bg-white/50 border border-outline-variant/40 rounded-xl px-4 py-3 font-body-md placeholder:text-outline focus:ring-0 focus:border-primary transition-all resize-none" id="poll-question" placeholder="e.g., What should we study in today's group session?" rows="2"></textarea>
+<div class="absolute bottom-3 right-3 text-[10px] font-medium text-outline">0/256</div>
+</div>
+</div>
+<!-- OPTIONS -->
+<div class="space-y-stack-sm">
+<div class="flex justify-between items-center mb-1">
+<label class="font-label-md text-on-surface-variant">Poll Options</label>
+<span class="text-xs font-semibold text-primary">Min. 2 options</span>
+</div>
+<div class="space-y-3" id="poll-options-container">
+<div class="flex gap-3 group">
+<div class="flex-1 relative">
+<input class="w-full h-12 bg-white/50 border border-outline-variant/40 rounded-xl px-4 font-body-md focus:ring-0" type="text" value="Organic Chemistry"/>
+<span class="absolute right-4 top-1/2 -translate-y-1/2 text-outline/50 material-symbols-outlined text-sm">drag_indicator</span>
+</div>
+<button class="w-12 h-12 flex items-center justify-center rounded-xl text-error/40 hover:text-error hover:bg-error-container/20 transition-all opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined">delete_outline</span>
+</button>
+</div>
+<div class="flex gap-3 group">
+<div class="flex-1 relative">
+<input class="w-full h-12 bg-white/50 border border-outline-variant/40 rounded-xl px-4 font-body-md focus:ring-0" type="text" value="Physics Mock Test"/>
+<span class="absolute right-4 top-1/2 -translate-y-1/2 text-outline/50 material-symbols-outlined text-sm">drag_indicator</span>
+</div>
+<button class="w-12 h-12 flex items-center justify-center rounded-xl text-error/40 hover:text-error hover:bg-error-container/20 transition-all opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined">delete_outline</span>
+</button>
+</div>
+<div class="flex gap-3 group">
+<div class="flex-1 relative">
+<input class="w-full h-12 bg-white/50 border border-outline-variant/40 rounded-xl px-4 font-body-md focus:ring-0" placeholder="Add another option..." type="text"/>
+</div>
+<div class="w-12 h-12"></div> <!-- Spacer -->
+</div>
+</div>
+<button class="mt-2 flex items-center gap-2 text-primary font-label-md hover:translate-x-1 transition-transform cursor-pointer" id="add-option">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+                        Add more options
+                    </button>
+</div>
+<!-- SETTINGS -->
+<div class="pt-2 space-y-4">
+<h3 class="font-label-md text-on-surface-variant uppercase tracking-widest text-[10px]">Poll Settings</h3>
+<div class="flex items-center justify-between group cursor-pointer" onclick="toggleSwitch('multiple-answers')">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">checklist</span>
+</div>
+<div>
+<p class="font-label-md">Allow multiple answers</p>
+<p class="text-xs text-on-surface-variant">Voters can pick more than one choice</p>
+</div>
+</div>
+<div class="w-10 h-5 bg-outline-variant/30 rounded-full relative transition-colors duration-200" id="multiple-answers">
+<div class="w-4 h-4 bg-white rounded-full absolute left-0.5 top-0.5 shadow-sm transition-transform duration-200"></div>
+</div>
+</div>
+<div class="flex items-center justify-between group cursor-pointer" onclick="toggleSwitch('anonymous-voting')">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">visibility_off</span>
+</div>
+<div>
+<p class="font-label-md">Anonymous voting</p>
+<p class="text-xs text-on-surface-variant">Keep individual responses private</p>
+</div>
+</div>
+<div class="w-10 h-5 bg-primary rounded-full relative transition-colors duration-200" id="anonymous-voting">
+<div class="w-4 h-4 bg-white rounded-full absolute left-5 top-0.5 shadow-sm transition-transform duration-200"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- FOOTER ACTIONS -->
+<div class="p-8 pt-4 flex items-center gap-4 border-t border-white/20 bg-white/30">
+<button class="flex-1 h-14 rounded-2xl font-label-md text-on-surface-variant hover:bg-black/5 transition-all active:scale-95">
+                    Cancel
+                </button>
+<button class="flex-[1.5] h-14 bg-primary-container text-white rounded-2xl font-label-md shadow-lg shadow-primary/20 hover:shadow-primary/30 hover:brightness-110 transition-all active:scale-95 flex items-center justify-center gap-2">
+                    Create Poll
+                    <span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+        function toggleSwitch(id) {
+            const toggle = document.getElementById(id);
+            const knob = toggle.querySelector('div');
+            const isActive = toggle.classList.contains('bg-primary');
+            
+            if (isActive) {
+                toggle.classList.remove('bg-primary');
+                toggle.classList.add('bg-outline-variant/30');
+                knob.classList.remove('left-5');
+                knob.classList.add('left-0.5');
+            } else {
+                toggle.classList.remove('bg-outline-variant/30');
+                toggle.classList.add('bg-primary');
+                knob.classList.remove('left-0.5');
+                knob.classList.add('left-5');
+            }
+        }
+
+        // Add Option Logic
+        const container = document.getElementById('poll-options-container');
+        const addButton = document.getElementById('add-option');
+
+        addButton.addEventListener('click', () => {
+            const newOption = document.createElement('div');
+            newOption.className = 'flex gap-3 group animate-in slide-in-from-top-2 duration-300';
+            newOption.innerHTML = `
+                <div class="flex-1 relative">
+                    <input type="text" placeholder="Add another option..." class="w-full h-12 bg-white/50 border border-outline-variant/40 rounded-xl px-4 font-body-md focus:ring-0">
+                    <span class="absolute right-4 top-1/2 -translate-y-1/2 text-outline/50 material-symbols-outlined text-sm">drag_indicator</span>
+                </div>
+                <button onclick="this.parentElement.remove()" class="w-12 h-12 flex items-center justify-center rounded-xl text-error/40 hover:text-error hover:bg-error-container/20 transition-all opacity-0 group-hover:opacity-100">
+                    <span class="material-symbols-outlined">delete_outline</span>
+                </button>
+            `;
+            container.appendChild(newOption);
+            newOption.querySelector('input').focus();
+        });
+    </script>
+</body></html>

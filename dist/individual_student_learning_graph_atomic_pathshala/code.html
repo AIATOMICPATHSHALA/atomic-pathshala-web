@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student Learning Graph | Atomic Pathshala</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#008256",
+                    "on-tertiary-fixed-variant": "#005235",
+                    "background": "#faf8ff",
+                    "surface-container-low": "#f2f3ff",
+                    "surface-dark": "#161B22",
+                    "surface-variant": "#dae2fd",
+                    "surface": "#faf8ff",
+                    "secondary-container": "#00ccf9",
+                    "on-background": "#131b2e",
+                    "on-secondary-fixed-variant": "#004e60",
+                    "secondary-fixed": "#b7eaff",
+                    "inverse-primary": "#b3c5ff",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#0054d6",
+                    "bg-dark": "#0B0E14",
+                    "bg-light": "#FFFFFF",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed": "#6afcb9",
+                    "surface-container": "#eaedff",
+                    "on-primary-container": "#f8f7ff",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#002113",
+                    "secondary-fixed-dim": "#4cd6ff",
+                    "text-dark": "#F1F5F9",
+                    "on-primary-fixed-variant": "#003fa4",
+                    "primary": "#0050cb",
+                    "on-surface-variant": "#424656",
+                    "border-subtle": "rgba(0, 102, 255, 0.1)",
+                    "on-primary-fixed": "#001849",
+                    "on-tertiary-container": "#e1ffeb",
+                    "outline-variant": "#c2c6d8",
+                    "tertiary": "#006643",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#d2d9f4",
+                    "tertiary-fixed-dim": "#49df9f",
+                    "on-secondary": "#ffffff",
+                    "secondary": "#00677f",
+                    "on-error": "#ffffff",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "text-light": "#0F172A",
+                    "on-error-container": "#93000a",
+                    "primary-fixed": "#dae1ff",
+                    "primary-container": "#0066ff",
+                    "surface-container-highest": "#dae2fd",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-light": "#F8FAFC",
+                    "surface-container-high": "#e2e7ff",
+                    "surface-bright": "#faf8ff",
+                    "on-secondary-fixed": "#001f28",
+                    "inverse-on-surface": "#eef0ff",
+                    "on-surface": "#131b2e",
+                    "on-secondary-container": "#005266",
+                    "inverse-surface": "#283044",
+                    "outline": "#727687"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "margin-mobile": "20px",
+                    "margin-desktop": "64px",
+                    "stack-sm": "8px",
+                    "stack-lg": "32px",
+                    "container-max": "1280px",
+                    "stack-md": "16px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Geist"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Geist"],
+                    "headline-lg": ["Geist"],
+                    "display-lg-mobile": ["Geist"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "label-md": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+            box-shadow: 0 4px 6px -1px rgba(0, 102, 255, 0.05), 0 2px 4px -1px rgba(0, 102, 255, 0.03);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .radar-mesh {
+            background-image: radial-gradient(circle at center, transparent 30%, rgba(0, 80, 203, 0.05) 100%), 
+                              repeating-conic-gradient(from 0deg, transparent 0 60deg, rgba(0, 80, 203, 0.1) 60deg 61deg);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<nav class="bg-surface/80 backdrop-blur-xl border-b border-border-subtle sticky top-0 z-50 h-20 shadow-sm">
+<div class="flex justify-between items-center px-margin-desktop w-full max-w-container-max mx-auto h-full">
+<div class="font-display-lg text-display-lg font-bold text-primary">Atomic Pathshala</div>
+<div class="hidden md:flex items-center gap-stack-lg">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Dashboard</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Courses</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Tests</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Community</a>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="p-2 rounded-full hover:bg-surface-variant/30 text-on-surface-variant transition-all">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-variant/30 text-on-surface-variant transition-all">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a young Indian male student with a bright smile, wearing a clean white polo shirt, against a soft studio-lit background with subtle blue gradients. The lighting is crisp and modern, reflecting a premium EdTech brand aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUujIE6jKmVKh2l2_-kV-6t50kQhULqVo2ui_zvqUlrmXeUdrlIqvYTAotgk6tuIkpFFzQGSdPRio5VMLFCVWu7PmUMPn2I_befAsdZyCuQp6VUW7gZMKbW_7ZoyLYeH6Z3P2hFLewRUKRc95Oa23GSA5pAO3ilp-_lFXnDWtg8EpCT0aNRdiM7N5x3CmsDvAba6Pvkvw_n8M2Bo_vlRoFA53a0P8E1OrYVuxpQ_pOm-CO1rjv4TFbsntPF-cEADKSd95wJ3zTQ30"/>
+</div>
+</div>
+</div>
+</nav>
+<div class="flex min-h-screen">
+<!-- Sidebar Navigation -->
+<aside class="hidden lg:flex flex-col py-stack-lg bg-surface-container-lowest/50 backdrop-blur-lg border-r border-border-subtle h-[calc(100vh-80px)] w-64 sticky top-20">
+<div class="px-6 mb-stack-lg">
+<h3 class="font-headline-md text-headline-md font-bold text-primary">Aman Sharma</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">JEE Aspirant 2025</p>
+</div>
+<nav class="flex-grow space-y-1">
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-variant/30 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Overview</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 bg-primary-container/20 text-primary border-r-4 border-primary font-bold" href="#">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+<span class="font-label-md text-label-md">Subject Mastery</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-variant/30 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="timeline">timeline</span>
+<span class="font-label-md text-label-md">Timeline</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-variant/30 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="font-label-md text-label-md">AI Persona</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-variant/30 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="library_books">library_books</span>
+<span class="font-label-md text-label-md">Resources</span>
+</a>
+</nav>
+<div class="px-6 pt-stack-lg">
+<button class="w-full py-3 bg-primary text-on-primary rounded-xl font-label-md shadow-md hover:opacity-90 active:scale-95 transition-all">
+                    Upgrade to Pro
+                </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-grow p-gutter max-w-container-max mx-auto space-y-stack-lg">
+<!-- Student Profile Header Section -->
+<section class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="md:col-span-3 glass-card p-stack-lg rounded-2xl flex flex-col md:flex-row items-center gap-6">
+<div class="w-24 h-24 rounded-full overflow-hidden ring-4 ring-primary/10">
+<img class="w-full h-full object-cover" data-alt="Close up portrait of Aman Sharma, a focused student looking ahead, set against a blurred academic environment with soft blue tones and geometric bokeh patterns. High-end professional photography style, high-key lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvhGrmZ27pm6YW44FHw-SSvNKHW9WHtzJmvf6CGIRq1qWJJMwPWVlDPPz9reCOtSWpeE4qaVa3iO9pScJHAFkBe818gwQ5c7naAVLxlRtYw2KTJWi4hSHyTI_y-v_ED13hwE_JSQnikveKa8OWnjgjqPgn6nES7PXd-T3bSGL0yVZxsWutN6S3m3ypDu-9k3Ffkcj909t-wjy2-QL5AJjdVzqSmpifoCaF-H9ycxJ9eBNsiT-vdvTTqZEXYpuvYBz6p9zSFn9aW_o"/>
+</div>
+<div class="text-center md:text-left flex-grow">
+<div class="flex flex-col md:flex-row md:items-center gap-2 mb-2">
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Aman Sharma</h1>
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-label-sm font-bold uppercase tracking-wider">JEE 2025</span>
+</div>
+<p class="text-on-surface-variant max-w-md">Focused on mastering advanced calculus and electromagnetic theory for the upcoming mock series.</p>
+</div>
+<div class="flex gap-4">
+<div class="text-center p-4 rounded-xl bg-surface-container-high w-28">
+<span class="block text-primary font-bold text-headline-md">#42</span>
+<span class="text-label-sm text-outline">Current Rank</span>
+</div>
+<div class="text-center p-4 rounded-xl bg-secondary-container/20 w-28">
+<span class="block text-secondary font-bold text-headline-md">98.4%</span>
+<span class="text-label-sm text-outline">Percentile</span>
+</div>
+</div>
+</div>
+<div class="glass-card p-stack-lg rounded-2xl bg-primary text-on-primary flex flex-col justify-center items-center text-center overflow-hidden relative">
+<div class="absolute -right-4 -top-4 opacity-20">
+<span class="material-symbols-outlined !text-7xl" data-icon="stars" style="font-variation-settings: 'FILL' 1;">stars</span>
+</div>
+<span class="text-label-sm uppercase tracking-widest font-bold mb-2">Daily Streak</span>
+<div class="text-display-lg font-bold">14</div>
+<span class="text-label-md">Days strong</span>
+</div>
+</section>
+<!-- Learning Graph & Bento Grid -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Subject Mastery Radar -->
+<div class="lg:col-span-5 glass-card p-stack-lg rounded-2xl flex flex-col min-h-[400px]">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="hub">hub</span>
+                        Subject Mastery
+                    </h2>
+<div class="flex-grow flex items-center justify-center relative radar-mesh rounded-xl overflow-hidden">
+<!-- Simulated Radar Chart Visualization -->
+<div class="relative w-64 h-64 border-2 border-primary/20 rounded-full flex items-center justify-center">
+<div class="absolute w-48 h-48 border border-primary/10 rounded-full"></div>
+<div class="absolute w-32 h-32 border border-primary/10 rounded-full"></div>
+<!-- Data Shape -->
+<svg class="absolute inset-0 w-full h-full drop-shadow-lg" viewbox="0 0 100 100">
+<polygon class="fill-primary/20 stroke-primary stroke-2" points="50,15 85,75 15,75"></polygon>
+<circle class="fill-primary" cx="50" cy="15" r="3"></circle>
+<circle class="fill-primary" cx="85" cy="75" r="3"></circle>
+<circle class="fill-primary" cx="15" cy="75" r="3"></circle>
+</svg>
+<!-- Labels -->
+<span class="absolute -top-6 font-label-md text-primary">Physics</span>
+<span class="absolute -bottom-6 -right-6 font-label-md text-primary">Maths</span>
+<span class="absolute -bottom-6 -left-6 font-label-md text-primary">Chemistry</span>
+</div>
+</div>
+</div>
+<!-- AI Persona Card -->
+<div class="lg:col-span-7 glass-card p-stack-lg rounded-2xl bg-surface-container-low relative overflow-hidden">
+<div class="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-primary/10 to-transparent rounded-bl-full"></div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="psychology">psychology</span>
+                        AI Learning Persona
+                    </h2>
+<div class="space-y-stack-md">
+<div class="p-4 bg-white/60 rounded-xl border border-white">
+<span class="text-primary font-bold text-headline-md block mb-1">Visual-Analytical Learner</span>
+<p class="text-on-surface-variant text-body-md leading-relaxed">
+                                Aman excels in identifying patterns in complex physics diagrams and breaking down multi-step calculus problems. His performance peaks when concepts are visualized through interactive models.
+                            </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex items-start gap-3 p-4 bg-tertiary-container/10 rounded-xl">
+<span class="material-symbols-outlined text-tertiary" data-icon="bolt">bolt</span>
+<div>
+<span class="font-bold text-tertiary block">Strengths</span>
+<span class="text-label-sm text-on-surface-variant">Abstract problem-solving, Logical deduction</span>
+</div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-error-container/20 rounded-xl">
+<span class="material-symbols-outlined text-error" data-icon="history">history</span>
+<div>
+<span class="font-bold text-error block">Growth Area</span>
+<span class="text-label-sm text-on-surface-variant">Revision frequency for Organic Chemistry</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Proficiency Breakdown -->
+<div class="lg:col-span-12 glass-card p-stack-lg rounded-2xl">
+<div class="flex justify-between items-center mb-stack-md">
+<h2 class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="analytics">analytics</span>
+                            Topic Proficiency
+                        </h2>
+<button class="text-primary font-label-md hover:underline">Full Report</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="space-y-stack-sm">
+<div class="flex justify-between text-label-md">
+<span>Rotational Mechanics</span>
+<span class="text-primary">92%</span>
+</div>
+<div class="h-3 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-1000" style="width: 92%"></div>
+</div>
+</div>
+<div class="space-y-stack-sm">
+<div class="flex justify-between text-label-md">
+<span>Chemical Bonding</span>
+<span class="text-primary">78%</span>
+</div>
+<div class="h-3 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-1000" style="width: 78%"></div>
+</div>
+</div>
+<div class="space-y-stack-sm">
+<div class="flex justify-between text-label-md">
+<span>Calculus (Differential)</span>
+<span class="text-primary">85%</span>
+</div>
+<div class="h-3 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-1000" style="width: 85%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Performance Timeline -->
+<div class="lg:col-span-12 glass-card p-stack-lg rounded-2xl">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="show_chart">show_chart</span>
+                        Performance Growth (6 Months)
+                    </h2>
+<div class="h-48 w-full bg-surface-variant/20 rounded-xl relative overflow-hidden p-6 flex items-end justify-between">
+<!-- Growth Sparkline Simulation -->
+<div class="absolute inset-0 flex items-end px-12 pb-12">
+<svg class="w-full h-24 overflow-visible" preserveaspectratio="none" viewbox="0 0 100 20">
+<defs>
+<lineargradient id="lineGrad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="var(--primary)" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="var(--primary)" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,20 L10,18 L25,12 L40,15 L55,8 L70,10 L85,4 L100,2" fill="none" stroke="#0050cb" stroke-width="1" vector-effect="non-scaling-stroke"></path>
+<path d="M0,20 L10,18 L25,12 L40,15 L55,8 L70,10 L85,4 L100,2 L100,20 Z" fill="url(#lineGrad)" vector-effect="non-scaling-stroke"></path>
+</svg>
+</div>
+<!-- Axis Labels -->
+<div class="w-full flex justify-between text-label-sm text-outline mt-auto">
+<span>January</span>
+<span>February</span>
+<span>March</span>
+<span>April</span>
+<span>May</span>
+<span>June</span>
+</div>
+<!-- Interactive Pointer -->
+<div class="absolute right-margin-desktop top-12 flex flex-col items-center">
+<div class="bg-primary text-on-primary px-2 py-1 rounded text-label-sm mb-1 shadow-lg">Current: 98.4%</div>
+<div class="w-2 h-2 rounded-full bg-primary ring-4 ring-primary/20"></div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-dark w-full py-stack-lg px-margin-desktop border-t border-outline-variant/10 mt-stack-lg">
+<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="col-span-1 md:col-span-2">
+<div class="font-headline-md text-headline-md text-on-primary mb-4">Atomic Pathshala</div>
+<p class="text-outline font-label-sm">© 2024 Atomic Pathshala. Accelerating Academic Excellence.</p>
+</div>
+<div class="flex flex-col gap-2">
+<h4 class="text-secondary-fixed font-label-md mb-2">Navigation</h4>
+<a class="text-outline hover:text-secondary-container transition-colors font-label-sm" href="#">Support</a>
+<a class="text-outline hover:text-secondary-container transition-colors font-label-sm" href="#">Privacy Policy</a>
+<a class="text-outline hover:text-secondary-container transition-colors font-label-sm" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="text-secondary-fixed font-label-md">Join our Newsletter</h4>
+<div class="flex gap-2">
+<input class="bg-surface-dark border border-outline rounded-lg px-4 py-2 text-label-sm text-on-primary w-full focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="Email address" type="email"/>
+<button class="bg-primary-container text-on-primary-container px-4 py-2 rounded-lg font-label-sm">Join</button>
+</div>
+</div>
+</div>
+</footer>
+<!-- Simple Interactivity -->
+<script>
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+                card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body></html>

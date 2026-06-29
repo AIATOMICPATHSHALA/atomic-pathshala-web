@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Educator Onboarding - Academic Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "bg-dark": "#0B0E14",
+                      "surface-bright": "#faf8ff",
+                      "primary-fixed-dim": "#b3c5ff",
+                      "primary": "#0050cb",
+                      "surface": "#faf8ff",
+                      "tertiary-fixed": "#6afcb9",
+                      "on-background": "#131b2e",
+                      "bg-light": "#FFFFFF",
+                      "secondary-fixed-dim": "#4cd6ff",
+                      "background": "#faf8ff",
+                      "secondary": "#00677f",
+                      "inverse-surface": "#283044",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-fixed-variant": "#004e60",
+                      "surface-dim": "#d2d9f4",
+                      "border-subtle": "rgba(0, 102, 255, 0.1)",
+                      "error": "#ba1a1a",
+                      "outline": "#727687",
+                      "surface-container-highest": "#dae2fd",
+                      "text-light": "#0F172A",
+                      "on-primary-fixed-variant": "#003fa4",
+                      "tertiary-container": "#008256",
+                      "on-secondary-fixed": "#001f28",
+                      "surface-dark": "#161B22",
+                      "on-surface-variant": "#424656",
+                      "text-dark": "#F1F5F9",
+                      "on-surface": "#131b2e",
+                      "surface-tint": "#0054d6",
+                      "surface-container-low": "#f2f3ff",
+                      "surface-light": "#F8FAFC",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-variant": "#dae2fd",
+                      "on-primary-fixed": "#001849",
+                      "on-error": "#ffffff",
+                      "surface-container-high": "#e2e7ff",
+                      "on-primary": "#ffffff",
+                      "on-secondary-container": "#005266",
+                      "on-primary-container": "#f8f7ff",
+                      "inverse-primary": "#b3c5ff",
+                      "on-tertiary-fixed-variant": "#005235",
+                      "surface-container": "#eaedff",
+                      "inverse-on-surface": "#eef0ff",
+                      "on-tertiary": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "secondary-container": "#00ccf9",
+                      "secondary-fixed": "#b7eaff",
+                      "outline-variant": "#c2c6d8",
+                      "on-error-container": "#93000a",
+                      "tertiary-fixed-dim": "#49df9f",
+                      "primary-fixed": "#dae1ff",
+                      "on-tertiary-fixed": "#002113",
+                      "on-tertiary-container": "#e1ffeb",
+                      "tertiary": "#006643",
+                      "primary-container": "#0066ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-sm": "8px",
+                      "stack-lg": "32px",
+                      "gutter": "24px",
+                      "container-max": "1280px",
+                      "margin-desktop": "64px",
+                      "margin-mobile": "20px",
+                      "stack-md": "16px"
+              },
+              "fontFamily": {
+                      "body-md": ["Inter"],
+                      "headline-md": ["Geist"],
+                      "headline-lg": ["Geist"],
+                      "label-sm": ["Inter"],
+                      "display-lg-mobile": ["Geist"],
+                      "display-lg": ["Geist"],
+                      "label-md": ["Inter"],
+                      "body-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+        }
+        .step-active {
+            color: var(--primary);
+            background-color: #0066ff;
+            color: white;
+        }
+        .step-line-active {
+            background-color: #0066ff;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col items-center">
+<!-- Top Navigation Placeholder (EduPulse AI as per JSON context but customized for Onboarding) -->
+<nav class="fixed top-0 w-full z-40 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm flex justify-center items-center h-16 px-6 lg:px-margin-desktop">
+<div class="max-w-[1280px] w-full flex justify-between items-center">
+<img alt="Atomic Pathshala Logo" class="h-8 md:h-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBY_yOgwZgHWH3KVGgLmK14p6bxieK6FTZRVnRPYI8S2TbXvR0SDvspJB_QQaOlQSc_M6-z6g2ao2d-VcsFA5fpZh4wL9U7ZMOsnX0ndFhsMC01U92O1ZntyXcdMAxGGVrwRhkSFChLIX4MKNdml_i6_riOaJ3_IYZYjZl-skNmLrLcSbKDi4QlkZXJWtPXLWLFUiA4ls74UWHmUtpgoPySOzBJn1qlqFYgDUGdYbETZCjCkC_fib19_BKSR01NNm5fHQMzt9ZNInc"/>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors cursor-pointer">help</button>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="mt-24 mb-16 w-full max-w-[1280px] px-margin-mobile lg:px-margin-desktop flex flex-col items-center">
+<!-- Progress Bar Section -->
+<div class="w-full max-w-3xl mb-stack-lg animate-fade-in" style="animation-delay: 0.1s;">
+<div class="flex items-center justify-between relative px-4">
+<!-- Line background -->
+<div class="absolute top-1/2 left-0 w-full h-[2px] bg-surface-container-highest -z-10 -translate-y-1/2"></div>
+<!-- Active progress line -->
+<div class="absolute top-1/2 left-0 w-2/3 h-[2px] bg-primary -z-10 -translate-y-1/2 transition-all duration-700"></div>
+<!-- Step 1 -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-primary text-white font-bold shadow-md">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<span class="font-label-md text-label-md text-primary">OTP Verification</span>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-primary text-white font-bold shadow-md">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<span class="font-label-md text-label-md text-primary">Identity Details</span>
+</div>
+<!-- Step 3 (Active) -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-primary text-white ring-4 ring-primary/20 font-bold shadow-md">
+                        3
+                    </div>
+<span class="font-label-md text-label-md text-primary">Academic Profile</span>
+</div>
+</div>
+</div>
+<!-- Onboarding Card -->
+<div class="w-full max-w-3xl glass-card rounded-xl p-8 lg:p-12 shadow-sm animate-fade-in" style="animation-delay: 0.2s;">
+<header class="mb-stack-lg text-center lg:text-left">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Academic Specialization</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Tell us about your expertise and teaching experience to help us match you with the right batches.</p>
+</header>
+<form class="space-y-stack-lg" onsubmit="event.preventDefault();">
+<!-- Subject Selection Grid -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-stack-md">Select Your Core Subject</label>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<!-- Physics -->
+<div class="group relative cursor-pointer border border-outline-variant/50 rounded-xl p-4 flex flex-col items-center gap-3 bg-white transition-all hover:border-primary hover:shadow-md" onclick="selectSubject(this)">
+<div class="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<span class="font-label-md text-label-md">Physics</span>
+<div class="absolute top-2 right-2 opacity-0 group-[.selected]:opacity-100">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+</div>
+</div>
+<!-- Chemistry -->
+<div class="group relative cursor-pointer border border-outline-variant/50 rounded-xl p-4 flex flex-col items-center gap-3 bg-white transition-all hover:border-primary hover:shadow-md" onclick="selectSubject(this)">
+<div class="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">experiment</span>
+</div>
+<span class="font-label-md text-label-md">Chemistry</span>
+<div class="absolute top-2 right-2 opacity-0 group-[.selected]:opacity-100">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+</div>
+</div>
+<!-- Biology -->
+<div class="group relative cursor-pointer border border-outline-variant/50 rounded-xl p-4 flex flex-col items-center gap-3 bg-white transition-all hover:border-primary hover:shadow-md" onclick="selectSubject(this)">
+<div class="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">microbiology</span>
+</div>
+<span class="font-label-md text-label-md">Biology</span>
+<div class="absolute top-2 right-2 opacity-0 group-[.selected]:opacity-100">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+</div>
+</div>
+<!-- Mathematics -->
+<div class="group relative cursor-pointer border border-outline-variant/50 rounded-xl p-4 flex flex-col items-center gap-3 bg-white transition-all hover:border-primary hover:shadow-md" onclick="selectSubject(this)">
+<div class="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">calculate</span>
+</div>
+<span class="font-label-md text-label-md">Mathematics</span>
+<div class="absolute top-2 right-2 opacity-0 group-[.selected]:opacity-100">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Experience Level Selector -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-stack-md">Teaching Experience</label>
+<div class="flex flex-wrap gap-3">
+<button class="px-6 py-2 rounded-full border border-outline-variant/50 font-label-md text-label-md hover:border-primary transition-all bg-white hover:text-primary" onclick="selectExp(this)" type="button">0-2 Years</button>
+<button class="px-6 py-2 rounded-full border border-outline-variant/50 font-label-md text-label-md hover:border-primary transition-all bg-white hover:text-primary" onclick="selectExp(this)" type="button">3-5 Years</button>
+<button class="px-6 py-2 rounded-full border border-outline-variant/50 font-label-md text-label-md hover:border-primary transition-all bg-white hover:text-primary active-pill ring-2 ring-primary bg-primary/5 text-primary border-primary" onclick="selectExp(this)" type="button">5-10 Years</button>
+<button class="px-6 py-2 rounded-full border border-outline-variant/50 font-label-md text-label-md hover:border-primary transition-all bg-white hover:text-primary" onclick="selectExp(this)" type="button">10+ Years</button>
+</div>
+</div>
+<!-- Brief Bio Section -->
+<div>
+<div class="flex justify-between items-center mb-stack-md">
+<label class="block font-label-md text-label-md text-on-surface">Professional Bio</label>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Recommended: 150-300 words</span>
+</div>
+<textarea class="w-full rounded-lg border border-outline-variant/50 p-4 font-body-md text-body-md focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all resize-none" placeholder="Briefly describe your teaching philosophy, major achievements, and student success stories in NEET/JEE prep..." rows="5"></textarea>
+</div>
+<!-- CTA Actions -->
+<div class="pt-stack-lg border-t border-outline-variant/30 flex flex-col-reverse sm:flex-row items-center justify-between gap-4">
+<button class="w-full sm:w-auto px-8 py-3 rounded-lg border border-outline-variant font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-all active:scale-95" type="button">
+                        Back to Identity
+                    </button>
+<button class="w-full sm:w-auto px-12 py-3 rounded-lg bg-primary text-white font-label-md text-label-md shadow-lg shadow-primary/20 hover:brightness-110 active:scale-95 transition-all" type="submit">
+                        Save &amp; Continue
+                    </button>
+</div>
+</form>
+</div>
+<!-- Help Tooltip/Note -->
+<div class="mt-stack-lg max-w-lg text-center">
+<p class="text-label-sm font-label-sm text-on-surface-variant flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">info</span>
+                Your profile details will be verified by our academic board within 24-48 hours of submission.
+            </p>
+</div>
+</main>
+<!-- Footer Simulation -->
+<footer class="mt-auto w-full bg-surface-container-lowest border-t border-outline-variant/20 py-8">
+<div class="max-w-[1280px] mx-auto px-margin-mobile flex flex-col md:flex-row justify-between items-center gap-4 text-on-surface-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">verified_user</span>
+<span class="font-label-md text-label-md">Trusted by 5,000+ Premium Educators</span>
+</div>
+<div class="flex gap-6 font-label-md text-label-md">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Instructor Terms</a>
+<a class="hover:text-primary transition-colors" href="#">Support</a>
+</div>
+<p class="font-label-sm text-label-sm">© 2024 EduPulse AI (Atomic Pathshala)</p>
+</div>
+</footer>
+<script>
+        // Simple UI interaction logic
+        function selectSubject(element) {
+            // Remove selection from others
+            const allSubjects = document.querySelectorAll('.group.relative');
+            allSubjects.forEach(s => s.classList.remove('selected', 'ring-2', 'ring-primary', 'border-primary'));
+            
+            // Add selection to current
+            element.classList.add('selected', 'ring-2', 'ring-primary', 'border-primary');
+        }
+
+        function selectExp(element) {
+            // Remove selection from siblings
+            const parent = element.parentElement;
+            const buttons = parent.querySelectorAll('button');
+            buttons.forEach(btn => {
+                btn.classList.remove('ring-2', 'ring-primary', 'bg-primary/5', 'text-primary', 'border-primary');
+                btn.classList.add('border-outline-variant/50', 'bg-white', 'text-on-surface-variant');
+            });
+
+            // Add selection to clicked
+            element.classList.add('ring-2', 'ring-primary', 'bg-primary/5', 'text-primary', 'border-primary');
+            element.classList.remove('border-outline-variant/50', 'bg-white', 'text-on-surface-variant');
+        }
+
+        // Initialize first subject as selected for visual guidance
+        window.addEventListener('DOMContentLoaded', () => {
+            const firstSubject = document.querySelector('.grid > div');
+            if (firstSubject) selectSubject(firstSubject);
+        });
+    </script>
+
+  <!-- Ecosystem Switched Widget Overlay -->
+  <script src="../ecosystem-hud.js"></script>
+</body></html>

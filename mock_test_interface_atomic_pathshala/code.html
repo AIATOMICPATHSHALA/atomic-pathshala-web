@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mock Test | Atomic Pathshala</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist:wght@400;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        @keyframes pulse-soft {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .timer-pulse {
+            animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#006643",
+                        "inverse-surface": "#283044",
+                        "tertiary-fixed-dim": "#49df9f",
+                        "outline-variant": "#c2c6d8",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#e1ffeb",
+                        "on-tertiary-fixed": "#002113",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#b3c5ff",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "on-surface": "#131b2e",
+                        "on-tertiary": "#ffffff",
+                        "bg-dark": "#0B0E14",
+                        "surface-container-low": "#f2f3ff",
+                        "on-tertiary-fixed-variant": "#005235",
+                        "on-primary-fixed": "#001849",
+                        "on-surface-variant": "#424656",
+                        "outline": "#727687",
+                        "secondary-fixed": "#b7eaff",
+                        "on-primary-fixed-variant": "#003fa4",
+                        "on-secondary-fixed-variant": "#004e60",
+                        "surface-dark": "#161B22",
+                        "bg-light": "#FFFFFF",
+                        "secondary-container": "#00ccf9",
+                        "on-background": "#131b2e",
+                        "secondary-fixed-dim": "#4cd6ff",
+                        "tertiary-container": "#008256",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#6afcb9",
+                        "primary-container": "#0066ff",
+                        "surface": "#faf8ff",
+                        "surface-bright": "#faf8ff",
+                        "surface-variant": "#dae2fd",
+                        "surface-tint": "#0054d6",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#e2e7ff",
+                        "background": "#faf8ff",
+                        "primary": "#0050cb",
+                        "surface-container-highest": "#dae2fd",
+                        "inverse-on-surface": "#eef0ff",
+                        "text-dark": "#F1F5F9",
+                        "primary-fixed": "#dae1ff",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#001f28",
+                        "surface-dim": "#d2d9f4",
+                        "secondary": "#00677f",
+                        "on-primary-container": "#f8f7ff",
+                        "on-secondary": "#ffffff",
+                        "surface-light": "#F8FAFC",
+                        "on-secondary-container": "#005266",
+                        "border-subtle": "rgba(0, 102, 255, 0.1)",
+                        "text-light": "#0F172A",
+                        "surface-container": "#eaedff"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Geist"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Geist"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation Bar (Shared Component Style) -->
+<header class="bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 fixed top-0 w-full z-50 h-16">
+<div class="flex justify-between items-center px-6 max-w-container-max mx-auto h-full">
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md font-bold text-primary">Atomic Pathshala</span>
+<div class="hidden md:flex items-center gap-6">
+<span class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md">NEET Biology Mastery Mock Test</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 bg-primary-container/20 text-primary px-4 py-1.5 rounded-full timer-pulse">
+<span class="material-symbols-outlined text-[20px]">schedule</span>
+<span class="font-headline-md text-[18px] font-bold" id="timer">02:59:45</span>
+</div>
+<div class="flex items-center gap-3 pl-4 border-l border-outline-variant/50">
+<img class="w-9 h-9 rounded-full bg-surface-container-high border border-primary/20" data-alt="A professional studio portrait of a young male medical student wearing a clean white lab coat, smiling confidently against a minimalist soft blue background. High-key lighting, modern corporate aesthetic, matching the Atomic Pathshala brand colors of crisp whites and subtle blues." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-qKAcLY_br58lWdMq8kUchxPm1dwRYDJDGRhKWjnKSW0TafQAZg2yHDxaUqPqyajI9jEFzOrjmfc9wN2FSz9tnZNc6lw0P22gxnmFeTPS6qzmPE695nHHWJ00JRcO00IpVM1zAPiFVCwNwZDeGCQIQ68R7PVQ_Hae59310KlDO-OyWv1OU_SBc1fvK55dy2rahleU91otS6vQyw62-Wiiu7M2P1OaI7V4G3sSMUrpjFQkrJG8UnBzlgZBIssa3AsoddQQZCWOsA8"/>
+<div class="hidden lg:block">
+<p class="text-label-md font-bold leading-none">Aryan Kumar</p>
+<p class="text-[11px] text-on-surface-variant">ID: AP-2025-089</p>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Layout -->
+<main class="flex-1 mt-16 flex overflow-hidden">
+<!-- Left: Question Area -->
+<section class="flex-1 flex flex-col p-6 overflow-y-auto custom-scrollbar">
+<div class="max-w-4xl mx-auto w-full flex flex-col gap-6">
+<!-- Subject Tabs & Progress -->
+<div class="flex items-center justify-between">
+<div class="flex gap-2">
+<button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-label-md">Biology</button>
+<button class="bg-surface-container hover:bg-surface-container-high text-on-surface-variant px-6 py-2 rounded-lg font-label-md transition-colors">Physics</button>
+<button class="bg-surface-container hover:bg-surface-container-high text-on-surface-variant px-6 py-2 rounded-lg font-label-md transition-colors">Chemistry</button>
+</div>
+<span class="text-label-md font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">Question 14 of 180</span>
+</div>
+<!-- Question Card -->
+<div class="glass-card rounded-2xl p-8 shadow-sm">
+<div class="flex items-start gap-4 mb-8">
+<span class="flex-shrink-0 w-10 h-10 bg-primary text-on-primary rounded-xl flex items-center justify-center font-bold">14</span>
+<div class="pt-1">
+<h2 class="font-headline-md text-headline-md leading-relaxed text-on-surface">
+                                Which of the following is a characteristic of Plant Kingdom classification according to the Whittaker's Five Kingdom System?
+                            </h2>
+</div>
+</div>
+<!-- Options Grid -->
+<div class="space-y-4">
+<label class="group block cursor-pointer">
+<input class="hidden peer" name="mock-option" type="radio"/>
+<div class="flex items-center gap-4 p-5 rounded-xl border border-outline-variant/40 bg-white/50 hover:bg-primary/5 hover:border-primary/30 transition-all peer-checked:bg-primary/10 peer-checked:border-primary peer-checked:ring-1 peer-checked:ring-primary">
+<span class="w-8 h-8 rounded-lg border border-outline flex items-center justify-center font-bold text-label-md group-hover:border-primary peer-checked:bg-primary peer-checked:text-white transition-colors">A</span>
+<span class="text-body-md text-on-surface-variant font-medium">Unicellular prokaryotic organisms with autotrophic nutrition.</span>
+</div>
+</label>
+<label class="group block cursor-pointer">
+<input class="hidden peer" name="mock-option" type="radio"/>
+<div class="flex items-center gap-4 p-5 rounded-xl border border-outline-variant/40 bg-white/50 hover:bg-primary/5 hover:border-primary/30 transition-all peer-checked:bg-primary/10 peer-checked:border-primary peer-checked:ring-1 peer-checked:ring-primary">
+<span class="w-8 h-8 rounded-lg border border-outline flex items-center justify-center font-bold text-label-md group-hover:border-primary peer-checked:bg-primary peer-checked:text-white transition-colors">B</span>
+<span class="text-body-md text-on-surface-variant font-medium">Multicellular eukaryotic organisms with cell walls made of cellulose.</span>
+</div>
+</label>
+<label class="group block cursor-pointer">
+<input class="hidden peer" name="mock-option" type="radio"/>
+<div class="flex items-center gap-4 p-5 rounded-xl border border-outline-variant/40 bg-white/50 hover:bg-primary/5 hover:border-primary/30 transition-all peer-checked:bg-primary/10 peer-checked:border-primary peer-checked:ring-1 peer-checked:ring-primary">
+<span class="w-8 h-8 rounded-lg border border-outline flex items-center justify-center font-bold text-label-md group-hover:border-primary peer-checked:bg-primary peer-checked:text-white transition-colors">C</span>
+<span class="text-body-md text-on-surface-variant font-medium">Heterotrophic organisms lacking a cell wall.</span>
+</div>
+</label>
+<label class="group block cursor-pointer">
+<input class="hidden peer" name="mock-option" type="radio"/>
+<div class="flex items-center gap-4 p-5 rounded-xl border border-outline-variant/40 bg-white/50 hover:bg-primary/5 hover:border-primary/30 transition-all peer-checked:bg-primary/10 peer-checked:border-primary peer-checked:ring-1 peer-checked:ring-primary">
+<span class="w-8 h-8 rounded-lg border border-outline flex items-center justify-center font-bold text-label-md group-hover:border-primary peer-checked:bg-primary peer-checked:text-white transition-colors">D</span>
+<span class="text-body-md text-on-surface-variant font-medium">Saprophytic organisms with chitinous cell walls.</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Footer Controls -->
+<div class="mt-4 flex flex-wrap items-center justify-between gap-4 py-6 border-t border-outline-variant/20">
+<div class="flex gap-3">
+<button class="px-6 py-2.5 rounded-lg border border-outline-variant text-on-surface-variant hover:bg-surface-container font-label-md transition-all">Mark for Review</button>
+<button class="px-6 py-2.5 rounded-lg border border-error/30 text-error hover:bg-error-container/10 font-label-md transition-all">Clear Response</button>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-md transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+                            Previous
+                        </button>
+<button class="px-8 py-2.5 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md shadow-lg shadow-primary/20 transition-all flex items-center gap-2">
+                            Save & Next
+                            <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Right: Navigation Panel -->
+<aside class="w-80 border-l border-outline-variant/30 bg-white flex flex-col">
+<!-- Student Mini Profile -->
+<div class="p-6 border-b border-outline-variant/20 bg-surface-light">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-primary/20 p-0.5">
+<img class="w-full h-full object-cover rounded-full" data-alt="A close up portrait of a focused student, Aryan Kumar, looking determined. The background is a blurred academic library setting with soft focus on bookshelves. Lighting is bright and natural, conveying a high-performance educational environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcxxvUcnNRHl0fcrv_x-VkGhfWHvRZQQETtTUcmkPN5u4ZRU5unnWinMjrpe0ZcUf8AHz8jFu6zPzsw743NQpFnmmTt22Kt_XGHnGPds-Txpnwmey6bp2N1tYxaR9T1XLpn-qYPkXeg-Y-oSVRFfWGFwrVjgJ4m4JhxbSzDlK6BRnCASU05ioqrrnchIfD53bT8rHGI6mL9N130wb8qhvKWKsedc8Ht4s-LNnmNI_qJE5hlKPYiJxt57ydiQK6587JQ0MlEADrzI8"/>
+</div>
+<div>
+<h3 class="text-label-md font-bold">Aryan Kumar</h3>
+<p class="text-[12px] text-on-surface-variant">NEET 2025 Aspirant</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<div class="bg-white p-2 rounded-lg border border-outline-variant/30 text-center">
+<p class="text-[10px] uppercase tracking-wider text-on-surface-variant font-bold">Rank</p>
+<p class="text-label-md font-bold text-primary">#142</p>
+</div>
+<div class="bg-white p-2 rounded-lg border border-outline-variant/30 text-center">
+<p class="text-[10px] uppercase tracking-wider text-on-surface-variant font-bold">Accuracy</p>
+<p class="text-label-md font-bold text-tertiary">92%</p>
+</div>
+</div>
+</div>
+<!-- Question Palette -->
+<div class="flex-1 p-6 overflow-y-auto custom-scrollbar">
+<h4 class="text-label-md font-bold mb-4 flex items-center justify-between">
+                    Question Palette
+                    <span class="text-[12px] font-normal text-on-surface-variant">Biology</span>
+</h4>
+<div class="grid grid-cols-5 gap-2 mb-8">
+<!-- Status Examples -->
+<button class="w-10 h-10 rounded-lg bg-tertiary text-on-tertiary text-label-sm flex items-center justify-center font-bold">01</button>
+<button class="w-10 h-10 rounded-lg bg-tertiary text-on-tertiary text-label-sm flex items-center justify-center font-bold">02</button>
+<button class="w-10 h-10 rounded-lg bg-error text-on-error text-label-sm flex items-center justify-center font-bold">03</button>
+<button class="w-10 h-10 rounded-lg bg-tertiary text-on-tertiary text-label-sm flex items-center justify-center font-bold">04</button>
+<button class="w-10 h-10 rounded-lg bg-tertiary text-on-tertiary text-label-sm flex items-center justify-center font-bold">05</button>
+<button class="w-10 h-10 rounded-lg bg-surface-container-high text-on-surface-variant text-label-sm flex items-center justify-center font-bold">06</button>
+<button class="w-10 h-10 rounded-lg bg-surface-container-high text-on-surface-variant text-label-sm flex items-center justify-center font-bold">07</button>
+<button class="w-10 h-10 rounded-lg bg-secondary-container text-on-secondary-container text-label-sm flex items-center justify-center font-bold">08</button>
+<button class="w-10 h-10 rounded-lg bg-error text-on-error text-label-sm flex items-center justify-center font-bold">09</button>
+<button class="w-10 h-10 rounded-lg bg-surface-container-high text-on-surface-variant text-label-sm flex items-center justify-center font-bold">10</button>
+<button class="w-10 h-10 rounded-lg bg-tertiary text-on-tertiary text-label-sm flex items-center justify-center font-bold">11</button>
+<button class="w-10 h-10 rounded-lg bg-tertiary text-on-tertiary text-label-sm flex items-center justify-center font-bold">12</button>
+<button class="w-10 h-10 rounded-lg bg-tertiary text-on-tertiary text-label-sm flex items-center justify-center font-bold">13</button>
+<button class="w-10 h-10 rounded-lg ring-2 ring-primary bg-surface-container-lowest text-primary text-label-sm flex items-center justify-center font-bold">14</button>
+<button class="w-10 h-10 rounded-lg bg-surface-container text-on-surface-variant/40 text-label-sm flex items-center justify-center font-bold">15</button>
+<!-- Generating more items for visual density -->
+<script>
+                        for(let i=16; i<=45; i++) {
+                            document.write(`<button class="w-10 h-10 rounded-lg bg-surface-container text-on-surface-variant/40 text-label-sm flex items-center justify-center font-bold">${i}</button>`);
+                        }
+                    </script>
+</div>
+<!-- Legend -->
+<div class="space-y-3 pt-4 border-t border-outline-variant/20">
+<div class="flex items-center gap-3">
+<div class="w-4 h-4 rounded bg-tertiary"></div>
+<span class="text-label-sm text-on-surface-variant">12 Answered</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-4 h-4 rounded bg-error"></div>
+<span class="text-label-sm text-on-surface-variant">2 Not Answered</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-4 h-4 rounded bg-secondary-container"></div>
+<span class="text-label-sm text-on-surface-variant">1 Marked for Review</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-4 h-4 rounded bg-surface-container text-on-surface-variant/40"></div>
+<span class="text-label-sm text-on-surface-variant">30 Not Visited</span>
+</div>
+</div>
+</div>
+<!-- Submit Action -->
+<div class="p-6 bg-surface-container-low border-t border-outline-variant/30">
+<button class="w-full py-4 bg-primary hover:bg-primary-container text-on-primary rounded-xl font-bold font-headline-md flex items-center justify-center gap-2 shadow-xl shadow-primary/20 transition-all active:scale-[0.98]">
+                    Submit Test
+                    <span class="material-symbols-outlined">send</span>
+</button>
+<p class="text-[11px] text-center text-on-surface-variant mt-3 px-4">Ensure all questions are reviewed before final submission.</p>
+</div>
+</aside>
+</main>
+<script>
+        // Custom interactive state engine
+        const questions = [
+            {
+                num: 14,
+                text: "Which of the following is a characteristic of Plant Kingdom classification according to the Whittaker's Five Kingdom System?",
+                options: [
+                    "Unicellular prokaryotic organisms with autotrophic nutrition.",
+                    "Multicellular eukaryotic organisms with cell walls made of cellulose.",
+                    "Heterotrophic organisms lacking a cell wall.",
+                    "Saprophytic organisms with chitinous cell walls."
+                ]
+            },
+            {
+                num: 15,
+                text: "Which cell organelle is responsible for cellular respiration and ATP generation in eukaryotic cells?",
+                options: [
+                    "Ribosome",
+                    "Mitochondria",
+                    "Lysosome",
+                    "Golgi Apparatus"
+                ]
+            },
+            {
+                num: 16,
+                text: "What is the primary site of the light-dependent reactions of photosynthesis?",
+                options: [
+                    "Thylakoid / Grana membranes",
+                    "Chloroplast Stroma",
+                    "Mitochondrial Matrix",
+                    "Cytoplasm"
+                ]
+            },
+            {
+                num: 17,
+                text: "Which of the following is classified as a non-reducing sugar?",
+                options: [
+                    "Glucose",
+                    "Fructose",
+                    "Sucrose",
+                    "Maltose"
+                ]
+            },
+            {
+                num: 18,
+                text: "During which phase of the eukaryotic cell cycle does DNA replication occur?",
+                options: [
+                    "G1 phase",
+                    "S phase (Synthesis phase)",
+                    "G2 phase",
+                    "M phase (Mitosis)"
+                ]
+            }
+        ];
+
+        let currentIdx = 0;
+        const answers = {}; // Maps question index -> selected option index (0 to 3)
+        const statuses = {}; // Maps question number -> 'answered', 'review', 'not-answered', 'unvisited'
+
+        // Initialize statuses based on initial UI palette
+        // 1-5 answered (tertiary), 9 not-answered (error), 8 review (secondary-container), 14 active
+        for(let i = 1; i <= 45; i++) {
+            if (i <= 5 || i === 11 || i === 12 || i === 13) statuses[i] = 'answered';
+            else if (i === 3 || i === 9) statuses[i] = 'not-answered';
+            else if (i === 8) statuses[i] = 'review';
+            else if (i === 14) statuses[i] = 'unvisited'; // Current
+            else statuses[i] = 'unvisited';
+        }
+
+        // DOM elements
+        const questionBadge = document.querySelector('section span.bg-primary');
+        const questionText = document.querySelector('#question-text') || document.querySelector('h2.font-headline-md');
+        const questionHeaderNum = document.querySelector('span.text-primary.bg-primary\\/10');
+        const optionsWrapper = document.querySelector('section div.space-y-4');
+        const btnPrev = document.querySelector('button:has(span:contains("chevron_left"))') || document.querySelectorAll('section button')[3];
+        const btnNext = document.querySelector('button:has(span:contains("chevron_right"))') || document.querySelectorAll('section button')[4];
+        const btnReview = document.querySelectorAll('section button')[0];
+        const btnClear = document.querySelectorAll('section button')[1];
+        const btnSubmit = document.querySelector('button:has(span:contains("send"))') || document.querySelector('aside button');
+
+        // Let's rewrite buttons with IDs for simple reference
+        btnPrev.id = 'btn-prev';
+        btnNext.id = 'btn-next';
+        btnReview.id = 'btn-review';
+        btnClear.id = 'btn-clear';
+        btnSubmit.id = 'btn-submit';
+
+        // Add correct class names to question text for targeting
+        if (questionText) questionText.id = 'question-text';
+        if (questionBadge) questionBadge.id = 'question-badge';
+
+        // Load Question Function
+        function loadQuestion(idx) {
+            currentIdx = idx;
+            const q = questions[idx];
+            
+            // Update Headers
+            if (questionBadge) questionBadge.textContent = q.num;
+            if (questionText) questionText.textContent = q.text;
+            if (questionHeaderNum) questionHeaderNum.textContent = `Question ${q.num} of 180`;
+
+            // Update Options
+            optionsWrapper.innerHTML = '';
+            q.options.forEach((opt, oIdx) => {
+                const label = document.createElement('label');
+                label.className = 'group block cursor-pointer';
+                
+                const checked = answers[idx] === oIdx ? 'checked' : '';
+                const letter = String.fromCharCode(65 + oIdx); // A, B, C, D
+
+                label.innerHTML = `
+                    <input class="hidden peer" name="mock-option" type="radio" value="${oIdx}" ${checked}/>
+                    <div class="flex items-center gap-4 p-5 rounded-xl border border-outline-variant/40 bg-white/50 hover:bg-primary/5 hover:border-primary/30 transition-all peer-checked:bg-primary/10 peer-checked:border-primary peer-checked:ring-1 peer-checked:ring-primary">
+                        <span class="w-8 h-8 rounded-lg border border-outline flex items-center justify-center font-bold text-label-md group-hover:border-primary peer-checked:bg-primary peer-checked:text-white transition-colors">${letter}</span>
+                        <span class="text-body-md text-on-surface-variant font-medium">${opt}</span>
+                    </div>
+                `;
+
+                // Handle check change
+                label.querySelector('input').addEventListener('change', () => {
+                    answers[currentIdx] = oIdx;
+                    statuses[q.num] = 'answered';
+                    updatePaletteUI();
+                });
+
+                optionsWrapper.appendChild(label);
+            });
+
+            // Update active state in palette
+            updatePaletteUI();
+        }
+
+        // Update palette styles
+        function updatePaletteUI() {
+            const buttons = document.querySelectorAll('aside .grid button');
+            buttons.forEach(btn => {
+                const num = parseInt(btn.textContent);
+                // Reset classes
+                btn.className = "w-10 h-10 rounded-lg text-label-sm flex items-center justify-center font-bold transition-all ";
+                
+                // Set based on status
+                if (num === questions[currentIdx].num) {
+                    btn.classList.add("ring-2", "ring-primary", "bg-surface-container-lowest", "text-primary");
+                } else if (statuses[num] === 'answered') {
+                    btn.classList.add("bg-tertiary", "text-on-tertiary");
+                } else if (statuses[num] === 'not-answered') {
+                    btn.classList.add("bg-error", "text-on-error");
+                } else if (statuses[num] === 'review') {
+                    btn.classList.add("bg-secondary-container", "text-on-secondary-container");
+                } else {
+                    btn.classList.add("bg-surface-container", "text-on-surface-variant/40");
+                }
+            });
+
+            // Recalculate Legend Counters
+            let answeredCount = 0;
+            let notAnsweredCount = 0;
+            let reviewCount = 0;
+            let unvisitedCount = 0;
+
+            for (let i = 1; i <= 45; i++) {
+                if (statuses[i] === 'answered') answeredCount++;
+                else if (statuses[i] === 'not-answered') notAnsweredCount++;
+                else if (statuses[i] === 'review') reviewCount++;
+                else unvisitedCount++;
+            }
+
+            // Update Legend UI Text
+            const legendDivs = document.querySelectorAll('aside div.space-y-3.pt-4 span');
+            if (legendDivs.length >= 4) {
+                legendDivs[0].textContent = `${answeredCount} Answered`;
+                legendDivs[1].textContent = `${notAnsweredCount} Not Answered`;
+                legendDivs[2].textContent = `${reviewCount} Marked for Review`;
+                legendDivs[3].textContent = `${unvisitedCount} Not Visited`;
+            }
+        }
+
+        // Add events to Question Palette buttons
+        setTimeout(() => {
+            const buttons = document.querySelectorAll('aside .grid button');
+            buttons.forEach(btn => {
+                btn.style.cursor = 'pointer';
+                btn.addEventListener('click', () => {
+                    const num = parseInt(btn.textContent);
+                    const qIdx = questions.findIndex(q => q.num === num);
+                    if (qIdx !== -1) {
+                        // Mark current as not-answered if it was unvisited and not answered yet
+                        const currentQNum = questions[currentIdx].num;
+                        if (statuses[currentQNum] === 'unvisited' && answers[currentIdx] === undefined) {
+                            statuses[currentQNum] = 'not-answered';
+                        }
+                        loadQuestion(qIdx);
+                    } else {
+                        // For other dummy questions, simulate loading with a simple mock alert
+                        alert(`Question ${num} is a placeholder for Biology section. Try questions 14, 15, 16, 17, or 18.`);
+                    }
+                });
+            });
+        }, 100);
+
+        // Save & Next Action
+        btnNext.addEventListener('click', () => {
+            const currentQNum = questions[currentIdx].num;
+            if (answers[currentIdx] !== undefined) {
+                statuses[currentQNum] = 'answered';
+            } else if (statuses[currentQNum] === 'unvisited' || statuses[currentQNum] === 'not-answered') {
+                statuses[currentQNum] = 'not-answered';
+            }
+
+            if (currentIdx < questions.length - 1) {
+                loadQuestion(currentIdx + 1);
+            } else {
+                alert("You are on the last question of this interactive demo. Click 'Submit Test' on the sidebar to view results.");
+                updatePaletteUI();
+            }
+        });
+
+        // Previous Action
+        btnPrev.addEventListener('click', () => {
+            if (currentIdx > 0) {
+                loadQuestion(currentIdx - 1);
+            }
+        });
+
+        // Mark for Review Action
+        btnReview.addEventListener('click', () => {
+            const currentQNum = questions[currentIdx].num;
+            statuses[currentQNum] = 'review';
+            if (currentIdx < questions.length - 1) {
+                loadQuestion(currentIdx + 1);
+            } else {
+                updatePaletteUI();
+            }
+        });
+
+        // Clear Response Action
+        btnClear.addEventListener('click', () => {
+            delete answers[currentIdx];
+            const currentQNum = questions[currentIdx].num;
+            statuses[currentQNum] = 'not-answered';
+            
+            // Uncheck radios in DOM
+            document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+            updatePaletteUI();
+        });
+
+        // Submit Action
+        btnSubmit.addEventListener('click', () => {
+            // Calculate scores
+            let correct = 0;
+            const qCount = questions.length;
+            questions.forEach((q, idx) => {
+                // Correct answers: 14 -> B (1), 15 -> B (1), 16 -> A (0), 17 -> C (2), 18 -> B (1)
+                const correctAnswers = [1, 1, 0, 2, 1];
+                if (answers[idx] === correctAnswers[idx]) correct++;
+            });
+
+            // Create custom confirmation dialog
+            const confirmDiv = document.createElement('div');
+            confirmDiv.className = 'fixed inset-0 z-[10000] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4';
+            confirmDiv.innerHTML = `
+                <div class="bg-white rounded-2xl p-8 max-w-md w-full shadow-2xl border border-primary/10 text-center space-y-6">
+                    <div class="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto">
+                        <span class="material-symbols-outlined text-3xl">task_alt</span>
+                    </div>
+                    <div class="space-y-2">
+                        <h3 class="font-headline-md text-headline-md text-on-surface">Submit Mock Test?</h3>
+                        <p class="text-on-surface-variant font-body-md">Are you sure you want to finish the exam? You have answered ${Object.keys(answers).length} out of ${qCount} questions in this mock set.</p>
+                    </div>
+                    <div class="flex gap-4 pt-2">
+                        <button id="modal-cancel" class="flex-1 py-3 border border-outline-variant rounded-xl text-on-surface-variant hover:bg-surface-container transition-all font-label-md">Cancel</button>
+                        <button id="modal-submit" class="flex-1 py-3 bg-primary hover:bg-primary-container text-on-primary rounded-xl font-bold font-label-md shadow-lg shadow-primary/20 transition-all">Yes, Submit</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(confirmDiv);
+
+            confirmDiv.querySelector('#modal-cancel').addEventListener('click', () => {
+                confirmDiv.remove();
+            });
+
+            confirmDiv.querySelector('#modal-submit').addEventListener('click', () => {
+                confirmDiv.remove();
+                // Redirect to performance breakdown summary
+                window.location.href = '../test_summary_analysis_atomic_pathshala/code.html';
+            });
+        });
+
+        // Initialize first question
+        loadQuestion(0);
+
+        // Simple countdown timer logic
+        let time = 3 * 60 * 60 - 15; // 02:59:45 in seconds
+        const timerElement = document.getElementById('timer');
+
+        function updateTimer() {
+            const hours = Math.floor(time / 3600);
+            const minutes = Math.floor((time % 3600) / 60);
+            const seconds = time % 60;
+
+            timerElement.textContent = 
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (time > 0) {
+                time--;
+            } else {
+                clearInterval(timerInterval);
+                alert("Time is up! Your test is being submitted automatically.");
+                window.location.href = '../test_summary_analysis_atomic_pathshala/code.html';
+            }
+        }
+
+        const timerInterval = setInterval(updateTimer, 1000);
+    </script>
+
+  <!-- Ecosystem Switched Widget Overlay -->
+  <script src="../ecosystem-hud.js"></script>
+</body></html>

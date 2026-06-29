@@ -1,0 +1,517 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>EduPulse Chat | Atomic Pathshala</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .chat-bubble-left {
+            border-bottom-left-radius: 4px !important;
+        }
+        .chat-bubble-right {
+            border-bottom-right-radius: 4px !important;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#6afcb9",
+                        "surface": "#faf8ff",
+                        "error": "#ba1a1a",
+                        "on-primary-container": "#f8f7ff",
+                        "on-background": "#131b2e",
+                        "surface-tint": "#0054d6",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#faf8ff",
+                        "on-tertiary-fixed-variant": "#005235",
+                        "surface-container": "#eaedff",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "primary-container": "#0066ff",
+                        "inverse-surface": "#283044",
+                        "primary": "#0050cb",
+                        "surface-container-low": "#f2f3ff",
+                        "on-secondary-container": "#005266",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#006643",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#dae2fd",
+                        "on-surface": "#131b2e",
+                        "tertiary-container": "#008256",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#49df9f",
+                        "bg-light": "#FFFFFF",
+                        "secondary-fixed-dim": "#4cd6ff",
+                        "inverse-primary": "#b3c5ff",
+                        "text-light": "#0F172A",
+                        "on-secondary-fixed-variant": "#004e60",
+                        "surface-container-high": "#e2e7ff",
+                        "secondary-fixed": "#b7eaff",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#eef0ff",
+                        "secondary": "#00677f",
+                        "border-subtle": "rgba(0, 102, 255, 0.1)",
+                        "on-tertiary-fixed": "#002113",
+                        "text-dark": "#F1F5F9",
+                        "background": "#faf8ff",
+                        "surface-dark": "#161B22",
+                        "on-secondary-fixed": "#001f28",
+                        "on-tertiary-container": "#e1ffeb",
+                        "on-primary-fixed-variant": "#003fa4",
+                        "on-primary-fixed": "#001849",
+                        "secondary-container": "#00ccf9",
+                        "on-surface-variant": "#424656",
+                        "surface-light": "#F8FAFC",
+                        "primary-fixed": "#dae1ff",
+                        "surface-dim": "#d2d9f4",
+                        "bg-dark": "#0B0E14",
+                        "surface-container-highest": "#dae2fd",
+                        "outline": "#727687",
+                        "outline-variant": "#c2c6d8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "stack-sm": "8px",
+                        "gutter": "24px",
+                        "stack-md": "16px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "stack-lg": "32px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Geist"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Geist"],
+                        "display-lg-mobile": ["Geist"],
+                        "display-lg": ["Geist"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface overflow-hidden">
+<!-- SIDE NAVIGATION BAR (Predicted from JSON) -->
+<nav class="fixed left-0 top-0 h-full w-72 flex flex-col p-stack-md z-40 bg-surface-container-low border-r border-outline-variant/20 hidden md:flex">
+<div class="flex items-center gap-3 mb-10 px-4">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<div>
+<h1 class="text-headline-md font-headline-md text-primary tracking-tight">EduPulse</h1>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Premium Learning</p>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-variant transition-all duration-300 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-outline">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-variant transition-all duration-300 rounded-lg" href="#">
+<span class="material-symbols-outlined text-outline">school</span>
+<span class="font-label-md text-label-md">Courses</span>
+</a>
+<a class="flex items-center gap-3 bg-primary-container text-on-primary-container rounded-lg px-4 py-3 shadow-sm scale-105" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">forum</span>
+<span class="font-label-md text-label-md">Community</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-variant transition-all duration-300 rounded-lg" href="#">
+<span class="material-symbols-outlined text-outline">calendar_today</span>
+<span class="font-label-md text-label-md">Schedule</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-variant transition-all duration-300 rounded-lg" href="#">
+<span class="material-symbols-outlined text-outline">analytics</span>
+<span class="font-label-md text-label-md">Performance</span>
+</a>
+</div>
+<div class="mt-auto flex flex-col gap-4">
+<button class="mx-4 bg-secondary text-on-secondary py-3 rounded-xl font-label-md shadow-lg hover:brightness-110 active:scale-95 transition-all">
+                Upgrade Pro
+            </button>
+<div class="border-t border-outline-variant/20 pt-4 flex flex-col gap-1">
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-variant transition-all duration-300 rounded-lg" href="#">
+<span class="material-symbols-outlined text-outline">help</span>
+<span class="font-label-md text-label-md">Help Center</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-variant transition-all duration-300 rounded-lg" href="#">
+<span class="material-symbols-outlined text-outline text-error">logout</span>
+<span class="font-label-md text-label-md text-error">Sign Out</span>
+</a>
+</div>
+</div>
+</nav>
+<div class="flex flex-col h-screen md:ml-72">
+<!-- TOP NAVIGATION BAR (Predicted from JSON) -->
+<header class="sticky top-0 z-50 flex justify-between items-center px-gutter w-full h-16 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm">
+<div class="flex items-center gap-6">
+<span class="text-headline-md font-headline-md font-bold text-primary tracking-tight md:hidden">EduPulse</span>
+<div class="hidden md:flex gap-8">
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Explore</a>
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Mentors</a>
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Library</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden lg:flex relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full w-64 focus:ring-2 focus:ring-primary/20 text-label-md" placeholder="Search resources..." type="text">
+</div>
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:opacity-70">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:opacity-70">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-surface-container-high border-2 border-primary/20 overflow-hidden cursor-pointer active:scale-95 transition-transform">
+<img class="w-full h-full object-cover" data-alt="A close-up high-resolution portrait of a smiling Indian medical student wearing a white lab coat and stethoscope, looking confident and friendly. The lighting is bright and professional with a soft-focus library background, using a clean corporate aesthetic with blue and white tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAK6hUC_nUWmDYJ1mPb3SeWEasenyGxh7mzwwM7Locfjz8jjJC4TmhVazy9WDL2XjI6UraJXo2kVWelLpyIXN5iyzFLwLcbjYheLQh77M1uG8UZWC6uewcnZFw58hJDYggxYmgwGJoD4Wsc1OCvJ_Uz6XaxBcPSjWi4NMnACCrlQF9S4REi5zbw1-bFbvl0mcBjjvDDY2cqLc0cuihFKvywHWYgtXTK0ugNM_u5hyAZvrSMZfaC2X5onZavLic7NuN-g167aSb0X3A">
+</div>
+</div>
+</header>
+<!-- MAIN CONTENT: CHAT INTERFACE -->
+<main class="flex-1 flex overflow-hidden bg-surface-container-lowest">
+<!-- LEFT PANE: CHAT LIST -->
+<aside class="w-full md:w-80 lg:w-[360px] border-r border-outline-variant/30 flex flex-col bg-surface-container-low/30">
+<div class="p-gutter flex flex-col gap-stack-md">
+<div class="flex justify-between items-center">
+<h2 class="text-headline-md font-headline-md text-on-surface">Messages</h2>
+<button class="text-primary hover:bg-primary/10 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined">edit_square</span>
+</button>
+</div>
+<!-- Search -->
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant text-body-md">search</span>
+<input class="w-full pl-10 pr-4 py-3 bg-surface border-none rounded-xl focus:ring-2 focus:ring-primary/10 text-body-md shadow-sm" placeholder="Search contacts..." type="text">
+</div>
+<!-- Filters -->
+<div class="flex gap-2">
+<button class="px-4 py-1.5 bg-primary text-on-primary rounded-full text-label-sm font-label-md shadow-md transition-transform active:scale-95">All</button>
+<button class="px-4 py-1.5 bg-surface text-on-surface-variant border border-outline-variant/30 rounded-full text-label-sm font-label-md hover:bg-surface-variant transition-colors">Unread</button>
+<button class="px-4 py-1.5 bg-surface text-on-surface-variant border border-outline-variant/30 rounded-full text-label-sm font-label-md hover:bg-surface-variant transition-colors">Groups</button>
+</div>
+</div>
+<!-- Scrollable List -->
+<div class="flex-1 overflow-y-auto scrollbar-hide px-2">
+<!-- Active Chat -->
+<div class="flex items-center gap-4 p-4 bg-primary-container/10 border-l-4 border-primary cursor-pointer transition-all mb-1 rounded-r-xl">
+<div class="relative flex-shrink-0">
+<div class="w-12 h-12 rounded-full border-2 border-white overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of Ananya Sharma, a young female medical tutor. She has a warm smile, wearing a modern blue scrub top, with her hair neatly tied. The image style is crisp, bright, and uses high-end photography standards for a professional EdTech platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuClcoZHgJhX4DR068Trr-fuIdEkFqxMIqZvZDXgOQpihVNAfsFyoLi5JntaimqeNEcP_WU1pNox2FcTSzttddtj6O1uXq8jXJcRo0MqQM-E0XdNr7dx9nNA_GXU12xx4oFCyu-JlO6g_NAK61ZplP2FDT8B-KmuzOwODhOiSUYeztLBixWKNokuTVKeXVaagmJlNfVnXTlzoTzq_ALsuGaf4L4FnnoKCkXDlllfe0_ud4HcJQvCDv9NVq8DDJhXbrdAmR4AJC5jq_U">
+</div>
+<div class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-tertiary-container border-2 border-white rounded-full"></div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-center mb-0.5">
+<h3 class="font-label-md text-label-md text-on-surface truncate">Ananya S.</h3>
+<span class="text-[11px] text-primary font-semibold">2m ago</span>
+</div>
+<p class="text-body-md text-primary font-medium truncate text-sm">Did you check the Organic notes?</p>
+</div>
+<div class="w-5 h-5 bg-primary text-white text-[10px] flex items-center justify-center rounded-full font-bold">2</div>
+</div>
+<!-- Other Chat -->
+<div class="flex items-center gap-4 p-4 hover:bg-surface-variant/30 cursor-pointer transition-all mb-1 rounded-xl group">
+<div class="relative flex-shrink-0">
+<div class="w-12 h-12 rounded-full border-2 border-white/50 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of Ishaan V., a male engineering student. He is wearing a minimalist black t-shirt, standing in a brightly lit modern study space with architectural drawings in the background. The aesthetic is clean, academic, and tech-forward." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0H8b55K6uulHcUDqWRAyM1Xb8w-hSmF2pNnHRYYMK3vwbrQj_gu_W5mTV7ozJ8RTccm0_UnKkk1KBy0Ug21avG8xshU7FRInWp1PryL5dbKtuztRZ3_qM9yZohiSQeHcSczlaj2W29nz-OgHdsULZ9fbQ10rA5CJScuIZLy1HUj9wqmZ2YRoDz0lcdnXsWM6rydqn3mwX5v6zZorbLuYZCN3jbVvFg2ROWwwaSz52d4LsxVoQxH9WPfVo8nYteFzQY4ztHdqyRuA">
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-center mb-0.5">
+<h3 class="font-label-md text-label-md text-on-surface truncate">Ishaan V.</h3>
+<span class="text-[11px] text-on-surface-variant">1h ago</span>
+</div>
+<p class="text-body-md text-on-surface-variant truncate text-sm">Thanks for the Physics link!</p>
+</div>
+</div>
+<!-- Group Chat -->
+<div class="flex items-center gap-4 p-4 hover:bg-surface-variant/30 cursor-pointer transition-all mb-1 rounded-xl group">
+<div class="relative flex-shrink-0">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container overflow-hidden">
+<span class="material-symbols-outlined text-headline-md">groups</span>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-center mb-0.5">
+<h3 class="font-label-md text-label-md text-on-surface truncate">NEET Prep Group</h3>
+<span class="text-[11px] text-on-surface-variant">3h ago</span>
+</div>
+<p class="text-body-md text-on-surface-variant truncate text-sm"><span class="font-semibold">Vikram:</span> Class at 4PM?</p>
+</div>
+</div>
+<!-- More placeholders for scrolling -->
+<div class="flex items-center gap-4 p-4 hover:bg-surface-variant/30 cursor-pointer transition-all mb-1 rounded-xl opacity-60">
+<div class="w-12 h-12 rounded-full bg-surface-container-high border-2 border-white/50 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of a senior professor with glasses, looking approachable and wise. The background is a blurred university hallway. Warm, natural lighting, academic professional style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2tQrRpyVjToAiP4dkyVRRVFASDt6W7hSHPR327v3NjNnNJHNCBrPHYAF-h-Cgj5p3rMQWvbkNMmmp-XECYKSo_jksfPjj_6vxnTOBH72ql_m-_aDhGd2ZVl4p-ys1PaEX0Qrk0aSmFlGtMTZlQp69z61LBqRMjhQbKIlQVE5J46c4mugxpKpJ_D4VSGff1QNR8PwSi4TWtjD8u4es02cKWcLmdnbJ1NL5NHS_e_HXRS1d8J4WEN0HtgbGaABqkU9LhDMFrQCTJKM">
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-center mb-0.5">
+<h3 class="font-label-md text-label-md text-on-surface truncate">Dr. Mehta</h3>
+<span class="text-[11px] text-on-surface-variant">Yesterday</span>
+</div>
+<p class="text-body-md text-on-surface-variant truncate text-sm">The assignment is due on Friday.</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- RIGHT PANE: MESSAGE THREAD -->
+<section class="flex-1 flex flex-col relative bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-fixed opacity-[0.98]">
+<!-- Chat Header -->
+<header class="h-20 flex items-center justify-between px-gutter border-b border-outline-variant/20 glass-card z-10">
+<div class="flex items-center gap-4">
+<button class="md:hidden text-on-surface-variant">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="w-11 h-11 rounded-full border-2 border-primary/20 overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Close up of Ananya Sharma profile picture, smiling, soft natural lighting, medical academy branding in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4LEMbR9lHwL86ioFN_PvTRM0QYQUj_8hRFZVTzB0-fgXEA5TiJ0S50_c2k8ZTx_GpZnjqP1BngSZmkATDGG3i42_L4Xx-IPoUxkcgATA717zJURmGLUVnVvHBHnkKvF4hgeLDHGsXAP7H74tvNIAJ8E-odFX3C-RWhuDgj2To4iv1RYHY2s46nZtjBcayPClT-E6PAyIy1kXadyUG0fuT0eVN13Wh-cIQggLlfZkELRRLDZX6vMgLGxpZLrqvgpDwYTP4gz4Rjik">
+</div>
+<div>
+<h2 class="font-headline-md text-body-lg text-on-surface leading-none">Ananya Sharma</h2>
+<div class="flex items-center gap-1.5 mt-1">
+<div class="w-2 h-2 bg-tertiary-container rounded-full animate-pulse"></div>
+<span class="text-label-sm font-label-md text-tertiary">Online Now</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2.5 text-on-surface-variant hover:bg-surface-variant rounded-full transition-colors">
+<span class="material-symbols-outlined">call</span>
+</button>
+<button class="p-2.5 text-on-surface-variant hover:bg-surface-variant rounded-full transition-colors">
+<span class="material-symbols-outlined">videocam</span>
+</button>
+<button class="p-2.5 text-on-surface-variant hover:bg-surface-variant rounded-full transition-colors hidden sm:block">
+<span class="material-symbols-outlined">folder_shared</span>
+</button>
+<div class="h-6 w-[1px] bg-outline-variant/30 mx-2"></div>
+<button class="p-2.5 text-on-surface-variant hover:bg-surface-variant rounded-full transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</header>
+<!-- Message Thread Area -->
+<div class="flex-1 overflow-y-auto p-gutter flex flex-col gap-6 scrollbar-hide">
+<!-- Date Separator -->
+<div class="flex justify-center">
+<span class="px-4 py-1 bg-surface-container-low text-on-surface-variant text-[11px] font-bold rounded-full uppercase tracking-wider">Today</span>
+</div><div class="flex justify-center my-4">
+<div class="glass-card p-5 rounded-2xl border-primary/20 max-w-sm w-full shadow-lg">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary">poll</span>
+<h4 class="font-headline-md text-sm text-on-surface">Class Poll</h4>
+</div>
+<p class="font-headline-md text-body-md text-on-surface mb-4">Are you joining the live Bio session today?</p>
+<div class="flex flex-col gap-3">
+<div class="relative">
+<div class="flex justify-between items-center mb-1 px-1">
+<span class="text-label-md text-primary font-bold">Yes, definitely!</span>
+<span class="text-label-sm text-primary font-bold">75%</span>
+</div>
+<div class="h-2 w-full bg-primary-container/20 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 75%"></div>
+</div>
+</div>
+<div class="relative">
+<div class="flex justify-between items-center mb-1 px-1">
+<span class="text-label-md text-on-surface-variant">Maybe later</span>
+<span class="text-label-sm text-on-surface-variant">15%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-outline-variant/30 rounded-full" style="width: 15%"></div>
+</div>
+</div>
+<div class="relative">
+<div class="flex justify-between items-center mb-1 px-1">
+<span class="text-label-md text-on-surface-variant">No, catching up on Chem</span>
+<span class="text-label-sm text-on-surface-variant">10%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-outline-variant/30 rounded-full" style="width: 10%"></div>
+</div>
+</div>
+</div>
+<div class="mt-4 pt-3 border-t border-outline-variant/10 flex justify-between items-center">
+<span class="text-[10px] text-on-surface-variant font-medium">42 votes • Final results</span>
+<button class="text-primary text-label-sm font-bold hover:underline">View Details</button>
+</div>
+</div>
+</div>
+<!-- Message Left -->
+<div class="flex items-end gap-3 max-w-[80%]">
+<div class="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 mb-1">
+<img class="w-full h-full object-cover" data-alt="Small avatar of Ananya Sharma, bright and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVLxrvl8v-QsJeB_5nFut_lu43cpGbEdQGbzEdVZD3h1pO3ijfNXf-5eTac7lTYolY9dk0P3hwnC-lCkYSyp9mtTd9HL8cCZJNrdP0ZC4P3wUoWfctmQt0wnByovNfZn9LddxExEwHADjvl6Olbxa2ukUt5JxX4WTlOLqO51yBTa70VM59_dK2zpqUUDKASIQqJiou3GGo7LpprQsXK4GoQ5FwVwowX2gTUQl4xSNMYo3DBBsLtoU5oq0IRivbwM7newxbNPuRMvo">
+</div>
+<div class="flex flex-col gap-1">
+<div class="bg-white px-5 py-3.5 rounded-2xl rounded-bl-sm shadow-sm border border-outline-variant/10 text-body-md text-on-surface">
+                                Hey! Are you joining the live Bio session today? Dr. Singh is going to cover DNA replication in detail.
+                            </div>
+<span class="text-[10px] text-on-surface-variant ml-1 font-medium">10:42 AM</span>
+</div>
+</div>
+<!-- System Message / Shared Resource -->
+<div class="flex justify-center my-2">
+<div class="glass-card flex items-center gap-4 px-6 py-4 rounded-2xl border-primary/20 max-w-sm w-full group cursor-pointer hover:scale-[1.02] transition-transform shadow-md">
+<div class="w-12 h-12 bg-error-container text-error rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-headline-md">picture_as_pdf</span>
+</div>
+<div class="flex-1">
+<p class="text-label-md font-label-md text-on-surface leading-tight">NEET 2024 Organic Chemistry.pdf</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant mt-0.5">Shared by Ananya • 4.2 MB</p>
+</div>
+<span class="material-symbols-outlined text-primary group-hover:translate-y-0.5 transition-transform">download</span>
+</div>
+</div>
+<!-- Message Right -->
+<div class="flex items-end gap-3 max-w-[80%] self-end">
+<div class="flex flex-col items-end gap-1">
+<div class="bg-primary px-5 py-3.5 rounded-2xl rounded-br-sm shadow-lg text-body-md text-on-primary">
+                                Yes, definitely! I was just revising the previous notes. That PDF you shared is a lifesaver.
+                            </div>
+<div class="flex items-center gap-1 mr-1">
+<span class="text-[10px] text-on-surface-variant font-medium">10:45 AM</span>
+<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1;">done_all</span>
+</div>
+</div>
+</div>
+<!-- Message Left -->
+<div class="flex items-end gap-3 max-w-[80%]">
+<div class="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 mb-1">
+<img class="w-full h-full object-cover" data-alt="Small avatar of Ananya Sharma." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAU1dKXogy9XP5bJFmk-FoL_unPVJ8uOKqnMRfJoeICIFT4B4ri3IdGIFFBAV_Jw60LbkSvuNaqviJBHKkhP2bpr2AMPiWwoJ6cJpNZjQ16n5JPqPshtAZbX6iWRGTDkZA-GdViNbFpOzgkXGDaX3eKQxBaX9v-BR5zu_8caPDSszwHAbnejoISAp983xzkC4TsYlm21Nfenrz-ELOP0NwEjp8vjTNUme0MGJKzrOiZqknrJw8-eGjImHPzHLh7jPgArSbO0A2u5FY">
+</div>
+<div class="flex flex-col gap-1">
+<div class="bg-white px-5 py-3.5 rounded-2xl rounded-bl-sm shadow-sm border border-outline-variant/10 text-body-md text-on-surface">
+                                Great! Also, don't forget to attempt the mock test in the Dashboard before the session starts.
+                            </div>
+<span class="text-[10px] text-on-surface-variant ml-1 font-medium">10:47 AM</span>
+</div>
+</div>
+<!-- Message Right -->
+<div class="flex items-end gap-3 max-w-[80%] self-end">
+<div class="flex flex-col items-end gap-1">
+<div class="bg-primary px-5 py-3.5 rounded-2xl rounded-br-sm shadow-lg text-body-md text-on-primary">
+                                On it. See you in the session! 🚀
+                            </div>
+<div class="flex items-center gap-1 mr-1">
+<span class="text-[10px] text-on-surface-variant font-medium">10:48 AM</span>
+<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1;">done_all</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Input Area -->
+<div class="p-stack-lg bg-surface/80 backdrop-blur-xl border-t border-outline-variant/20 z-10">
+<div class="max-w-4xl mx-auto flex items-center gap-3 bg-surface-container shadow-inner border border-outline-variant/20 rounded-2xl px-3 py-2">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-white/50">
+<span class="material-symbols-outlined">add_circle</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-white/50">
+<span class="material-symbols-outlined">attach_file</span>
+</button><button class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-white/50">
+<span class="material-symbols-outlined">poll</span>
+</button>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-body-md text-on-surface px-2" placeholder="Type your message..." type="text">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-white/50">
+<span class="material-symbols-outlined">mood</span>
+</button>
+<button class="w-11 h-11 bg-primary text-on-primary flex items-center justify-center rounded-xl shadow-lg shadow-primary/30 hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span>
+</button>
+</div>
+</div>
+<!-- Floating Action Button (FAB) suppression check - FAB only on dashboard/home -->
+</section>
+</main>
+</div>
+<!-- Mobile Bottom Nav (Predicted from logic) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-surface/90 backdrop-blur-xl border-t border-outline-variant/10 flex justify-around items-center px-4 z-50">
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-bold">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">school</span>
+<span class="text-[10px] font-bold">Courses</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">forum</span>
+<span class="text-[10px] font-bold">Chat</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold">Profile</span>
+</button>
+</nav>
+<script>
+        // Micro-interaction: Scroll to bottom of chat on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const chatThread = document.querySelector('section .overflow-y-auto');
+            chatThread.scrollTop = chatThread.scrollHeight;
+        });
+
+        // Simple mock interaction for the message input
+        const input = document.querySelector('input[type="text"]');
+        const sendBtn = document.querySelector('button .material-symbols-outlined[style*="FILL\' 1"]')?.parentElement;
+        
+        if (sendBtn && input) {
+            sendBtn.addEventListener('click', () => {
+                if (input.value.trim() !== "") {
+                    // Logic for visual feedback
+                    input.value = "";
+                }
+            });
+            
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && input.value.trim() !== "") {
+                    input.value = "";
+                }
+            });
+        }
+    </script>
+
+
+
+  <!-- Ecosystem Switched Widget Overlay -->
+  <script src="../ecosystem-hud.js"></script>
+</body></html>

@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Live Class Player | Atomic Pathshala</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-surface-variant": "#424656",
+                "on-secondary": "#ffffff",
+                "on-tertiary-fixed": "#002113",
+                "surface-container-lowest": "#ffffff",
+                "surface-container-low": "#f2f3ff",
+                "text-light": "#0F172A",
+                "surface": "#faf8ff",
+                "bg-light": "#FFFFFF",
+                "on-primary-fixed": "#001849",
+                "error": "#ba1a1a",
+                "border-subtle": "rgba(0, 102, 255, 0.1)",
+                "bg-dark": "#0B0E14",
+                "on-tertiary": "#ffffff",
+                "on-error": "#ffffff",
+                "primary": "#0050cb",
+                "outline-variant": "#c2c6d8",
+                "on-primary": "#ffffff",
+                "inverse-on-surface": "#eef0ff",
+                "on-tertiary-container": "#e1ffeb",
+                "surface-tint": "#0054d6",
+                "outline": "#727687",
+                "surface-light": "#F8FAFC",
+                "primary-container": "#0066ff",
+                "tertiary": "#006643",
+                "tertiary-fixed-dim": "#49df9f",
+                "inverse-primary": "#b3c5ff",
+                "primary-fixed": "#dae1ff",
+                "tertiary-fixed": "#6afcb9",
+                "tertiary-container": "#008256",
+                "secondary-container": "#00ccf9",
+                "on-error-container": "#93000a",
+                "surface-variant": "#dae2fd",
+                "surface-container": "#eaedff",
+                "surface-container-high": "#e2e7ff",
+                "on-primary-fixed-variant": "#003fa4",
+                "secondary-fixed-dim": "#4cd6ff",
+                "surface-bright": "#faf8ff",
+                "surface-dark": "#161B22",
+                "error-container": "#ffdad6",
+                "surface-dim": "#d2d9f4",
+                "primary-fixed-dim": "#b3c5ff",
+                "on-surface": "#131b2e",
+                "secondary-fixed": "#b7eaff",
+                "on-secondary-fixed": "#001f28",
+                "secondary": "#00677f",
+                "on-background": "#131b2e",
+                "background": "#faf8ff",
+                "on-primary-container": "#f8f7ff",
+                "inverse-surface": "#283044",
+                "on-secondary-fixed-variant": "#004e60",
+                "on-tertiary-fixed-variant": "#005235",
+                "on-secondary-container": "#005266",
+                "surface-container-highest": "#dae2fd",
+                "text-dark": "#F1F5F9"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "gutter": "24px",
+                "container-max": "1280px",
+                "margin-mobile": "20px",
+                "stack-lg": "32px",
+                "margin-desktop": "64px",
+                "stack-md": "16px",
+                "stack-sm": "8px"
+            },
+            "fontFamily": {
+                "label-md": ["Inter"],
+                "display-lg-mobile": ["Geist"],
+                "body-lg": ["Inter"],
+                "label-sm": ["Inter"],
+                "headline-md": ["Geist"],
+                "headline-lg": ["Geist"],
+                "display-lg": ["Geist"],
+                "body-md": ["Inter"]
+            },
+            "fontSize": {
+                "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(11, 14, 20, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .active-slide-ring {
+            box-shadow: 0 0 0 3px #0066ff;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .player-gradient {
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
+        }
+    </style>
+</head>
+<body class="bg-bg-dark text-text-dark font-body-md overflow-hidden h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 h-16 flex justify-between items-center px-gutter bg-surface-dark/90 backdrop-blur-xl border-b border-white/10">
+<div class="flex items-center gap-stack-md">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed tracking-tight">Atomic Pathshala</span>
+<div class="hidden md:flex items-center gap-4 ml-8">
+<span class="flex items-center gap-2 bg-error/20 text-error px-3 py-1 rounded-full text-label-sm font-label-md">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+                    LIVE
+                </span>
+<h1 class="font-headline-md text-label-md text-white/90">Mastering Organic Chemistry: NEET 2025 Crash Course</h1>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:text-white transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary">
+<img class="w-full h-full object-cover" data-alt="A professional student profile picture in a high-tech academic environment. The lighting is soft and cinematic with cool blue and white tones. The overall aesthetic is clean, corporate, and premium, fitting for a top-tier EdTech platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQB4Sa30S9XG_wB7HuRpiTJ7lKW_hRLJBsEPr3W8IIZ5biyS0UeEGvYaVi0se-WfCIehBoRDvjayI2BXI-xQIvvklDf4v5b64cg59ff1mFfrLEBoK99s0OO9D39NDmqsO9LEg1svQH31ZYuh0pL4ywkGc3ZDShhoa2y5hRXJgdNzxGec0s33IAfmCL-7aJYdSnX0ek2ZRYpjRK2Qn1UVvDUCTnWPWX5VLI1cWfET-XhGjeeB2xDQveZ6KtcVU_HWNerMw_kB5DWsI"/>
+</div>
+</div>
+</header>
+<main class="flex h-full pt-16">
+<!-- Main Player Area -->
+<section class="flex-1 flex flex-col relative overflow-hidden bg-black">
+<!-- Video/Whiteboard Container -->
+<div class="flex-1 relative group">
+<img class="w-full h-full object-contain" data-alt="A high-resolution view of a digital education whiteboard. A professional educator is explaining complex organic chemistry mechanisms with vibrant neon blue and cyan annotations. The background is a clean dark grey, emphasizing high-contrast educational content with a professional and immersive lecture feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrMMpQq-uAhNTqMwdnuglSerpQE4KTXaxXKAyjGMrt-SsONBdA5YpBw_KVNQF6S-6oB0ljJWTCHXTZlfaVgYfZGKarSnpaBQiMvk_2KKARq77za-vZm3a5BC3lyTmGs8xBAinSd41_xpb6Z9dcpsINGwpCs9vTvIDOAwEghJhMUhFsTd2J9FF-YUZ1NvLz4pKdX0Qyf0olWdd48X-9nRc55PGDSyzu6Hd3ftlV_mX4Zvq6mcd9ZloqnW4qu1PcDcQT1EMVjTngFEs"/>
+<!-- Overlay Controls -->
+<div class="absolute inset-x-0 bottom-0 p-gutter player-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-6">
+<button class="text-white hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-3xl">play_arrow</span>
+</button>
+<button class="text-white hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-2xl">volume_up</span>
+</button>
+<span class="text-label-md font-label-md text-white">45:22 / 1:30:00</span>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-white hover:text-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-label-sm">1080p</span>
+</button>
+<button class="text-white hover:text-primary transition-colors">
+<span class="material-symbols-outlined">fullscreen</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide Navigator -->
+<div class="glass-panel h-32 w-full px-gutter flex items-center gap-4 overflow-x-auto scrollbar-hide">
+<div class="flex flex-col items-center gap-1 shrink-0 cursor-pointer group">
+<div class="w-32 h-18 rounded-lg overflow-hidden border border-white/10 group-hover:border-primary transition-all active-slide-ring relative">
+<img class="w-full h-full object-cover" data-alt="A thumbnail of a digital slide showing a molecular structure of Benzene. Clean lines, white text on dark background, educational and premium design style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8rG-Uvot1S2az2lIumAMtzyiCYaDVdjy594iscRUU0eVlsKRiYiA1F49PYs3GA5oWHlpLbP4aAx-1VyJHmCbLZzDWYoq9mPKet504pyOWlpuxcVYBhdIJ86941-3NbyBQzkhHSM8h6jMIEcdG4TceV5leGVJRVLCDDQfGEcdWGb5gaRGqkf1qfX7DKREWXcOFUoB07ob5wo_f6KXnpTIcQxhyjHzdyW_2sROHhdopCm7x-pQy11_qdIpLwt9fbw8e0niG5AJPxVo"/>
+<div class="absolute top-1 right-1 bg-primary text-[10px] px-1 rounded">1</div>
+</div>
+<span class="text-[10px] font-label-md text-white/60">Intro</span>
+</div>
+<!-- Multiple Slide Thumbnails -->
+<script>
+                    const slides = [
+                        { id: 2, title: "Alkanes", alt: "Educational slide showing methane and ethane models with bond angles." },
+                        { id: 3, title: "Reactions", alt: "Slide featuring chemical equations and reaction mechanisms in glowing cyan." },
+                        { id: 4, title: "Isomerism", alt: "Comparison chart of structural vs stereo isomers in a minimalist table." },
+                        { id: 5, title: "Quiz #1", alt: "Interactive multiple choice question screen with high contrast UI." },
+                        { id: 6, title: "Mechanism", alt: "Step by step breakdown of nucleophilic substitution." },
+                        { id: 7, title: "Review", alt: "Key takeaway points summarized in a clean bullet list." }
+                    ];
+                    document.write(slides.map(slide => `
+                        <div class="flex flex-col items-center gap-1 shrink-0 cursor-pointer group" onclick="selectSlide(${slide.id})">
+                            <div class="w-32 h-18 rounded-lg overflow-hidden border border-white/10 group-hover:border-primary transition-all relative">
+                                <img src="placeholder" data-alt="${slide.alt} High-performance academic visual." class="w-full h-full object-cover">
+                                <div class="absolute top-1 right-1 bg-white/20 text-[10px] px-1 rounded">${slide.id}</div>
+                            </div>
+                            <span class="text-[10px] font-label-md text-white/60">${slide.title}</span>
+                        </div>
+                    `).join(''));
+                </script>
+<div class="flex flex-col items-center gap-1 shrink-0">
+<button class="w-32 h-18 rounded-lg border-2 border-dashed border-white/20 flex flex-col items-center justify-center text-white/40 hover:text-white hover:border-white/40 transition-all">
+<span class="material-symbols-outlined">add</span>
+<span class="text-[10px]">Add Note</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Doubt & Interaction Sidebar -->
+<aside class="w-80 lg:w-96 glass-panel border-l flex flex-col">
+<div class="p-stack-md border-b border-white/10">
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-headline-md text-label-md text-white">Doubt &amp; Interaction</h2>
+<span class="text-label-sm text-white/40">1,248 Online</span>
+</div>
+<!-- Filter Toggle -->
+<div class="flex bg-surface-dark p-1 rounded-xl">
+<button class="flex-1 py-2 text-label-sm rounded-lg bg-primary text-white transition-all" id="filter-all" onclick="toggleFilter('all')">Live Chat</button>
+<button class="flex-1 py-2 text-label-sm rounded-lg text-white/60 hover:text-white transition-all flex items-center justify-center gap-1" id="filter-doubts" onclick="toggleFilter('doubts')">
+<span class="material-symbols-outlined text-sm">filter_alt</span>
+                        #doubts
+                    </button>
+</div>
+</div>
+<!-- Chat Feed -->
+<div class="flex-1 overflow-y-auto p-stack-md space-y-4 custom-scrollbar" id="chat-feed">
+<!-- Chat Message Item -->
+<div class="flex gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary/30 flex items-center justify-center text-[10px] text-secondary-fixed shrink-0">AJ</div>
+<div class="flex-col">
+<div class="flex items-center gap-2">
+<span class="text-label-sm text-white font-bold">Aryan J.</span>
+<span class="text-[10px] text-white/40">10:42 PM</span>
+</div>
+<p class="text-label-md text-white/80 mt-1">Sir, can you explain the resonance effect again?</p>
+</div>
+</div>
+<!-- Slide Specific Doubt -->
+<div class="p-3 bg-primary-container/10 border border-primary/20 rounded-xl space-y-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">push_pin</span>
+<span class="text-[10px] font-bold text-primary">SLIDE 4 DOUBT</span>
+</div>
+<span class="text-[10px] text-white/40">2 mins ago</span>
+</div>
+<p class="text-label-sm text-white/90">What happens to the hybridization state in the transition phase? <span class="text-primary">#doubt</span></p>
+<div class="flex items-center gap-2 pt-2 border-t border-white/5">
+<div class="w-5 h-5 rounded-full bg-tertiary/20 flex items-center justify-center text-[8px] text-tertiary-fixed">DS</div>
+<span class="text-[10px] text-white/40">Deepak S. (Mentor) is typing...</span>
+</div>
+</div>
+<!-- More Chat items -->
+<script>
+                    const messages = [
+                        { user: "Priya M.", initial: "PM", text: "Got it! Thanks sir.", type: "msg" },
+                        { user: "Rahul K.", initial: "RK", text: "Is the next slide about Markovnikov's rule?", type: "msg" },
+                        { user: "Sneha W.", initial: "SW", text: "Slide 2 was very clear.", type: "msg" }
+                    ];
+                    document.write(messages.map(m => `
+                        <div class="flex gap-3">
+                            <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-[10px] text-white/60 shrink-0">${m.initial}</div>
+                            <div class="flex-col">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-label-sm text-white font-bold">${m.user}</span>
+                                    <span class="text-[10px] text-white/40">Just now</span>
+                                </div>
+                                <p class="text-label-md text-white/80 mt-1">${m.text}</p>
+                            </div>
+                        </div>
+                    `).join(''));
+                </script>
+</div>
+<!-- Input Area -->
+<div class="p-gutter border-t border-white/10 bg-surface-dark/50">
+<div class="relative">
+<textarea class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-label-md text-white focus:outline-none focus:border-primary transition-all resize-none pr-12" placeholder="Ask a doubt or chat... use #doubt for slides" rows="2"></textarea>
+<button class="absolute bottom-3 right-3 text-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+<div class="flex items-center justify-between mt-3">
+<div class="flex gap-2">
+<button class="p-1 text-white/40 hover:text-white transition-colors"><span class="material-symbols-outlined text-lg">mood</span></button>
+<button class="p-1 text-white/40 hover:text-white transition-colors"><span class="material-symbols-outlined text-lg">attach_file</span></button>
+<button class="p-1 text-white/40 hover:text-white transition-colors"><span class="material-symbols-outlined text-lg">alternate_email</span></button>
+</div>
+<span class="text-[10px] text-white/20">Press Enter to send</span>
+</div>
+</div>
+</aside>
+</main>
+<!-- Contextual FAB (Only for specific actions) -->
+<div class="fixed bottom-36 right-gutter z-50" id="fab-overlay">
+<button class="w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all group">
+<span class="material-symbols-outlined text-2xl group-hover:rotate-12 transition-transform">help</span>
+<span class="absolute right-16 bg-primary px-3 py-1 rounded-lg text-label-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Quick Help</span>
+</button>
+</div>
+<script>
+        // Slides data mapping (using thumbnails and assets)
+        const slideAssets = {
+            1: "https://lh3.googleusercontent.com/aida-public/AB6AXuBrMMpQq-uAhNTqMwdnuglSerpQE4KTXaxXKAyjGMrt-SsONBdA5YpBw_KVNQF6S-6oB0ljJWTCHXTZlfaVgYfZGKarSnpaBQiMvk_2KKARq77za-vZm3a5BC3lyTmGs8xBAinSd41_xpb6Z9dcpsINGwpCs9vTvIDOAwEghJhMUhFsTd2J9FF-YUZ1NvLz4pKdX0Qyf0olWdd48X-9nRc55PGDSyzu6Hd3ftlV_mX4Zvq6mcd9ZloqnW4qu1PcDcQT1EMVjTngFEs",
+            2: "https://lh3.googleusercontent.com/aida-public/AB6AXuC8rG-Uvot1S2az2lIumAMtzyiCYaDVdjy594iscRUU0eVlsKRiYiA1F49PYs3GA5oWHlpLbP4aAx-1VyJHmCbLZzDWYoq9mPKet504pyOWlpuxcVYBhdIJ86941-3NbyBQzkhHSM8h6jMIEcdG4TceV5leGVJRVLCDDQfGEcdWGb5gaRGqkf1qfX7DKREWXcOFUoB07ob5wo_f6KXnpTIcQxhyjHzdyW_2sROHhdopCm7x-pQy11_qdIpLwt9fbw8e0niG5AJPxVo",
+            3: "https://lh3.googleusercontent.com/aida-public/AB6AXuAJEqyUP_p0TGwbY-dv0GBf_2Mavyyyixidv5UmeTPhNeyUQtuvuh5-L2J_mKHfO4Gc9ERWxzYbTPEPFktZmwobEqqDtFaT_73Asro_EzbGt4YuDYXHLoHnZakLcLr-K83TDOk2JXRASHIdWJuGt1aJWOVSYb4qsEYZhma3ZWbaHE9A9_G1Kk0UTRnuYO5WZ5x13aq6WfKSq1NwL-tU9uf1PTTtm4YbH2E45pQXrHCKtpZuRd2Ik5Cuh-WpD0w5kP9cN7jTalHD-sk",
+            4: "https://lh3.googleusercontent.com/aida-public/AB6AXuDdAtS0gcKrFY-44MFBAQnWP4DdUVnQcSL-cG8b9EGdjUHgKkPhmY24ulNOcBhUcsZY5ERQFg4OI6GoVsQF5B1yHMLRRp2sCz27SwtDVSrZnRkq54d3IShDwQ4oTTt9B5bSbpjmY575DIqOod6OEr6Jv4UZP2IJEvnHRFs_6Ud9kGWikWlGNn6xc2gbZebVk8eipztnmQZ5ALzF0wbcFeZC--mjWXxHQHCEYBDq24ZkTVdR6Gj4DCarH2OHlrYA1HYKJ6e8xGoOOTU",
+            5: "https://lh3.googleusercontent.com/aida-public/AB6AXuAMN8o8czbruHfQTHS1JBb6lhovVVv1m6_JsPFec0PDilKsfjxNMVrBx8gK7pvwMt0l698dVsJJzSgXLHmGTO696ojDIkchl70hFXwF4tbdmHIjWVsQSmhm1ct-dMwSQdGW5zs2HBwRPhdC1K8pJksVSUv6X0vThSWAbAJ1q2IIqJycSdjTQa4TLYaf2bRBXdptqlYdR9Mq22q9KP20zIUlT51oKvywjT-REbHzv0-fnNT0uwWrRBDGNa6ZaWsJaqxRm6oWXFqvu-o",
+            6: "https://lh3.googleusercontent.com/aida-public/AB6AXuBFZDxLf64KXRo01gU73xx1e1Mibt52O9G4D3hUKeIe4PvN0MMvc4N7Oy0c5RrzeAgusBM3QjOSu3XowiGRLvci1_icalFoYeZxdcpkrxbdPAuycknilF45wYvRgkoE9qWep_nsih0oGpKXUseGO9DGCDMzDX3n-otMpU8skoKLwp3opt9xcq-6WmA7h8xUOCT2BWNpCfQo-q8DLMdo1gDq_DjdPeX618-1vqaCPeobrM7n3h0XsSYDCGxAFWxo1_PZwghfkUlAz4M",
+            7: "https://lh3.googleusercontent.com/aida-public/AB6AXuBmOifRK15oJqj7dwAA2xtVdtnsQ8u24so55Eu-BsDFq1firfwk4xVwAumV9DD7zDV1rSCpusIvxorhBAxiNvqiFjx9l9KHajXuBw5cV-Yu5Tnfu0i94kOt_SP77e_hT_YCjle7YI2L6V2K2yzftO8lt1sOLenuJ6C2ap9CTi9F1YnGw37AkMojir0bJEqF_Dn7N88iKusAUpDIBPT1RK3RUptFlWGBtK2KIZTM0AXnNr2D7vM4_ZPMi0bccT1nKVI23KCzkvLCong"
+        };
+
+        const mainPlayerImg = document.querySelector('section img');
+        
+        function selectSlide(id) {
+            console.log(`Navigating to slide ${id}`);
+            
+            // Remove active slide ring from all slide elements
+            document.querySelectorAll('section div.h-32 div.w-32').forEach(el => {
+                el.classList.remove('active-slide-ring');
+            });
+            
+            // Add active slide ring to clicked element
+            // Since first slide doesn't use the selectSlide handler in the same list, we query index
+            const clickedSlideContainer = document.querySelectorAll('section div.h-32 > div')[id - 1];
+            if (clickedSlideContainer) {
+                const ringEl = clickedSlideContainer.querySelector('div.w-32');
+                if (ringEl) ringEl.classList.add('active-slide-ring');
+            }
+
+            // Animate canvas source switch
+            if (mainPlayerImg) {
+                mainPlayerImg.style.opacity = '0.3';
+                mainPlayerImg.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    mainPlayerImg.src = slideAssets[id] || slideAssets[1];
+                    mainPlayerImg.style.opacity = '1';
+                    mainPlayerImg.style.transform = 'scale(1)';
+                }, 200);
+            }
+        }
+
+        // Active State Filter Switcher
+        let activeFilter = 'all';
+        const chatFeed = document.getElementById('chat-feed');
+
+        function toggleFilter(type) {
+            activeFilter = type;
+            const allBtn = document.getElementById('filter-all');
+            const doubtBtn = document.getElementById('filter-doubts');
+            
+            if (type === 'all') {
+                allBtn.className = "flex-grow py-2 text-label-sm rounded-lg bg-primary text-white font-bold transition-all text-center";
+                doubtBtn.className = "flex-grow py-2 text-label-sm rounded-lg text-white/60 hover:text-white transition-all flex items-center justify-center gap-1";
+            } else {
+                doubtBtn.className = "flex-grow py-2 text-label-sm rounded-lg bg-primary text-white font-bold transition-all flex items-center justify-center gap-1";
+                allBtn.className = "flex-grow py-2 text-label-sm rounded-lg text-white/60 hover:text-white transition-all text-center";
+            }
+
+            // Hide/Show messages based on filter
+            const chatItems = chatFeed.querySelectorAll('& > div');
+            chatItems.forEach(item => {
+                if (type === 'doubts') {
+                    // check if it has doubt style (contains bg-primary-container or has #doubt text)
+                    if (item.classList.contains('bg-primary-container/10') || item.innerHTML.includes('#doubt')) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                } else {
+                    item.style.display = 'flex';
+                }
+            });
+            chatFeed.scrollTop = chatFeed.scrollHeight;
+        }
+
+        // Simulated Auto-Chat Feed Generator
+        const simulatedUsers = [
+            { name: "Rohit S.", init: "RS", msg: "Excellent explanation of electrophilic substitution!" },
+            { name: "Neelam P.", init: "NP", msg: "Will this question be asked in NEET 2025?" },
+            { name: "Amit G.", init: "AG", msg: "Sir, carbon is sp2 because it has 3 sigma bonds, right?" },
+            { name: "Kunal V.", init: "KV", msg: "Yes, 3 bond pairs and 0 lone pairs." },
+            { name: "Deepak S. (Mentor)", init: "DS", msg: "Yes Amit, you are correct. Hybridization of double bonded Carbon is sp2.", doubtAnswer: true }
+        ];
+
+        let simIdx = 0;
+        setInterval(() => {
+            if (simIdx < simulatedUsers.length) {
+                const user = simulatedUsers[simIdx];
+                const msgEl = document.createElement('div');
+                msgEl.className = 'flex gap-3 transition-all duration-300 opacity-0 translate-y-3';
+                
+                if (user.doubtAnswer) {
+                    msgEl.className = 'p-3 bg-green-500/10 border border-green-500/20 rounded-xl space-y-2';
+                    msgEl.innerHTML = `
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-green-400 text-sm">verified</span>
+                                <span class="text-[10px] font-bold text-green-400">MENTOR VERIFIED</span>
+                            </div>
+                            <span class="text-[10px] text-white/40">Just now</span>
+                        </div>
+                        <p class="text-label-sm text-white/90">${user.msg}</p>
+                    `;
+                } else {
+                    msgEl.innerHTML = `
+                        <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-[10px] text-white/60 shrink-0">${user.init}</div>
+                        <div class="flex-col">
+                            <div class="flex items-center gap-2">
+                                <span class="text-label-sm text-white font-bold">${user.name}</span>
+                                <span class="text-[10px] text-white/40">Just now</span>
+                            </div>
+                            <p class="text-label-md text-white/80 mt-1">${user.msg}</p>
+                        </div>
+                    `;
+                }
+
+                chatFeed.appendChild(msgEl);
+                setTimeout(() => {
+                    msgEl.classList.remove('opacity-0', 'translate-y-3');
+                }, 50);
+
+                simIdx++;
+                chatFeed.scrollTop = chatFeed.scrollHeight;
+            }
+        }, 5000);
+
+        // Chat input action
+        const textarea = document.querySelector('textarea');
+        const sendMsgBtn = document.querySelector('aside footer button');
+
+        function sendMsg() {
+            const val = textarea.value.trim();
+            if (val) {
+                const msgEl = document.createElement('div');
+                const isDoubt = val.toLowerCase().includes('#doubt');
+                
+                if (isDoubt) {
+                    msgEl.className = 'p-3 bg-primary-container/10 border border-primary/20 rounded-xl space-y-2';
+                    msgEl.innerHTML = `
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary text-sm">push_pin</span>
+                                <span class="text-[10px] font-bold text-primary">MY DOUBT</span>
+                            </div>
+                            <span class="text-[10px] text-white/40">Just now</span>
+                        </div>
+                        <p class="text-label-sm text-white/90">${val}</p>
+                    `;
+                } else {
+                    msgEl.className = 'flex gap-3';
+                    msgEl.innerHTML = `
+                        <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-[10px] text-primary-fixed shrink-0">ME</div>
+                        <div class="flex-col">
+                            <div class="flex items-center gap-2">
+                                <span class="text-label-sm text-primary font-bold">Me (Student)</span>
+                                <span class="text-[10px] text-white/40">Just now</span>
+                            </div>
+                            <p class="text-label-md text-white/80 mt-1">${val}</p>
+                        </div>
+                    `;
+                }
+
+                chatFeed.appendChild(msgEl);
+                textarea.value = '';
+                
+                // Keep active filter active
+                if (activeFilter === 'doubts' && !isDoubt) {
+                    msgEl.style.display = 'none';
+                }
+                
+                chatFeed.scrollTop = chatFeed.scrollHeight;
+            }
+        }
+
+        sendMsgBtn.addEventListener('click', sendMsg);
+        textarea.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMsg();
+            }
+        });
+
+        // 4. Interactive Live Poll Simulation
+        const playerArea = document.querySelector('section');
+
+        function triggerLivePoll() {
+            // Remove any existing poll first
+            const existing = document.getElementById('live-poll');
+            if (existing) existing.remove();
+
+            const pollDiv = document.createElement('div');
+            pollDiv.id = 'live-poll';
+            // Smooth slide-in styles from side in player
+            pollDiv.className = 'absolute top-10 right-6 z-30 glass-panel p-6 rounded-2xl w-80 text-white shadow-2xl border border-white/20 transition-all duration-500 translate-x-96 opacity-0';
+            pollDiv.innerHTML = `
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center gap-2 text-secondary-container">
+                        <span class="material-symbols-outlined animate-spin text-lg" style="animation-duration: 3s">rotate_right</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider">Live Class Poll</span>
+                    </div>
+                    <span class="text-[10px] bg-red-500/20 text-red-400 px-2 py-0.5 rounded font-bold">Active</span>
+                </div>
+                <h4 class="text-label-md font-bold mb-4">What is the hybridization of Carbon in Benzene?</h4>
+                <div class="space-y-2" id="poll-options">
+                    <button class="w-full text-left p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/15 transition-all text-xs flex justify-between items-center" data-opt="0">
+                        <span>A) sp</span>
+                    </button>
+                    <button class="w-full text-left p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/15 transition-all text-xs flex justify-between items-center" data-opt="1">
+                        <span>B) sp2 (planar)</span>
+                    </button>
+                    <button class="w-full text-left p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/15 transition-all text-xs flex justify-between items-center" data-opt="2">
+                        <span>C) sp3</span>
+                    </button>
+                    <button class="w-full text-left p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/15 transition-all text-xs flex justify-between items-center" data-opt="3">
+                        <span>D) dsp2</span>
+                    </button>
+                </div>
+            `;
+            playerArea.appendChild(pollDiv);
+
+            // Trigger animation
+            setTimeout(() => {
+                pollDiv.classList.remove('translate-x-96', 'opacity-0');
+            }, 100);
+
+            // Bind click options
+            pollDiv.querySelectorAll('#poll-options button').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const opt = btn.getAttribute('data-opt');
+                    submitPollResponse(opt);
+                });
+            });
+        }
+
+        function submitPollResponse(selectedOpt) {
+            const optionsDiv = document.getElementById('poll-options');
+            if (!optionsDiv) return;
+
+            // Mock polling statistics
+            const stats = [4, 84, 10, 2]; // Percentages (A, B, C, D)
+            const correctOpt = "1"; // B is correct
+            
+            optionsDiv.innerHTML = '';
+            stats.forEach((pct, idx) => {
+                const label = ['A) sp', 'B) sp2 (planar)', 'C) sp3', 'D) dsp2'][idx];
+                const isSelected = selectedOpt == idx;
+                const isCorrect = correctOpt == idx;
+                
+                // Style based on correctness
+                let borderClass = 'border-white/10';
+                let progressClass = 'bg-white/10';
+                let checkIcon = '';
+
+                if (isCorrect) {
+                    borderClass = 'border-green-500/40 bg-green-500/5';
+                    progressClass = 'bg-green-500/30';
+                    checkIcon = '<span class="material-symbols-outlined text-green-400 text-[16px]">check_circle</span>';
+                } else if (isSelected) {
+                    borderClass = 'border-red-500/40 bg-red-500/5';
+                    progressClass = 'bg-red-500/30';
+                    checkIcon = '<span class="material-symbols-outlined text-red-400 text-[16px]">cancel</span>';
+                }
+
+                const resultBar = document.createElement('div');
+                resultBar.className = `relative w-full p-3 rounded-lg border ${borderClass} overflow-hidden flex items-center justify-between text-xs`;
+                resultBar.innerHTML = `
+                    <div class="absolute inset-y-0 left-0 ${progressClass} transition-all duration-1000" style="width: ${pct}%"></div>
+                    <span class="relative z-10 font-medium">${label}</span>
+                    <span class="relative z-10 font-bold flex items-center gap-1.5">${pct}% ${checkIcon}</span>
+                `;
+                optionsDiv.appendChild(resultBar);
+            });
+
+            // Auto dismiss poll after 5 seconds
+            setTimeout(() => {
+                const pollDiv = document.getElementById('live-poll');
+                if (pollDiv) {
+                    pollDiv.classList.add('translate-x-96', 'opacity-0');
+                    setTimeout(() => pollDiv.remove(), 500);
+                }
+            }, 6000);
+        }
+
+        // Trigger first poll after 10 seconds
+        setTimeout(triggerLivePoll, 10000);
+
+        // Keep trigger recurring
+        setInterval(triggerLivePoll, 25000);
+
+        // Initial setup
+        document.querySelectorAll('section div.h-32 > div').forEach((btn, idx) => {
+            btn.addEventListener('click', () => selectSlide(idx + 1));
+        });
+    </script>
+
+  <!-- Ecosystem Switched Widget Overlay -->
+  <script src="../ecosystem-hud.js"></script>
+</body></html>

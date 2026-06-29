@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>All Rewards | Atomic Pathshala</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .streak-glow {
+            filter: drop-shadow(0 0 8px rgba(186, 26, 26, 0.4));
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #dae2fd;
+            border-radius: 10px;
+        }
+        .active-tab-indicator {
+            view-transition-name: active-tab;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-container": "#005266",
+                      "secondary-container": "#00ccf9",
+                      "surface-container-high": "#e2e7ff",
+                      "error-container": "#ffdad6",
+                      "surface-dim": "#d2d9f4",
+                      "text-dark": "#F1F5F9",
+                      "surface": "#faf8ff",
+                      "surface-variant": "#dae2fd",
+                      "outline-variant": "#c2c6d8",
+                      "on-secondary-fixed": "#001f28",
+                      "surface-tint": "#0054d6",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface-variant": "#424656",
+                      "on-tertiary-fixed-variant": "#005235",
+                      "tertiary-fixed-dim": "#49df9f",
+                      "on-background": "#131b2e",
+                      "primary": "#0050cb",
+                      "tertiary-fixed": "#6afcb9",
+                      "on-tertiary-container": "#e1ffeb",
+                      "bg-dark": "#0B0E14",
+                      "inverse-surface": "#283044",
+                      "on-tertiary": "#ffffff",
+                      "on-surface": "#131b2e",
+                      "on-primary": "#ffffff",
+                      "secondary": "#00677f",
+                      "surface-bright": "#faf8ff",
+                      "on-error-container": "#93000a",
+                      "inverse-on-surface": "#eef0ff",
+                      "surface-container-highest": "#dae2fd",
+                      "primary-fixed-dim": "#b3c5ff",
+                      "background": "#faf8ff",
+                      "secondary-fixed": "#b7eaff",
+                      "on-primary-fixed": "#001849",
+                      "tertiary-container": "#008256",
+                      "tertiary": "#006643",
+                      "outline": "#727687",
+                      "on-secondary-fixed-variant": "#004e60",
+                      "primary-fixed": "#dae1ff",
+                      "surface-container": "#eaedff",
+                      "secondary-fixed-dim": "#4cd6ff",
+                      "surface-light": "#F8FAFC",
+                      "surface-dark": "#161B22",
+                      "text-light": "#0F172A",
+                      "bg-light": "#FFFFFF",
+                      "on-secondary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "border-subtle": "rgba(0, 102, 255, 0.1)",
+                      "on-tertiary-fixed": "#002113",
+                      "on-primary-fixed-variant": "#003fa4",
+                      "on-primary-container": "#f8f7ff",
+                      "primary-container": "#0066ff",
+                      "surface-container-low": "#f2f3ff",
+                      "error": "#ba1a1a",
+                      "inverse-primary": "#b3c5ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-lg": "32px",
+                      "gutter": "24px",
+                      "stack-sm": "8px",
+                      "margin-mobile": "20px",
+                      "container-max": "1280px",
+                      "margin-desktop": "64px",
+                      "stack-md": "16px"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Geist"],
+                      "body-lg": ["Inter"],
+                      "display-lg": ["Geist"],
+                      "body-md": ["Inter"],
+                      "display-lg-mobile": ["Geist"],
+                      "label-sm": ["Inter"],
+                      "headline-md": ["Geist"],
+                      "label-md": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm">
+<div class="flex justify-between items-center px-gutter max-w-container-max mx-auto h-16">
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md font-bold text-primary">Atomic Pathshala</span>
+<nav class="hidden md:flex gap-6">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Dashboard</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Courses</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Test Series</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Community</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-primary-container text-on-primary-container px-4 py-1.5 rounded-full font-label-md text-label-md hover:scale-105 active:scale-95 transition-all">Redeem Points</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary p-2">notifications</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary/20">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of a focused Indian student in a modern study environment, wearing a light blue polo shirt with the Atomic Pathshala logo. Soft, professional studio lighting with a clean, high-key background in shades of white and light grey. High-resolution corporate photography style with a premium feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnA8GDxVeLmBpm13OQHfImhbSlbZX0fBi1JV8KWFtd67cGHeMB3TWvJ_2UP0iFkPXFSRRqlp2JipjOF_HPVbcClvlKi3tmV-XgPYNa12MYaVsnSSnnWoTgUx4Aq9ZhSF8DJ_hw7LWJ7qCCYQ5wG1akuFvyq7MTca6S5G7akpbOwJX5RArnu_BZqIK3io63V6o3KRPqs2rZWK_UNGvLrBPaJUbOZaATvOQnKwFiBktlZF0V6JNHXxJMca3K0qdV3SPdofqP7vUQfRM"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Side Navigation Bar -->
+<aside class="fixed left-0 top-0 h-full w-64 z-40 hidden lg:block bg-surface border-r border-outline-variant/30 shadow-lg pt-20">
+<div class="flex flex-col p-stack-md gap-stack-sm h-full">
+<div class="mb-8 px-2">
+<p class="font-headline-md text-headline-md font-bold text-primary">Welcome, Aryan</p>
+<p class="font-label-md text-label-md text-on-surface-variant">NEET 2025 Aspirant</p>
+</div>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container rounded-lg transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">dashboard</span> Overview
+            </a>
+<a class="flex items-center gap-3 p-3 bg-secondary-container text-on-secondary-container rounded-lg font-bold transition-all font-label-md text-label-md active:translate-x-1" href="#">
+<span class="material-symbols-outlined">redeem</span> Rewards Gallery
+            </a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container rounded-lg transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">history</span> Point History
+            </a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container rounded-lg transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">military_tech</span> Achievements
+            </a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container rounded-lg transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+            </a>
+<div class="mt-auto border-t border-outline-variant/20 pt-4 flex flex-col gap-2">
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">help</span> Help Center
+                </a>
+<a class="flex items-center gap-3 p-3 text-error hover:bg-error-container/20 rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">logout</span> Logout
+                </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="lg:ml-64 pt-24 pb-16 px-margin-mobile md:px-margin-desktop min-h-screen">
+<div class="max-w-container-max mx-auto space-y-stack-lg">
+<!-- Header Section: Points & Streak -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Points Card -->
+<div class="md:col-span-2 glass-card rounded-2xl p-8 relative overflow-hidden flex flex-col justify-between min-h-[180px]">
+<div class="relative z-10">
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Total Balance</p>
+<h1 class="font-display-lg text-display-lg text-primary mt-2">12,450 <span class="text-headline-md font-medium text-secondary">Atomic Points</span></h1>
+</div>
+<div class="relative z-10 flex gap-4 mt-4">
+<div class="flex items-center gap-1.5 px-3 py-1 bg-primary/10 text-primary rounded-full font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">trending_up</span> +240 earned today
+                        </div>
+</div>
+<!-- Background Decoration -->
+<div class="absolute right-0 top-0 h-full w-1/3 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[200px] absolute -right-10 top-1/2 -translate-y-1/2">token</span>
+</div>
+</div>
+<!-- Streak Card -->
+<div class="bg-gradient-to-br from-error to-[#d32f2f] rounded-2xl p-8 text-white relative overflow-hidden flex flex-col items-center justify-center text-center shadow-lg">
+<div class="relative z-10">
+<div class="streak-glow inline-flex items-center justify-center w-16 h-16 bg-white/20 rounded-full mb-4">
+<span class="material-symbols-outlined text-4xl text-white" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<h2 class="font-display-lg text-display-lg-mobile leading-none">12 Days</h2>
+<p class="font-label-md text-label-md text-white/80 mt-2 uppercase tracking-widest">Active Learning Streak</p>
+</div>
+<!-- Particle Background Simulation -->
+<div class="absolute inset-0 opacity-20 pointer-events-none">
+
+</div>
+</div>
+</section>
+<!-- Milestone Tracker -->
+<section class="glass-card rounded-2xl p-8 overflow-hidden">
+<div class="flex items-center justify-between mb-8">
+<h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">timeline</span> Milestone Journey
+                    </h3>
+<span class="font-label-md text-label-md text-on-surface-variant">Next major reward at 30 days</span>
+</div>
+<div class="relative pt-8 pb-4 px-4">
+<!-- Progress Line -->
+<div class="absolute top-[52px] left-8 right-8 h-1 bg-outline-variant/30 rounded-full"></div>
+<div class="absolute top-[52px] left-8 w-[40%] h-1 bg-primary rounded-full shadow-[0_0_10px_rgba(0,80,203,0.5)]"></div>
+<div class="flex justify-between relative z-10">
+<!-- Step 1 -->
+<div class="flex flex-col items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center shadow-lg ring-4 ring-white">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div class="text-center">
+<p class="font-label-md text-label-md font-bold">Day 7</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Exclusive Badge</p>
+</div>
+</div>
+<!-- Step 2 (Active) -->
+<div class="flex flex-col items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center shadow-lg ring-4 ring-white animate-pulse">
+<span class="material-symbols-outlined text-[20px]">workspace_premium</span>
+</div>
+<div class="text-center">
+<p class="font-label-md text-label-md font-bold text-primary">Day 15</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">E-Book Pack</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center gap-3 opacity-40">
+<div class="w-10 h-10 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center border-2 border-outline-variant">
+<span class="material-symbols-outlined text-[20px]">military_tech</span>
+</div>
+<div class="text-center">
+<p class="font-label-md text-label-md font-bold">Day 30</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Masterclass Pass</p>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-col items-center gap-3 opacity-40">
+<div class="w-10 h-10 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center border-2 border-outline-variant">
+<span class="material-symbols-outlined text-[20px]">card_giftcard</span>
+</div>
+<div class="text-center">
+<p class="font-label-md text-label-md font-bold">Day 50</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Official T-Shirt</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Category Tabs -->
+<section class="flex overflow-x-auto pb-4 gap-4 no-scrollbar">
+<button class="flex-none px-6 py-2.5 rounded-full bg-primary text-on-primary font-label-md text-label-md shadow-md">All Rewards</button>
+<button class="flex-none px-6 py-2.5 rounded-full bg-surface-container hover:bg-surface-container-high transition-colors font-label-md text-label-md text-on-surface-variant">Mock Tests</button>
+<button class="flex-none px-6 py-2.5 rounded-full bg-surface-container hover:bg-surface-container-high transition-colors font-label-md text-label-md text-on-surface-variant">Revision Series</button>
+<button class="flex-none px-6 py-2.5 rounded-full bg-surface-container hover:bg-surface-container-high transition-colors font-label-md text-label-md text-on-surface-variant">Mentorship</button>
+<button class="flex-none px-6 py-2.5 rounded-full bg-surface-container hover:bg-surface-container-high transition-colors font-label-md text-label-md text-on-surface-variant">Physical Goods</button>
+</section>
+<!-- Rewards Gallery -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<!-- Unlocked Reward 1 -->
+<article class="group glass-card rounded-2xl overflow-hidden flex flex-col transition-all hover:-translate-y-1 hover:shadow-xl hover:border-primary/30">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-500" data-alt="Vibrant 3D digital illustration of a premium medical textbook with a glowing cyan neon outline, floating in a clean architectural minimalist space. Atomic Blue and white color scheme, high-tech academic feel, photorealistic rendering with soft bokeh background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9VbssxGcwGb8wBd_4bsKEEt4cYfz6TYtyKYve6Nf1oQS8h7_m-Ib28ahX77ZgQuvC17VEq2zf39VBqCSFh70FGps0dWBtpomUj2rKZlzZ2ryVoxno8uUnc6nhUm-Bm13uv6mNW9zjBp4A0bKJfgYP7yW2gzxeZ668LSi-QLQlyWU6SsIiApmHLTlUjdRDhc-YQ_9C7hUZ7lf-pu5e84TVrep_tXdeuzyymM918tFf5OBRVWvBevpQ3JhTvRrAPrygkMxZR9KNCDI"/>
+<div class="absolute top-3 left-3 bg-tertiary text-on-tertiary px-3 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-xs">check_circle</span> Unlocked
+                        </div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<h4 class="font-headline-md text-[18px] leading-tight mb-2 text-on-surface">NEET Biology 100-Question Mastery Pack</h4>
+<p class="font-body-md text-label-md text-on-surface-variant flex-1 mb-4">Deep-dive questions curated by top faculty for final revision.</p>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/20">
+<div class="flex items-center gap-1 text-primary font-bold">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">token</span> 2,000
+                            </div>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md text-label-md hover:bg-on-primary-fixed-variant transition-colors shadow-sm">Access Now</button>
+</div>
+</div>
+</article>
+<!-- Unlocked Reward 2 -->
+<article class="group glass-card rounded-2xl overflow-hidden flex flex-col transition-all hover:-translate-y-1 hover:shadow-xl hover:border-primary/30">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-500" data-alt="Dynamic close-up shot of a set of high-quality vinyl stickers with educational motifs, physics formulas, and the Atomic Pathshala mascot. Minimalist bright background, studio lighting, product photography style, vibrant colors on a clean white surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2CFr4qWxrP2U3TOW4AqRbCKWYv1_4lS5Wtql5vUVS3Bc4N05WWgjfFdJo0-MsK8Z-KC1RbcidAVfdnna9gl80t2XRf8DN7sOjeS9fJBCPZezxCaRruPiqx3WH-oJjBruQmrSqlxN2k96LS7NlsTkUJQOVjzsiSvnRaTJacWnvQxCPdL1B9kVrJeXQ4jjHR0nl19HuLLZeuK2CrpfTyoHKlC9m-yVPPL6teVqHCb8LvvzaA9F2LTiGJzooNG3oAij3fV7jx0Muk7Y"/>
+<div class="absolute top-3 left-3 bg-tertiary text-on-tertiary px-3 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-xs">check_circle</span> Unlocked
+                        </div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<h4 class="font-headline-md text-[18px] leading-tight mb-2 text-on-surface">Atomic Pathshala Sticker Pack</h4>
+<p class="font-body-md text-label-md text-on-surface-variant flex-1 mb-4">Express your learner identity with these high-quality vinyl stickers.</p>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/20">
+<div class="flex items-center gap-1 text-primary font-bold">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">token</span> 500
+                            </div>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md text-label-md hover:bg-on-primary-fixed-variant transition-colors shadow-sm">Claim Pack</button>
+</div>
+</div>
+</article>
+<!-- Locked Reward 1 -->
+<article class="glass-card rounded-2xl overflow-hidden flex flex-col grayscale opacity-80 border-dashed border-2 border-outline-variant/50">
+<div class="h-48 bg-surface-container-high relative flex items-center justify-center">
+<img class="w-full h-full object-cover opacity-30" data-alt="Elegant 3D design of a sleek navy blue polo shirt with a minimalist electric blue Atomic Pathshala logo on the chest. The shirt is displayed on a clean floating platform in a futuristic digital studio with soft atmospheric blue lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTZLFIm0ce1adMGlLOtekA6V7Fr8LEd3ZFViaWHgCQ8ZvCgjTHGl0Jg1iGjzLvlmP620ptSHVANwVaXNIMPeDxDoXaVWopKp3qfi2lctnmospeUyrhCCuKiopnbeI6lLLbcRaCdVH1wAZUjbfAwFtRyMGgtFv3_c-rRx5HoPmKBIqEAIdWXeXrOR6zoRteKG8EoUTORIxYQ2CM-8Q1Bo3K1_aNoe6Y05e7aTumbGwwm6bWRxMxTC8aFHB_J_TKkH8K3d4lLq8lM4s"/>
+<div class="absolute inset-0 flex flex-col items-center justify-center gap-2">
+<div class="w-12 h-12 rounded-full bg-white/80 flex items-center justify-center text-on-surface shadow-lg">
+<span class="material-symbols-outlined text-2xl">lock</span>
+</div>
+<span class="bg-surface text-on-surface-variant px-2 py-1 rounded font-label-sm text-label-sm">Requires 15 Day Streak</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<h4 class="font-headline-md text-[18px] leading-tight mb-2 text-on-surface">Limited Edition "Scholar" Polo</h4>
+<p class="font-body-md text-label-md text-on-surface-variant flex-1 mb-4">Official Atomic Pathshala apparel. Wear your consistency with pride.</p>
+<div class="space-y-2 mt-auto pt-4 border-t border-outline-variant/20">
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Progress</span>
+<span class="font-label-sm text-label-sm font-bold text-primary">12/15 Days</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 80%"></div>
+</div>
+</div>
+</div>
+</article>
+<!-- Locked Reward 2 -->
+<article class="glass-card rounded-2xl overflow-hidden flex flex-col grayscale opacity-80 border-dashed border-2 border-outline-variant/50">
+<div class="h-48 bg-surface-container-high relative flex items-center justify-center">
+<img class="w-full h-full object-cover opacity-30" data-alt="High-tech futuristic virtual classroom scene with a transparent holographic screen showing complex chemistry molecular models. The setting is a clean, glass-walled modern academic room at twilight. Premium educational technology aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPDsFaJq3OxwbqAyIn-vaELY7VytdBCaYY6QJmJbPfieSr9aS3WmAiUXMlxOO2rs24CYT3T_BxwDpP02RYdF8sNAGKaTNeYX9WO6OvRhBcR73PxcacBCZBGhugiRDevSStO_FMGMUMvERYze5-khWDoJiz5T1A0cLhSBXTwcTXZeKnV2mMrmE6y_lLOJ2Hb6BZhdvOz1ynTRoNNgQ6Ob9Ar7aKPqBYPBS6MWowxDLlZ8unuRBKWUf29oL996KW-twL7hddPdL0y4o"/>
+<div class="absolute inset-0 flex flex-col items-center justify-center gap-2">
+<div class="w-12 h-12 rounded-full bg-white/80 flex items-center justify-center text-on-surface shadow-lg">
+<span class="material-symbols-outlined text-2xl">lock</span>
+</div>
+<span class="bg-surface text-on-surface-variant px-2 py-1 rounded font-label-sm text-label-sm">30,000 Points Required</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<h4 class="font-headline-md text-[18px] leading-tight mb-2 text-on-surface">1-on-1 Mentorship Session</h4>
+<p class="font-body-md text-label-md text-on-surface-variant flex-1 mb-4">Personalized 45-minute strategy call with a Senior NEET Mentor.</p>
+<div class="space-y-2 mt-auto pt-4 border-t border-outline-variant/20">
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Points Progress</span>
+<span class="font-label-sm text-label-sm font-bold text-primary">41%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 41%"></div>
+</div>
+</div>
+</div>
+</article>
+<!-- Unlocked Reward 3 -->
+<article class="group glass-card rounded-2xl overflow-hidden flex flex-col transition-all hover:-translate-y-1 hover:shadow-xl hover:border-primary/30">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-500" data-alt="Stylized 3D rendering of a 'Master' achievement badge with golden wings and a glowing blue core. The medal is floating in a minimalist tech-focused void with light rays and subtle particle effects. High contrast, premium award aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDj2OArCqqoPPgx0I70psk6H7jprPC-lwnD6RCo06N6FnVdhD1mFtyUHoG20U2y02BII4vss1wRplsfBjGbsQ63iRZeIfT5zI9gveWs2CetCooHMOLb6mIgOSenXjmvmT9Snu_1xhif16zVSl-ycPm3xCg1eXMSOJCj5E-ddMu-ET9MfZLlxbj7q8OWYXqfPB59AjXnqianBZwrNsmJxjWLts1jcbOMFjdpztN7n5aKrtYMDNzR-hBgrqZRWnJfSVob9K97mQ3wV1g"/>
+<div class="absolute top-3 left-3 bg-tertiary text-on-tertiary px-3 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-xs">check_circle</span> Unlocked
+                        </div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<h4 class="font-headline-md text-[18px] leading-tight mb-2 text-on-surface">Consistency Master Avatar Frame</h4>
+<p class="font-body-md text-label-md text-on-surface-variant flex-1 mb-4">An exclusive animated border for your profile avatar. Shows you're elite.</p>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/20">
+<div class="flex items-center gap-1 text-primary font-bold">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">token</span> 1,200
+                            </div>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md text-label-md hover:bg-on-primary-fixed-variant transition-colors shadow-sm">Equip Now</button>
+</div>
+</div>
+</article>
+<!-- Locked Reward 3 -->
+<article class="glass-card rounded-2xl overflow-hidden flex flex-col grayscale opacity-80 border-dashed border-2 border-outline-variant/50">
+<div class="h-48 bg-surface-container-high relative flex items-center justify-center">
+<img class="w-full h-full object-cover opacity-30" data-alt="A premium physical mock test booklet pack on a wooden desk with a stethoscope and a highlighter. High-key light-mode atmosphere, professional medicine aspirant aesthetic, clean and motivating visual." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHg3cmInpqX92m26KHxx16NTqejBAvvmQeI2gpkS5jGUe9ARkuEHrGXKM960tsekbVHp3k4XLd6Zy6GoZeEn_RmVPXmJPpoQsT85ZadQPzC0FqxIQPSNsx4dP5EKIw6WNZQm26VbzAa0p2NujGrtlBO7kQfsTomNHxjUIzvEQG-wrsrnaLpFPUNaa3HlPISvkcrMHbokDAa4jXK-Qp5oWZ6m9kHbbTBpooEgM7HbqX24BQOJ-sTQjvLDAyfBX-dR-4f7zb6u5_iFU"/>
+<div class="absolute inset-0 flex flex-col items-center justify-center gap-2">
+<div class="w-12 h-12 rounded-full bg-white/80 flex items-center justify-center text-on-surface shadow-lg">
+<span class="material-symbols-outlined text-2xl">lock</span>
+</div>
+<span class="bg-surface text-on-surface-variant px-2 py-1 rounded font-label-sm text-label-sm">60,000 Points Required</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<h4 class="font-headline-md text-[18px] leading-tight mb-2 text-on-surface">Mock Test Physical Bundle</h4>
+<p class="font-body-md text-label-md text-on-surface-variant flex-1 mb-4">Set of 10 full-length NEET mock tests delivered to your doorstep.</p>
+<div class="space-y-2 mt-auto pt-4 border-t border-outline-variant/20">
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Points Progress</span>
+<span class="font-label-sm text-label-sm font-bold text-primary">20%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 20%"></div>
+</div>
+</div>
+</div>
+</article>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="lg:ml-64 bg-inverse-surface text-surface-light border-t border-outline-variant/20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-stack-lg px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<span class="font-headline-md text-headline-md text-surface-light font-bold">Atomic Pathshala</span>
+<p class="mt-4 font-label-sm text-label-sm text-surface-variant/70 leading-relaxed">The premier accelerator for NEET &amp; JEE aspirants. Fueling your ambition with precision learning and rewards.</p>
+</div>
+<div>
+<h5 class="font-label-md text-label-md text-primary-fixed mb-4">Platform</h5>
+<ul class="space-y-2">
+<li><a class="font-label-sm text-label-sm text-surface-variant/70 hover:text-white transition-colors" href="#">Mock Tests</a></li>
+<li><a class="font-label-sm text-label-sm text-surface-variant/70 hover:text-white transition-colors" href="#">Video Lectures</a></li>
+<li><a class="font-label-sm text-label-sm text-surface-variant/70 hover:text-white transition-colors" href="#">Study Material</a></li>
+<li><a class="font-label-sm text-label-sm text-surface-variant/70 hover:text-white transition-colors" href="#">Ranking</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-md text-label-md text-primary-fixed mb-4">Support</h5>
+<ul class="space-y-2">
+<li><a class="font-label-sm text-label-sm text-surface-variant/70 hover:text-white transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="font-label-sm text-label-sm text-surface-variant/70 hover:text-white transition-colors" href="#">Terms of Service</a></li>
+<li><a class="font-label-sm text-label-sm text-surface-variant/70 hover:text-white transition-colors" href="#">FAQ</a></li>
+<li><a class="font-label-sm text-label-sm text-surface-variant/70 hover:text-white transition-colors" href="#">Contact Us</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-md text-label-md text-primary-fixed mb-4">Join Newsletter</h5>
+<div class="flex gap-2">
+<input class="bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white font-label-sm w-full focus:outline-none focus:border-primary-fixed" placeholder="Email address" type="email"/>
+<button class="bg-primary-container text-on-primary-container px-4 py-2 rounded-lg font-label-md text-label-md">Join</button>
+</div>
+</div>
+</div>
+<div class="border-t border-outline-variant/10 py-6 text-center">
+<p class="font-label-sm text-label-sm text-surface-variant/50">© 2024 Atomic Pathshala. All rights reserved. Built for excellence.</p>
+</div>
+</footer>
+<script>
+        // Micro-interaction: Active Navigation Logic
+        const navLinks = document.querySelectorAll('nav a, aside a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                // Example: just visually toggling for demo purposes
+                // In production, this would be handled by your router
+            });
+        });
+
+        // Micro-interaction: Smooth hover for cards
+        const cards = document.querySelectorAll('article');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+
+  <!-- Ecosystem Switched Widget Overlay -->
+  <script src="../ecosystem-hud.js"></script>
+</body></html>

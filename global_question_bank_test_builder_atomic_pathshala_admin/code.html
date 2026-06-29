@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Test Portal | Atomic Pathshala</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e2e7ff;
+            border-radius: 10px;
+        }
+        .drag-handle {
+            cursor: grab;
+        }
+        .drag-handle:active {
+            cursor: grabbing;
+        }
+        .status-pill-verified { background-color: #e1ffeb; color: #006643; }
+        .status-pill-flagged { background-color: #ffdad6; color: #93000a; }
+        .status-pill-pending { background-color: #eaedff; color: #0050cb; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#0066ff",
+                        "on-secondary-fixed": "#001f28",
+                        "on-secondary-container": "#005266",
+                        "inverse-surface": "#283044",
+                        "border-subtle": "rgba(0, 102, 255, 0.1)",
+                        "secondary-fixed": "#b7eaff",
+                        "surface-container": "#eaedff",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#4cd6ff",
+                        "outline-variant": "#c2c6d8",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#49df9f",
+                        "surface-container-low": "#f2f3ff",
+                        "tertiary-fixed": "#6afcb9",
+                        "surface-dark": "#161B22",
+                        "surface-container-high": "#e2e7ff",
+                        "surface-dim": "#d2d9f4",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "primary-fixed": "#dae1ff",
+                        "on-primary-container": "#f8f7ff",
+                        "on-background": "#131b2e",
+                        "bg-dark": "#0B0E14",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#00ccf9",
+                        "on-primary-fixed": "#001849",
+                        "on-tertiary-fixed-variant": "#005235",
+                        "tertiary": "#006643",
+                        "on-tertiary-container": "#e1ffeb",
+                        "on-secondary-fixed-variant": "#004e60",
+                        "surface-bright": "#faf8ff",
+                        "on-surface-variant": "#424656",
+                        "background": "#faf8ff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#003fa4",
+                        "surface-variant": "#dae2fd",
+                        "bg-light": "#FFFFFF",
+                        "text-light": "#0F172A",
+                        "primary": "#0050cb",
+                        "text-dark": "#F1F5F9",
+                        "on-tertiary-fixed": "#002113",
+                        "surface-tint": "#0054d6",
+                        "inverse-on-surface": "#eef0ff",
+                        "surface": "#faf8ff",
+                        "secondary": "#00677f",
+                        "tertiary-container": "#008256",
+                        "outline": "#727687",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#b3c5ff",
+                        "surface-light": "#F8FAFC",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#dae2fd",
+                        "on-surface": "#131b2e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-lg": "32px",
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "stack-md": "16px",
+                        "stack-sm": "8px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "label-md": ["Inter"],
+                        "display-lg-mobile": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "display-lg-mobile": ["36px", { "lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface min-h-screen">
+<!-- Premium SideNavBar (Semantic Shell) -->
+<aside class="h-screen w-64 fixed left-0 top-0 z-40 bg-surface-container-low/90 backdrop-blur-xl border-r border-border-subtle shadow-lg flex flex-col h-full overflow-y-auto">
+<div class="px-gutter py-stack-lg border-b border-border-subtle">
+<img alt="Atomic Pathshala Logo" class="w-full h-auto object-contain mb-stack-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnnGgio48Zuhi1ItNLh3quXKjfHmpmVatj4VZk731CPuuQQquTWRLEIyf2NhMf25KfizjpNrZYJ8G7Fc_uOsjX0BWCzj_A5CWlfIZ24PlYvOUZ2rIQYNWYwHG9D0HfmQ66IOVwVBVHG-Ko99Zh26dI6P8j9GdfqGLpamTxkT03RFPO6TqOkFyxERm7GVYUmsw6EtChN-iYaOFUS2lMn423gRrRSSgJ5p4569ib5gEtGKP7uSRx0VBfJBVWP8nb8v_3jN8oY6BNCHQ"/>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Atomic Pathshala</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Academic Accelerator</p>
+</div>
+<nav class="flex-grow py-stack-md">
+<!-- Navigation Items -->
+<a class="flex items-center gap-stack-md px-gutter py-stack-md text-on-surface-variant hover:bg-surface-variant/30 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<!-- Active Tab: Question Bank -->
+<a class="flex items-center gap-stack-md px-gutter py-stack-md bg-primary-container/20 text-primary font-bold border-r-4 border-primary transition-all duration-200" href="#">
+<span class="material-symbols-outlined">database</span>
+<span class="font-label-md text-label-md">Question Bank</span>
+</a>
+<a class="flex items-center gap-stack-md px-gutter py-stack-md text-on-surface-variant hover:bg-surface-variant/30 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">live_help</span>
+<span class="font-label-md text-label-md">Doubt Desk</span>
+</a>
+<a class="flex items-center gap-stack-md px-gutter py-stack-md text-on-surface-variant hover:bg-surface-variant/30 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-md text-label-md">Batches</span>
+</a>
+<a class="flex items-center gap-stack-md px-gutter py-stack-md text-on-surface-variant hover:bg-surface-variant/30 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-stack-md px-gutter py-stack-md text-on-surface-variant hover:bg-surface-variant/30 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">admin_panel_settings</span>
+<span class="font-label-md text-label-md">User Management</span>
+</a>
+</nav>
+<div class="p-gutter space-y-stack-md">
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-stack-md rounded-xl shadow-md hover:opacity-90 transition-opacity">
+                Create New Task
+            </button>
+<div class="pt-stack-md border-t border-border-subtle">
+<a class="flex items-center gap-stack-md py-stack-sm text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">support</span>
+<span class="font-label-sm text-label-sm">Help Center</span>
+</a>
+<a class="flex items-center gap-stack-md py-stack-sm text-error hover:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-sm text-label-sm">Sign Out</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 p-gutter max-w-[1400px] mx-auto">
+<!-- TopAppBar (Semantic Shell) -->
+<header class="flex justify-between items-center py-stack-md mb-stack-lg">
+<div class="flex items-center gap-stack-md">
+<h2 class="font-headline-lg text-headline-lg text-primary tracking-tight">Test Portal Management</h2>
+<span class="bg-secondary-fixed text-on-secondary-fixed px-stack-sm py-1 rounded-full font-label-sm text-label-sm">Admin Control</span>
+</div>
+<div class="flex items-center gap-gutter">
+<div class="relative group">
+<span class="absolute inset-y-0 left-3 flex items-center text-outline">
+<span class="material-symbols-outlined">search</span>
+</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container rounded-full border-none focus:ring-2 focus:ring-primary w-80 font-body-md text-body-md transition-all" placeholder="Search questions, IDs, or topics..." type="text"/>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="text-on-surface-variant hover:text-primary transition-colors material-symbols-outlined">notifications</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors material-symbols-outlined">help</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors material-symbols-outlined">settings</button>
+<div class="h-10 w-10 rounded-full bg-primary-fixed-dim border-2 border-white shadow-sm flex items-center justify-center font-bold text-on-primary-fixed cursor-pointer">AD</div>
+</div>
+</div>
+</header>
+<!-- Analytics Overview: Bento Grid Style -->
+<section class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-stack-lg">
+<!-- Total Questions Card -->
+<div class="glass-card p-gutter rounded-xl flex flex-col justify-between h-40">
+<div class="flex justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">Question Bank Size</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">database</span>
+</div>
+<div>
+<h3 class="font-headline-lg text-headline-lg">12,450</h3>
+<p class="font-label-sm text-label-sm text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span> +240 this week
+                    </p>
+</div>
+</div>
+<!-- Subject Distribution Chart Widget -->
+<div class="glass-card p-gutter rounded-xl md:col-span-2 relative overflow-hidden">
+<div class="flex justify-between items-start mb-stack-md">
+<h4 class="font-label-md text-label-md text-on-surface-variant">Subject Distribution</h4>
+<span class="material-symbols-outlined text-secondary">pie_chart</span>
+</div>
+<div class="flex items-end justify-between gap-2 h-20">
+<div class="w-full bg-surface-container rounded-t-lg relative" style="height: 85%">
+<div class="absolute inset-x-0 bottom-0 bg-primary-container rounded-t-lg h-full transition-all duration-1000"></div>
+<span class="absolute -top-6 left-1/2 -translate-x-1/2 font-label-sm text-label-sm">Phys</span>
+</div>
+<div class="w-full bg-surface-container rounded-t-lg relative" style="height: 70%">
+<div class="absolute inset-x-0 bottom-0 bg-secondary-container rounded-t-lg h-full transition-all duration-1000 delay-100"></div>
+<span class="absolute -top-6 left-1/2 -translate-x-1/2 font-label-sm text-label-sm">Chem</span>
+</div>
+<div class="w-full bg-surface-container rounded-t-lg relative" style="height: 95%">
+<div class="absolute inset-x-0 bottom-0 bg-tertiary-container rounded-t-lg h-full transition-all duration-1000 delay-200"></div>
+<span class="absolute -top-6 left-1/2 -translate-x-1/2 font-label-sm text-label-sm">Bio</span>
+</div>
+<div class="w-full bg-surface-container rounded-t-lg relative" style="height: 40%">
+<div class="absolute inset-x-0 bottom-0 bg-primary rounded-t-lg h-full transition-all duration-1000 delay-300"></div>
+<span class="absolute -top-6 left-1/2 -translate-x-1/2 font-label-sm text-label-sm">Maths</span>
+</div>
+</div>
+</div>
+<!-- Difficulty Breakdown -->
+<div class="glass-card p-gutter rounded-xl flex flex-col justify-between">
+<h4 class="font-label-md text-label-md text-on-surface-variant mb-stack-sm">Difficulty Balance</h4>
+<div class="space-y-stack-sm">
+<div class="flex justify-between items-center">
+<span class="font-label-sm text-label-sm">Easy</span>
+<span class="font-label-sm text-label-sm font-bold">45%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary" style="width: 45%"></div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-label-sm text-label-sm">Medium</span>
+<span class="font-label-sm text-label-sm font-bold">35%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary-container" style="width: 35%"></div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-label-sm text-label-sm">Hard</span>
+<span class="font-label-sm text-label-sm font-bold">20%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-error" style="width: 20%"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Workspace: Two-Column Workspace -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-gutter items-start">
+<!-- Column 1 & 2: Database Explorer -->
+<div class="lg:col-span-2 space-y-gutter">
+<div class="glass-card rounded-xl overflow-hidden flex flex-col h-[700px]">
+<!-- Toolbar -->
+<div class="p-stack-md bg-surface-container-low flex items-center justify-between border-b border-border-subtle">
+<div class="flex items-center gap-stack-md">
+<span class="font-headline-md text-headline-md px-stack-sm">Database</span>
+<div class="flex gap-2">
+<select class="bg-white border border-outline-variant rounded-lg font-label-sm text-label-sm py-1.5">
+<option>All Subjects</option>
+<option>Physics</option>
+<option>Chemistry</option>
+<option>Biology</option>
+</select>
+<select class="bg-white border border-outline-variant rounded-lg font-label-sm text-label-sm py-1.5">
+<option>Difficulty</option>
+<option>Easy</option>
+<option>Medium</option>
+<option>Hard</option>
+</select>
+<select class="bg-white border border-outline-variant rounded-lg font-label-sm text-label-sm py-1.5">
+<option>Status</option>
+<option>Verified</option>
+<option>Pending</option>
+<option>Flagged</option>
+</select>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-surface-variant rounded-lg transition-colors"><span class="material-symbols-outlined">filter_list</span></button>
+<button class="p-2 hover:bg-surface-variant rounded-lg transition-colors"><span class="material-symbols-outlined">refresh</span></button>
+</div>
+</div>
+<!-- Question List Table -->
+<div class="flex-grow overflow-y-auto custom-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 bg-surface-bright z-10 shadow-sm">
+<tr class="font-label-md text-label-md text-on-surface-variant border-b border-border-subtle">
+<th class="p-stack-md font-bold w-12"></th>
+<th class="p-stack-md font-bold">Question Preview</th>
+<th class="p-stack-md font-bold">Subject/Topic</th>
+<th class="p-stack-md font-bold">Status</th>
+<th class="p-stack-md font-bold">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md divide-y divide-border-subtle">
+<!-- Row 1 -->
+<tr class="hover:bg-primary-container/5 transition-colors group">
+<td class="p-stack-md">
+<span class="material-symbols-outlined text-outline drag-handle">drag_indicator</span>
+</td>
+<td class="p-stack-md">
+<p class="line-clamp-2">Calculate the molarity of a solution containing 5g of NaOH in 450ml of solution...</p>
+<span class="text-label-sm text-outline-variant">ID: #CHM-2024-089</span>
+</td>
+<td class="p-stack-md">
+<div class="flex flex-col">
+<span class="font-label-md text-primary">Chemistry</span>
+<span class="text-label-sm text-on-surface-variant">Solutions</span>
+</div>
+</td>
+<td class="p-stack-md">
+<span class="status-pill-verified px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Verified</span>
+</td>
+<td class="p-stack-md">
+<div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1 hover:text-primary"><span class="material-symbols-outlined">visibility</span></button>
+<button class="p-1 hover:text-primary"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-1 hover:text-secondary"><span class="material-symbols-outlined">add_circle</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-primary-container/5 transition-colors group">
+<td class="p-stack-md">
+<span class="material-symbols-outlined text-outline drag-handle">drag_indicator</span>
+</td>
+<td class="p-stack-md">
+<p class="line-clamp-2">A particle moves along a straight line with an acceleration given by a = 3t + 2...</p>
+<span class="text-label-sm text-outline-variant">ID: #PHY-2024-112</span>
+</td>
+<td class="p-stack-md">
+<div class="flex flex-col">
+<span class="font-label-md text-primary">Physics</span>
+<span class="text-label-sm text-on-surface-variant">Kinematics</span>
+</div>
+</td>
+<td class="p-stack-md">
+<span class="status-pill-pending px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Pending</span>
+</td>
+<td class="p-stack-md">
+<div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1 hover:text-primary"><span class="material-symbols-outlined">visibility</span></button>
+<button class="p-1 hover:text-primary"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-1 hover:text-secondary"><span class="material-symbols-outlined">add_circle</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-primary-container/5 transition-colors group">
+<td class="p-stack-md">
+<span class="material-symbols-outlined text-outline drag-handle">drag_indicator</span>
+</td>
+<td class="p-stack-md">
+<p class="line-clamp-2">Incorrect diagram for Mitochondria structure attached in options...</p>
+<span class="text-label-sm text-outline-variant">ID: #BIO-2024-043</span>
+</td>
+<td class="p-stack-md">
+<div class="flex flex-col">
+<span class="font-label-md text-primary">Biology</span>
+<span class="text-label-sm text-on-surface-variant">Cell Biology</span>
+</div>
+</td>
+<td class="p-stack-md">
+<span class="status-pill-flagged px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Flagged</span>
+</td>
+<td class="p-stack-md">
+<div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1 hover:text-primary"><span class="material-symbols-outlined">visibility</span></button>
+<button class="p-1 hover:text-primary"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-1 hover:text-secondary"><span class="material-symbols-outlined">add_circle</span></button>
+</div>
+</td>
+</tr>
+<!-- Repeat Rows -->
+<tr class="hover:bg-primary-container/5 transition-colors group">
+<td class="p-stack-md"><span class="material-symbols-outlined text-outline drag-handle">drag_indicator</span></td>
+<td class="p-stack-md"><p class="line-clamp-2">Explain the mechanism of nucleophilic substitution reaction in aryl halides...</p></td>
+<td class="p-stack-md"><span class="font-label-md text-primary">Chemistry</span></td>
+<td class="p-stack-md"><span class="status-pill-verified px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Verified</span></td>
+<td class="p-stack-md"><div class="flex gap-2 opacity-0 group-hover:opacity-100"><button class="p-1"><span class="material-symbols-outlined">visibility</span></button></div></td>
+</tr>
+<tr class="hover:bg-primary-container/5 transition-colors group">
+<td class="p-stack-md"><span class="material-symbols-outlined text-outline drag-handle">drag_indicator</span></td>
+<td class="p-stack-md"><p class="line-clamp-2">State the laws of photoelectric effect as given by Einstein...</p></td>
+<td class="p-stack-md"><span class="font-label-md text-primary">Physics</span></td>
+<td class="p-stack-md"><span class="status-pill-verified px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Verified</span></td>
+<td class="p-stack-md"><div class="flex gap-2 opacity-0 group-hover:opacity-100"><button class="p-1"><span class="material-symbols-outlined">visibility</span></button></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="p-stack-md flex justify-between items-center bg-surface-container-low border-t border-border-subtle">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Showing 1-10 of 12,450 questions</span>
+<div class="flex gap-1">
+<button class="p-2 bg-surface rounded-lg hover:bg-surface-variant border border-outline-variant disabled:opacity-50" disabled=""><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-sm text-label-sm">1</button>
+<button class="px-4 py-2 bg-surface rounded-lg hover:bg-surface-variant border border-outline-variant font-label-sm text-label-sm">2</button>
+<button class="px-4 py-2 bg-surface rounded-lg hover:bg-surface-variant border border-outline-variant font-label-sm text-label-sm">3</button>
+<button class="p-2 bg-surface rounded-lg hover:bg-surface-variant border border-outline-variant"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+</div>
+</div>
+<!-- Column 3: Test Builder Workspace -->
+<div class="lg:col-span-1">
+<div class="glass-card rounded-xl overflow-hidden flex flex-col h-[700px] border-primary-container/30 border-2">
+<div class="p-stack-md bg-primary-container text-on-primary-container">
+<div class="flex justify-between items-center mb-stack-sm">
+<h3 class="font-headline-md text-headline-md">Test Builder</h3>
+<button class="text-xs bg-white/20 px-2 py-1 rounded-full font-bold uppercase">Workspace</button>
+</div>
+<input class="w-full bg-white/10 border-white/20 text-white placeholder-white/60 rounded-lg text-body-md focus:ring-white mb-2" placeholder="Enter Test Title (e.g. NEET Mock-04)" type="text"/>
+</div>
+<div class="p-stack-md bg-surface-container-high border-b border-border-subtle">
+<div class="grid grid-cols-2 gap-2">
+<div class="bg-white p-2 rounded-lg text-center">
+<span class="block text-outline-variant text-[10px] font-bold uppercase">Time Limit</span>
+<span class="font-headline-md text-primary">180m</span>
+</div>
+<div class="bg-white p-2 rounded-lg text-center">
+<span class="block text-outline-variant text-[10px] font-bold uppercase">Questions</span>
+<span class="font-headline-md text-primary" id="q-count">12</span>
+</div>
+</div>
+</div>
+<!-- Builder Dropzone -->
+<div class="flex-grow p-stack-md overflow-y-auto custom-scrollbar space-y-stack-sm bg-surface-container-low/30">
+<div class="flex items-center justify-center border-2 border-dashed border-primary-container/30 rounded-xl p-stack-lg mb-4 text-center">
+<div>
+<span class="material-symbols-outlined text-primary-container text-4xl mb-2">drag_pan</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Drag questions here to add to test paper</p>
+</div>
+</div>
+<!-- Current Selection -->
+<div class="bg-white p-stack-md rounded-xl border border-border-subtle flex gap-stack-md shadow-sm">
+<div class="flex-shrink-0 font-bold text-primary w-6 h-6 flex items-center justify-center bg-primary-container/10 rounded">1</div>
+<div class="flex-grow">
+<p class="font-label-md text-label-md line-clamp-1">Calculate the molarity of a solution containing...</p>
+<div class="flex justify-between items-center mt-2">
+<span class="text-[10px] font-bold bg-secondary-fixed text-on-secondary-fixed px-2 py-0.5 rounded uppercase">Chemistry</span>
+<button class="text-error material-symbols-outlined text-lg">delete_outline</button>
+</div>
+</div>
+</div>
+<div class="bg-white p-stack-md rounded-xl border border-border-subtle flex gap-stack-md shadow-sm">
+<div class="flex-shrink-0 font-bold text-primary w-6 h-6 flex items-center justify-center bg-primary-container/10 rounded">2</div>
+<div class="flex-grow">
+<p class="font-label-md text-label-md line-clamp-1">A particle moves along a straight line with...</p>
+<div class="flex justify-between items-center mt-2">
+<span class="text-[10px] font-bold bg-primary-fixed text-on-primary-fixed px-2 py-0.5 rounded uppercase">Physics</span>
+<button class="text-error material-symbols-outlined text-lg">delete_outline</button>
+</div>
+</div>
+</div>
+<div class="bg-white p-stack-md rounded-xl border border-border-subtle flex gap-stack-md shadow-sm">
+<div class="flex-shrink-0 font-bold text-primary w-6 h-6 flex items-center justify-center bg-primary-container/10 rounded">3</div>
+<div class="flex-grow">
+<p class="font-label-md text-label-md line-clamp-1">State the laws of photoelectric effect...</p>
+<div class="flex justify-between items-center mt-2">
+<span class="text-[10px] font-bold bg-primary-fixed text-on-primary-fixed px-2 py-0.5 rounded uppercase">Physics</span>
+<button class="text-error material-symbols-outlined text-lg">delete_outline</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Footer -->
+<div class="p-gutter bg-surface-container-high border-t border-border-subtle">
+<div class="flex gap-stack-md">
+<button class="flex-grow bg-primary text-on-primary font-bold py-stack-md rounded-xl shadow-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">rocket_launch</span>
+                                Publish Test
+                            </button>
+<button class="bg-white text-on-surface border border-outline-variant p-stack-md rounded-xl hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">save</span>
+</button>
+</div>
+<button class="w-full mt-stack-md text-primary font-label-md text-label-md flex items-center justify-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-base">settings_backup_restore</span>
+                            Restore Draft
+                        </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Notification Toast (Micro-interaction example) -->
+<div class="fixed bottom-gutter right-gutter bg-inverse-surface text-inverse-on-surface px-gutter py-stack-md rounded-xl shadow-2xl flex items-center gap-stack-md translate-y-24 opacity-0 transition-all duration-300 z-50" id="toast">
+<span class="material-symbols-outlined text-tertiary-fixed">check_circle</span>
+<span class="font-label-md text-label-md">Question added to Test Builder successfully</span>
+<button class="material-symbols-outlined hover:text-white" onclick="hideToast()">close</button>
+</div>
+<script>
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            setTimeout(hideToast, 3000);
+        }
+
+        function hideToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('translate-y-24', 'opacity-0');
+        }
+
+        // Mock interaction for 'Add' button
+        document.querySelectorAll('button').forEach(btn => {
+            if (btn.querySelector('.material-symbols-outlined')?.textContent === 'add_circle') {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showToast();
+                });
+            }
+        });
+    </script>
+
+  <!-- Ecosystem Switched Widget Overlay -->
+  <script src="../ecosystem-hud.js"></script>
+</body></html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Atomic Pathshala | Educator Studio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+        }
+        .drag-over {
+            border-color: #0050cb;
+            background: rgba(0, 80, 203, 0.05);
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d2d9f4;
+            border-radius: 10px;
+        }
+        .active-tab-indicator {
+            position: absolute;
+            bottom: 0;
+            height: 2px;
+            background-color: #0050cb;
+            transition: all 0.3s ease;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-dark": "#161B22",
+                      "text-dark": "#F1F5F9",
+                      "primary-container": "#0066ff",
+                      "surface-tint": "#0054d6",
+                      "on-surface": "#131b2e",
+                      "surface-container-highest": "#dae2fd",
+                      "secondary-fixed": "#b7eaff",
+                      "inverse-surface": "#283044",
+                      "error": "#ba1a1a",
+                      "surface": "#faf8ff",
+                      "tertiary-container": "#008256",
+                      "on-primary-fixed": "#001849",
+                      "surface-container": "#eaedff",
+                      "surface-bright": "#faf8ff",
+                      "bg-dark": "#0B0E14",
+                      "on-background": "#131b2e",
+                      "border-subtle": "rgba(0, 102, 255, 0.1)",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed-variant": "#003fa4",
+                      "on-tertiary-fixed-variant": "#005235",
+                      "tertiary-fixed": "#6afcb9",
+                      "on-error": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "inverse-primary": "#b3c5ff",
+                      "surface-dim": "#d2d9f4",
+                      "on-secondary-fixed": "#001f28",
+                      "on-secondary-container": "#005266",
+                      "on-tertiary": "#ffffff",
+                      "secondary-fixed-dim": "#4cd6ff",
+                      "outline-variant": "#c2c6d8",
+                      "on-primary-container": "#f8f7ff",
+                      "on-surface-variant": "#424656",
+                      "on-error-container": "#93000a",
+                      "outline": "#727687",
+                      "tertiary": "#006643",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-fixed": "#002113",
+                      "surface-light": "#F8FAFC",
+                      "secondary-container": "#00ccf9",
+                      "background": "#faf8ff",
+                      "tertiary-fixed-dim": "#49df9f",
+                      "secondary": "#00677f",
+                      "on-primary": "#ffffff",
+                      "primary-fixed-dim": "#b3c5ff",
+                      "inverse-on-surface": "#eef0ff",
+                      "bg-light": "#FFFFFF",
+                      "surface-variant": "#dae2fd",
+                      "surface-container-low": "#f2f3ff",
+                      "on-tertiary-container": "#e1ffeb",
+                      "surface-container-high": "#e2e7ff",
+                      "primary-fixed": "#dae1ff",
+                      "text-light": "#0F172A",
+                      "primary": "#0050cb",
+                      "on-secondary-fixed-variant": "#004e60"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-sm": "8px",
+                      "stack-md": "16px",
+                      "margin-mobile": "20px",
+                      "margin-desktop": "64px",
+                      "stack-lg": "32px",
+                      "container-max": "1280px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "label-sm": ["Inter"],
+                      "label-md": ["Inter"],
+                      "display-lg-mobile": ["Geist"],
+                      "body-md": ["Inter"],
+                      "headline-md": ["Geist"],
+                      "body-lg": ["Inter"],
+                      "headline-lg": ["Geist"],
+                      "display-lg": ["Geist"]
+              },
+              "fontSize": {
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                      "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/20 shadow-sm">
+<div class="flex justify-between items-center px-margin-desktop h-20 max-w-container-max mx-auto">
+<div class="flex items-center gap-stack-md">
+<span class="font-headline-md text-headline-md font-bold text-primary tracking-tight">Atomic Pathshala</span>
+</div>
+<nav class="hidden md:flex items-center gap-stack-lg">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1" href="#">Batches</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Tests</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Rewards</a>
+</nav>
+<div class="flex items-center gap-stack-md">
+<button class="px-6 py-2 bg-primary-container text-on-primary-container font-label-md text-label-md rounded-full active:scale-95 duration-150 transition-all shadow-sm">Upgrade</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a teacher in their late 30s, wearing a smart casual blazer, smiling warmly. The background is a brightly lit, modern academic office with soft focus bookshelves and warm ambient lighting. The high-end digital photography emphasizes clarity and a trust-building educator persona." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5blXHyF62n-4ZOcLI8YMUOsU5-cSYS3O8Vbv-bGDWkDoPvkZgmsjnPrOksnY3m7RNTtAhJToZfRkOYShAFGAfs33AjCBVgKjjbOAz0xumXkIzriypyxu-nPeNebp5Nr6MQ5E4c1DoIB-BQ-GHAPjBhgZyuIiQucIvxqqj_5d0F0mfeGpqdV4ul10MUE5HWBK3ISsVeXPlIthTP7np5JAcyi27wD2Cjwwqi1wl-ZjnwZws4mIztubmIsm8--7D3QKcccAAqROPuIQ"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Wrapper -->
+<div class="pt-24 flex min-h-screen">
+<!-- SideNavBar (Educator Specific) -->
+<aside class="hidden lg:flex flex-col p-stack-md gap-stack-sm h-screen w-64 fixed left-0 top-20 bg-surface-light border-r border-outline-variant/10">
+<div class="mb-stack-lg px-2">
+<h3 class="font-headline-md text-headline-md font-bold text-primary">Aspirant Portal</h3>
+<p class="text-on-surface-variant text-label-sm font-label-sm">JEE 2025 Target</p>
+</div>
+<div class="flex flex-col gap-1">
+<button class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container rounded-xl transition-transform hover:translate-x-1 font-label-md text-label-md">
+<span class="material-symbols-outlined">upload_file</span>
+                    Content Upload
+                </button>
+<button class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container rounded-xl transition-transform hover:translate-x-1 font-label-md text-label-md">
+<span class="material-symbols-outlined">quiz</span>
+                    DPP Creator
+                </button>
+<button class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container rounded-xl transition-transform hover:translate-x-1 font-label-md text-label-md">
+<span class="material-symbols-outlined">description</span>
+                    Study Notes
+                </button>
+<button class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container rounded-xl transition-transform hover:translate-x-1 font-label-md text-label-md">
+<span class="material-symbols-outlined">military_tech</span>
+                    Milestones
+                </button>
+<button class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container rounded-xl transition-transform hover:translate-x-1 font-label-md text-label-md">
+<span class="material-symbols-outlined">settings</span>
+                    Settings
+                </button>
+</div>
+<div class="mt-auto pt-stack-md border-t border-outline-variant/10">
+<button class="w-full py-3 mb-stack-md bg-secondary-container text-on-secondary-container rounded-xl font-label-md text-label-md font-bold shadow-sm active:scale-95 transition-all">View Leaderboard</button>
+<button class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md">
+<span class="material-symbols-outlined">help_outline</span>
+                    Support
+                </button>
+<button class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-error transition-colors font-label-md text-label-md">
+<span class="material-symbols-outlined">logout</span>
+                    Logout
+                </button>
+</div>
+</aside>
+<!-- Main Workspace Canvas -->
+<main class="flex-1 ml-0 lg:ml-64 px-4 md:px-margin-desktop pb-stack-lg">
+<div class="max-w-5xl mx-auto py-stack-lg">
+<!-- Welcome Section -->
+<section class="mb-stack-lg">
+<h1 class="font-display-lg text-display-lg text-on-surface tracking-tight mb-1">Content Creation Center</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Manage your curriculum and distribute materials to your batches.</p>
+</section>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- PDF Upload Section (Bento Large) -->
+<div class="md:col-span-8 glass-card rounded-3xl p-stack-lg flex flex-col gap-stack-md">
+<div class="flex items-center justify-between mb-stack-sm">
+<h2 class="font-headline-lg text-headline-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">cloud_upload</span>
+                                PDF Module Upload
+                            </h2>
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full font-label-sm text-label-sm">Supports PDF, DOCX</span>
+</div>
+<div class="border-2 border-dashed border-outline-variant rounded-2xl flex-1 flex flex-col items-center justify-center p-stack-lg transition-all duration-300 group hover:border-primary cursor-pointer bg-white/50" id="drop-zone">
+<div class="w-16 h-16 rounded-full bg-primary/5 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl text-primary">upload</span>
+</div>
+<p class="font-headline-md text-headline-md text-center">Drag and drop study materials</p>
+<p class="text-on-surface-variant text-body-md text-center mt-2">or click to browse from your computer</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-stack-md mt-stack-md">
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Target Batch</label>
+<select class="w-full bg-white border border-outline-variant rounded-xl p-3 focus:ring-2 focus:ring-primary outline-none appearance-none font-body-md">
+<option>Select Batch</option>
+<option>NEET 2025 - Alpha</option>
+<option>JEE Mains - Omega</option>
+<option>Foundation Class 10</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Folder Location</label>
+<select class="w-full bg-white border border-outline-variant rounded-xl p-3 focus:ring-2 focus:ring-primary outline-none appearance-none font-body-md">
+<option>Root Directory</option>
+<option>Physics / Mechanics</option>
+<option>Chemistry / Organic</option>
+<option>Maths / Calculus</option>
+</select>
+</div>
+</div>
+</div>
+<!-- DPP Quick Action (Bento Small) -->
+<div class="md:col-span-4 space-y-gutter">
+<div class="glass-card rounded-3xl p-stack-lg bg-primary-container/10 border-primary/20">
+<div class="flex flex-col gap-4">
+<div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-white">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+<h3 class="font-headline-md text-headline-md">Smart DPP Gen</h3>
+<p class="text-body-md text-on-surface-variant">Generate Daily Practice Problems using AI based on the uploaded modules.</p>
+<button class="w-full py-3 bg-primary text-white rounded-xl font-label-md text-label-md hover:bg-surface-tint transition-all active:scale-95">Generate Now</button>
+</div>
+</div>
+<div class="glass-card rounded-3xl p-stack-lg overflow-hidden relative">
+
+<div class="relative z-10 flex flex-col gap-2">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest font-bold">Storage Status</span>
+<div class="flex justify-between items-end">
+<span class="text-display-lg font-display-lg">82%</span>
+<span class="text-on-surface-variant pb-2">of 50GB used</span>
+</div>
+<div class="w-full bg-outline-variant/30 h-2 rounded-full mt-2">
+<div class="bg-primary h-full rounded-full" style="width: 82%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- DPP Creator Form (Bento Side) -->
+<div class="md:col-span-12 lg:col-span-7 glass-card rounded-3xl p-stack-lg">
+<div class="flex items-center gap-3 mb-stack-lg">
+<div class="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">quiz</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg">DPP Creator Interface</h2>
+</div>
+<form class="space-y-stack-md">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Assignment Title</label>
+<input class="w-full bg-white border border-outline-variant rounded-xl p-3 focus:ring-2 focus:ring-primary outline-none" placeholder="e.g. Newton's Laws Level 1" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Difficulty Level</label>
+<div class="flex gap-2">
+<button class="flex-1 py-3 border border-outline-variant rounded-xl font-label-sm text-label-sm hover:border-primary transition-all active:bg-primary/5" type="button">Easy</button>
+<button class="flex-1 py-3 border border-primary bg-primary/5 rounded-xl font-label-sm text-label-sm text-primary" type="button">Medium</button>
+<button class="flex-1 py-3 border border-outline-variant rounded-xl font-label-sm text-label-sm hover:border-primary transition-all active:bg-primary/5" type="button">Hard</button>
+</div>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Chapter &amp; Concepts</label>
+<input class="w-full bg-white border border-outline-variant rounded-xl p-3 focus:ring-2 focus:ring-primary outline-none" placeholder="Add tags for searchability..." type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Question Input (Rich Text Context)</label>
+<div class="border border-outline-variant rounded-xl overflow-hidden">
+<div class="bg-surface-container flex gap-2 p-2 border-b border-outline-variant/30">
+<button class="p-1 hover:bg-white rounded" type="button"><span class="material-symbols-outlined text-xl">format_bold</span></button>
+<button class="p-1 hover:bg-white rounded" type="button"><span class="material-symbols-outlined text-xl">format_italic</span></button>
+<button class="p-1 hover:bg-white rounded" type="button"><span class="material-symbols-outlined text-xl">functions</span></button>
+<button class="p-1 hover:bg-white rounded" type="button"><span class="material-symbols-outlined text-xl">image</span></button>
+<div class="ml-auto flex gap-2">
+<button class="bg-primary/10 text-primary px-3 py-1 rounded text-label-sm font-label-sm" type="button">Add MCQ</button>
+<button class="bg-primary/10 text-primary px-3 py-1 rounded text-label-sm font-label-sm" type="button">Add Subjective</button>
+</div>
+</div>
+<textarea class="w-full p-4 outline-none resize-none bg-white" placeholder="Paste your question text here or use the editor to format..." rows="6"></textarea>
+</div>
+</div>
+<div class="flex justify-end pt-4">
+<button class="px-8 py-3 bg-primary text-white rounded-full font-label-md text-label-md font-bold shadow-md hover:shadow-lg transition-all" type="button">Publish DPP</button>
+</div>
+</form>
+</div>
+<!-- Notes Creator (Bento Right) -->
+<div class="md:col-span-12 lg:col-span-5 glass-card rounded-3xl p-stack-lg bg-surface-container-low border-subtle">
+<div class="flex items-center gap-3 mb-stack-lg">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary">edit_note</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg">Study Notes</h2>
+</div>
+<div class="space-y-stack-md h-full flex flex-col">
+<div class="bg-white rounded-2xl p-4 shadow-sm border border-outline-variant/10">
+<input class="w-full text-headline-md font-headline-md border-none focus:ring-0 p-0 placeholder:text-outline-variant" placeholder="Untitled Note" type="text"/>
+<div class="flex gap-2 mt-2">
+<span class="bg-surface-container px-2 py-1 rounded text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">calendar_today</span> Oct 24, 2024
+                                    </span>
+<span class="bg-surface-container px-2 py-1 rounded text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">person</span> Physics Dept.
+                                    </span>
+</div>
+</div>
+<div class="flex-1 bg-white rounded-2xl p-4 shadow-sm border border-outline-variant/10 min-h-[300px]">
+<div class="flex gap-4 border-b border-outline-variant/20 pb-3 mb-4">
+<button class="text-primary font-label-md text-label-md">Edit</button>
+<button class="text-on-surface-variant font-label-md text-label-md hover:text-primary">Preview</button>
+<button class="text-on-surface-variant font-label-md text-label-md hover:text-primary">Versions</button>
+</div>
+<p class="text-on-surface-variant text-body-md leading-relaxed italic opacity-60">Start typing your pedagogical insights here...</p>
+<div class="mt-4 space-y-4">
+<div class="w-full h-1 bg-outline-variant/10 rounded"></div>
+<div class="w-2/3 h-1 bg-outline-variant/10 rounded"></div>
+<div class="w-full h-1 bg-outline-variant/10 rounded"></div>
+</div>
+</div>
+<div class="flex gap-stack-sm pt-4">
+<button class="flex-1 py-3 border border-primary text-primary rounded-xl font-label-md text-label-md font-bold hover:bg-primary/5 transition-all">Save Draft</button>
+<button class="flex-1 py-3 bg-tertiary-container text-white rounded-xl font-label-md text-label-md font-bold hover:opacity-90 transition-all">Distribute</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="w-full py-stack-lg bg-surface-container-lowest border-t border-outline-variant/10">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-container-max mx-auto">
+<div class="flex flex-col gap-stack-md">
+<span class="font-headline-md text-headline-md font-bold text-on-surface tracking-tight">Atomic Pathshala</span>
+<p class="font-body-md text-body-md text-on-surface-variant">Accelerating Academic Excellence for future leaders.</p>
+</div>
+<div class="flex flex-col gap-2">
+<h4 class="font-label-md text-label-md text-on-surface mb-2">Platform</h4>
+<a class="text-on-surface-variant hover:text-primary transition-all font-body-md text-body-md" href="#">My Dashboard</a>
+<a class="text-on-surface-variant hover:text-primary transition-all font-body-md text-body-md" href="#">Batch Management</a>
+<a class="text-on-surface-variant hover:text-primary transition-all font-body-md text-body-md" href="#">Resource Library</a>
+</div>
+<div class="flex flex-col gap-2">
+<h4 class="font-label-md text-label-md text-on-surface mb-2">Legal</h4>
+<a class="text-on-surface-variant hover:text-primary transition-all font-body-md text-body-md" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-all font-body-md text-body-md" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary transition-all font-body-md text-body-md" href="#">Copyright Notice</a>
+</div>
+<div class="flex flex-col gap-2">
+<h4 class="font-label-md text-label-md text-on-surface mb-2">Connect</h4>
+<a class="text-on-surface-variant hover:text-primary transition-all font-body-md text-body-md" href="#">Contact Us</a>
+<a class="text-on-surface-variant hover:text-primary transition-all font-body-md text-body-md" href="#">Help Center</a>
+<div class="mt-4 flex gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">language</span>
+</div></div></div></footer>
+  <!-- Ecosystem Switched Widget Overlay -->
+  <script src="../ecosystem-hud.js"></script>
+</body></html>

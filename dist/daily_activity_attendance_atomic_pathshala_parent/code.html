@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Daily Learning &amp; Attendance Report | Atomic Pathshala</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#dae2fd",
+                    "on-primary-fixed": "#001849",
+                    "surface": "#faf8ff",
+                    "on-tertiary-fixed-variant": "#005235",
+                    "on-surface-variant": "#424656",
+                    "bg-dark": "#0B0E14",
+                    "surface-container": "#eaedff",
+                    "text-dark": "#F1F5F9",
+                    "on-tertiary-fixed": "#002113",
+                    "surface-variant": "#dae2fd",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed-dim": "#4cd6ff",
+                    "primary-fixed": "#dae1ff",
+                    "on-secondary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "inverse-on-surface": "#eef0ff",
+                    "border-subtle": "rgba(0, 102, 255, 0.1)",
+                    "tertiary-fixed-dim": "#49df9f",
+                    "text-light": "#0F172A",
+                    "inverse-primary": "#b3c5ff",
+                    "surface-dark": "#161B22",
+                    "outline-variant": "#c2c6d8",
+                    "surface-bright": "#faf8ff",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "secondary": "#00677f",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#0050cb",
+                    "on-primary-container": "#f8f7ff",
+                    "outline": "#727687",
+                    "surface-dim": "#d2d9f4",
+                    "bg-light": "#FFFFFF",
+                    "background": "#faf8ff",
+                    "secondary-fixed": "#b7eaff",
+                    "on-surface": "#131b2e",
+                    "on-error": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#0054d6",
+                    "on-secondary-fixed-variant": "#004e60",
+                    "primary-container": "#0066ff",
+                    "on-secondary-container": "#005266",
+                    "inverse-surface": "#283044",
+                    "tertiary-container": "#008256",
+                    "on-primary-fixed-variant": "#003fa4",
+                    "on-secondary-fixed": "#001f28",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-container": "#e1ffeb",
+                    "surface-light": "#F8FAFC",
+                    "surface-container-low": "#f2f3ff",
+                    "on-background": "#131b2e",
+                    "tertiary-fixed": "#6afcb9",
+                    "on-error-container": "#93000a",
+                    "surface-container-high": "#e2e7ff",
+                    "tertiary": "#006643",
+                    "secondary-container": "#00ccf9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "16px",
+                    "stack-sm": "8px",
+                    "margin-desktop": "64px",
+                    "container-max": "1280px",
+                    "margin-mobile": "20px",
+                    "gutter": "24px",
+                    "stack-lg": "32px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Geist"],
+                    "display-lg-mobile": ["Geist"],
+                    "display-lg": ["Geist"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Geist"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+        }
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        .timeline-connector {
+            background: repeating-linear-gradient(to bottom, #0050cb 0, #0050cb 4px, transparent 4px, transparent 8px);
+        }
+        body {
+            background-color: #faf8ff;
+            color: #131b2e;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md min-h-screen">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 flex justify-between items-center px-margin-desktop w-full h-16 bg-surface/80 backdrop-blur-xl border-b border-border-subtle shadow-sm">
+<div class="font-headline-md text-headline-md font-bold text-primary">Atomic Pathshala</div>
+<nav class="hidden md:flex gap-stack-lg">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Dashboard</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Courses</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Practice</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Tests</a>
+</nav>
+<div class="flex items-center gap-stack-md">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">settings</span>
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center overflow-hidden border border-primary/20">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a young male student, smiling confidently, wearing a simple blue polo shirt against a clean, soft-lit academic background. The lighting is bright and modern, adhering to a high-key light mode aesthetic with crisp details and a warm, inviting atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1Cryua394AI6n1Ft00QwDVoQYKtMYfk51vbIICbpeCrGukPPk3RqU24HlpLvLmg6MjGDgndtYe9nhluHnTEmLwvppAVwKBLZmRP3wsWtFX_smzm-oGspt-szm1CeZVWIQmfWO8iW7ybpzeTCvQmP_NDqahVGWj8GJMFirTITFJ32ujORj6tddVWDb3y9wQ-Q4vd4DqjZCTr8QqzpAP2iSZb6U3ZtXXXcRZ79cRZNqEIRdleelraaSZ7YzeRzlIp9H6NwgjF0pn18"/>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
+<!-- Header Section -->
+<section class="mb-stack-lg flex flex-col md:flex-row justify-between items-start md:items-end gap-stack-md">
+<div>
+<p class="font-label-md text-label-md text-primary uppercase tracking-widest mb-1">Student Performance Insights</p>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Daily Learning &amp; Attendance</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Reporting for October 24, 2023 • Aryan Sharma (Grade 12, NEET Batch)</p>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-xl font-label-md text-label-md hover:shadow-lg transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">download</span>
+                Download Report
+            </button>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Attendance & Engagement -->
+<div class="lg:col-span-4 flex flex-col gap-gutter">
+<!-- Attendance Stats -->
+<div class="glass-card p-6 rounded-2xl shadow-sm">
+<h3 class="font-headline-md text-headline-md mb-6">Attendance Overview</h3>
+<div class="flex flex-col gap-6">
+<!-- Daily Gauge -->
+<div class="flex items-center justify-between bg-white/50 p-4 rounded-xl border border-border-subtle">
+<div class="flex items-center gap-3">
+<div class="relative w-14 h-14">
+<svg class="w-14 h-14">
+<circle class="text-surface-container-highest" cx="28" cy="28" fill="transparent" r="24" stroke="currentColor" stroke-width="4"></circle>
+<circle class="text-primary progress-ring-circle" cx="28" cy="28" fill="transparent" r="24" stroke="currentColor" stroke-dasharray="150.8" stroke-dashoffset="0" stroke-linecap="round" stroke-width="4"></circle>
+</svg>
+<span class="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-primary">100%</span>
+</div>
+<div>
+<p class="font-label-md text-label-md">Today's Attendance</p>
+<p class="text-label-sm text-tertiary font-bold">Perfect Status</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<!-- Weekly Gauge -->
+<div class="flex items-center justify-between bg-white/50 p-4 rounded-xl border border-border-subtle">
+<div class="flex items-center gap-3">
+<div class="relative w-14 h-14">
+<svg class="w-14 h-14">
+<circle class="text-surface-container-highest" cx="28" cy="28" fill="transparent" r="24" stroke="currentColor" stroke-width="4"></circle>
+<circle class="text-secondary progress-ring-circle" cx="28" cy="28" fill="transparent" r="24" stroke="currentColor" stroke-dasharray="150.8" stroke-dashoffset="12" stroke-linecap="round" stroke-width="4"></circle>
+</svg>
+<span class="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-secondary">92%</span>
+</div>
+<div>
+<p class="font-label-md text-label-md">Weekly Average</p>
+<p class="text-label-sm text-on-surface-variant">Above Batch Avg</p>
+</div>
+</div>
+</div>
+<!-- Monthly Gauge -->
+<div class="flex items-center justify-between bg-white/50 p-4 rounded-xl border border-border-subtle">
+<div class="flex items-center gap-3">
+<div class="relative w-14 h-14">
+<svg class="w-14 h-14">
+<circle class="text-surface-container-highest" cx="28" cy="28" fill="transparent" r="24" stroke="currentColor" stroke-width="4"></circle>
+<circle class="text-primary-container progress-ring-circle" cx="28" cy="28" fill="transparent" r="24" stroke="currentColor" stroke-dasharray="150.8" stroke-dashoffset="7.5" stroke-linecap="round" stroke-width="4"></circle>
+</svg>
+<span class="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-on-primary-container">95%</span>
+</div>
+<div>
+<p class="font-label-md text-label-md">Monthly Record</p>
+<p class="text-label-sm text-on-surface-variant">Targeting 98%</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Engagement Metrics -->
+<div class="glass-card p-6 rounded-2xl shadow-sm">
+<h3 class="font-headline-md text-headline-md mb-6">Engagement Metrics</h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 rounded-xl bg-surface-container-lowest border border-border-subtle text-center">
+<span class="material-symbols-outlined text-primary mb-2">videocam</span>
+<p class="text-label-sm text-on-surface-variant">Camera Status</p>
+<p class="font-bold text-tertiary">Active (On)</p>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-lowest border border-border-subtle text-center">
+<span class="material-symbols-outlined text-secondary mb-2">quiz</span>
+<p class="text-label-sm text-on-surface-variant">Quizzes</p>
+<p class="font-bold text-on-surface">5/5 Score</p>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-lowest border border-border-subtle text-center col-span-2 flex items-center justify-center gap-4">
+<span class="material-symbols-outlined text-primary-container">how_to_reg</span>
+<div>
+<p class="text-label-sm text-on-surface-variant text-left">Poll Participation</p>
+<div class="w-full bg-surface-container-highest rounded-full h-2 mt-1 w-32">
+<div class="bg-primary h-2 rounded-full" style="width: 100%"></div>
+</div>
+</div>
+<p class="font-bold text-primary">100%</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Timeline & Resources -->
+<div class="lg:col-span-8 flex flex-col gap-gutter">
+<!-- Daily Timeline -->
+<div class="glass-card p-8 rounded-2xl shadow-sm overflow-hidden relative">
+<div class="flex items-center justify-between mb-8">
+<h3 class="font-headline-md text-headline-md">Daily Timeline</h3>
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-label-sm">Active for 8h 45m</span>
+</div>
+<div class="relative pl-8">
+<!-- Timeline Line -->
+<div class="absolute left-[39px] top-4 bottom-4 w-[2px] timeline-connector opacity-30"></div>
+<div class="flex flex-col gap-10">
+<!-- Entry 1 -->
+<div class="relative flex gap-6 items-start">
+<div class="absolute -left-[14px] w-4 h-4 rounded-full bg-primary border-4 border-white shadow-sm z-10"></div>
+<div class="flex-shrink-0 w-24">
+<p class="font-bold text-on-surface">08:00 AM</p>
+</div>
+<div class="flex-grow p-4 rounded-xl bg-white border border-border-subtle shadow-sm hover:border-primary transition-all">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary text-[18px]">login</span>
+<h4 class="font-label-md text-label-md">System Login</h4>
+</div>
+<p class="text-label-sm text-on-surface-variant">Web Portal • Device: MacBook Pro</p>
+</div>
+</div>
+<!-- Entry 2 -->
+<div class="relative flex gap-6 items-start">
+<div class="absolute -left-[14px] w-4 h-4 rounded-full bg-tertiary border-4 border-white shadow-sm z-10"></div>
+<div class="flex-shrink-0 w-24">
+<p class="font-bold text-on-surface">09:00 AM</p>
+<p class="text-[10px] text-on-surface-variant">to 11:00 AM</p>
+</div>
+<div class="flex-grow p-4 rounded-xl bg-white border border-border-subtle shadow-sm hover:border-tertiary transition-all">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-[18px]">video_chat</span>
+<h4 class="font-label-md text-label-md">Live Class 1: Organic Chemistry</h4>
+</div>
+<span class="text-[10px] bg-tertiary/10 text-tertiary px-2 py-0.5 rounded-full font-bold">Joined On Time</span>
+</div>
+<p class="text-label-sm text-on-surface-variant mb-3">Topic: Alkanes &amp; Alkenes • Faculty: Dr. Amit Verma</p>
+<div class="flex gap-4">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant">timer</span>
+<span class="text-[11px] text-on-surface-variant">120 mins</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-[11px] text-tertiary">Left on Time</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Entry 3 -->
+<div class="relative flex gap-6 items-start">
+<div class="absolute -left-[14px] w-4 h-4 rounded-full bg-secondary border-4 border-white shadow-sm z-10"></div>
+<div class="flex-shrink-0 w-24">
+<p class="font-bold text-on-surface">02:00 PM</p>
+</div>
+<div class="flex-grow p-4 rounded-xl bg-white border border-border-subtle shadow-sm hover:border-secondary transition-all">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-secondary text-[18px]">play_circle</span>
+<h4 class="font-label-md text-label-md">Recorded Lecture: Physics</h4>
+</div>
+<p class="text-label-sm text-on-surface-variant">Fluid Dynamics Part 2 • Completed 85% of video</p>
+</div>
+</div>
+<!-- Entry 4 -->
+<div class="relative flex gap-6 items-start">
+<div class="absolute -left-[14px] w-4 h-4 rounded-full bg-primary-container border-4 border-white shadow-sm z-10"></div>
+<div class="flex-shrink-0 w-24">
+<p class="font-bold text-on-surface">04:00 PM</p>
+</div>
+<div class="flex-grow p-4 rounded-xl bg-white border border-border-subtle shadow-sm hover:border-primary-container transition-all">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary-container text-[18px]">edit_note</span>
+<h4 class="font-label-md text-label-md">Practice Session</h4>
+</div>
+<p class="text-label-sm text-on-surface-variant">Daily Practice Problem (DPP) • 25 Questions attempted</p>
+</div>
+</div>
+<!-- Entry 5 -->
+<div class="relative flex gap-6 items-start">
+<div class="absolute -left-[14px] w-4 h-4 rounded-full bg-outline border-4 border-white shadow-sm z-10"></div>
+<div class="flex-shrink-0 w-24">
+<p class="font-bold text-on-surface">09:30 PM</p>
+</div>
+<div class="flex-grow p-4 rounded-xl bg-white border border-border-subtle shadow-sm">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-outline text-[18px]">logout</span>
+<h4 class="font-label-md text-label-md">Logout</h4>
+</div>
+<p class="text-label-sm text-on-surface-variant">End of study session • Daily summary generated</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Resource Access -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="glass-card p-6 rounded-2xl shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-headline-md text-headline-md">Notes Downloaded</h3>
+<span class="material-symbols-outlined text-primary">description</span>
+</div>
+<ul class="space-y-3">
+<li class="flex items-center justify-between p-3 bg-white/50 rounded-lg border border-border-subtle">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-[20px]">picture_as_pdf</span>
+<span class="text-label-sm font-medium">Chem_Alkanes_Handwritten.pdf</span>
+</div>
+<span class="text-[10px] text-on-surface-variant">10:45 AM</span>
+</li>
+<li class="flex items-center justify-between p-3 bg-white/50 rounded-lg border border-border-subtle">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-[20px]">picture_as_pdf</span>
+<span class="text-label-sm font-medium">Physics_Fluid_Formulae.pdf</span>
+</div>
+<span class="text-[10px] text-on-surface-variant">03:15 PM</span>
+</li>
+</ul>
+</div>
+<div class="glass-card p-6 rounded-2xl shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-headline-md text-headline-md">DPPs Attempted</h3>
+<span class="material-symbols-outlined text-primary-container">assignment_turned_in</span>
+</div>
+<ul class="space-y-3">
+<li class="flex items-center justify-between p-3 bg-white/50 rounded-lg border border-border-subtle">
+<div class="flex flex-col">
+<span class="text-label-sm font-medium">NEET 2025: DPP #142</span>
+<span class="text-[10px] text-on-surface-variant">Time spent: 45m</span>
+</div>
+<div class="text-right">
+<span class="text-label-sm font-bold text-tertiary">22/25 Correct</span>
+</div>
+</li>
+<li class="flex items-center justify-between p-3 bg-white/50 rounded-lg border border-border-subtle">
+<div class="flex flex-col">
+<span class="text-label-sm font-medium">Chem Reaction Mechanism 1</span>
+<span class="text-[10px] text-on-surface-variant">Time spent: 30m</span>
+</div>
+<div class="text-right">
+<span class="text-label-sm font-bold text-tertiary">18/20 Correct</span>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-[#0F172A] text-white mt-stack-lg py-stack-lg px-margin-desktop">
+<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-4 gap-stack-lg">
+<div class="col-span-1">
+<div class="font-headline-md text-headline-md font-bold text-primary mb-4">Atomic Pathshala</div>
+<p class="text-label-sm text-outline-variant opacity-80 leading-relaxed">The high-performance learning accelerator for NEET and JEE aspirants. Dedicated to academic excellence and personalized growth.</p>
+</div>
+<div>
+<h4 class="font-label-md text-label-md mb-4 text-white">Platform</h4>
+<ul class="space-y-2 text-label-sm text-outline-variant">
+<li><a class="hover:text-primary transition-colors" href="#">Courses</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Test Series</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Faculty</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Rank Predictor</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md text-label-md mb-4 text-white">Support</h4>
+<ul class="space-y-2 text-label-sm text-outline-variant">
+<li><a class="hover:text-primary transition-colors" href="#">Help Center</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Parent Guide</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Terms of Use</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md text-label-md mb-4 text-white">Newsletter</h4>
+<div class="flex gap-2">
+<input class="bg-white/10 border-none rounded-lg px-4 py-2 text-sm w-full focus:ring-1 focus:ring-primary" placeholder="Enter email" type="email"/>
+<button class="bg-primary px-4 py-2 rounded-lg text-sm font-bold">Join</button>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto border-t border-white/10 mt-stack-lg pt-stack-md flex justify-between items-center text-[10px] text-outline-variant">
+<p>© 2023 Atomic Pathshala. All rights reserved.</p>
+<div class="flex gap-4">
+<a class="hover:text-white" href="#">Twitter</a>
+<a class="hover:text-white" href="#">LinkedIn</a>
+<a class="hover:text-white" href="#">Instagram</a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions for Gauges
+        document.addEventListener('DOMContentLoaded', () => {
+            const rings = document.querySelectorAll('.progress-ring-circle');
+            rings.forEach(ring => {
+                const radius = ring.r.baseVal.value;
+                const circumference = 2 * Math.PI * radius;
+                const offset = ring.getAttribute('stroke-dashoffset');
+                
+                // Add simple hover effect
+                ring.parentElement.parentElement.addEventListener('mouseenter', () => {
+                    ring.style.strokeWidth = '6';
+                });
+                ring.parentElement.parentElement.addEventListener('mouseleave', () => {
+                    ring.style.strokeWidth = '4';
+                });
+            });
+        });
+    </script>
+
+  <!-- Ecosystem Switched Widget Overlay -->
+  <script src="../ecosystem-hud.js"></script>
+</body></html>

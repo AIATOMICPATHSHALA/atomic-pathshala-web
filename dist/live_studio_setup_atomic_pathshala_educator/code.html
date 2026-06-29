@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Live Stream Configuration - Atomic Pathshala</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist:wght@600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#0054d6",
+                    "text-light": "#0F172A",
+                    "primary-container": "#0066ff",
+                    "text-dark": "#F1F5F9",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "surface-container-low": "#f2f3ff",
+                    "on-tertiary-container": "#e1ffeb",
+                    "inverse-primary": "#b3c5ff",
+                    "inverse-surface": "#283044",
+                    "bg-light": "#FFFFFF",
+                    "on-secondary-fixed-variant": "#004e60",
+                    "primary-fixed": "#dae1ff",
+                    "surface": "#faf8ff",
+                    "on-primary-fixed-variant": "#003fa4",
+                    "on-background": "#131b2e",
+                    "outline-variant": "#c2c6d8",
+                    "error-container": "#ffdad6",
+                    "surface-container-high": "#e2e7ff",
+                    "surface-container": "#eaedff",
+                    "on-error-container": "#93000a",
+                    "on-primary-container": "#f8f7ff",
+                    "primary": "#0050cb",
+                    "secondary-fixed-dim": "#4cd6ff",
+                    "outline": "#727687",
+                    "on-tertiary-fixed-variant": "#005235",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#faf8ff",
+                    "tertiary-fixed": "#6afcb9",
+                    "on-tertiary-fixed": "#002113",
+                    "on-error": "#ffffff",
+                    "on-secondary-container": "#005266",
+                    "on-primary-fixed": "#001849",
+                    "tertiary": "#006643",
+                    "error": "#ba1a1a",
+                    "surface-light": "#F8FAFC",
+                    "tertiary-container": "#008256",
+                    "on-tertiary": "#ffffff",
+                    "bg-dark": "#0B0E14",
+                    "secondary-fixed": "#b7eaff",
+                    "surface-dim": "#d2d9f4",
+                    "on-secondary-fixed": "#001f28",
+                    "on-secondary": "#ffffff",
+                    "surface-dark": "#161B22",
+                    "on-surface": "#131b2e",
+                    "border-subtle": "rgba(0, 102, 255, 0.1)",
+                    "surface-variant": "#dae2fd",
+                    "inverse-on-surface": "#eef0ff",
+                    "tertiary-fixed-dim": "#49df9f",
+                    "secondary": "#00677f",
+                    "on-surface-variant": "#424656",
+                    "secondary-container": "#00ccf9",
+                    "surface-container-lowest": "#ffffff",
+                    "background": "#faf8ff",
+                    "surface-container-highest": "#dae2fd"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "16px",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "stack-lg": "32px",
+                    "margin-mobile": "20px",
+                    "margin-desktop": "64px",
+                    "stack-sm": "8px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["Geist"],
+                    "headline-md": ["Geist"],
+                    "display-lg-mobile": ["Geist"],
+                    "display-lg": ["Geist"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Geist', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .active-ring { ring: 2px solid #0066ff; ring-offset: 2px; }
+        .countdown-pulse { animation: pulse 1s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    </style>
+</head>
+<body class="bg-bg-dark text-text-dark min-h-screen flex flex-col overflow-x-hidden">
+<!-- TopNavBar Shell -->
+<nav class="fixed top-0 w-full z-50 bg-bg-dark/80 backdrop-blur-md border-b border-white/10 shadow-none">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-bold tracking-tight text-primary dark:text-inverse-primary">
+                Atomic Pathshala
+            </div>
+<div class="hidden md:flex items-center gap-stack-lg">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Explore Courses</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Batches</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Faculty</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Results</a>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="px-6 py-2 bg-primary text-on-primary font-label-md text-label-md rounded-full hover:opacity-80 transition-all duration-300 active:scale-95">
+                    Start Learning
+                </button>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-24 pb-12 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full">
+<!-- Page Header -->
+<header class="mb-stack-lg flex flex-col md:flex-row md:items-end justify-between gap-gutter">
+<div>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-2">Live Studio</h1>
+<p class="font-body-md text-body-md text-surface-variant/60">Configure your sources before reaching 1,500+ waiting students.</p>
+</div>
+<div class="flex items-center gap-stack-sm bg-surface-dark/50 p-2 rounded-xl border border-white/5">
+<div class="w-3 h-3 rounded-full bg-error countdown-pulse"></div>
+<span class="font-label-md text-label-md text-error">PRE-LIVE</span>
+</div>
+</header>
+<!-- Configuration Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Video Preview -->
+<div class="lg:col-span-8 flex flex-col gap-gutter">
+<div class="relative aspect-video rounded-2xl overflow-hidden glass shadow-2xl group">
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="A cinematic, high-definition live stream preview showing a clean, modern home office studio. A professional camera is mounted on a tripod, capturing a softly lit wooden desk with a high-end microphone and a large monitor. The lighting is warm and artistic with blue and orange teal accents, reflecting the Atomic Pathshala brand aesthetic. The background is slightly blurred to emphasize the focal point of the studio setup." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYrfHtX9CSiNiDis7J9Vq0yNzWnA7USZbCNOBgQawQJwJ6iLVy3b1moLZVn7jamiwm_3zUFvVXuHFdkJC61n5AT1pBmYQwKPAzYpsSpsw0vV6KPBfWNvglAdQIpWTznh96_tmRGjMPWmL0Y7MMMWTgJutaajsqFDdzLmhEcWxZusiuZ40b5L5PaaK4p0zpoLBEJtWqe3yMFXjoLb0uIhqgYgoglEz2kNdMg19NE-UixdyooavACgAWRX7WYQns2yLOP90sh_U10YI"/>
+</div>
+<!-- Overlay Controls -->
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="px-3 py-1 bg-black/60 backdrop-blur-md rounded-full text-[10px] font-bold tracking-widest text-white/90 uppercase border border-white/10">1080p • 60fps</span>
+<span class="px-3 py-1 bg-primary/20 backdrop-blur-md rounded-full text-[10px] font-bold tracking-widest text-primary-fixed uppercase border border-primary/30">Stable Bitrate</span>
+</div>
+<div class="absolute bottom-6 left-6 right-6 flex justify-between items-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<div class="flex gap-4">
+<button class="w-12 h-12 rounded-full glass flex items-center justify-center text-white hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">videocam</span>
+</button>
+<button class="w-12 h-12 rounded-full glass flex items-center justify-center text-white hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">mic</span>
+</button>
+</div>
+<div class="flex gap-4">
+<button class="px-4 py-2 rounded-lg glass text-white text-label-sm font-label-sm hover:bg-white/10 transition-colors">
+                                Source Settings
+                            </button>
+</div>
+</div>
+</div>
+<!-- Bottom Status Bar -->
+<div class="glass rounded-xl p-stack-md flex flex-wrap items-center justify-between gap-stack-md">
+<div class="flex items-center gap-gutter">
+<div class="flex flex-col">
+<span class="text-label-sm font-label-sm text-surface-variant/40 uppercase tracking-tighter">Connection</span>
+<span class="text-label-md font-label-md text-tertiary-fixed">Excellent (12.4 Mbps)</span>
+</div>
+<div class="hidden md:flex flex-col">
+<span class="text-label-sm font-label-sm text-surface-variant/40 uppercase tracking-tighter">Latency</span>
+<span class="text-label-md font-label-md text-surface-variant">Low Latency Mode</span>
+</div>
+</div>
+<div class="flex items-center gap-stack-sm">
+<span class="text-label-sm font-label-sm text-surface-variant/40">PROTOCOL:</span>
+<select class="bg-transparent border-none text-primary-fixed font-label-md text-label-md focus:ring-0 cursor-pointer">
+<option>WebRTC (Ultra Low Latency)</option>
+<option>RTMP (Standard Stream)</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Right Column: Configuration Cards -->
+<div class="lg:col-span-4 flex flex-col gap-gutter">
+<!-- Video Source Card -->
+<section class="glass rounded-2xl p-stack-md flex flex-col gap-stack-sm">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary-fixed">videocam</span>
+<h3 class="text-label-md font-label-md text-white">Video Source</h3>
+</div>
+<div class="space-y-2">
+<button class="w-full text-left p-4 rounded-xl border border-primary bg-primary/10 flex items-center justify-between group">
+<div class="flex flex-col">
+<span class="text-label-md font-label-md text-white">Logitech C922 Pro</span>
+<span class="text-label-sm font-label-sm text-white/50">Primary Webcam • Connected</span>
+</div>
+<span class="material-symbols-outlined text-primary" data-weight="fill">check_circle</span>
+</button>
+<button class="w-full text-left p-4 rounded-xl border border-white/5 bg-white/5 flex items-center justify-between hover:bg-white/10 transition-colors group">
+<div class="flex flex-col">
+<span class="text-label-md font-label-md text-surface-variant">Blackmagic Design</span>
+<span class="text-label-sm font-label-sm text-surface-variant/40">DSLR via OBS Virtual</span>
+</div>
+<span class="material-symbols-outlined text-surface-variant/20">circle</span>
+</button>
+</div>
+</section>
+<!-- Audio Source Card -->
+<section class="glass rounded-2xl p-stack-md flex flex-col gap-stack-sm">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary-fixed">mic</span>
+<h3 class="text-label-md font-label-md text-white">Audio Source</h3>
+</div>
+<div class="space-y-2">
+<button class="w-full text-left p-4 rounded-xl border border-primary bg-primary/10 flex items-center justify-between group">
+<div class="flex flex-col">
+<span class="text-label-md font-label-md text-white">Shure MV7 Digital</span>
+<span class="text-label-sm font-label-sm text-white/50">Cardioid Mic • Active</span>
+</div>
+<span class="material-symbols-outlined text-primary" data-weight="fill">check_circle</span>
+</button>
+<div class="w-full p-4 rounded-xl border border-white/5 bg-white/5 flex items-center gap-4">
+<div class="flex-grow h-1.5 bg-white/10 rounded-full overflow-hidden">
+<div class="w-3/4 h-full bg-tertiary-fixed shadow-[0_0_10px_rgba(106,252,185,0.4)]"></div>
+</div>
+<span class="text-[10px] font-bold text-tertiary-fixed">-6dB</span>
+</div>
+</div>
+</section>
+<!-- Screen Source Card -->
+<section class="glass rounded-2xl p-stack-md flex flex-col gap-stack-sm">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary-fixed">present_to_all</span>
+<h3 class="text-label-md font-label-md text-white">Screen & Interaction</h3>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<button class="flex flex-col items-center justify-center gap-2 py-4 rounded-xl border border-white/10 bg-white/5 hover:border-primary/50 transition-all">
+<span class="material-symbols-outlined text-surface-variant">desktop_windows</span>
+<span class="text-[10px] font-label-md">Full</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 py-4 rounded-xl border border-primary bg-primary/20 transition-all">
+<span class="material-symbols-outlined text-primary-fixed">window</span>
+<span class="text-[10px] font-label-md text-primary-fixed">Window</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 py-4 rounded-xl border border-white/10 bg-white/5 hover:border-primary/50 transition-all">
+<span class="material-symbols-outlined text-surface-variant">draw</span>
+<span class="text-[10px] font-label-md">Board</span>
+</button>
+</div>
+</section>
+<!-- Go Live Button -->
+<button class="mt-auto group relative w-full overflow-hidden py-6 rounded-2xl bg-primary text-white font-headline-md text-headline-md transition-all duration-500 hover:shadow-[0_0_40px_rgba(0,102,255,0.4)] active:scale-[0.98]" id="goLiveBtn">
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+<span class="flex items-center justify-center gap-4" id="btnText">
+                        GO LIVE NOW
+                        <span class="material-symbols-outlined" data-weight="fill">sensors</span>
+</span>
+<div class="absolute inset-0 bg-primary-container hidden items-center justify-center text-4xl font-bold" id="countdownOverlay">
+                        3
+                    </div>
+</button>
+</div>
+</div>
+</main>
+<!-- Footer Shell -->
+<footer class="bg-inverse-surface dark:bg-bg-dark border-t border-white/10 w-full py-stack-lg mt-12">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="col-span-2 md:col-span-1">
+<div class="font-headline-md text-headline-md font-bold text-surface-container-lowest mb-stack-md">Atomic Pathshala</div>
+<p class="font-body-md text-body-md text-surface-variant/70">Accelerating Excellence in NEET/JEE preparation through technology-driven learning.</p>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary-fixed mb-stack-md">Company</h4>
+<ul class="space-y-2">
+<li><a class="font-label-sm text-label-sm text-surface-variant/70 hover:text-surface-container-lowest transition-colors" href="#">About Us</a></li>
+<li><a class="font-label-sm text-label-sm text-surface-variant/70 hover:text-surface-container-lowest transition-colors" href="#">Careers</a></li>
+<li><a class="font-label-sm text-label-sm text-surface-variant/70 hover:text-surface-container-lowest transition-colors" href="#">Contact</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary-fixed mb-stack-md">Support</h4>
+<ul class="space-y-2">
+<li><a class="font-label-sm text-label-sm text-surface-variant/70 hover:text-surface-container-lowest transition-colors" href="#">Instructor FAQ</a></li>
+<li><a class="font-label-sm text-label-sm text-surface-variant/70 hover:text-surface-container-lowest transition-colors" href="#">Technical Help</a></li>
+<li><a class="font-label-sm text-label-sm text-surface-variant/70 hover:text-surface-container-lowest transition-colors" href="#">Streaming Guide</a></li>
+</ul>
+</div>
+<div class="col-span-2 md:col-span-1">
+<h4 class="font-label-md text-label-md text-primary-fixed mb-stack-md">Newsletter</h4>
+<div class="flex flex-col gap-stack-sm">
+<input class="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-label-sm focus:ring-2 focus:ring-primary outline-none" placeholder="Instructor email" type="email"/>
+<button class="bg-primary px-4 py-2 rounded-lg text-label-sm font-label-md hover:opacity-90 transition-opacity">Subscribe</button>
+</div>
+</div>
+</div>
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mt-stack-lg pt-stack-lg border-t border-white/5 text-center text-surface-variant/40 font-label-sm text-label-sm">
+            © 2024 Atomic Pathshala. Accelerating Excellence.
+        </div>
+</footer>
+<script>
+        const goLiveBtn = document.getElementById('goLiveBtn');
+        const btnText = document.getElementById('btnText');
+        const countdownOverlay = document.getElementById('countdownOverlay');
+        
+        goLiveBtn.addEventListener('click', () => {
+            btnText.classList.add('opacity-0');
+            countdownOverlay.classList.remove('hidden');
+            countdownOverlay.classList.add('flex');
+            
+            let count = 3;
+            const timer = setInterval(() => {
+                count--;
+                if (count > 0) {
+                    countdownOverlay.innerText = count;
+                } else if (count === 0) {
+                    countdownOverlay.innerText = "STREAMING...";
+                    countdownOverlay.classList.add('bg-error');
+                    goLiveBtn.classList.remove('bg-primary');
+                    goLiveBtn.classList.add('bg-error');
+                    clearInterval(timer);
+                    setTimeout(() => {
+                        alert("You are now live to 1,540 students!");
+                    }, 500);
+                }
+            }, 1000);
+        });
+
+        // Toggle logic for source buttons (UI simulation)
+        document.querySelectorAll('section button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const parent = this.parentElement;
+                parent.querySelectorAll('button').forEach(b => {
+                    b.classList.remove('border-primary', 'bg-primary/10', 'bg-primary/20');
+                    b.classList.add('border-white/10', 'bg-white/5');
+                    const icon = b.querySelector('.material-symbols-outlined:last-child');
+                    if (icon && (icon.innerText === 'check_circle' || icon.innerText === 'circle')) {
+                        icon.innerText = 'circle';
+                        icon.classList.remove('text-primary');
+                        icon.removeAttribute('data-weight');
+                    }
+                });
+                this.classList.add('border-primary', 'bg-primary/10');
+                const activeIcon = this.querySelector('.material-symbols-outlined:last-child');
+                if (activeIcon && (activeIcon.innerText === 'check_circle' || activeIcon.innerText === 'circle')) {
+                    activeIcon.innerText = 'check_circle';
+                    activeIcon.classList.add('text-primary');
+                    activeIcon.setAttribute('data-weight', 'fill');
+                }
+            });
+        });
+    </script>
+
+  <!-- Ecosystem Switched Widget Overlay -->
+  <script src="../ecosystem-hud.js"></script>
+</body></html>

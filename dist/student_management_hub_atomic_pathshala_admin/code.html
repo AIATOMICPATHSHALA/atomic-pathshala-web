@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student Management Hub | Atomic Pathshala</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#c2c6d8",
+                    "error-container": "#ffdad6",
+                    "surface-container": "#eaedff",
+                    "on-error-container": "#93000a",
+                    "surface-container-high": "#e2e7ff",
+                    "surface": "#faf8ff",
+                    "on-primary-fixed-variant": "#003fa4",
+                    "on-background": "#131b2e",
+                    "surface-bright": "#faf8ff",
+                    "on-tertiary-fixed": "#002113",
+                    "tertiary-fixed": "#6afcb9",
+                    "on-primary-container": "#f8f7ff",
+                    "outline": "#727687",
+                    "on-tertiary-fixed-variant": "#005235",
+                    "on-primary": "#ffffff",
+                    "primary": "#0050cb",
+                    "secondary-fixed-dim": "#4cd6ff",
+                    "text-dark": "#F1F5F9",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "on-tertiary-container": "#e1ffeb",
+                    "inverse-primary": "#b3c5ff",
+                    "surface-container-low": "#f2f3ff",
+                    "text-light": "#0F172A",
+                    "surface-tint": "#0054d6",
+                    "primary-container": "#0066ff",
+                    "on-secondary-fixed-variant": "#004e60",
+                    "primary-fixed": "#dae1ff",
+                    "inverse-surface": "#283044",
+                    "bg-light": "#FFFFFF",
+                    "on-surface": "#131b2e",
+                    "surface-dark": "#161B22",
+                    "surface-container-lowest": "#ffffff",
+                    "background": "#faf8ff",
+                    "surface-container-highest": "#dae2fd",
+                    "border-subtle": "rgba(0, 102, 255, 0.1)",
+                    "surface-variant": "#dae2fd",
+                    "inverse-on-surface": "#eef0ff",
+                    "secondary": "#00677f",
+                    "on-surface-variant": "#424656",
+                    "secondary-container": "#00ccf9",
+                    "tertiary-fixed-dim": "#49df9f",
+                    "tertiary": "#006643",
+                    "error": "#ba1a1a",
+                    "tertiary-container": "#008256",
+                    "surface-light": "#F8FAFC",
+                    "on-secondary-container": "#005266",
+                    "on-primary-fixed": "#001849",
+                    "on-error": "#ffffff",
+                    "secondary-fixed": "#b7eaff",
+                    "surface-dim": "#d2d9f4",
+                    "on-secondary-fixed": "#001f28",
+                    "on-secondary": "#ffffff",
+                    "bg-dark": "#0B0E14",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "16px",
+                    "stack-lg": "32px",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "stack-sm": "8px",
+                    "margin-mobile": "20px",
+                    "margin-desktop": "64px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Geist"],
+                    "display-lg": ["Geist"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["Geist"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+<!-- Sidebar (SideNavBar) -->
+<aside class="hidden lg:flex flex-col h-screen w-72 fixed left-0 top-0 border-r border-outline-variant bg-surface py-6 z-50">
+<div class="px-6 mb-8">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Atomic Pathshala</h1>
+<p class="font-label-sm text-on-surface-variant opacity-70">Admin Console</p>
+</div>
+<nav class="flex-1 space-y-1 overflow-y-auto">
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container-low transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-primary font-bold bg-primary-container/10 border-r-4 border-primary transition-transform duration-200 translate-x-1" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md">Users</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container-low transition-all" href="#">
+<span class="material-symbols-outlined">book_2</span>
+<span class="font-label-md">Courses</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container-low transition-all" href="#">
+<span class="material-symbols-outlined">layers</span>
+<span class="font-label-md">Batches</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container-low transition-all" href="#">
+<span class="material-symbols-outlined">live_tv</span>
+<span class="font-label-md">Live Classes</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container-low transition-all" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container-low transition-all" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md">Payments</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container-low transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md">Settings</span>
+</a>
+</nav>
+<div class="px-6 mt-auto">
+<button class="w-full py-3 px-4 bg-primary text-on-primary rounded-xl font-label-md flex items-center justify-center gap-2 hover:bg-primary-container transition-colors shadow-lg">
+<span class="material-symbols-outlined">add</span>
+                New Course
+            </button>
+</div>
+</aside>
+<!-- Header (TopNavBar) -->
+<header class="sticky top-0 z-40 flex justify-between items-center w-full px-8 py-3 lg:pl-80 bg-surface/80 backdrop-blur-xl border-b border-outline-variant shadow-sm">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container-lowest border-outline-variant rounded-full pl-10 pr-4 py-2 text-label-md focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Search students, IDs, or batches..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+</div>
+<div class="h-8 w-px bg-outline-variant mx-2"></div>
+<div class="flex items-center gap-3 cursor-pointer group">
+<div class="text-right">
+<p class="font-label-md text-on-surface group-hover:text-primary transition-colors">Admin Profile</p>
+<p class="text-[10px] uppercase tracking-wider text-outline font-bold">Super Admin</p>
+</div>
+<img class="w-10 h-10 rounded-full border-2 border-primary object-cover" data-alt="A professional studio portrait of a confident male administrative officer in a dark blue tailored suit, soft cinematic lighting, neutral gray background, modern corporate headshot style for a high-end educational platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCK1i5AQESo9zoGMzhzjQhDgdNp7HsD9SE318IZWPXTyeF8G5x8Jr2VYVOCobuJmMQoGw7jbqdSfvCHvLcfxI6LvvXIdE5MsHo2gliDuNqNZ5h2mx77J7EbBQunmQFKQsTgx_2H1y-yui7ruKAX8gbeARkO8clebao0syIE3eDEM6cf2ziXPe4QXFk_MqQnRCINdjKnLCtXH7XYkqr2ZgFZf2qN8OPrjzT7NhyS1pkevkkQBdcZk8a387OUTzggoIx44yy3AnEBDsc"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="lg:ml-72 min-h-screen p-8 transition-all duration-300">
+<!-- Header Actions -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Student Management</h2>
+<p class="font-body-md text-on-surface-variant">Manage, analyze, and support your global student community.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-5 py-2.5 bg-surface border border-outline-variant rounded-xl font-label-md flex items-center gap-2 hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined">upload_file</span>
+                    Bulk Import
+                </button>
+<button class="px-5 py-2.5 bg-primary text-on-primary rounded-xl font-label-md flex items-center gap-2 hover:bg-primary-container transition-all shadow-md">
+<span class="material-symbols-outlined">person_add</span>
+                    Add New Student
+                </button>
+</div>
+</div>
+<!-- Summary Statistics Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+<!-- Stat 1 -->
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-between group hover:border-primary/40 transition-all cursor-default">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-primary/10 rounded-xl">
+<span class="material-symbols-outlined text-primary">groups</span>
+</div>
+<span class="text-tertiary flex items-center gap-1 font-label-sm">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                        +12%
+                    </span>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-md">Total Students</p>
+<h3 class="text-display-lg font-headline-lg text-on-surface group-hover:text-primary transition-colors">12,842</h3>
+</div>
+</div>
+<!-- Stat 2 -->
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-between group hover:border-secondary/40 transition-all cursor-default">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-secondary/10 rounded-xl">
+<span class="material-symbols-outlined text-secondary">person_add</span>
+</div>
+<span class="text-tertiary flex items-center gap-1 font-label-sm">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                        +85
+                    </span>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-md">New Today</p>
+<h3 class="text-display-lg font-headline-lg text-on-surface group-hover:text-secondary transition-colors">342</h3>
+</div>
+</div>
+<!-- Stat 3 -->
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-between group hover:border-tertiary/40 transition-all cursor-default">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-tertiary/10 rounded-xl">
+<span class="material-symbols-outlined text-tertiary">bolt</span>
+</div>
+<span class="flex items-center gap-2">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary opacity-75"></span>
+</span></span></div></div></div></main>
+  <!-- Ecosystem Switched Widget Overlay -->
+  <script src="../ecosystem-hud.js"></script>
+</body></html>

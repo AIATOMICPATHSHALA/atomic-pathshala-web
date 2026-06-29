@@ -1,0 +1,331 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Admin Account Setup | Atomic Pathshala</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed-dim": "#b3c5ff",
+                    "secondary": "#00677f",
+                    "primary": "#0050cb",
+                    "surface-variant": "#dae2fd",
+                    "surface-light": "#F8FAFC",
+                    "secondary-container": "#00ccf9",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#49df9f",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed-variant": "#004e60",
+                    "tertiary-container": "#008256",
+                    "surface-bright": "#faf8ff",
+                    "on-tertiary": "#ffffff",
+                    "on-surface": "#131b2e",
+                    "outline": "#727687",
+                    "on-secondary-fixed": "#001f28",
+                    "surface-container-highest": "#dae2fd",
+                    "primary-fixed": "#dae1ff",
+                    "on-primary-fixed-variant": "#003fa4",
+                    "bg-light": "#FFFFFF",
+                    "on-tertiary-fixed-variant": "#005235",
+                    "on-secondary-container": "#005266",
+                    "error-container": "#ffdad6",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-surface-variant": "#424656",
+                    "text-dark": "#F1F5F9",
+                    "surface-container": "#eaedff",
+                    "on-background": "#131b2e",
+                    "surface-container-high": "#e2e7ff",
+                    "inverse-primary": "#b3c5ff",
+                    "on-tertiary-fixed": "#002113",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#d2d9f4",
+                    "tertiary-fixed": "#6afcb9",
+                    "secondary-fixed": "#b7eaff",
+                    "text-light": "#0F172A",
+                    "border-subtle": "rgba(0, 102, 255, 0.1)",
+                    "surface-tint": "#0054d6",
+                    "outline-variant": "#c2c6d8",
+                    "inverse-on-surface": "#eef0ff",
+                    "primary-container": "#0066ff",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f2f3ff",
+                    "on-tertiary-container": "#e1ffeb",
+                    "bg-dark": "#0B0E14",
+                    "secondary-fixed-dim": "#4cd6ff",
+                    "on-primary-container": "#f8f7ff",
+                    "surface-dark": "#161B22",
+                    "on-primary-fixed": "#001849",
+                    "inverse-surface": "#283044",
+                    "tertiary": "#006643",
+                    "surface": "#faf8ff",
+                    "background": "#faf8ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-lg": "32px",
+                    "margin-mobile": "20px",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "stack-md": "16px",
+                    "margin-desktop": "64px",
+                    "stack-sm": "8px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Geist"],
+                    "headline-md": ["Geist"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Geist"],
+                    "label-md": ["Inter"],
+                    "display-lg-mobile": ["Geist"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+        }
+        .step-active {
+            box-shadow: 0 0 0 4px rgba(0, 80, 203, 0.1);
+        }
+        input:focus {
+            box-shadow: 0 0 0 2px rgba(0, 80, 203, 0.15);
+        }
+        .strength-bar {
+            height: 4px;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface min-h-screen flex flex-col">
+<!-- TopNavBar Suppression Check: This is a linear transactional page (onboarding/setup), 
+         so we exclude the global nav as per "The Destination Rule" but keep the brand identity. -->
+<main class="flex-grow flex items-center justify-center px-margin-mobile py-stack-lg relative overflow-hidden">
+<!-- Decorative Atmospheric Elements -->
+<div class="absolute -top-[10%] -right-[5%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[100px]"></div>
+<div class="absolute -bottom-[10%] -left-[5%] w-[30%] h-[30%] bg-secondary/5 rounded-full blur-[100px]"></div>
+<div class="w-full max-w-xl z-10">
+<!-- Brand Anchor -->
+<div class="flex flex-col items-center mb-stack-lg space-y-4">
+<img alt="Atomic Pathshala Logo" class="h-12 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpuZebcDDUgtn-6u5QUGYy92vqiTsISsoyS0kzsKdMDnDrKrZKTjdRTI-zcgcCyY3cXvbqw3ZEUI4bDyXpdgcvhYLZWrvxOSatMFsM7XQqlr5Nv7mjs3CT7MbngaVOoFLbJjlQw8I0Pq-Wk-v5xG6lrviB1c3Osy7hKm7VERpMhtQhLrGgm1KSjzX06mkIu3ZyKroW8ZhxTB1Fcn5lo9GIRe2ok_zkK85yVtjxTI0QCHebmz8OeupCWbzInE7nkwH-XK0_ShjXojM">
+<div class="flex items-center space-x-3 mt-4">
+<div class="w-8 h-8 rounded-full bg-primary-fixed-dim text-primary flex items-center justify-center font-bold text-xs">1</div>
+<div class="w-12 h-[2px] bg-primary"></div>
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-xs step-active">2</div>
+<div class="w-12 h-[2px] bg-outline-variant"></div>
+<div class="w-8 h-8 rounded-full bg-surface-container text-outline flex items-center justify-center font-bold text-xs">3</div>
+</div>
+</div>
+<!-- Main Content Card -->
+<div class="glass-panel p-stack-lg md:p-10 rounded-[2rem] shadow-sm">
+<header class="mb-stack-lg">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Complete Your Profile</h1>
+<p class="text-on-surface-variant font-body-md">Configure primary admin credentials and identity for firozali78644@gmail.com.</p>
+</header>
+<form class="space-y-6" id="setupForm">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Full Name -->
+<div class="space-y-2">
+<label class="block font-label-md text-on-surface" for="fullName">Full Name</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">person</span>
+<input class="w-full pl-10 pr-4 py-3 bg-white border border-outline-variant rounded-xl focus:border-primary focus:ring-0 transition-all text-on-surface placeholder:text-outline-variant" id="fullName" placeholder="Dr. Sarah Johnson" type="text">
+</div>
+</div>
+<!-- Department -->
+<div class="space-y-2">
+<label class="block font-label-md text-on-surface" for="department">Department Select</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">account_tree</span>
+<select class="w-full pl-10 pr-4 py-3 bg-white border border-outline-variant rounded-xl focus:border-primary focus:ring-0 transition-all text-on-surface appearance-none" id="department">
+<option disabled="" selected="" value="">Select Department</option>
+<option value="academics">Academic Operations</option>
+<option value="admissions">Student Admissions</option>
+<option value="finance">Finance &amp; Accounts</option>
+<option value="tech">Information Technology</option>
+<option value="security">Security Audit</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline text-[20px] pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Password Section -->
+<div class="space-y-4 pt-4 border-t border-border-subtle">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Create Password -->
+<div class="space-y-2">
+<label class="block font-label-md text-on-surface" for="password">Create Password</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">lock</span>
+<input class="w-full pl-10 pr-10 py-3 bg-white border border-outline-variant rounded-xl focus:border-primary focus:ring-0 transition-all text-on-surface placeholder:text-outline-variant" id="password" placeholder="••••••••" type="password">
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors" onclick="togglePassword('password')" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+<!-- Confirm Password -->
+<div class="space-y-2">
+<label class="block font-label-md text-on-surface" for="confirmPassword">Confirm Password</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">verified_user</span>
+<input class="w-full pl-10 pr-10 py-3 bg-white border border-outline-variant rounded-xl focus:border-primary focus:ring-0 transition-all text-on-surface placeholder:text-outline-variant" id="confirmPassword" placeholder="••••••••" type="password">
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors" onclick="togglePassword('confirmPassword')" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Strength Indicator -->
+<div class="p-4 bg-surface-container-low rounded-xl border border-border-subtle">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-sm text-on-surface-variant">Security Rating</span>
+<span class="font-label-md text-error" id="strengthText">Weak</span>
+</div>
+<div class="flex gap-1">
+<div class="strength-bar flex-1 bg-outline-variant" id="bar1"></div>
+<div class="strength-bar flex-1 bg-outline-variant" id="bar2"></div>
+<div class="strength-bar flex-1 bg-outline-variant" id="bar3"></div>
+<div class="strength-bar flex-1 bg-outline-variant" id="bar4"></div>
+</div>
+<p class="font-label-sm text-on-surface-variant mt-3 flex items-start">
+<span class="material-symbols-outlined text-[14px] mr-1 mt-0.5">info</span>
+                                Mix uppercase, lowercase, numbers, and symbols for maximum security.
+                            </p>
+</div>
+</div>
+<!-- Footer Note & Action -->
+<div class="space-y-6 pt-2">
+<div class="flex items-center space-x-3 p-stack-sm bg-primary/5 rounded-lg border border-primary/10">
+<span class="material-symbols-outlined text-primary text-[20px]">shield</span>
+<p class="font-label-sm text-primary">Once registered, these will be the primary admin credentials for firozali78644@gmail.com across all future logins.</p>
+</div>
+<button class="w-full bg-primary hover:bg-primary/90 text-on-primary font-label-md text-lg py-4 rounded-xl shadow-lg transition-all active:scale-95 flex items-center justify-center space-x-2" type="submit">
+<span class="">Complete Setup</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</form>
+</div>
+<!-- Footer Section -->
+<footer class="mt-stack-lg text-center">
+<p class="font-label-sm text-on-surface-variant">
+                    © 2024 Atomic Pathshala. Secure Admin Environment.
+                </p>
+<div class="flex justify-center space-x-4 mt-2">
+<a class="font-label-sm text-primary hover:underline underline-offset-4" href="#">Privacy Policy</a>
+<span class="text-outline-variant">•</span>
+<a class="font-label-sm text-primary hover:underline underline-offset-4" href="#">Security Audit</a>
+</div>
+</footer>
+</div>
+</main>
+<script>
+        // Password Visibility Toggle
+        function togglePassword(id) {
+            const input = document.getElementById(id);
+            const icon = input.nextElementSibling.querySelector('span');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.innerText = 'visibility_off';
+            } else {
+                input.type = 'password';
+                icon.innerText = 'visibility';
+            }
+        }
+
+        // Strength Indicator Logic
+        const passwordInput = document.getElementById('password');
+        const bars = [
+            document.getElementById('bar1'),
+            document.getElementById('bar2'),
+            document.getElementById('bar3'),
+            document.getElementById('bar4')
+        ];
+        const strengthText = document.getElementById('strengthText');
+
+        passwordInput.addEventListener('input', () => {
+            const val = passwordInput.value;
+            let strength = 0;
+
+            if (val.length > 5) strength++;
+            if (val.length > 8 && /[A-Z]/.test(val)) strength++;
+            if (val.length > 10 && /[0-9]/.test(val)) strength++;
+            if (/[^A-Za-z0-9]/.test(val)) strength++;
+
+            // Reset bars
+            bars.forEach(bar => {
+                bar.classList.remove('bg-error', 'bg-secondary-container', 'bg-tertiary-container', 'bg-primary');
+                bar.classList.add('bg-outline-variant');
+            });
+
+            if (val.length === 0) {
+                strengthText.innerText = 'Weak';
+                strengthText.className = 'font-label-md text-error';
+                return;
+            }
+
+            if (strength === 1) {
+                bars[0].classList.replace('bg-outline-variant', 'bg-error');
+                strengthText.innerText = 'Too Weak';
+                strengthText.className = 'font-label-md text-error';
+            } else if (strength === 2) {
+                bars[0].classList.replace('bg-outline-variant', 'bg-secondary-container');
+                bars[1].classList.replace('bg-outline-variant', 'bg-secondary-container');
+                strengthText.innerText = 'Fairly Safe';
+                strengthText.className = 'font-label-md text-secondary';
+            } else if (strength === 3) {
+                bars[0].classList.replace('bg-outline-variant', 'bg-tertiary-container');
+                bars[1].classList.replace('bg-outline-variant', 'bg-tertiary-container');
+                bars[2].classList.replace('bg-outline-variant', 'bg-tertiary-container');
+                strengthText.innerText = 'Strong';
+                strengthText.className = 'font-label-md text-tertiary';
+            } else if (strength === 4) {
+                bars.forEach(bar => bar.classList.replace('bg-outline-variant', 'bg-primary'));
+                strengthText.innerText = 'Very Secure';
+                strengthText.className = 'font-label-md text-primary';
+            }
+        });
+
+        // Form Submit
+        document.getElementById('setupForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Animation for transition
+            const btn = e.target.querySelector('button[type="submit"]');
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span><span>Verifying Credentials...</span>';
+            setTimeout(() => {
+                btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span><span>Setup Success!</span>';
+                btn.classList.replace('bg-primary', 'bg-tertiary-container');
+            }, 2000);
+        });
+    </script>
+
+
+</body></html>

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Auto-Escalation Rules | EduAccelerate Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Shared Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#4cd6ff",
+                    "surface-variant": "#dae2fd",
+                    "secondary": "#00677f",
+                    "on-tertiary-container": "#e1ffeb",
+                    "on-primary-fixed-variant": "#003fa4",
+                    "error-container": "#ffdad6",
+                    "bg-light": "#FFFFFF",
+                    "on-background": "#131b2e",
+                    "surface-dark": "#161B22",
+                    "on-error-container": "#93000a",
+                    "text-dark": "#F1F5F9",
+                    "surface-container-highest": "#dae2fd",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#faf8ff",
+                    "border-subtle": "rgba(0, 102, 255, 0.1)",
+                    "surface-container-low": "#f2f3ff",
+                    "tertiary-fixed-dim": "#49df9f",
+                    "on-primary": "#ffffff",
+                    "on-secondary-container": "#005266",
+                    "surface-dim": "#d2d9f4",
+                    "primary-container": "#0066ff",
+                    "surface-tint": "#0054d6",
+                    "inverse-surface": "#283044",
+                    "background": "#faf8ff",
+                    "surface-container-high": "#e2e7ff",
+                    "on-secondary-fixed": "#001f28",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "on-primary-fixed": "#001849",
+                    "inverse-on-surface": "#eef0ff",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#005235",
+                    "on-error": "#ffffff",
+                    "surface-light": "#F8FAFC",
+                    "on-surface-variant": "#424656",
+                    "surface-container": "#eaedff",
+                    "primary": "#0050cb",
+                    "outline-variant": "#c2c6d8",
+                    "surface-container-lowest": "#ffffff",
+                    "text-light": "#0F172A",
+                    "on-secondary-fixed-variant": "#004e60",
+                    "on-primary-container": "#f8f7ff",
+                    "tertiary-container": "#008256",
+                    "outline": "#727687",
+                    "bg-dark": "#0B0E14",
+                    "inverse-primary": "#b3c5ff",
+                    "surface": "#faf8ff",
+                    "secondary-fixed": "#b7eaff",
+                    "tertiary-fixed": "#6afcb9",
+                    "tertiary": "#006643",
+                    "on-surface": "#131b2e",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#002113",
+                    "secondary-container": "#00ccf9",
+                    "primary-fixed": "#dae1ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "stack-sm": "8px",
+                    "stack-md": "16px",
+                    "gutter": "24px",
+                    "stack-lg": "32px",
+                    "margin-desktop": "64px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Geist"],
+                    "display-lg-mobile": ["Geist"],
+                    "label-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "display-lg": ["Geist"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Geist"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #faf8ff;
+            color: #131b2e;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.08);
+            transform: translateY(-2px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c2c6d8;
+            border-radius: 10px;
+        }
+        .active-glow {
+            box-shadow: 0 0 15px rgba(0, 80, 203, 0.2);
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- Side Navigation Shell -->
+<aside class="flex flex-col fixed left-0 top-0 h-screen py-stack-lg bg-surface-dark dark:bg-bg-dark docked left-0 h-full w-64 border-r border-outline-variant/20 backdrop-blur-xl shadow-sm z-50">
+<div class="px-6 mb-10">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">EduAccelerate</h1>
+<p class="text-label-sm text-outline tracking-wider uppercase opacity-70">Admin Control</p>
+</div>
+<nav class="flex-1 px-4 space-y-2 custom-scrollbar overflow-y-auto">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant dark:text-outline hover:bg-surface-container-high/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant dark:text-outline hover:bg-surface-container-high/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Users</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant dark:text-outline hover:bg-surface-container-high/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-label-md text-label-md">Courses</span>
+</a>
+<!-- Active State Navigation -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-primary dark:text-secondary-fixed bg-primary/10 dark:bg-secondary-fixed/10 border-r-4 border-primary dark:border-secondary-fixed active:scale-95 transition-all duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant dark:text-outline hover:bg-surface-container-high/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">layers</span>
+<span class="font-label-md text-label-md">Batches</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant dark:text-outline hover:bg-surface-container-high/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">live_tv</span>
+<span class="font-label-md text-label-md">Live Classes</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant dark:text-outline hover:bg-surface-container-high/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant dark:text-outline hover:bg-surface-container-high/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Payments</span>
+</a>
+</nav>
+<div class="px-4 mt-auto pt-6 border-t border-outline-variant/10">
+<button class="w-full bg-primary text-on-primary py-3 rounded-xl font-label-md flex items-center justify-center gap-2 mb-4 hover:bg-primary-container transition-all">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+                Generate Report
+            </button>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-md">Help Center</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-error transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md">Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="flex justify-between items-center h-16 sticky top-0 z-40 px-gutter bg-white/80 dark:bg-bg-dark/80 backdrop-blur-md border-b border-outline-variant/10 shadow-md shadow-primary/5">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="font-headline-md text-headline-md font-bold text-primary">EduAccelerate Admin</span>
+</div>
+<div class="relative w-96 group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 focus:ring-2 focus:ring-primary/20 transition-all text-body-md" placeholder="Search rules or logs..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<nav class="hidden md:flex items-center gap-6 mr-6">
+<a class="font-label-md text-on-surface-variant hover:text-primary transition-all" href="#">System Status</a>
+<a class="font-label-md text-on-surface-variant hover:text-primary transition-all" href="#">Documentation</a>
+</nav>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-all relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-all">
+<span class="material-symbols-outlined">settings_suggest</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant/30 mx-2"></div>
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full border-2 border-primary/20 object-cover" data-alt="A professional studio portrait of a male administrative director in a navy blue suit, set against a clean white background, high-end professional corporate photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAE6HCOSzWvKAI9zs91jxxN8A6gaTps0MAXpOfDqxkl1ZpSN6VQVK3H3algwI2-DPvm9r3H1uTDz8TlgG5z9VlE5wOGl-Gf2ZGC51r1W9WwvHwPBzUz0cEDDO3392jiloi9EKQhjL3jbhpi60pXJucY0xCG89mDUIMmoJMG0Zc0ggad2Og3qvq_lsx0p6XLR7Atuljwy0Glmwan2G1RQqqph3R5OZLkqBC1rOlE5lqg6q-IBlebBV2_r_UK26DwvvSFLnB_eGnRgRg"/>
+<div class="flex flex-col">
+<span class="font-label-md text-on-surface">Admin User</span>
+<span class="text-[10px] text-outline uppercase font-bold tracking-tighter">Director</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="p-8 max-w-container-max mx-auto">
+<div class="flex justify-between items-end mb-stack-lg">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Auto-Escalation Rules</h2>
+<p class="text-body-md text-on-surface-variant mt-1">Configure automated workflows for student doubt resolution tiers.</p>
+</div>
+<button class="bg-primary text-white px-6 py-3 rounded-xl font-label-md flex items-center gap-2 hover:bg-primary-container active:scale-95 transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">add</span>
+                    Create New Rule
+                </button>
+</div>
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Configuration Panel -->
+<section class="col-span-12 lg:col-span-5 space-y-gutter">
+<div class="glass-card rounded-2xl p-gutter relative overflow-hidden">
+<div class="absolute top-0 right-0 p-8 opacity-5">
+<span class="material-symbols-outlined text-[120px]">speed</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">timer</span>
+                            Rule Configuration
+                        </h3>
+<form class="space-y-6">
+<div>
+<label class="block font-label-md text-on-surface mb-2">Rule Label</label>
+<input class="w-full border-outline-variant rounded-lg focus:ring-primary focus:border-primary" placeholder="e.g., Physics NEET Tier 1" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-on-surface mb-2">Escalation Threshold (Minutes)</label>
+<div class="grid grid-cols-3 gap-2">
+<button class="py-3 px-2 border border-outline-variant rounded-lg font-label-md hover:bg-primary/5 hover:border-primary transition-all text-center" type="button">30 Mins</button>
+<button class="py-3 px-2 border-2 border-primary bg-primary/10 rounded-lg font-label-md text-primary text-center" type="button">2 Hours</button>
+<button class="py-3 px-2 border border-outline-variant rounded-lg font-label-md hover:bg-primary/5 hover:border-primary transition-all text-center" type="button">6 Hours</button>
+</div>
+</div>
+<div class="space-y-4 pt-4">
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-xl">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">supervisor_account</span>
+<div>
+<p class="font-label-md text-on-surface">Auto-Escalate to Senior Faculty</p>
+<p class="text-label-sm text-outline">Assign to L2 faculty automatically</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-xl">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary">badge</span>
+<div>
+<p class="font-label-md text-on-surface">Notify HOD</p>
+<p class="text-label-sm text-outline">Alert department head via dashboard</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-xl">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-error">alternate_email</span>
+<div>
+<p class="font-label-md text-on-surface">Email Alert to Student</p>
+<p class="text-label-sm text-outline">Notify student that help is arriving</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+<button class="w-full bg-on-surface text-white py-4 rounded-xl font-label-md hover:bg-on-surface-variant transition-all mt-6 shadow-md" type="button">
+                                Save Rule Changes
+                            </button>
+</form>
+</div>
+<!-- Visual Accent Card -->
+<div class="bg-primary-container rounded-2xl p-gutter text-white relative overflow-hidden">
+
+<div class="relative z-10">
+<h4 class="font-headline-md text-headline-md mb-2">Performance Tip</h4>
+<p class="text-body-md opacity-90">Reducing escalation time by 20% increases student satisfaction scores by an average of 34%.</p>
+<div class="mt-6 flex gap-4">
+<div class="flex flex-col">
+<span class="text-headline-md font-bold">14m</span>
+<span class="text-label-sm opacity-70">Avg. Response</span>
+</div>
+<div class="w-[1px] bg-white/20 h-10 self-center"></div>
+<div class="flex flex-col">
+<span class="text-headline-md font-bold">92%</span>
+<span class="text-label-sm opacity-70">Resolved Tier 1</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Active Rules Table & Logs -->
+<section class="col-span-12 lg:col-span-7 space-y-gutter">
+<!-- Active Rules Table -->
+<div class="glass-card rounded-2xl overflow-hidden">
+<div class="p-gutter border-b border-outline-variant/10 flex justify-between items-center bg-white/50">
+<h3 class="font-headline-md text-headline-md text-on-surface">Active Escalation Rules</h3>
+<button class="text-primary font-label-md flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                                Filter Categories
+                            </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low text-label-sm text-outline uppercase tracking-wider">
+<tr>
+<th class="px-6 py-4">Category</th>
+<th class="px-6 py-4">Threshold</th>
+<th class="px-6 py-4">Actions</th>
+<th class="px-6 py-4 text-right">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600">
+<span class="material-symbols-outlined">atm</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Physics - JEE Main</p>
+<p class="text-label-sm text-outline">Level 1 Priority</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md">45 Mins</td>
+<td class="px-6 py-4">
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-outline text-[18px]">email</span>
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">supervisor_account</span>
+<span class="material-symbols-outlined text-outline text-[18px]">notifications_active</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-label-sm bg-tertiary-fixed text-on-tertiary-fixed font-bold">ACTIVE</span>
+</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center text-green-600">
+<span class="material-symbols-outlined">science</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Chemistry - NEET</p>
+<p class="text-label-sm text-outline">Default Ruleset</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md">2 Hours</td>
+<td class="px-6 py-4">
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">email</span>
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">badge</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-label-sm bg-tertiary-fixed text-on-tertiary-fixed font-bold">ACTIVE</span>
+</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600">
+<span class="material-symbols-outlined">functions</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Mathematics - Advanced</p>
+<p class="text-label-sm text-outline">High Intensity</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md">30 Mins</td>
+<td class="px-6 py-4">
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">email</span>
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">supervisor_account</span>
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">notifications_active</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-label-sm bg-error-container text-on-error-container font-bold">PAUSED</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Recent Escalations Log -->
+<div class="glass-card rounded-2xl p-gutter">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface">Recent Escalations Log</h3>
+<span class="text-label-sm text-outline">Real-time Activity</span>
+</div>
+<div class="space-y-4">
+<div class="flex items-start gap-4 p-4 rounded-xl border border-outline-variant/10 hover:border-primary/30 transition-all bg-white/40">
+<div class="relative">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Close up high quality portrait of a diverse female student with glasses, smiling softly, neutral classroom background, soft morning sunlight, sharp focus professional photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwebED1v7VNaAfsEMAS2hS9SkhK5QNmytg7ZqSJg2m9zr6AEB-i6yuRAG_3pvVf-juyUSBC8Cui8qII5kSAzfpNjIou5QCxB829kiW4HQAeUyydcIeFDOt3TrRVvZ_wRFHrrffHfHE76N_ct73ptj-wFSl4jHQXMdcOGU7mZ3VGpsWXnGkSsadJbcobmMOeHove4EJVQ5nLK2CfLNDpH90Oc784dwOr51IjqL0_G54l0LN27krQ6D3PgKExGD3KdRSkKorJSOdXl4"/>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-error rounded-full border-2 border-white flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px] text-white">priority_high</span>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<p class="font-label-md text-on-surface">Ananya Sharma (JEE ID: 8821)</p>
+<span class="text-label-sm text-outline">2 mins ago</span>
+</div>
+<p class="text-body-md text-on-surface-variant mt-1">Doubt #4928 "Quantum Mechanics Wave Equation" escalated to HOD (Physics).</p>
+<div class="flex gap-2 mt-3">
+<button class="text-label-sm bg-primary/5 text-primary px-3 py-1 rounded-full border border-primary/20 hover:bg-primary/10 transition-all">View Doubt</button>
+<button class="text-label-sm text-outline hover:text-on-surface transition-all">Dismiss Log</button>
+</div>
+</div>
+</div>
+<div class="flex items-start gap-4 p-4 rounded-xl border border-outline-variant/10 hover:border-primary/30 transition-all bg-white/40">
+<div class="relative">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of a male teenager with short dark hair, wearing a casual polo shirt, soft library background, warm lighting, professional headshot style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIrz46YWKh5TPSC6s2HJMswct6f2Uxu3gmdzxPfyK4nabVXZxp71I3met8WvFEUe7raEhB65KDvbHs4XtZ5ETagrPFQrAht3-lHfmsCVP8xqa4TW2gk0sk0I3Eos0Dj874Ky8J3avsHniiPqZZuExxyQ3J7xtW_obupHPjSHK97SSkOm0LvivSNBhxebXNqKA_5AO69G8RRwnX3R1t5QQGzWC-bdu4tUvr676Z5Wt3jexD9Dena98EqrJIoOk958ruFrdqMKhzi30"/>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-secondary rounded-full border-2 border-white flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px] text-white">trending_up</span>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<p class="font-label-md text-on-surface">Rahul Varma (NEET ID: 3094)</p>
+<span class="text-label-sm text-outline">15 mins ago</span>
+</div>
+<p class="text-body-md text-on-surface-variant mt-1">Doubt #4912 "Organic Chemistry - Benzene Ring" auto-escalated to Senior Faculty.</p>
+<div class="flex gap-2 mt-3">
+<button class="text-label-sm bg-primary/5 text-primary px-3 py-1 rounded-full border border-primary/20 hover:bg-primary/10 transition-all">View Doubt</button>
+<button class="text-label-sm text-outline hover:text-on-surface transition-all">Dismiss Log</button>
+</div>
+</div>
+</div>
+<div class="flex items-start gap-4 p-4 rounded-xl border border-outline-variant/10 hover:border-primary/30 transition-all bg-white/40">
+<div class="relative">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-outline">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-primary rounded-full border-2 border-white flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px] text-white">check</span>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<p class="font-label-md text-on-surface">Priya Kapur (JEE ID: 5520)</p>
+<span class="text-label-sm text-outline">45 mins ago</span>
+</div>
+<p class="text-body-md text-on-surface-variant mt-1">Student successfully notified via email after Tier 2 escalation activation.</p>
+</div>
+</div>
+</div>
+<button class="w-full py-4 text-primary font-label-md hover:bg-primary/5 rounded-xl transition-all mt-4 border-2 border-dashed border-primary/20">
+                            Load Full Audit Trail
+                        </button>
+</div>
+</section>
+</div>
+</div>
+</main>
+<script>
+        // Micro-interactions for toggles and threshold buttons
+        document.querySelectorAll('button[type="button"]').forEach(btn => {
+            if (btn.innerText.includes('Mins') || btn.innerText.includes('Hours')) {
+                btn.addEventListener('click', function() {
+                    const parent = this.parentElement;
+                    parent.querySelectorAll('button').forEach(b => {
+                        b.classList.remove('border-2', 'border-primary', 'bg-primary/10', 'text-primary');
+                        b.classList.add('border', 'border-outline-variant');
+                    });
+                    this.classList.add('border-2', 'border-primary', 'bg-primary/10', 'text-primary');
+                    this.classList.remove('border', 'border-outline-variant');
+                });
+            }
+        });
+
+        // Simulating log update
+        setInterval(() => {
+            const timeLabels = document.querySelectorAll('.text-outline');
+            timeLabels.forEach(label => {
+                if (label.innerText.includes('ago')) {
+                    // Visual "ping" effect could go here
+                }
+            });
+        }, 60000);
+    </script>
+</body></html>

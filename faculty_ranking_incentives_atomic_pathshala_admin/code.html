@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Faculty Portal | Atomic Pathshala</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#00677f",
+                    "tertiary-container": "#008256",
+                    "surface-container-low": "#f2f3ff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#faf8ff",
+                    "on-primary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#005235",
+                    "on-surface": "#131b2e",
+                    "secondary-fixed": "#b7eaff",
+                    "on-tertiary-fixed": "#002113",
+                    "on-primary-fixed-variant": "#003fa4",
+                    "on-error": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "outline": "#727687",
+                    "text-light": "#0F172A",
+                    "on-background": "#131b2e",
+                    "bg-light": "#FFFFFF",
+                    "on-tertiary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#49df9f",
+                    "surface-container": "#eaedff",
+                    "surface-container-high": "#e2e7ff",
+                    "surface": "#faf8ff",
+                    "tertiary-fixed": "#6afcb9",
+                    "secondary-container": "#00ccf9",
+                    "bg-dark": "#0B0E14",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "on-secondary-fixed": "#001f28",
+                    "inverse-surface": "#283044",
+                    "surface-dim": "#d2d9f4",
+                    "surface-tint": "#0054d6",
+                    "on-primary-fixed": "#001849",
+                    "inverse-on-surface": "#eef0ff",
+                    "surface-light": "#F8FAFC",
+                    "primary-fixed": "#dae1ff",
+                    "on-surface-variant": "#424656",
+                    "inverse-primary": "#b3c5ff",
+                    "primary": "#0050cb",
+                    "on-error-container": "#93000a",
+                    "surface-container-highest": "#dae2fd",
+                    "tertiary": "#006643",
+                    "text-dark": "#F1F5F9",
+                    "on-tertiary-container": "#e1ffeb",
+                    "border-subtle": "rgba(0, 102, 255, 0.1)",
+                    "outline-variant": "#c2c6d8",
+                    "surface-dark": "#161B22",
+                    "background": "#faf8ff",
+                    "surface-variant": "#dae2fd",
+                    "secondary-fixed-dim": "#4cd6ff",
+                    "primary-container": "#0066ff",
+                    "on-secondary-fixed-variant": "#004e60",
+                    "on-primary-container": "#f8f7ff",
+                    "on-secondary-container": "#005266"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "stack-md": "16px",
+                    "margin-mobile": "20px",
+                    "container-max": "1280px",
+                    "stack-lg": "32px",
+                    "margin-desktop": "64px",
+                    "stack-sm": "8px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "display-lg": ["Geist"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Geist"],
+                    "display-lg-mobile": ["Geist"],
+                    "headline-lg": ["Geist"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #faf8ff;
+            color: #131b2e;
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            border-color: rgba(0, 102, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.08);
+            transform: translateY(-2px);
+        }
+        .sidebar-active {
+            background: rgba(0, 102, 255, 0.1);
+            color: #0050cb;
+            font-weight: 700;
+        }
+        .nav-active {
+            border-bottom: 2px solid #0050cb;
+            color: #0050cb;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface-container-low border-r border-outline-variant/10 shadow-md flex flex-col p-4 gap-stack-md z-[60] hidden md:flex">
+<div class="flex flex-col mb-stack-lg">
+<h1 class="font-headline-md text-headline-md font-black text-primary">Faculty Portal</h1>
+<p class="text-on-surface-variant font-label-sm text-label-sm">Excellence Tracker</p>
+</div>
+<nav class="flex flex-col gap-2 flex-grow">
+<a class="flex items-center gap-3 p-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Overview</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg sidebar-active transition-all" href="#">
+<span class="material-symbols-outlined">stars</span>
+<span class="font-label-md text-label-md">Rankings</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">workspace_premium</span>
+<span class="font-label-md text-label-md">Rewards</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">verified_user</span>
+<span class="font-label-md text-label-md">Compliance</span>
+</a>
+</nav>
+<button class="bg-primary text-on-primary py-3 rounded-lg font-label-md text-label-md active:scale-[0.98] transition-all shadow-lg shadow-primary/20">
+            Claim Rewards
+        </button>
+<div class="mt-auto pt-4 border-t border-outline-variant/10 flex flex-col gap-2">
+<a class="flex items-center gap-3 p-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-md text-label-md">Help Center</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="md:ml-64 min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-0 md:left-64 z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/20 shadow-sm">
+<div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
+<div class="flex items-center gap-stack-md">
+<span class="font-headline-md text-headline-md font-bold text-primary tracking-tight">Leaderboard</span>
+<div class="hidden lg:flex items-center gap-6 ml-8">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="font-label-md text-label-md nav-active pb-1" href="#">Leaderboard</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Incentives</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Faculty Hub</a>
+</div>
+</div>
+<div class="flex items-center gap-stack-md">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 text-label-md w-64 focus:ring-2 focus:ring-primary/20" placeholder="Search faculty..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors p-2 rounded-full hover:bg-primary/5">notifications</button>
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors p-2 rounded-full hover:bg-primary/5">settings</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20 cursor-pointer active:scale-95 transition-transform">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a senior academic faculty member in their 50s, wearing a modern charcoal blazer and spectacles. The lighting is soft and cinematic, with a clean architectural office background in a high-key light-mode aesthetic. The image conveys authority, wisdom, and a technologically advanced academic environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdjmDmYL8VnlByV4RNja_UJpbxi4f2s39Pb5CvHFpiTaDfPOsDjPpD58ihTPWjquDk1ZLrlSuMgUlq4KIMg3WhrXeEPwJn1lPI8J4E2J-NP2y9OxP1jimNFXbQlaA-gi_sg2A8Y3TN3XyZJ1r1cviV5jQ15DKHf0gC9EPzh2YSCBXzPvv5bel-K-sGBnGTqY3hnxXlFSMjq6ubiqTLwyQ5AyUvS5M9Ls1nnRj7mDDsV4FBxw3h2x5lbFuKawgNDu48BfDw-jsmj9I"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Dashboard Content -->
+<div class="pt-24 px-gutter pb-stack-lg max-w-container-max mx-auto">
+<!-- Performance Metrics Overview -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-stack-lg">
+<!-- Avg Compliance -->
+<div class="glass-card p-6 rounded-xl flex flex-col gap-2 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full -mr-8 -mt-8"></div>
+<span class="text-on-surface-variant font-label-md text-label-md flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">verified_user</span>
+                        Avg. Compliance Score
+                    </span>
+<div class="flex items-end gap-2">
+<h2 class="font-display-lg text-display-lg text-primary">94.2%</h2>
+<span class="text-tertiary font-label-sm text-label-sm mb-2 flex items-center">
+<span class="material-symbols-outlined text-xs">arrow_upward</span> 2.4%
+                        </span>
+</div>
+<p class="text-outline text-label-sm">System-wide average this month</p>
+</div>
+<!-- Top Incentive -->
+<div class="glass-card p-6 rounded-xl flex flex-col gap-2 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-secondary/5 rounded-full -mr-8 -mt-8"></div>
+<span class="text-on-surface-variant font-label-md text-label-md flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm">stars</span>
+                        Top Incentive Category
+                    </span>
+<div class="flex items-end gap-2">
+<h2 class="font-display-lg text-display-lg text-secondary">Student Engagement</h2>
+</div>
+<p class="text-outline text-label-sm">Based on active classroom participation</p>
+</div>
+<!-- Total Disbursed -->
+<div class="glass-card p-6 rounded-xl flex flex-col gap-2 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-tertiary-container/5 rounded-full -mr-8 -mt-8"></div>
+<span class="text-on-surface-variant font-label-md text-label-md flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-sm">payments</span>
+                        Total Incentives (MTD)
+                    </span>
+<div class="flex items-end gap-2">
+<h2 class="font-display-lg text-display-lg text-tertiary-container">₹14.8L</h2>
+<span class="text-tertiary font-label-sm text-label-sm mb-2 flex items-center">
+<span class="material-symbols-outlined text-xs">trending_up</span> 12%
+                        </span>
+</div>
+<p class="text-outline text-label-sm">Total distributed across all departments</p>
+</div>
+</div>
+<!-- Main Layout: Leaderboard & Logic -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter items-start">
+<!-- Rankings Leaderboard (2/3 width) -->
+<div class="lg:col-span-2 glass-card rounded-xl overflow-hidden flex flex-col">
+<div class="p-6 border-b border-outline-variant/10 flex justify-between items-center bg-white/40">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary">Rankings Leaderboard</h3>
+<p class="text-on-surface-variant text-label-sm">Updated as of Oct 24, 2024</p>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-high rounded-lg text-label-md hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-sm">filter_list</span> Filter by Subject
+                        </button>
+</div>
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-outline font-label-sm text-label-sm uppercase tracking-wider bg-surface-container-low/50">
+<th class="px-6 py-4">Rank</th>
+<th class="px-6 py-4">Faculty Member</th>
+<th class="px-6 py-4">Subject</th>
+<th class="px-6 py-4">Compliance</th>
+<th class="px-6 py-4">API Score</th>
+<th class="px-6 py-4"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<!-- Rank 1 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-6 py-4">
+<div class="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-700 font-bold">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A detailed headshot of a friendly young male physics teacher in his 30s with a sharp haircut and stylish glasses. The background is a blurred high-end university lab with blue and teal tones. Light mode aesthetic, professional and high-performance feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBK7G9crM_uUienYkL5nnh8AppzAY1bOCOwhGBVCqcRdhJR6ir-Nr9ZHusqVSuJR-EPjYimXLXfQPp75LXpiPOMCEqXo3TzThYRMIgw_DFDySehDGCjKdLQoixgnAkLUPl1MVokYMEvn0CSkRmPq3iQudhC2PMYonnrrgNeEln1G3BE4lmc0_WzR_pH8ekOCIOGD0Y7j0_iYsTsDhEsIvzZPBiqzZuXDWWFn55Vx2Jw0JikzPEwsc0Q_GPK2W-ET_I3Qsxg_7ro7AE"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Dr. Vikram Sahai</p>
+<p class="text-outline text-label-sm">Senior Professor</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">Physics</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-16 bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary-container h-full" style="width: 98%"></div>
+</div>
+<span class="text-label-sm font-bold text-tertiary-container">98%</span>
+</div>
+</td>
+<td class="px-6 py-4 font-black text-primary">99.4</td>
+<td class="px-6 py-4">
+<span class="material-symbols-outlined text-outline group-hover:text-primary cursor-pointer">more_vert</span>
+</td>
+</tr>
+<!-- Rank 2 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-6 py-4">
+<div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 font-bold">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a female chemistry educator in her early 40s, with a warm smile and professional attire. Minimalist, bright lighting, soft blue shadows, set against a modern office backdrop. High-quality corporate photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgbkbPSq0jF_EkfkSFZkmIFS7SRFqniFFszNwfxuGSP-7sNpFg3mFtMWO4EZgbq6K6Rgqb6gbroCcZbWyZ6P2xjH-uwNNNf-NsT71qf4JjmjiG40_ro9kkdJoCnDLQyy0NsB0oQQH3DgqE0Inf9QM-KgJIcr0P5KxR66vSzRXR27vO4Cev4k24ehRUOLXNZdE0L3uyJEMQSN9u5qCnF2XoDCRkePo4GndMHtMcHS86XJ7b6DWxGSnZbdyj4ib5ubqLwLg-Yr2C3dE"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Prof. Ananya Iyer</p>
+<p class="text-outline text-label-sm">Associate Faculty</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">Chemistry</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-16 bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary-container h-full" style="width: 94%"></div>
+</div>
+<span class="text-label-sm font-bold text-tertiary-container">94%</span>
+</div>
+</td>
+<td class="px-6 py-4 font-black text-primary">97.2</td>
+<td class="px-6 py-4">
+<span class="material-symbols-outlined text-outline group-hover:text-primary cursor-pointer">more_vert</span>
+</td>
+</tr>
+<!-- Rank 3 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-6 py-4">
+<div class="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center text-orange-700 font-bold">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of a male biology educator with a confident expression, wearing a tailored navy blue shirt. The background is a sleek, modern educational center with subtle greenery and glass textures. Bright light-mode aesthetic, corporate yet accessible." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-N2ie2CavhctPziI13SrRQBDJLNhatsS9sJ9iKrRmCAudTxCuXBTVON_EQvUO-bapm_cmRT57bTsbmNdDjdgyBTxNFFfJB8mMviw2R1jse3Zujpbybog6EPyQycXpaKm_WonlQ8tU3YUEckqABndYknYcVcfuYPsmmytPOU0ONPiLd5VOCZZDKtNHV0QxXGMT3XG_261TeZAj9Qxduna664-dqdeg3aQG0G063aJsmkztFhX9lcJ5X1mCBRVaxt8yAK5uj9pnvmI"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Dr. Rahul Mehta</p>
+<p class="text-outline text-label-sm">Core Team</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">Biology</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-16 bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full" style="width: 88%"></div>
+</div>
+<span class="text-label-sm font-bold text-primary">88%</span>
+</div>
+</td>
+<td class="px-6 py-4 font-black text-primary">95.8</td>
+<td class="px-6 py-4">
+<span class="material-symbols-outlined text-outline group-hover:text-primary cursor-pointer">more_vert</span>
+</td>
+</tr>
+<!-- Rank 4 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-6 py-4">
+<span class="text-outline font-bold px-3">4</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a male mathematics professor, early 50s, friendly eyes, wearing a grey polo shirt. Corporate-clean background with a hint of a digital whiteboard. Soft daylight illumination, minimalist high-end UI design style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBU1AbeYT3Ls9U_vQVsRoTLntCiaBM8VVC_r39zbBgoWeitJ7z3DXGTE8Q4JF87bmF8ruhkLUcgMdvw9GjlTRW-9FoVZYr_0n2zQywljc9RCSuKry5XR6mBIpJKPUmnQgfhtBBJiQ-_Kqi2VdPXXYmT_KOn5isj0tHKcK--pHu_hqPIh268IoWgox2Ha9UudPFQZlwkT_2B4uJEWudQLYK9JvD7V1B_akxoRwRLVvmy0iZiTKrX58YilhdRlU9tdQF1a1G_VGPqGMI"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Prof. Sandeep K.</p>
+<p class="text-outline text-label-sm">Senior Faculty</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">Maths</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-16 bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full" style="width: 91%"></div>
+</div>
+<span class="text-label-sm font-bold text-primary">91%</span>
+</div>
+</td>
+<td class="px-6 py-4 font-black text-primary">94.1</td>
+<td class="px-6 py-4">
+<span class="material-symbols-outlined text-outline group-hover:text-primary cursor-pointer">more_vert</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 bg-surface-container-low text-center">
+<button class="text-primary font-label-md text-label-md hover:underline">View Full Leaderboard</button>
+</div>
+</div>
+<!-- Ranking Logic Section (1/3 width) -->
+<div class="flex flex-col gap-gutter">
+<div class="glass-card p-6 rounded-xl relative overflow-hidden bg-primary text-on-primary">
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+
+</div>
+<h3 class="font-headline-md text-headline-md mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined">calculate</span> Atomic Excellence Score
+                        </h3>
+<p class="text-on-primary/80 text-label-md mb-6">Our proprietary algorithm ensures a fair and holistic evaluation of educator performance.</p>
+<div class="space-y-4">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-label-sm font-bold">
+<span>Compliance</span>
+<span>40%</span>
+</div>
+<div class="w-full bg-white/20 h-2 rounded-full overflow-hidden">
+<div class="bg-white h-full" style="width: 40%"></div>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-label-sm font-bold">
+<span>Student Feedback</span>
+<span>30%</span>
+</div>
+<div class="w-full bg-white/20 h-2 rounded-full overflow-hidden">
+<div class="bg-white h-full" style="width: 30%"></div>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-label-sm font-bold">
+<span>Content Quality</span>
+<span>30%</span>
+</div>
+<div class="w-full bg-white/20 h-2 rounded-full overflow-hidden">
+<div class="bg-white h-full" style="width: 30%"></div>
+</div>
+</div>
+</div>
+<button class="mt-8 w-full py-3 bg-white text-primary rounded-lg font-bold hover:bg-opacity-90 transition-all flex items-center justify-center gap-2">
+                            Download Score Manual <span class="material-symbols-outlined text-sm">download</span>
+</button>
+</div>
+<!-- Spotlight Card -->
+<div class="glass-card p-6 rounded-xl flex flex-col items-center text-center gap-4 border-2 border-primary/20">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-[10px] font-black uppercase tracking-widest">Faculty Spotlight</span>
+<div class="w-24 h-24 rounded-full border-4 border-white shadow-xl overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close up of Dr. Vikram Sahai, a middle-aged academic with a brilliant smile, set against a background of sparkling golden bokeh. Premium photography style, emphasizing achievement and excellence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaq-4raz5rVavfG3lf7cuqiKC1gv8SJUj2k-3a-iy5_-q8Xl1QHdOAUdhvUhR4mMd7cKBqyQqDEsYUMweb3PG2sv_gSf07Z-LBokgSQX3kqphlvyREIyoavEyKlEKYZGSh1f4IDUifsARmC6qfOWRUPRG9By2WZ1byJ0MHtfTrtwNoZInbZPqagprLLV4Oo2B0LxYUbGXeCjM_AgUWh1hC7M24-esZbqThmWkp237jKh1hF-2OCoMJVeEdsHH6M7v4aKTZCocVWEs"/>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Dr. Vikram Sahai</h4>
+<p class="text-primary font-bold">Educator of the Month</p>
+</div>
+<p class="text-on-surface-variant text-label-sm">Achieved a perfect 100% Student Satisfaction rating for the third consecutive month.</p>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">star</span></div></div></div></div></div></main>
+  <!-- Ecosystem Switched Widget Overlay -->
+  <script src="../ecosystem-hud.js"></script>
+</body></html>

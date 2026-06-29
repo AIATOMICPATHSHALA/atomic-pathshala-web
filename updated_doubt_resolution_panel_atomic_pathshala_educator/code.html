@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Educator Doubt Resolution Panel | Atomic Pathshala</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+        }
+        .active-nav-glow {
+            box-shadow: 0 0 15px rgba(0, 102, 255, 0.15);
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c2c6d8;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #727687;
+        }
+        @keyframes pulse-soft {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .animate-pulse-soft {
+            animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f2f3ff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#002113",
+                        "surface-bright": "#faf8ff",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "tertiary-fixed": "#6afcb9",
+                        "outline-variant": "#c2c6d8",
+                        "inverse-on-surface": "#eef0ff",
+                        "on-background": "#131b2e",
+                        "border-subtle": "rgba(0, 102, 255, 0.1)",
+                        "on-tertiary-fixed-variant": "#005235",
+                        "bg-dark": "#0B0E14",
+                        "surface-variant": "#dae2fd",
+                        "text-light": "#0F172A",
+                        "on-secondary-fixed": "#001f28",
+                        "secondary-fixed-dim": "#4cd6ff",
+                        "on-error": "#ffffff",
+                        "secondary": "#00677f",
+                        "primary": "#0050cb",
+                        "tertiary-fixed-dim": "#49df9f",
+                        "tertiary": "#006643",
+                        "surface-dim": "#d2d9f4",
+                        "background": "#faf8ff",
+                        "on-surface-variant": "#424656",
+                        "tertiary-container": "#008256",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#003fa4",
+                        "secondary-fixed": "#b7eaff",
+                        "secondary-container": "#00ccf9",
+                        "primary-container": "#0066ff",
+                        "on-secondary-fixed-variant": "#004e60",
+                        "surface-container-highest": "#dae2fd",
+                        "bg-light": "#FFFFFF",
+                        "surface-dark": "#161B22",
+                        "on-primary-fixed": "#001849",
+                        "on-secondary-container": "#005266",
+                        "surface-light": "#F8FAFC",
+                        "on-surface": "#131b2e",
+                        "on-tertiary-container": "#e1ffeb",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#283044",
+                        "surface-container-high": "#e2e7ff",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-primary": "#b3c5ff",
+                        "outline": "#727687",
+                        "error": "#ba1a1a",
+                        "on-primary-container": "#f8f7ff",
+                        "surface": "#faf8ff",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "stack-md": "16px",
+                        "margin-desktop": "64px",
+                        "container-max": "1280px",
+                        "stack-sm": "8px",
+                        "stack-lg": "32px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "display-lg-mobile": ["Geist"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Geist"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Geist"],
+                        "display-lg": ["Geist"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background font-body-md text-on-surface flex min-h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface-container-lowest border-r border-outline-variant/10 shadow-lg flex flex-col p-stack-md gap-stack-sm z-40">
+<div class="mb-stack-lg">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Atomic Pathshala</h1>
+<p class="text-on-surface-variant font-label-md text-label-md">NEET UG 2025</p>
+</div>
+<nav class="flex-1 flex flex-col gap-1">
+<a class="flex items-center gap-3 p-3 bg-primary-container text-on-primary-container rounded-lg font-bold transition-all active-nav-glow" href="#">
+<span class="material-symbols-outlined">quiz</span>
+<span class="font-label-md text-label-md">Doubt Solver</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container rounded-lg transition-transform duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container rounded-lg transition-transform duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Test Analysis</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container rounded-lg transition-transform duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">military_tech</span>
+<span class="font-label-md text-label-md">Rewards</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container rounded-lg transition-transform duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-md text-label-md">Study Materials</span>
+</a>
+</nav>
+<div class="mt-auto space-y-4 pt-4 border-t border-outline-variant/10">
+<div class="p-3 bg-surface-container rounded-xl">
+<p class="text-xs text-on-surface-variant uppercase tracking-wider mb-2 font-bold">Categories</p>
+<ul class="space-y-1">
+<li class="flex items-center justify-between text-label-md py-1 px-2 hover:bg-white rounded cursor-pointer">
+<span>Physics</span>
+<span class="bg-primary/10 text-primary px-1.5 rounded text-[10px] font-bold">24</span>
+</li>
+<li class="flex items-center justify-between text-label-md py-1 px-2 hover:bg-white rounded cursor-pointer">
+<span>Chemistry</span>
+<span class="bg-primary/10 text-primary px-1.5 rounded text-[10px] font-bold">12</span>
+</li>
+<li class="flex items-center justify-between text-label-md py-1 px-2 hover:bg-white rounded cursor-pointer">
+<span>Biology</span>
+<span class="bg-primary/10 text-primary px-1.5 rounded text-[10px] font-bold">45</span>
+</li>
+</ul>
+</div>
+<button class="w-full bg-primary py-3 text-white rounded-xl font-bold font-label-md hover:bg-primary-container transition-colors">
+                Upgrade to Pro
+            </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-64 overflow-y-auto h-screen bg-surface-bright relative">
+<!-- Top Sticky Header -->
+<header class="sticky top-0 w-full bg-white/80 backdrop-blur-xl border-b border-outline-variant/20 shadow-sm flex justify-between items-center px-margin-desktop h-20 z-30">
+<div class="flex items-center gap-4">
+<h2 class="font-headline-md text-headline-md font-bold text-primary">Doubt Resolution Hub</h2>
+<div class="flex items-center gap-2 bg-tertiary-container/10 px-3 py-1 rounded-full">
+<span class="flex h-2 w-2 rounded-full bg-tertiary animate-pulse"></span>
+<span class="text-tertiary text-label-sm font-bold">15 Active Classes</span>
+</div>
+</div>
+<div class="flex items-center gap-stack-md">
+<div class="relative group">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-all active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
+</button>
+</div>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-all active:scale-95">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="flex items-center gap-3 ml-4 border-l border-outline-variant/20 pl-4">
+<div class="text-right">
+<p class="text-label-md font-bold text-on-surface">Dr. Aryan Sharma</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Physics Faculty</p>
+</div>
+<img class="w-10 h-10 rounded-full border-2 border-primary/20 object-cover" data-alt="A professional headshot of a friendly-looking Indian educator in his late 30s wearing a smart-casual shirt. He is set against a clean, softly lit studio background with professional lighting that highlights his academic persona. The photo follows a premium, high-contrast light mode aesthetic with crisp details and a warm, inviting atmosphere suitable for an EdTech dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBk8DFr3AMFNziNDbfs1m35YzelhMZHpG68B731i1E7gKSIbZI9o3j5FrbuRy_dC59Pfqp876VgTZBPOF6YUgx2dhZDi5BzvPNUStgx1xdYZw2HlWiw7p-g6KkPtuQPzjzHU9QAfSOy0I4JQJu32vQWpycc75R2nC9h_t7LdLgDckI9JhxuU7qVYJbP3U6VXfDi0GYbVY9tZ7lLJBvuj_W-kWtVC1PhFNfmsfD01ATWq6-ByrUvlr6mx2L0zVt40yGLu0sZr__iWqs"/>
+</div>
+</div>
+</header>
+<div class="p-stack-lg flex flex-col gap-stack-lg max-w-container-max mx-auto">
+<!-- Dashboard Stats & Active Overlay -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Live Doubt Alert Card -->
+<div class="lg:col-span-2 glass-panel p-stack-md rounded-2xl relative overflow-hidden flex items-center justify-between border-2 border-primary/20">
+<div class="flex items-center gap-stack-md relative z-10">
+<div class="w-16 h-16 rounded-full bg-primary-container/20 flex items-center justify-center text-primary border border-primary/10">
+<span class="material-symbols-outlined text-[40px] animate-pulse-soft">sensors</span>
+</div>
+<div>
+<span class="bg-primary text-white text-[10px] px-2 py-0.5 rounded-full uppercase font-black tracking-widest">Live Now</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface mt-1">Class: Rotational Dynamics</h3>
+<p class="text-body-md text-on-surface-variant">3 Students waiting for immediate resolution</p>
+</div>
+</div>
+<div class="relative z-10 flex gap-stack-sm">
+<button class="px-6 py-3 bg-primary text-white font-bold rounded-xl shadow-lg hover:scale-105 active:scale-95 transition-all">
+                            Join Stream
+                        </button>
+<button class="p-3 bg-surface text-primary border border-primary/20 rounded-xl hover:bg-primary-container/10 transition-all">
+<span class="material-symbols-outlined">expand_content</span>
+</button>
+</div>
+<!-- Background Decoration -->
+<div class="absolute -right-4 -bottom-4 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-[160px]">live_tv</span>
+</div>
+</div>
+<!-- Fast Stats Widget -->
+<div class="bg-white p-stack-md rounded-2xl shadow-sm border border-outline-variant/20 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-label-sm font-bold text-on-surface-variant uppercase">Queue Load</p>
+<h4 class="text-display-lg font-bold text-primary">81%</h4>
+</div>
+<span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">speed</span>
+</div>
+<div class="mt-4">
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[81%]"></div>
+</div>
+<p class="text-[11px] text-on-surface-variant mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                            12% higher than last hour
+                        </p>
+</div>
+</div>
+</div>
+<!-- Main Workspace Area -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-gutter items-start">
+<!-- Pending Queue -->
+<section class="xl:col-span-4 flex flex-col gap-stack-md">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Pending Doubts</h3>
+<div class="flex gap-2">
+<button class="p-1.5 hover:bg-surface-container rounded border border-outline-variant/30"><span class="material-symbols-outlined text-sm">filter_list</span></button>
+<button class="p-1.5 hover:bg-surface-container rounded border border-outline-variant/30"><span class="material-symbols-outlined text-sm">sort</span></button>
+</div>
+</div>
+<div class="flex flex-col gap-stack-sm overflow-y-auto max-h-[700px] pr-2">
+<!-- Priority Card -->
+<div class="p-stack-md glass-panel rounded-2xl border-l-4 border-l-error cursor-pointer hover:shadow-md transition-all active:scale-[0.98]">
+<div class="flex justify-between items-start mb-2">
+<span class="bg-error-container text-on-error-container text-[10px] px-2 py-0.5 rounded-full font-bold uppercase">High Priority</span>
+<span class="text-label-sm text-on-surface-variant font-medium">4m ago</span>
+<div class="flex items-center gap-1 bg-tertiary-container/20 text-tertiary px-2 py-0.5 rounded-full font-bold text-[10px] uppercase"><span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">check_circle</span><span>Resolved</span></div></div>
+<h4 class="font-bold text-on-surface mb-1">Aditi Verma</h4>
+<p class="text-body-md text-on-surface-variant line-clamp-2 italic">"If the moment of inertia depends on the axis, why is it called a tensor and not a vector?"</p>
+<div class="mt-3 flex items-center gap-3">
+<div class="bg-surface-container-low px-2 py-1 rounded text-[11px] font-bold text-primary">JEE Advanced</div>
+<div class="flex -space-x-2">
+<span class="material-symbols-outlined text-primary-container text-lg">image</span>
+</div>
+</div>
+</div>
+<!-- Standard Card -->
+<div class="p-stack-md bg-white rounded-2xl border border-outline-variant/20 cursor-pointer hover:shadow-md transition-all active:scale-[0.98] border-l-4 border-l-primary/30">
+<div class="flex justify-between items-start mb-2">
+<span class="bg-surface-container-highest text-on-surface-variant text-[10px] px-2 py-0.5 rounded-full font-bold uppercase">Standard</span>
+<span class="text-label-sm text-on-surface-variant font-medium">12m ago</span>
+<div class="flex items-center gap-1 bg-tertiary-container/20 text-tertiary px-2 py-0.5 rounded-full font-bold text-[10px] uppercase"><span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">check_circle</span><span>Resolved</span></div></div>
+<h4 class="font-bold text-on-surface mb-1">Rohan K.</h4>
+<p class="text-body-md text-on-surface-variant line-clamp-2 italic">"Can we apply conservation of angular momentum if the net external torque is zero relative to a moving point?"</p>
+<div class="mt-3 flex items-center gap-3">
+<div class="bg-surface-container-low px-2 py-1 rounded text-[11px] font-bold text-primary">NEET UG</div>
+</div>
+</div>
+<!-- Standard Card -->
+<div class="p-stack-md bg-white rounded-2xl border border-outline-variant/20 cursor-pointer hover:shadow-md transition-all active:scale-[0.98] border-l-4 border-l-primary/30">
+<div class="flex justify-between items-start mb-2">
+<span class="bg-surface-container-highest text-on-surface-variant text-[10px] px-2 py-0.5 rounded-full font-bold uppercase">Standard</span>
+<span class="text-label-sm text-on-surface-variant font-medium">18m ago</span>
+<div class="flex items-center gap-1 bg-tertiary-container/20 text-tertiary px-2 py-0.5 rounded-full font-bold text-[10px] uppercase"><span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">check_circle</span><span>Resolved</span></div></div>
+<h4 class="font-bold text-on-surface mb-1">Priya Singh</h4>
+<p class="text-body-md text-on-surface-variant line-clamp-2 italic">"Clarification needed on the parallel axis theorem proof shown in today's morning lecture."</p>
+<div class="mt-3 flex items-center gap-3">
+<div class="bg-surface-container-low px-2 py-1 rounded text-[11px] font-bold text-primary">Board Prep</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Resolution Workspace -->
+<section class="xl:col-span-8 space-y-gutter">
+<div class="glass-panel p-stack-lg rounded-3xl border-2 border-primary/10 shadow-sm relative overflow-hidden">
+<!-- Workspace Header -->
+<div class="flex justify-between items-start pb-6 border-b border-outline-variant/20 mb-6">
+<div class="flex gap-4">
+<img class="w-14 h-14 rounded-2xl object-cover border-2 border-white shadow-sm" data-alt="A detailed digital avatar of a female student in her late teens, wearing glasses and a simple hoodie. She has a curious and determined expression. The avatar is rendered in a soft, modern 3D illustration style that fits a premium educational application, with warm lighting and a neutral studio background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCY8bS1t7bMve5dlvr-hnYVL6pnuzqTvhru6e72kuX0sCtpIM0B7Jpc9PYPQW0WMUEsV0-boVpQad0Vn7WBk7KlRnCMhoyomVNP6PYTsB6iugZGQr_JkA5qMK3hFCEENh_bMsgR1HVuEYt8uAxd72RbeTcZcGw2aJpd5cSa8pbfSHKq8CGB7oF9MNZO2m97nsKDQSUCeiie-j9_QYKquUOFb4tX9_jdQC0OPSDEFibqnzjHwf24On3NrXVE0qXXfOhuxuUI738qg14"/>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface">Aditi Verma</h3>
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<p class="text-on-surface-variant font-label-md">Questioned 4 mins ago • Ref ID: #DP-9021</p>
+</div>
+</div>
+<div class="flex gap-stack-sm">
+<div class="flex flex-col items-end">
+<span class="text-[10px] font-bold uppercase text-on-surface-variant opacity-60">Wait Time</span>
+<span class="text-error font-bold font-label-md">04:22 min</span>
+</div>
+<button class="p-2 text-on-surface-variant hover:bg-error-container hover:text-error rounded-xl transition-all">
+<span class="material-symbols-outlined">flag</span>
+</button>
+</div>
+</div>
+<!-- Question Content -->
+<div class="mb-8">
+<div class="bg-surface-container-low p-6 rounded-2xl border border-primary/5">
+<p class="text-body-lg text-on-surface font-medium leading-relaxed mb-4">
+                                    "If the moment of inertia depends on the axis, why is it called a tensor and not a vector? Also, can you show the derivation of I for a thin rod about its end?"
+                                </p>
+<div class="grid grid-cols-2 gap-4">
+<div class="aspect-video bg-white rounded-xl border border-outline-variant/30 flex items-center justify-center relative group overflow-hidden cursor-zoom-in">
+<img class="w-full h-full object-cover" data-alt="A clean, high-resolution photo of a student's physics notebook. It shows a hand-drawn diagram of a rotating rod with Greek letters and integration symbols. The lighting is bright and clear, reflecting a focused study environment. The overall aesthetic is academic and professional, with a light-mode color palette and sharp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAToAEBi0iFz4t27jvd5jyHqQSqGemN9THWD_IW4dq_sMhjNQU7X0MzN-FYHj-Cu6rjn8CjROhkDjrMeUcLxALdij7LiVix6p4VBRbpF_RyYNDRMnKupgceSivkWfaBWA3VHNqCGuBg9juaskLX3hVkNdVWRXK2wmBo3pJRod_jpwMdUM_mrcUdsMKGuNx71KKg5zPMQ4IvAR6JPUeLGxxzJYXDRLXjGRLY9r8l02MMjEnOaVBTl21_uEypYYIDhwfHaQfX0yTGlp8"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl">zoom_in</span>
+</div>
+</div>
+<div class="aspect-video bg-surface-container-high/40 rounded-xl border border-dashed border-outline-variant/50 flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-4xl mb-2">attachment</span>
+<span class="text-label-sm">Reference Material Attached</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Resolution Tools -->
+<div class="bg-white rounded-2xl border border-outline-variant/20 overflow-hidden shadow-inner">
+<!-- Tabs/Modes -->
+<div class="flex bg-surface-container-low border-b border-outline-variant/20">
+<button class="px-6 py-3 font-bold text-label-md border-b-2 border-primary text-primary bg-white flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">edit_note</span> Text &amp; Symbols
+                                </button>
+<button class="px-6 py-3 font-medium text-label-md text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">draw</span> Whiteboard
+                                </button>
+<button class="px-6 py-3 font-medium text-label-md text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">mic</span> Voice Note
+                                </button>
+</div>
+<!-- Whiteboard/Input Area -->
+<div class="p-6">
+<textarea class="w-full h-40 bg-transparent border-none focus:ring-0 text-body-lg resize-none placeholder:text-outline-variant" placeholder="Type your detailed explanation here... Use LaTeX for formulas."></textarea>
+<div class="mt-4 p-4 bg-surface-container rounded-xl flex items-center justify-between">
+<div class="flex gap-4">
+<button class="p-2 hover:bg-white rounded-lg transition-all" title="Bold"><span class="material-symbols-outlined">format_bold</span></button>
+<button class="p-2 hover:bg-white rounded-lg transition-all" title="Math"><span class="material-symbols-outlined">functions</span></button>
+<button class="p-2 hover:bg-white rounded-lg transition-all" title="Image"><span class="material-symbols-outlined">add_photo_alternate</span></button>
+</div>
+<div class="flex items-center gap-stack-sm">
+<span class="text-[11px] text-on-surface-variant italic">Auto-saving...</span>
+<button class="bg-secondary text-white px-4 py-2 rounded-lg font-bold text-label-md hover:opacity-90 active:scale-95 transition-all">Preview Answer</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Final Actions -->
+<div class="mt-stack-lg flex items-center justify-between"><div class="flex items-center gap-2 text-tertiary font-label-md text-sm bg-tertiary-container/10 px-4 py-2 rounded-full border border-tertiary/20 animate-pulse-soft"><span class="material-symbols-outlined text-sm">sync</span><span>Status synced with Admin</span></div>
+<div class="flex gap-stack-sm">
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-full border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-[20px]">forward</span>
+<span class="font-label-md">Forward</span>
+</button>
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-full border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-[20px]">escalator_warning</span>
+<span class="font-label-md">Escalate</span>
+</button>
+</div>
+<button class="flex items-center gap-2 bg-primary text-white px-10 py-3 rounded-full font-bold shadow-lg hover:shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined">check_circle</span>
+                                Mark as Resolved
+                            </button>
+</div>
+<!-- Animated Shader Background Layer -->
+<div class="absolute inset-0 pointer-events-none opacity-20 -z-10">
+</div>
+</div>
+<!-- Previous Resolutions History -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="p-stack-md bg-white rounded-2xl border border-outline-variant/10 shadow-sm flex items-center gap-stack-md">
+<div class="w-12 h-12 rounded-full bg-tertiary-container/20 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">task_alt</span>
+</div>
+<div>
+<h5 class="font-bold text-on-surface">Resolved Recently</h5>
+<p class="text-label-sm text-on-surface-variant">"Integration by parts confusion..." - Sameer</p>
+</div>
+</div>
+<div class="p-stack-md bg-white rounded-2xl border border-outline-variant/10 shadow-sm flex items-center gap-stack-md">
+<div class="w-12 h-12 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">history</span>
+</div>
+<div>
+<h5 class="font-bold text-on-surface">Daily Session Stats</h5>
+<p class="text-label-sm text-on-surface-variant">42 Resolved today • Avg: 3.2m</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Sticky Progress Footer -->
+<footer class="w-full py-stack-lg bg-surface-dark dark:bg-bg-dark border-t border-white/5 mt-12 relative z-30">
+<div class="grid grid-cols-4 gap-gutter max-w-container-max mx-auto px-margin-desktop">
+<div class="col-span-1">
+<h4 class="font-headline-sm text-headline-sm text-white mb-4">Atomic Pathshala</h4>
+<p class="text-outline-variant text-label-sm leading-relaxed">Accelerating Academic Excellence for future doctors and engineers since 2018.</p>
+</div>
+<div class="col-span-1">
+<h5 class="text-white font-bold mb-4">Policies</h5>
+<ul class="space-y-2">
+<li><a class="text-outline-variant hover:text-white transition-colors text-label-sm" href="#">Privacy Policy</a></li>
+<li><a class="text-outline-variant hover:text-white transition-colors text-label-sm" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div class="col-span-1">
+<h5 class="text-white font-bold mb-4">Help &amp; Info</h5>
+<ul class="space-y-2">
+<li><a class="text-outline-variant hover:text-white transition-colors text-label-sm" href="#">Support</a></li>
+<li><a class="text-outline-variant hover:text-white transition-colors text-label-sm" href="#">Contact Us</a></li>
+</ul>
+</div>
+<div class="col-span-1">
+<h5 class="text-white font-bold mb-4">Daily Goal</h5>
+<div class="bg-white/10 p-3 rounded-xl">
+<div class="flex justify-between mb-2">
+<span class="text-xs text-white/60">Resolved 42/50</span>
+<span class="text-xs text-white">84%</span>
+</div>
+<div class="h-1.5 w-full bg-white/20 rounded-full overflow-hidden">
+<div class="h-full bg-secondary-container w-[84%]"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop mt-8 pt-8 border-t border-white/10 flex justify-between items-center text-outline-variant text-[11px]">
+<span>© 2024 Atomic Pathshala. Accelerating Academic Excellence.</span>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-sm">shield</span>
+<span class="material-symbols-outlined text-sm">language</span>
+</div>
+</div>
+</footer>
+</main>
+<!-- Micro-interaction Scripts -->
+<script>
+        document.querySelectorAll('.active\\:scale-\\[0\\.98\\]').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.style.transform = 'scale(0.98)';
+            });
+            button.addEventListener('mouseup', () => {
+                button.style.transform = 'scale(1)';
+            });
+        });
+
+        // Simple mock for "Joining Stream"
+        const streamBtn = document.querySelector('button:contains("Join")');
+        if(streamBtn) {
+            streamBtn.addEventListener('click', () => {
+                alert('Initializing Secure Live Peer Connection...');
+            });
+        }
+    </script>
+
+  <!-- Ecosystem Switched Widget Overlay -->
+  <script src="../ecosystem-hud.js"></script>
+</body></html>

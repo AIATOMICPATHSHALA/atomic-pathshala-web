@@ -1,0 +1,426 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Atomic Pathshala - Reward Access</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@400;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#e2e7ff",
+                    "surface-light": "#F8FAFC",
+                    "tertiary-fixed": "#6afcb9",
+                    "on-secondary-fixed-variant": "#004e60",
+                    "primary-container": "#0066ff",
+                    "on-tertiary-container": "#e1ffeb",
+                    "text-light": "#0F172A",
+                    "tertiary-fixed-dim": "#49df9f",
+                    "on-tertiary-fixed-variant": "#005235",
+                    "surface-bright": "#faf8ff",
+                    "secondary-container": "#00ccf9",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#0054d6",
+                    "surface-container-highest": "#dae2fd",
+                    "outline": "#727687",
+                    "on-surface": "#131b2e",
+                    "surface-container": "#eaedff",
+                    "bg-dark": "#0B0E14",
+                    "primary": "#0050cb",
+                    "surface-container-lowest": "#ffffff",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#4cd6ff",
+                    "tertiary": "#006643",
+                    "primary-fixed": "#dae1ff",
+                    "on-tertiary-fixed": "#002113",
+                    "bg-light": "#FFFFFF",
+                    "on-primary-container": "#f8f7ff",
+                    "on-secondary-fixed": "#001f28",
+                    "on-primary-fixed-variant": "#003fa4",
+                    "on-surface-variant": "#424656",
+                    "surface-dark": "#161B22",
+                    "outline-variant": "#c2c6d8",
+                    "on-error-container": "#93000a",
+                    "surface": "#faf8ff",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "on-background": "#131b2e",
+                    "on-secondary-container": "#005266",
+                    "secondary": "#00677f",
+                    "on-secondary": "#ffffff",
+                    "inverse-primary": "#b3c5ff",
+                    "border-subtle": "rgba(0, 102, 255, 0.1)",
+                    "secondary-fixed": "#b7eaff",
+                    "on-tertiary": "#ffffff",
+                    "inverse-surface": "#283044",
+                    "text-dark": "#F1F5F9",
+                    "surface-variant": "#dae2fd",
+                    "on-error": "#ffffff",
+                    "background": "#faf8ff",
+                    "on-primary": "#ffffff",
+                    "inverse-on-surface": "#eef0ff",
+                    "tertiary-container": "#008256",
+                    "surface-dim": "#d2d9f4",
+                    "surface-container-low": "#f2f3ff",
+                    "on-primary-fixed": "#001849"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-lg": "32px",
+                    "margin-mobile": "20px",
+                    "stack-sm": "8px",
+                    "gutter": "24px",
+                    "margin-desktop": "64px",
+                    "container-max": "1280px",
+                    "stack-md": "16px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Geist"],
+                    "display-lg": ["Geist"],
+                    "display-lg-mobile": ["Geist"],
+                    "headline-lg": ["Geist"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.08);
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="bg-surface-light text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Sidebar Navigation -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface-light border-r border-outline-variant/10 hidden lg:flex flex-col p-stack-md gap-stack-sm z-40">
+<div class="px-stack-sm py-stack-md">
+<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tight">Atomic Pathshala</h1>
+</div>
+<div class="flex items-center gap-stack-sm p-stack-sm mb-stack-md">
+<div class="h-12 w-12 rounded-full overflow-hidden border-2 border-primary-container">
+<img class="h-full w-full object-cover" data-alt="A professional close-up studio portrait of a focused young male student wearing a neat polo shirt. He has a friendly but determined expression, set against a soft blue gradient background that reflects a high-end educational environment. The lighting is crisp and cinematic, characteristic of a premium brand's digital portal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoniPbTLMpcsbMs7KDSbCCf9DJ52xOi31i5fpVuY7s2zeE3tprA21I-_diYV0L3G70fxXtnF55LTR-0Z0CZpK9mB_KUpLzfymGlz-U0WW0HAKSL8ggsfys39UGUO4X4BaG5_jukaqF9_RoAt1BpsBeLpv9Zbub4ZzmnDnUTxKw5h3rXoIFNWEow6wn9ZpK4g2BQrDc-a9_NJ3AJIwOjNcWC8kqE2--vG2VjkiSVX4M42SPSiq5T4xbQ90Q9-tDCZFqAH_oc9dvGxI">
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Aspirant Portal</p>
+<p class="text-[12px] text-on-surface-variant">JEE 2025 Target</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Active Tab: My Rewards -->
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container rounded-xl transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">card_giftcard</span>
+<span class="font-label-md text-label-md">My Rewards</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container rounded-xl transition-all duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">quiz</span>
+<span class="font-label-md text-label-md">Mock Tests</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container rounded-xl transition-all duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-md text-label-md">Study Notes</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container rounded-xl transition-all duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">military_tech</span>
+<span class="font-label-md text-label-md">Milestones</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container rounded-xl transition-all duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto space-y-1">
+<button class="w-full mb-4 py-3 px-4 bg-surface-container-highest text-primary font-label-md text-label-md rounded-xl hover:bg-primary-fixed transition-colors active:scale-98">
+                View Leaderboard
+            </button>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container rounded-xl transition-all duration-200" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-label-md text-label-md">Support</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container rounded-xl transition-all duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="lg:ml-64 min-h-screen relative overflow-x-hidden">
+<!-- Top Nav (Mobile & Breadcrumbs) -->
+<header class="sticky top-0 z-30 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/20 h-20 flex items-center px-6 lg:px-margin-desktop">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<a class="hover:text-primary transition-colors font-label-md text-label-md" href="#">Rewards</a>
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+<span class="text-on-surface font-label-md text-label-md">NEET Biology Mastery Pack</span>
+</div>
+<div class="ml-auto flex items-center gap-4">
+<button class="h-10 w-10 flex items-center justify-center rounded-full bg-surface-container-high text-primary hover:bg-primary-fixed transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-10 w-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold">
+                    JS
+                </div>
+</div>
+</header>
+<div class="max-w-container-max mx-auto px-6 py-stack-lg lg:px-margin-desktop">
+<!-- Welcome Header -->
+<div class="mb-stack-lg">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Access Your Reward</h2>
+<p class="text-body-lg text-on-surface-variant">Congratulations! You've successfully unlocked premium practice content.</p>
+</div>
+<!-- Hero Section Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter mb-stack-lg">
+<!-- Main Reward Hero Card -->
+<div class="lg:col-span-2 glass-card rounded-[24px] p-stack-lg flex flex-col md:flex-row gap-stack-lg items-center relative overflow-hidden group">
+<!-- Background Accent -->
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl transition-all duration-700 group-hover:scale-150"></div>
+<div class="relative z-10 w-full md:w-1/3 flex justify-center">
+<div class="w-40 h-40 rounded-3xl bg-gradient-to-br from-primary to-secondary-container flex items-center justify-center shadow-2xl shadow-primary/20 animate-float">
+<span class="material-symbols-outlined text-[80px] text-white" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+</div>
+</div>
+<div class="relative z-10 w-full md:w-2/3">
+<div class="flex items-center gap-2 mb-3">
+<span class="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed text-[12px] font-bold rounded-full uppercase tracking-wider">Premium Access</span>
+<span class="px-3 py-1 bg-secondary-fixed text-on-secondary-fixed text-[12px] font-bold rounded-full uppercase tracking-wider">NEET 2025</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg mb-4 text-on-surface">NEET Biology 100-Question Mastery Pack</h3>
+<p class="text-body-md text-on-surface-variant mb-6 leading-relaxed">
+                            A curated selection of high-yield questions designed by top faculty. This pack focuses on the most frequent patterns in NEET Biology to ensure your concepts are crystal clear.
+                        </p>
+<div class="flex flex-wrap gap-4">
+<div class="flex items-center gap-2 text-primary font-label-md">
+<span class="material-symbols-outlined">verified</span>
+<span class="">100 MCQ Practice Questions</span>
+</div>
+<div class="flex items-center gap-2 text-primary font-label-md">
+<span class="material-symbols-outlined">schedule</span>
+<span class="">Timed &amp; Untimed Modes</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Actions / Stats Card -->
+<div class="glass-card rounded-[24px] p-stack-lg flex flex-col justify-between border-subtle">
+<div>
+<h4 class="font-headline-md text-headline-md mb-stack-md">Redemption Info</h4>
+<div class="space-y-4">
+<div class="flex justify-between items-center py-2 border-b border-outline-variant/10">
+<span class="text-on-surface-variant font-body-md">Redeemed on</span>
+<span class="text-on-surface font-label-md">Oct 24, 2024</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-outline-variant/10">
+<span class="text-on-surface-variant font-body-md">Validity</span>
+<span class="text-on-surface font-label-md">Lifetime Access</span>
+</div>
+<div class="flex justify-between items-center py-2">
+<span class="text-on-surface-variant font-body-md">Status</span>
+<span class="flex items-center gap-1 text-tertiary font-bold">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span> Ready
+                                </span>
+</div>
+</div>
+</div>
+<button class="w-full mt-stack-lg py-4 px-6 bg-surface-container-high border border-primary/20 text-primary rounded-xl font-label-md flex items-center justify-center gap-2 hover:bg-primary-fixed transition-all group active:scale-95">
+<span class="material-symbols-outlined transition-transform group-hover:scale-110">download</span>
+                        Download PDF Version
+                    </button>
+</div>
+</div>
+<!-- Content Modules -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter mb-stack-lg">
+<!-- Module 1 -->
+<div class="bg-white rounded-2xl p-stack-md border border-outline-variant/10 hover:border-primary/30 transition-all group"><div class="flex items-start justify-between mb-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center text-primary border border-primary/10">
+<span class="material-symbols-outlined">potted_plant</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Module 1: High-Yield Botany</h4>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-label-sm text-on-surface-variant">50 Concepts</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="text-label-sm text-primary font-bold">Advanced Difficulty</span>
+</div>
+</div>
+</div>
+<span class="px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded-md border border-primary/20">READY</span>
+</div>
+<div class="space-y-3 mb-4">
+<div class="flex items-center gap-3 p-4 rounded-xl bg-surface-container-lowest border border-outline-variant/10 hover:border-primary/30 hover:bg-white hover:shadow-md transition-all cursor-pointer group/item"><span class="w-8 h-8 rounded-lg bg-primary/5 flex items-center justify-center text-primary text-[12px] font-bold group-hover/item:bg-primary group-hover/item:text-white transition-colors">01</span><span class="text-body-md text-on-surface font-medium transition-all group-[.is-complete]/item:line-through group-[.is-complete]/item:opacity-60">Plant Kingdom Classification Matrix</span><div class="ml-auto flex items-center gap-3"><button class="w-6 h-6 rounded-full border-2 border-primary/30 flex items-center justify-center transition-all hover:border-primary group-[.is-complete]/item:bg-primary group-[.is-complete]/item:border-primary" onclick="this.closest('.group\/item').classList.toggle('is-complete')"><span class="material-symbols-outlined text-[16px] text-white opacity-0 group-[.is-complete]/item:opacity-100">check</span></button><span class="material-symbols-outlined text-primary text-[20px] opacity-0 group-hover/item:opacity-100 transition-opacity">arrow_forward</span><span class="material-symbols-outlined text-outline-variant text-[20px] group-hover/item:hidden">lock_open</span></div></div>
+<div class="flex items-center gap-3 p-4 rounded-xl bg-surface-container-lowest border border-outline-variant/10 hover:border-primary/30 hover:bg-white hover:shadow-md transition-all cursor-pointer group/item"><span class="w-8 h-8 rounded-lg bg-primary/5 flex items-center justify-center text-primary text-[12px] font-bold group-hover/item:bg-primary group-hover/item:text-white transition-colors">02</span><span class="text-body-md text-on-surface font-medium transition-all group-[.is-complete]/item:line-through group-[.is-complete]/item:opacity-60">Morphology of Flowering Plants</span><div class="ml-auto flex items-center gap-3"><button class="w-6 h-6 rounded-full border-2 border-primary/30 flex items-center justify-center transition-all hover:border-primary group-[.is-complete]/item:bg-primary group-[.is-complete]/item:border-primary" onclick="this.closest('.group\/item').classList.toggle('is-complete')"><span class="material-symbols-outlined text-[16px] text-white opacity-0 group-[.is-complete]/item:opacity-100">check</span></button><span class="material-symbols-outlined text-primary text-[20px] opacity-0 group-hover/item:opacity-100 transition-opacity">arrow_forward</span><span class="material-symbols-outlined text-outline-variant text-[20px] group-hover/item:hidden">lock_open</span></div></div>
+<div class="flex items-center gap-3 p-4 rounded-xl border border-dashed border-outline-variant/30 bg-surface-light/50">
+<span class="text-on-surface-variant text-[12px] font-bold ml-2">...</span>
+<span class="text-label-md text-on-surface-variant italic">48 more specialized questions available</span>
+</div>
+</div></div>
+<!-- Module 2 -->
+<div class="bg-white rounded-2xl p-stack-md border border-outline-variant/10 hover:border-primary/30 transition-all group"><div class="flex items-start justify-between mb-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-secondary/5 flex items-center justify-center text-secondary border border-secondary/10">
+<span class="material-symbols-outlined">vital_signs</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Module 2: Human Physiology</h4>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-label-sm text-on-surface-variant">50 Concepts</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="text-label-sm text-secondary font-bold">Moderate Difficulty</span>
+</div>
+</div>
+</div>
+<span class="px-2 py-1 bg-secondary/10 text-secondary text-[10px] font-bold rounded-md border border-secondary/20">READY</span>
+</div>
+<div class="space-y-3 mb-4">
+<div class="flex items-center gap-3 p-4 rounded-xl bg-surface-container-lowest border border-outline-variant/10 hover:border-secondary/30 hover:bg-white hover:shadow-md transition-all cursor-pointer group/item"><span class="w-8 h-8 rounded-lg bg-secondary/5 flex items-center justify-center text-secondary text-[12px] font-bold group-hover/item:bg-secondary group-hover/item:text-white transition-colors">01</span><span class="text-body-md text-on-surface font-medium transition-all group-[.is-complete]/item:line-through group-[.is-complete]/item:opacity-60">Neural Control and Coordination</span><div class="ml-auto flex items-center gap-3"><button class="w-6 h-6 rounded-full border-2 border-secondary/30 flex items-center justify-center transition-all hover:border-secondary group-[.is-complete]/item:bg-secondary group-[.is-complete]/item:border-secondary" onclick="this.closest('.group\/item').classList.toggle('is-complete')"><span class="material-symbols-outlined text-[16px] text-white opacity-0 group-[.is-complete]/item:opacity-100">check</span></button><span class="material-symbols-outlined text-secondary text-[20px] opacity-0 group-hover/item:opacity-100 transition-opacity">arrow_forward</span><span class="material-symbols-outlined text-outline-variant text-[20px] group-hover/item:hidden">lock_open</span></div></div>
+<div class="flex items-center gap-3 p-4 rounded-xl bg-surface-container-lowest border border-outline-variant/10 hover:border-secondary/30 hover:bg-white hover:shadow-md transition-all cursor-pointer group/item"><span class="w-8 h-8 rounded-lg bg-secondary/5 flex items-center justify-center text-secondary text-[12px] font-bold group-hover/item:bg-secondary group-hover/item:text-white transition-colors">02</span><span class="text-body-md text-on-surface font-medium transition-all group-[.is-complete]/item:line-through group-[.is-complete]/item:opacity-60">Chemical Integration &amp; Regulation</span><div class="ml-auto flex items-center gap-3"><button class="w-6 h-6 rounded-full border-2 border-secondary/30 flex items-center justify-center transition-all hover:border-secondary group-[.is-complete]/item:bg-secondary group-[.is-complete]/item:border-secondary" onclick="this.closest('.group\/item').classList.toggle('is-complete')"><span class="material-symbols-outlined text-[16px] text-white opacity-0 group-[.is-complete]/item:opacity-100">check</span></button><span class="material-symbols-outlined text-secondary text-[20px] opacity-0 group-hover/item:opacity-100 transition-opacity">arrow_forward</span><span class="material-symbols-outlined text-outline-variant text-[20px] group-hover/item:hidden">lock_open</span></div></div>
+<div class="flex items-center gap-3 p-4 rounded-xl border border-dashed border-outline-variant/30 bg-surface-light/50">
+<span class="text-on-surface-variant text-[12px] font-bold ml-2">...</span>
+<span class="text-label-md text-on-surface-variant italic">48 more specialized questions available</span>
+</div>
+</div></div>
+</div>
+<!-- Sticky Bottom Action Bar -->
+<div class="sticky bottom-8 z-40">
+<div class="glass-card rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-4 shadow-2xl border border-primary/20">
+<div class="flex items-center gap-4">
+<div class="h-10 w-10 bg-primary/10 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">auto_awesome</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Ready to challenge yourself?</p>
+<p class="text-[12px] text-on-surface-variant">Average completion time: 120 minutes</p>
+</div>
+</div>
+<div class="flex items-center gap-4 w-full md:w-auto">
+<button class="flex-1 md:flex-none px-8 py-3 font-label-md text-on-surface-variant hover:text-primary transition-colors">
+                            Back to Catalog
+                        </button>
+<button class="flex-1 md:flex-none px-12 py-4 bg-primary text-white rounded-xl font-label-md shadow-lg shadow-primary/30 hover:bg-primary-container transition-all active:scale-95 flex items-center justify-center gap-2">
+                            Start Practice Now
+                            <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="w-full py-stack-lg border-t border-outline-variant/10 bg-surface-container-lowest mt-stack-lg">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-container-max mx-auto">
+<div class="md:col-span-2">
+<h5 class="font-headline-md text-headline-md font-bold text-on-surface mb-4">Atomic Pathshala</h5>
+<p class="text-on-surface-variant max-w-xs mb-6">Empowering students to crack the toughest exams with precision-engineered learning tools.</p>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-60">© 2024 Atomic Pathshala. Accelerating Academic Excellence.</p>
+</div>
+<div>
+<h6 class="font-label-md text-primary mb-4">Support</h6>
+<ul class="space-y-2">
+<li class=""><a class="text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Help Center</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Contact Us</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Redemption Policy</a></li>
+</ul>
+</div>
+<div>
+<h6 class="font-label-md text-primary mb-4">Legal</h6>
+<ul class="space-y-2">
+<li class=""><a class="text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Privacy Policy</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+</footer>
+</main>
+<!-- Success Toast Notification (Auto-hidden logic) -->
+<div class="fixed top-8 right-8 z-[60] glass-card px-6 py-4 rounded-xl border-l-4 border-tertiary flex items-center gap-4 translate-x-[120%] transition-transform duration-500 shadow-2xl" id="rewardToast" style="transform: translateX(120%);">
+<span class="material-symbols-outlined text-tertiary">check_circle</span>
+<div>
+<p class="font-label-md text-on-surface">Reward Successfully Redeemed!</p>
+<p class="text-[12px] text-on-surface-variant">Your content is now available below.</p>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface ml-4" onclick="hideToast()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<script>
+        // Simple micro-interaction for the toast
+        window.onload = () => {
+            setTimeout(() => {
+                document.getElementById('rewardToast').style.transform = 'translateX(0)';
+            }, 500);
+            
+            setTimeout(() => {
+                hideToast();
+            }, 6000);
+        };
+
+        function hideToast() {
+            document.getElementById('rewardToast').style.transform = 'translateX(120%)';
+        }
+
+        // Active state management logic
+        const navItems = document.querySelectorAll('aside nav a');
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                navItems.forEach(i => {
+                    i.classList.remove('bg-primary-container', 'text-on-primary-container');
+                    i.classList.add('text-on-surface-variant', 'hover:bg-surface-container');
+                    const icon = i.querySelector('.material-symbols-outlined');
+                    if(icon) icon.style.fontVariationSettings = "'FILL' 0";
+                });
+                item.classList.add('bg-primary-container', 'text-on-primary-container');
+                item.classList.remove('text-on-surface-variant', 'hover:bg-surface-container');
+                const activeIcon = item.querySelector('.material-symbols-outlined');
+                if(activeIcon) activeIcon.style.fontVariationSettings = "'FILL' 1";
+            });
+        });
+    </script>
+
+
+<div id="completionModal" class="fixed inset-0 z-[70] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-500">
+    <div class="absolute inset-0 bg-on-surface/20 backdrop-blur-sm"></div>
+    <div class="glass-card relative w-full max-w-md rounded-[24px] p-stack-lg shadow-2xl border border-primary/20 text-center transform scale-90 transition-transform duration-500">
+        <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <span class="material-symbols-outlined text-[48px] text-primary animate-float">celebration</span>
+        </div>
+        <h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Module Complete!</h2>
+        <p class="text-body-md text-on-surface-variant mb-stack-lg">You've successfully mastered all topics in this module. Ready for the next challenge?</p>
+        <div class="flex flex-col gap-3">
+            <button class="w-full py-4 bg-primary text-white rounded-xl font-label-md shadow-lg shadow-primary/30 hover:bg-primary-container transition-all active:scale-95">Take Final Mock Test</button>
+            <button class="w-full py-4 text-on-surface-variant hover:text-primary font-label-md transition-colors" onclick="document.getElementById('completionModal').classList.add('opacity-0', 'pointer-events-none'); document.getElementById('completionModal').querySelector('.relative').classList.add('scale-90');">Return to Dashboard</button>
+        </div>
+    </div>
+</div></body></html>

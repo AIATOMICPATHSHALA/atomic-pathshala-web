@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Secure Checkout | Atomic Pathshala</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "text-light": "#0F172A",
+                        "on-background": "#131b2e",
+                        "bg-light": "#FFFFFF",
+                        "outline": "#727687",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#49df9f",
+                        "surface-container": "#eaedff",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed": "#001f28",
+                        "surface-dim": "#d2d9f4",
+                        "inverse-surface": "#283044",
+                        "tertiary-fixed": "#6afcb9",
+                        "surface-container-high": "#e2e7ff",
+                        "surface": "#faf8ff",
+                        "secondary-container": "#00ccf9",
+                        "bg-dark": "#0B0E14",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "tertiary-container": "#008256",
+                        "secondary": "#00677f",
+                        "surface-container-low": "#f2f3ff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#b7eaff",
+                        "on-surface": "#131b2e",
+                        "on-tertiary-fixed": "#002113",
+                        "on-primary-fixed-variant": "#003fa4",
+                        "surface-bright": "#faf8ff",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#005235",
+                        "border-subtle": "rgba(0, 102, 255, 0.1)",
+                        "outline-variant": "#c2c6d8",
+                        "text-dark": "#F1F5F9",
+                        "on-tertiary-container": "#e1ffeb",
+                        "primary-container": "#0066ff",
+                        "on-secondary-fixed-variant": "#004e60",
+                        "on-secondary-container": "#005266",
+                        "on-primary-container": "#f8f7ff",
+                        "background": "#faf8ff",
+                        "surface-dark": "#161B22",
+                        "surface-variant": "#dae2fd",
+                        "secondary-fixed-dim": "#4cd6ff",
+                        "primary-fixed": "#dae1ff",
+                        "on-primary-fixed": "#001849",
+                        "surface-tint": "#0054d6",
+                        "inverse-on-surface": "#eef0ff",
+                        "surface-light": "#F8FAFC",
+                        "on-surface-variant": "#424656",
+                        "inverse-primary": "#b3c5ff",
+                        "surface-container-highest": "#dae2fd",
+                        "primary": "#0050cb",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#006643"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "margin-mobile": "20px",
+                        "container-max": "1280px",
+                        "stack-lg": "32px",
+                        "margin-desktop": "64px",
+                        "stack-sm": "8px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "display-lg-mobile": ["Geist"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-active {
+            box-shadow: 0 0 0 4px rgba(0, 80, 203, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- Header / Top Bar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-border-subtle h-16">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-full max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<img alt="Atomic Pathshala Logo" class="h-8 md:h-10 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIvV80lkeHkaW0Kx6YrNt6l_pLIwt-udZNzwgQqCj9OAZqAWDJpXFKfpGGeFUTM8YfVIrXORt80vqlOPVd73z4cpaIQnrKFyRx4fVVRQg6ESIU2uy_8Y00I1mpD_VU-kcXtO45QBNb2CUcWrk3IjulG5q_WEtudBjSZACmKG-AJo71FW4Eu2_thjNaUfagdc5J3mQ0v9a1w_eQ8uCDPER28W7m-thrqCk97A_NgFZ9hhun2wUfFqFA3AYRoPW09e1_MPov5pc0uc4"/>
+</div>
+<div class="hidden md:flex items-center gap-6">
+<div class="flex items-center gap-2 text-primary font-label-md">
+<span class="material-symbols-outlined text-[20px]">shield</span>
+<span class="text-label-md font-label-md">Secure Checkout</span>
+</div>
+<div class="h-6 w-[1px] bg-outline-variant"></div>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">help_outline</span>
+<span class="text-label-sm font-label-sm">Support</span>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Navigation Breadcrumb / Progress -->
+<nav class="mb-stack-lg flex items-center gap-4 text-label-sm">
+<div class="flex items-center gap-2 text-primary">
+<span class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center font-bold text-[10px]">1</span>
+<span class="font-label-md">Cart</span>
+</div>
+<div class="h-[1px] w-8 bg-primary"></div>
+<div class="flex items-center gap-2 text-primary">
+<span class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center font-bold text-[10px] step-active">2</span>
+<span class="font-label-md">Payment</span>
+</div>
+<div class="h-[1px] w-8 bg-outline-variant"></div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="w-6 h-6 rounded-full border border-outline-variant flex items-center justify-center font-bold text-[10px]">3</span>
+<span class="font-label-md">Confirmation</span>
+</div>
+</nav>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Order Summary -->
+<div class="lg:col-span-5 order-2 lg:order-1">
+<div class="glass-card rounded-xl p-stack-lg sticky top-24">
+<h2 class="font-headline-md text-headline-md mb-stack-md text-on-surface">Order Summary</h2>
+<div class="space-y-stack-md">
+<!-- Product Detail -->
+<div class="flex gap-4 pb-stack-md border-b border-border-subtle">
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+<div class="w-full h-full bg-cover bg-center" data-alt="A professional medical student study environment with books, a high-end stethoscope, and an iPad showing medical diagrams. The lighting is warm and academic, featuring a modern clean aesthetic with Atomic Blue and white tones to match the NEET 2025 Target Batch branding." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBQcSsPT7FxZQvX8xCWE3gaqfY2zYTXWl431J2xGeDijkZuD-40Av5OQOUfvE3GDwtSO_Ea277JfgpFWfyCzQsRqO3_AOTgN0JRZkPIe-mVV06tXSjNh_kp0ooqSnqGYXFIWByO7zz72F7gRgyJDckpHkiibBuCXeiAtwyUPDypSuvhq-pkA7zXDl8lAglAgOcNAUohH089ZPeFo07Gd9-vNBeI__TF4i32wIVt8LXuYvfOHgcRgV7I4ZYD9ZgGD9nX2dwbt74wvWI')"></div>
+</div>
+<div class="flex flex-col justify-between py-1">
+<div>
+<h3 class="font-label-md text-label-md text-on-surface">NEET 2025 Target Batch</h3>
+<p class="text-label-sm text-on-surface-variant">Full Year Academic Course</p>
+</div>
+<span class="font-headline-md text-headline-md text-primary">₹24,999</span>
+</div>
+</div>
+<!-- Price Breakdown -->
+<div class="space-y-3 py-stack-md">
+<div class="flex justify-between text-body-md text-on-surface-variant">
+<span>Original Price</span>
+<span class="line-through">₹34,999</span>
+</div>
+<div class="flex justify-between text-body-md text-tertiary">
+<span>Early Bird Discount</span>
+<span>- ₹10,000</span>
+</div>
+<div class="flex justify-between text-body-md text-on-surface-variant">
+<span>Platform Fee</span>
+<span>₹0</span>
+</div>
+</div>
+<!-- Coupon Code Input -->
+<div class="py-stack-md border-t border-b border-border-subtle space-y-2">
+    <label class="text-label-sm text-on-surface-variant font-semibold">Have a coupon code?</label>
+    <div class="flex gap-2">
+        <input id="coupon-input" class="bg-white border border-outline-variant rounded-lg px-3 py-2 text-label-sm flex-1 focus:ring-1 focus:ring-primary outline-none" placeholder="e.g. ATOMIC50" type="text"/>
+        <button id="btn-apply-coupon" class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md text-xs hover:bg-surface-tint transition-all">Apply</button>
+    </div>
+    <p id="coupon-message" class="text-[11px] font-semibold mt-1 hidden"></p>
+</div>
+<!-- Total -->
+<div class="pt-stack-md border-dashed border-outline-variant flex justify-between items-center">
+<div>
+<p class="font-headline-md text-headline-md text-on-surface">Total Amount</p>
+<p class="text-label-sm text-on-surface-variant">Inclusive of all taxes</p>
+</div>
+<div class="text-right">
+<span class="font-headline-lg text-headline-lg text-primary" id="total-amount-display">₹24,999</span>
+</div>
+</div>
+<!-- Trust Markers -->
+<div class="mt-stack-lg bg-surface-container-low rounded-lg p-4 flex flex-col gap-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary">verified_user</span>
+<span class="text-label-sm text-on-surface-variant">100% Refundable within 7 days of purchase.</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary">lock</span>
+<span class="text-label-sm text-on-surface-variant">256-bit SSL Encrypted secure connection.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Payment Methods -->
+<div class="lg:col-span-7 order-1 lg:order-2">
+<div class="space-y-stack-md">
+<section class="glass-card rounded-xl p-stack-lg">
+<div class="flex items-center justify-between mb-stack-lg">
+<h2 class="font-headline-md text-headline-md text-on-surface">Select Payment Method</h2>
+<div class="flex items-center gap-1 bg-surface-container-high px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-[16px] text-primary" style="font-variation-settings: 'FILL' 1;">lock</span>
+<span class="text-[10px] font-bold uppercase tracking-wider text-primary">Secure</span>
+</div>
+</div>
+<!-- Payment Options List -->
+<div class="space-y-gutter">
+<!-- UPI Option -->
+<label class="group relative flex items-center p-4 rounded-xl border border-outline-variant hover:border-primary hover:bg-primary/5 transition-all cursor-pointer">
+<input checked="" class="w-5 h-5 text-primary focus:ring-primary border-outline-variant" name="payment" type="radio"/>
+<div class="ml-4 flex-grow">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-on-surface">UPI (Google Pay, PhonePe, Paytm)</span>
+<div class="flex gap-2">
+<div class="h-6 w-10 rounded border border-border-subtle bg-white flex items-center justify-center p-1">
+<div class="w-full h-full bg-contain bg-no-repeat bg-center" data-alt="Official Google Pay colorful logo icon on a white background, minimalist and professional for a fintech checkout interface." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDScZNIJB3m-nTY22rk304ZG1qRgsYn6IxmHr7qSrqhNtRtDb44GIbPBPSS4FLoEOCuZ5HrfAA9ACkyooH1KnQ6AlFUtqtftBMWjJJlNue1X31pCwTUI7Ih8Krv9eMp_NSw-vOIlWEwVj5DwxEie1pZv9zDCda41Rm_cj653W2bTAmAhehtIvgRAAj-ymMRu44uzxvY7y8IpvdcOwCvVQmfIeh8KgfxtOCtJmv6Oapur0k_I9AH0GspTfnmE7pI9EpstygUhiXeeNk')"></div>
+</div>
+<div class="h-6 w-10 rounded border border-border-subtle bg-white flex items-center justify-center p-1">
+<div class="w-full h-full bg-contain bg-no-repeat bg-center" data-alt="Official PhonePe purple logo icon on a white background, high contrast for high-trust payment gateway display." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDVliJN7bomaT82xMNrizxsjd8ZIUYWNcURuB7mXLkZfN0vVqgU32Hhc-j-lCjYUx_yAXTBWE6-n2VGeUoJCLmUi5We85TIHJKhZHNN3EA1iG5GgNw6y7X9MDq0nX1jAosq59ghv00nd_21zpXXCVdQCqg8QQQs9g75neyXl7Er0V-qH6iPE8Cw5mfiooljOQkAIdnordTjZ1p2EdcskZj7En-fgTR298eU700goTn6qmJ6ukBCnM3u5tGo9M_i1sUYl5zamHPVr_U')"></div>
+</div>
+</div>
+</div>
+<p class="text-label-sm text-on-surface-variant mt-1">Instant payment using your UPI apps.</p>
+</div>
+</label>
+<!-- Card Option -->
+<div class="payment-method-container">
+<label class="group relative flex items-center p-4 rounded-t-xl border border-outline-variant hover:border-primary hover:bg-primary/5 transition-all cursor-pointer border-b-0">
+<input class="w-5 h-5 text-primary focus:ring-primary border-outline-variant" name="payment" type="radio"/>
+<div class="ml-4 flex-grow">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-on-surface">Credit / Debit Card</span>
+<div class="flex gap-2">
+<div class="h-6 w-8 rounded border border-border-subtle bg-white flex items-center justify-center p-0.5">
+<div class="w-full h-full bg-contain bg-no-repeat bg-center" data-alt="Visa logo with blue and yellow colors on a white card surface, sleek and professional financial symbol." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC37eEAfdCD6wL9YZHD9U4emqBeVD4cwFV1DB-8LgoOnWtjL3rzlZoOkB72Hx_tyMbWTqBhCzeJsObYI6btzpuTbYx3cD5IV5F3H0f17gItPkN30BqH6QjyWlJr0aC1NHgCClm_5xdjwxztCUZJULYkeE8w8APXTamAfHdVMSH4aDBp4lam8W13acLYAM-cSc9vaGTjoaKLcOKwwZ16mf09tnamjrkKaq2Hy0SRPkLFF3cYeJYNVgywrPCSVGr4StL5OIUVAYyOSuo')"></div>
+</div>
+<div class="h-6 w-8 rounded border border-border-subtle bg-white flex items-center justify-center p-0.5">
+<div class="w-full h-full bg-contain bg-no-repeat bg-center" data-alt="Mastercard logo with overlapping red and orange circles on white, professional payment network icon." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAOTmXvTHBzBoVtW6rJJOcma-wfmRTPcdcibz7gWagL1vw583NOq7Jv-L_4d39UO4KNU0rda4ysLCZKI3F_39nPqCMHx7_GgDHlGuLbnQHRDnGpqmerRd1LQNvU77Ju2dJCH7xoN7U5g-uTZMayKLC-M8_-xgqw0SE04Bl93iPFacJkZnC16vQxucrhrS0jXRc-Q3HJirttmMW5LmLZg7lKgzgN2EvVv9rJrASUztpofxpv6NsB-cuiGXuM2y79ApAzHdvDqwI9tHA')"></div>
+</div>
+</div>
+</div>
+</div>
+</label>
+<!-- Card Fields Expansion (Mocked) -->
+<div class="p-6 border border-t-0 border-outline-variant rounded-b-xl bg-surface-container-lowest/50 space-y-4">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="space-y-1">
+<label class="text-label-sm text-on-surface-variant ml-1">Card Number</label>
+<input class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-mono" placeholder="XXXX XXXX XXXX XXXX" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<div class="space-y-1">
+<label class="text-label-sm text-on-surface-variant ml-1">Expiry</label>
+<input class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="MM/YY" type="text"/>
+</div>
+<div class="space-y-1">
+<label class="text-label-sm text-on-surface-variant ml-1">CVV</label>
+<input class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="***" type="password"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Net Banking -->
+<label class="group relative flex items-center p-4 rounded-xl border border-outline-variant hover:border-primary hover:bg-primary/5 transition-all cursor-pointer">
+<input class="w-5 h-5 text-primary focus:ring-primary border-outline-variant" name="payment" type="radio"/>
+<div class="ml-4 flex-grow">
+<span class="font-label-md text-on-surface">Net Banking</span>
+<p class="text-label-sm text-on-surface-variant mt-1">Direct payment from all major Indian banks.</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">account_balance</span>
+</label>
+<!-- EMI Options -->
+<label class="group relative flex items-center p-4 rounded-xl border border-outline-variant hover:border-primary hover:bg-primary/5 transition-all cursor-pointer">
+<input class="w-5 h-5 text-primary focus:ring-primary border-outline-variant" name="payment" type="radio"/>
+<div class="ml-4 flex-grow">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-on-surface">EMI Options</span>
+<span class="bg-secondary/10 text-secondary text-[10px] px-2 py-0.5 rounded-full font-bold">LOW INTEREST</span>
+</div>
+<p class="text-label-sm text-on-surface-variant mt-1">Starting from ₹2,499/month.</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">event_repeat</span>
+</label>
+</div>
+<!-- Submit Section -->
+<div class="mt-stack-lg pt-stack-lg border-t border-border-subtle">
+<button class="w-full py-4 bg-primary text-white rounded-xl font-headline-md text-headline-md flex items-center justify-center gap-2 hover:bg-primary/90 active:scale-[0.98] transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">lock_open</span>
+                                Pay ₹24,999 Now
+                            </button>
+<p class="text-center text-label-sm text-on-surface-variant mt-4">
+                                By clicking 'Pay Now', you agree to our <a class="text-primary hover:underline" href="#">Terms of Service</a> and <a class="text-primary hover:underline" href="#">Refund Policy</a>.
+                            </p>
+</div>
+</section>
+<!-- Trust Badges Footer -->
+<div class="flex flex-wrap justify-center items-center gap-8 py-stack-md">
+<div class="flex items-center gap-2 text-on-surface-variant grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all cursor-default">
+<span class="material-symbols-outlined text-[32px]">verified</span>
+<span class="font-bold text-label-md">PCI-DSS Compliant</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all cursor-default">
+<span class="material-symbols-outlined text-[32px]">security</span>
+<span class="font-bold text-label-md">SSL Secured</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all cursor-default">
+<span class="material-symbols-outlined text-[32px]">currency_exchange</span>
+<span class="font-bold text-label-md">Safe Refunds</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Simple Footer -->
+<footer class="bg-text-light py-stack-lg mt-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<img alt="Atomic Pathshala Logo" class="h-8 brightness-0 invert mb-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIvV80lkeHkaW0Kx6YrNt6l_pLIwt-udZNzwgQqCj9OAZqAWDJpXFKfpGGeFUTM8YfVIrXORt80vqlOPVd73z4cpaIQnrKFyRx4fVVRQg6ESIU2uy_8Y00I1mpD_VU-kcXtO45QBNb2CUcWrk3IjulG5q_WEtudBjSZACmKG-AJo71FW4Eu2_thjNaUfagdc5J3mQ0v9a1w_eQ8uCDPER28W7m-thrqCk97A_NgFZ9hhun2wUfFqFA3AYRoPW09e1_MPov5pc0uc4"/>
+<p class="text-secondary-fixed opacity-70 font-body-md text-body-md">
+                    Empowering the next generation of medical professionals with cutting-edge academic tools.
+                </p>
+</div>
+<div class="col-span-1 flex flex-col gap-2">
+<h4 class="text-bg-light font-label-md mb-2">Legal</h4>
+<a class="text-surface-variant/70 hover:text-bg-light transition-colors" href="#">Privacy Policy</a>
+<a class="text-surface-variant/70 hover:text-bg-light transition-colors" href="#">Terms of Service</a>
+<a class="text-surface-variant/70 hover:text-bg-light transition-colors" href="#">Refund Policy</a>
+</div>
+<div class="col-span-1 flex flex-col gap-2">
+<h4 class="text-bg-light font-label-md mb-2">Support</h4>
+<a class="text-surface-variant/70 hover:text-bg-light transition-colors" href="#">Help Center</a>
+<a class="text-surface-variant/70 hover:text-bg-light transition-colors" href="#">Contact Support</a>
+<a class="text-surface-variant/70 hover:text-bg-light transition-colors" href="#">Chat with us</a>
+</div>
+<div class="col-span-1 flex flex-col gap-4">
+<h4 class="text-bg-light font-label-md">Newsletter</h4>
+<div class="flex">
+<input class="bg-white/10 border-0 rounded-l-lg px-4 py-2 text-white w-full focus:ring-1 focus:ring-secondary text-label-md" placeholder="Enter email" type="email"/>
+<button class="bg-primary text-white px-4 py-2 rounded-r-lg font-bold">Join</button>
+</div>
+<p class="text-[11px] text-surface-variant/50">© 2024 Atomic Pathshala. Secure Academic Environment.</p>
+</div>
+</div>
+</footer>
+<script>
+        // Simple Interaction for radio buttons visual state
+        document.querySelectorAll('input[name="payment"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                // Reset all containers
+                document.querySelectorAll('.payment-method-container label, label').forEach(el => {
+                    el.classList.remove('border-primary', 'bg-primary/5');
+                    el.classList.add('border-outline-variant');
+                });
+                // Highlight parent of checked
+                if(e.target.checked) {
+                    const parent = e.target.closest('label');
+                    if (parent) {
+                        parent.classList.add('border-primary', 'bg-primary/5');
+                        parent.classList.remove('border-outline-variant');
+                    }
+                }
+            });
+        });
+
+        // Initialize active state on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const activeRadio = document.querySelector('input[name="payment"]:checked');
+            if(activeRadio) {
+                const parent = activeRadio.closest('label');
+                if (parent) {
+                    parent.classList.add('border-primary', 'bg-primary/5');
+                    parent.classList.remove('border-outline-variant');
+                }
+            }
+        });
+
+        // Active Coupon Engine
+        const couponInput = document.getElementById('coupon-input');
+        const applyBtn = document.getElementById('btn-apply-coupon');
+        const couponMsg = document.getElementById('coupon-message');
+        const totalDisplay = document.getElementById('total-amount-display');
+        const payBtn = document.querySelector('button:has(span:contains("lock_open"))') || document.querySelector('section button');
+        const breakdownDiv = document.querySelector('div.space-y-3.py-stack-md');
+
+        let isCouponApplied = false;
+
+        if (applyBtn && couponInput) {
+            applyBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const code = couponInput.value.trim().toUpperCase();
+                
+                if (isCouponApplied) {
+                    couponMsg.className = "text-[11px] font-semibold mt-1 text-red-500";
+                    couponMsg.textContent = "A coupon is already applied to this order.";
+                    couponMsg.classList.remove('hidden');
+                    return;
+                }
+
+                if (code === 'ATOMIC50') {
+                    isCouponApplied = true;
+                    couponMsg.className = "text-[11px] font-semibold mt-1 text-green-600 animate-pulse";
+                    couponMsg.textContent = "Coupon ATOMIC50 applied successfully! 50% discount has been applied.";
+                    couponMsg.classList.remove('hidden');
+
+                    // Add row to price breakdown
+                    if (breakdownDiv) {
+                        const couponRow = document.createElement('div');
+                        couponRow.className = "flex justify-between text-body-md text-green-600 font-semibold";
+                        couponRow.innerHTML = `
+                            <span>Promo: ATOMIC50</span>
+                            <span>- ₹12,500</span>
+                        `;
+                        breakdownDiv.appendChild(couponRow);
+                    }
+
+                    // Update total price display
+                    if (totalDisplay) {
+                        totalDisplay.textContent = '₹12,499';
+                    }
+
+                    // Update Pay button text
+                    if (payBtn) {
+                        payBtn.innerHTML = `<span class="material-symbols-outlined">lock_open</span> Pay ₹12,499 Now`;
+                    }
+                } else if (code === '') {
+                    couponMsg.className = "text-[11px] font-semibold mt-1 text-red-500";
+                    couponMsg.textContent = "Please enter a coupon code.";
+                    couponMsg.classList.remove('hidden');
+                } else {
+                    couponMsg.className = "text-[11px] font-semibold mt-1 text-red-500";
+                    couponMsg.textContent = "Invalid coupon code. Try code: ATOMIC50";
+                    couponMsg.classList.remove('hidden');
+                }
+            });
+        }
+    </script>
+
+  <!-- Ecosystem Switched Widget Overlay -->
+  <script src="../ecosystem-hud.js"></script>
+</body></html>

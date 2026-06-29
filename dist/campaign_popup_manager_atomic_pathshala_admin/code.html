@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Campaign Hub | Atomic Pathshala</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .active-ring {
+            box-shadow: 0 0 0 2px white, 0 0 0 4px #0066ff;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c2c6d8;
+            border-radius: 10px;
+        }
+    </style>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#00ccf9",
+                        "surface-container": "#eaedff",
+                        "inverse-on-surface": "#eef0ff",
+                        "tertiary": "#006643",
+                        "primary-container": "#0066ff",
+                        "tertiary-fixed-dim": "#49df9f",
+                        "primary-fixed": "#dae1ff",
+                        "on-tertiary-fixed": "#002113",
+                        "on-tertiary-container": "#e1ffeb",
+                        "secondary-fixed": "#b7eaff",
+                        "outline-variant": "#c2c6d8",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#e2e7ff",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#dae2fd",
+                        "on-primary-fixed": "#001849",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-light": "#F8FAFC",
+                        "inverse-primary": "#b3c5ff",
+                        "on-tertiary-fixed-variant": "#005235",
+                        "on-primary-container": "#f8f7ff",
+                        "on-secondary-container": "#005266",
+                        "on-secondary-fixed": "#001f28",
+                        "text-light": "#0F172A",
+                        "on-primary-fixed-variant": "#003fa4",
+                        "tertiary-container": "#008256",
+                        "outline": "#727687",
+                        "surface-container-highest": "#dae2fd",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f2f3ff",
+                        "surface-tint": "#0054d6",
+                        "text-dark": "#F1F5F9",
+                        "on-surface": "#131b2e",
+                        "surface-dark": "#161B22",
+                        "on-surface-variant": "#424656",
+                        "tertiary-fixed": "#6afcb9",
+                        "on-background": "#131b2e",
+                        "bg-light": "#FFFFFF",
+                        "secondary-fixed-dim": "#4cd6ff",
+                        "surface": "#faf8ff",
+                        "surface-bright": "#faf8ff",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "primary": "#0050cb",
+                        "bg-dark": "#0B0E14",
+                        "surface-dim": "#d2d9f4",
+                        "border-subtle": "rgba(0, 102, 255, 0.1)",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed-variant": "#004e60",
+                        "inverse-surface": "#283044",
+                        "background": "#faf8ff",
+                        "secondary": "#00677f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "container-max": "1280px",
+                        "stack-sm": "8px",
+                        "stack-lg": "32px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display-lg": ["Geist"],
+                        "headline-lg": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+<!-- Background Decoration -->
+<div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+<div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 blur-[120px] rounded-full"></div>
+<div class="absolute bottom-[-5%] right-[-5%] w-[30%] h-[30%] bg-secondary/5 blur-[100px] rounded-full"></div>
+</div>
+<!-- Navigation Shell (Desktop Sidebar) -->
+<aside class="h-screen w-64 fixed left-0 top-0 z-40 bg-surface-container-low border-r border-outline-variant/20 shadow-lg flex flex-col p-stack-md space-y-stack-sm hidden md:flex">
+<div class="mb-stack-lg px-2">
+<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tight">Campaign Hub</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-70">EdTech Accelerator</p>
+</div>
+<nav class="flex-1 space-y-1">
+<button class="w-full flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-transform duration-200 hover:translate-x-1 rounded-lg font-label-md">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </button>
+<button class="w-full flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container rounded-lg font-bold transition-transform duration-200 active:scale-98">
+<span class="material-symbols-outlined">auto_awesome</span>
+                Popup Composer
+            </button>
+<button class="w-full flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-transform duration-200 hover:translate-x-1 rounded-lg font-label-md">
+<span class="material-symbols-outlined">groups</span>
+                User Segments
+            </button>
+<button class="w-full flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-transform duration-200 hover:translate-x-1 rounded-lg font-label-md">
+<span class="material-symbols-outlined">admin_panel_settings</span>
+                Role Manager
+            </button>
+<button class="w-full flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-transform duration-200 hover:translate-x-1 rounded-lg font-label-md">
+<span class="material-symbols-outlined">history</span>
+                History
+            </button>
+</nav>
+<div class="pt-stack-md border-t border-outline-variant/10 space-y-1">
+<button class="w-full flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-transform duration-200 hover:translate-x-1 rounded-lg font-label-sm">
+<span class="material-symbols-outlined">help</span>
+                Support
+            </button>
+<button class="w-full flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-transform duration-200 hover:translate-x-1 rounded-lg font-label-sm">
+<span class="material-symbols-outlined">dark_mode</span>
+                Dark Mode
+            </button>
+</div>
+</aside>
+<!-- Top Navigation (Mobile & Global Actions) -->
+<header class="bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm fixed top-0 sticky z-50 w-full">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<img alt="Atomic Pathshala" class="h-10 md:h-12 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgbIIk5g2TctBqm_cLmsjoY0wRJO5o4WXkCzB8hHwnwttnLoZG3xEBMFvsLB49fS9Gh-Xvm-1KxiMVwO3N5oUAuefqjl6zBmzi0LlFQVkU9eyTpMF1im5pD8sJStd2JaLpD1Lnjha_DjgOyCZrSKurEMLrbCPBH-tY-WWL--elIj6CxkLq5PzHk1NB9GgDHSlpxi5tsYyw5X6mIBi64ZLIxrdc21fDgBY9ETGdO6kpoFE99SyNIfe_t6FSWQeGsg1_JY7y0-s5b9c"/>
+</div>
+<div class="hidden md:flex items-center gap-stack-lg">
+<nav class="flex gap-stack-md">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all duration-200" href="#">Campaigns</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all duration-200" href="#">Analytics</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all duration-200" href="#">Targeting</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all duration-200" href="#">Assets</a>
+</nav>
+<div class="h-6 w-px bg-outline-variant/30"></div>
+<div class="flex items-center gap-3">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high/50 rounded-full transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high/50 rounded-full transition-all">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center overflow-hidden border border-primary/20">
+<img class="w-full h-full object-cover" data-alt="Professional corporate headshot of a male administrator in a light blue shirt, clean studio background, sharp focus, friendly expression, premium lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_tyqXpNoYPM0-B2mf-pc1CEPZYs1nSykYphZzcXwNElQrZws9OB7JNItv00dshL2MmDhA8Uiu9rGdKAdkZ8n4CsulKRi6AfGhFpZdaZ__o3f4zl0ch9LsyVwzqXVIcV9DxtYg0p0obwxst1ybng6kXbTaM3XNMxNyGw-PJroilaUhWa3GRZYNrOoZTbLk1uKL9dNZVOkv1QJWpFQ8TMQ8PNgaFT1GnoSa0J4ZCRCtl8LwBvioKw3-iogAjLuuo2shNvI4kb2Mtd8"/>
+</div>
+</div>
+</div>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden p-2">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="md:pl-64 min-h-screen pt-stack-lg">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
+<header class="mb-stack-lg flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-display-lg text-display-lg font-bold text-primary tracking-tight">Campaign Composer</h2>
+<p class="text-on-surface-variant font-body-lg">Design and deploy high-impact popup notifications for the Atomic Pathshala ecosystem.</p>
+</div>
+<div class="flex gap-stack-sm">
+<button class="px-6 py-2.5 rounded-xl border border-outline-variant font-label-md hover:bg-surface-container-high transition-all">Save Draft</button>
+<button class="px-6 py-2.5 rounded-xl bg-primary text-white font-label-md shadow-md hover:shadow-lg active:scale-95 transition-all">Publish Live</button>
+</div>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Editor Section -->
+<div class="lg:col-span-7 space-y-8">
+<!-- 1. Popup Notification Composer -->
+<section class="glass-panel rounded-xl p-stack-lg shadow-sm">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">edit_note</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">1. Content &amp; Style</h3>
+</div>
+<div class="space-y-6">
+<div>
+<label class="block font-label-md text-on-surface-variant mb-3">Notification Type</label>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+<button class="flex flex-col items-center justify-center p-3 rounded-lg border-2 border-primary bg-primary/5 text-primary">
+<span class="material-symbols-outlined mb-1">warning</span>
+<span class="text-[11px] font-bold uppercase tracking-wider">Urgent Alert</span>
+</button>
+<button class="flex flex-col items-center justify-center p-3 rounded-lg border border-outline-variant text-on-surface-variant hover:bg-surface-container-high">
+<span class="material-symbols-outlined mb-1">loyalty</span>
+<span class="text-[11px] font-bold uppercase tracking-wider">Marketing</span>
+</button>
+<button class="flex flex-col items-center justify-center p-3 rounded-lg border border-outline-variant text-on-surface-variant hover:bg-surface-container-high">
+<span class="material-symbols-outlined mb-1">event_available</span>
+<span class="text-[11px] font-bold uppercase tracking-wider">Class Remind</span>
+</button>
+<button class="flex flex-col items-center justify-center p-3 rounded-lg border border-outline-variant text-on-surface-variant hover:bg-surface-container-high">
+<span class="material-symbols-outlined mb-1">quiz</span>
+<span class="text-[11px] font-bold uppercase tracking-wider">Doubt Res</span>
+</button>
+</div>
+</div>
+<div class="space-y-4">
+<div>
+<label class="block font-label-md text-on-surface-variant mb-1.5">Headline</label>
+<input class="w-full bg-surface-container-lowest border-outline-variant/30 rounded-lg px-4 py-2.5 focus:ring-primary focus:border-primary font-body-md text-on-surface" id="popup-headline" type="text" value="Target NEET 2025: Batch Starting Soon!"/>
+</div>
+<div>
+<label class="block font-label-md text-on-surface-variant mb-1.5">Message Body</label>
+<textarea class="w-full bg-surface-container-lowest border-outline-variant/30 rounded-lg px-4 py-2.5 focus:ring-primary focus:border-primary font-body-md text-on-surface" id="popup-body" rows="3">Don't miss out on the last few seats for our signature NEET Accelerator program. Enroll today and get 20% off!</textarea>
+</div>
+</div>
+<div class="grid md:grid-cols-2 gap-4">
+<div>
+<label class="block font-label-md text-on-surface-variant mb-1.5">Button Text</label>
+<input class="w-full bg-surface-container-lowest border-outline-variant/30 rounded-lg px-4 py-2.5 focus:ring-primary focus:border-primary font-label-md" id="cta-text" type="text" value="Enroll Now"/>
+</div>
+<div>
+<label class="block font-label-md text-on-surface-variant mb-1.5">Destination URL</label>
+<input class="w-full bg-surface-container-lowest border-outline-variant/30 rounded-lg px-4 py-2.5 focus:ring-primary focus:border-primary font-label-sm text-on-surface-variant" type="text" value="https://atomicpathshala.com/neet-2025"/>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-on-surface-variant mb-3">Media / Icon Asset</label>
+<div class="border-2 border-dashed border-outline-variant/50 rounded-xl p-8 flex flex-col items-center justify-center text-center bg-surface-container-lowest hover:border-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-4xl text-primary/50 mb-2">upload_file</span>
+<p class="font-label-md text-on-surface">Click to upload or drag and drop</p>
+<p class="text-label-sm text-on-surface-variant mt-1">SVG, PNG, or JPG (max. 800x400px)</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. Targeting & Segmentation -->
+<section class="glass-panel rounded-xl p-stack-lg shadow-sm">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">group_add</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">2. Audience &amp; Delivery</h3>
+</div>
+<div class="grid md:grid-cols-2 gap-stack-lg">
+<div>
+<label class="block font-label-md text-on-surface-variant mb-3">User Segment</label>
+<select class="w-full bg-surface-container-lowest border-outline-variant/30 rounded-lg px-4 py-2.5 focus:ring-primary focus:border-primary font-label-md">
+<option>NEET 2025 Aspirants</option>
+<option>JEE 2025 Aspirants</option>
+<option>Free Tier Users</option>
+<option>Paid/Premium Users</option>
+<option>All Students</option>
+</select>
+<div class="mt-3 p-3 bg-secondary-fixed/30 rounded-lg flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">info</span>
+<span class="text-label-sm text-on-secondary-fixed">Targeting approx. 12,450 active users.</span>
+</div>
+</div>
+<div class="space-y-4">
+<label class="block font-label-md text-on-surface-variant">Platform Delivery</label>
+<div class="space-y-2">
+<label class="flex items-center gap-3 p-3 rounded-lg border border-outline-variant/30 bg-surface-container-lowest cursor-pointer hover:bg-surface-variant/20 transition-colors">
+<input checked="" class="rounded text-primary focus:ring-primary h-5 w-5 border-outline-variant/50" type="checkbox"/>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">smartphone</span>
+<span class="font-label-md">Mobile App Popup</span>
+</div>
+</label>
+<label class="flex items-center gap-3 p-3 rounded-lg border border-outline-variant/30 bg-surface-container-lowest cursor-pointer hover:bg-surface-variant/20 transition-colors">
+<input checked="" class="rounded text-primary focus:ring-primary h-5 w-5 border-outline-variant/50" type="checkbox"/>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">web</span>
+<span class="font-label-md">Website Toast/Banner</span>
+</div>
+</label>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-outline-variant/20">
+<label class="block font-label-md text-on-surface-variant mb-4">Campaign Schedule</label>
+<div class="flex flex-wrap gap-4">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input checked="" class="text-primary focus:ring-primary" name="schedule" type="radio"/>
+<span class="font-label-md group-hover:text-primary">Broadcast Now</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="text-primary focus:ring-primary" name="schedule" type="radio"/>
+<span class="font-label-md group-hover:text-primary">Schedule for Later</span>
+</label>
+<div class="ml-auto flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span class="text-label-sm">Estimated delivery: 2.5 seconds</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Preview Panel Section -->
+<aside class="lg:col-span-5 space-y-6 sticky top-24">
+<div class="glass-panel rounded-xl p-stack-lg shadow-lg border-primary/20">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">visibility</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Live Preview</h3>
+</div>
+<div class="flex bg-surface-container-high rounded-full p-1">
+<button class="p-2 rounded-full bg-white shadow-sm text-primary">
+<span class="material-symbols-outlined text-sm">smartphone</span>
+</button>
+<button class="p-2 rounded-full text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined text-sm">laptop</span>
+</button>
+</div>
+</div>
+<!-- Mobile Mockup Container -->
+<div class="relative mx-auto w-full max-w-[280px] aspect-[9/19] bg-slate-900 rounded-[3rem] border-[8px] border-slate-800 shadow-2xl overflow-hidden">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-slate-800 rounded-b-2xl z-20"></div>
+<!-- Mobile Screen Content -->
+<div class="relative w-full h-full bg-slate-100 p-4">
+<div class="flex justify-between items-center mb-6 pt-4">
+<div class="w-12 h-2 bg-slate-300 rounded-full"></div>
+<div class="w-4 h-4 rounded-full bg-slate-300"></div>
+</div>
+<div class="space-y-3">
+<div class="w-full h-24 bg-slate-200 rounded-xl"></div>
+<div class="w-3/4 h-3 bg-slate-200 rounded-full"></div>
+<div class="w-full h-3 bg-slate-200 rounded-full"></div>
+<div class="w-1/2 h-3 bg-slate-200 rounded-full"></div>
+</div>
+<!-- Actual Glassmorphic Popup Preview -->
+<div class="absolute inset-x-3 bottom-6 z-10 glass-card rounded-2xl p-4 shadow-xl border-white/50 animate-bounce-subtle">
+<div class="flex justify-end mb-1">
+<span class="material-symbols-outlined text-sm text-on-surface-variant opacity-50">close</span>
+</div>
+<div class="w-12 h-12 rounded-lg bg-primary-container/20 flex items-center justify-center text-primary mb-3">
+<span class="material-symbols-outlined">school</span>
+</div>
+<h4 class="font-bold text-sm leading-tight mb-2 text-on-surface" id="preview-headline">Target NEET 2025: Batch Starting Soon!</h4>
+<p class="text-[11px] text-on-surface-variant leading-relaxed mb-4" id="preview-body">Don't miss out on the last few seats for our signature NEET Accelerator program.</p>
+<button class="w-full py-2 bg-primary text-white text-[11px] font-bold rounded-lg shadow-sm" id="preview-cta">Enroll Now</button>
+</div>
+</div>
+</div>
+<!-- Desktop Mini-Preview -->
+<div class="mt-8 pt-8 border-t border-outline-variant/10">
+<p class="font-label-sm text-on-surface-variant mb-4 uppercase tracking-widest text-center">Web Context Preview</p>
+<div class="w-full aspect-video bg-white rounded-lg border border-outline-variant/20 shadow-sm relative overflow-hidden">
+<div class="h-4 bg-surface-container-high flex items-center px-2 gap-1">
+<div class="w-1.5 h-1.5 rounded-full bg-red-400"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-yellow-400"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-green-400"></div>
+</div>
+<div class="absolute top-4 right-4 w-48 glass-card rounded-xl p-3 shadow-lg border-white/60">
+<div class="flex items-center gap-2 mb-2">
+<div class="w-6 h-6 rounded bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">info</span>
+</div>
+<div class="text-[10px] font-bold">New Notification</div>
+</div>
+<p class="text-[9px] text-on-surface-variant leading-tight line-clamp-2">Target NEET 2025: Batch Starting Soon! Join the elite group of future doctors.</p>
+</div>
+<div class="p-4 space-y-2">
+<div class="w-1/3 h-3 bg-surface-container-low rounded"></div>
+<div class="w-full h-20 bg-surface-container-lowest border border-outline-variant/10 rounded"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Stats Card -->
+<div class="bg-primary p-6 rounded-xl text-white flex justify-between items-center">
+<div>
+<div class="text-white/70 text-label-sm font-medium">ESTIMATED REACH</div>
+<div class="text-3xl font-bold font-display-lg">12,450</div>
+</div>
+<div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl">trending_up</span>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-inverse-surface dark:bg-bg-dark border-t border-outline-variant/10 w-full py-stack-lg mt-stack-lg md:ml-64">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop max-w-container-max mx-auto gap-4">
+<div class="flex flex-col items-center md:items-start">
+<span class="font-label-md text-label-md font-black text-white">ATOMIC PATHSHALA</span>
+<p class="font-label-sm text-label-sm text-outline-variant mt-1">© 2024 Atomic Pathshala. Premium EdTech Excellence.</p>
+</div>
+<div class="flex gap-stack-md">
+<a class="font-label-sm text-label-sm text-outline-variant hover:text-white underline underline-offset-4 transition-all" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-outline-variant hover:text-white underline underline-offset-4 transition-all" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-outline-variant hover:text-white underline underline-offset-4 transition-all" href="#">API Docs</a>
+<a class="font-label-sm text-label-sm text-outline-variant hover:text-white underline underline-offset-4 transition-all" href="#">Status</a>
+</div>
+</div>
+</footer>
+<script>
+        // Real-time Preview Synchronizer
+        const headlineInput = document.getElementById('popup-headline');
+        const bodyInput = document.getElementById('popup-body');
+        const ctaInput = document.getElementById('cta-text');
+        
+        const previewHeadline = document.getElementById('preview-headline');
+        const previewBody = document.getElementById('preview-body');
+        const previewCTA = document.getElementById('preview-cta');
+
+        headlineInput.addEventListener('input', (e) => {
+            previewHeadline.textContent = e.target.value || 'Title Here';
+        });
+
+        bodyInput.addEventListener('input', (e) => {
+            previewBody.textContent = e.target.value || 'Message content will appear here...';
+        });
+
+        ctaInput.addEventListener('input', (e) => {
+            previewCTA.textContent = e.target.value || 'Call to Action';
+        });
+
+        // Add some atmospheric micro-interactions
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.classList.add('scale-95');
+                setTimeout(() => this.classList.remove('scale-95'), 150);
+            });
+        });
+    </script>
+</body></html>

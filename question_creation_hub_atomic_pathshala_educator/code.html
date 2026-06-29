@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Question Creator | Atomic Pathshala</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#0066ff",
+                        "on-secondary-fixed": "#001f28",
+                        "on-secondary-container": "#005266",
+                        "inverse-surface": "#283044",
+                        "border-subtle": "rgba(0, 102, 255, 0.1)",
+                        "secondary-fixed": "#b7eaff",
+                        "surface-container": "#eaedff",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#4cd6ff",
+                        "outline-variant": "#c2c6d8",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#49df9f",
+                        "surface-container-low": "#f2f3ff",
+                        "tertiary-fixed": "#6afcb9",
+                        "surface-dark": "#161B22",
+                        "surface-container-high": "#e2e7ff",
+                        "surface-dim": "#d2d9f4",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "primary-fixed": "#dae1ff",
+                        "on-primary-container": "#f8f7ff",
+                        "on-background": "#131b2e",
+                        "bg-dark": "#0B0E14",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#00ccf9",
+                        "on-primary-fixed": "#001849",
+                        "on-tertiary-fixed-variant": "#005235",
+                        "tertiary": "#006643",
+                        "on-tertiary-container": "#e1ffeb",
+                        "on-secondary-fixed-variant": "#004e60",
+                        "surface-bright": "#faf8ff",
+                        "on-surface-variant": "#424656",
+                        "background": "#faf8ff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#003fa4",
+                        "surface-variant": "#dae2fd",
+                        "bg-light": "#FFFFFF",
+                        "text-light": "#0F172A",
+                        "primary": "#0050cb",
+                        "text-dark": "#F1F5F9",
+                        "on-tertiary-fixed": "#002113",
+                        "surface-tint": "#0054d6",
+                        "inverse-on-surface": "#eef0ff",
+                        "surface": "#faf8ff",
+                        "secondary": "#00677f",
+                        "tertiary-container": "#008256",
+                        "outline": "#727687",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#b3c5ff",
+                        "surface-light": "#F8FAFC",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#dae2fd",
+                        "on-surface": "#131b2e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-lg": "32px",
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "stack-md": "16px",
+                        "stack-sm": "8px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "label-md": ["Inter"],
+                        "display-lg-mobile": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        .active-nav {
+            background: rgba(0, 102, 255, 0.1);
+            color: #0050cb;
+            font-weight: 700;
+            border-right: 4px solid #0050cb;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- Sidebar Navigation (SideNavBar Anchor) -->
+<aside class="h-screen w-64 fixed left-0 top-0 z-40 bg-surface-container-low/90 backdrop-blur-xl border-r border-border-subtle shadow-lg flex flex-col">
+<div class="p-gutter flex items-center gap-stack-md">
+<img alt="Atomic Pathshala Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnnGgio48Zuhi1ItNLh3quXKjfHmpmVatj4VZk731CPuuQQquTWRLEIyf2NhMf25KfizjpNrZYJ8G7Fc_uOsjX0BWCzj_A5CWlfIZ24PlYvOUZ2rIQYNWYwHG9D0HfmQ66IOVwVBVHG-Ko99Zh26dI6P8j9GdfqGLpamTxkT03RFPO6TqOkFyxERm7GVYUmsw6EtChN-iYaOFUS2lMn423gRrRSSgJ5p4569ib5gEtGKP7uSRx0VBfJBVWP8nb8v_3jN8oY6BNCHQ"/>
+</div>
+<nav class="flex-1 px-4 mt-stack-lg space-y-2">
+<a class="flex items-center gap-stack-md px-gutter py-stack-md text-on-surface-variant hover:bg-surface-variant/30 rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-stack-md px-gutter py-stack-md bg-primary-container/20 text-primary font-bold border-r-4 border-primary rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="database">database</span>
+<span class="font-label-md text-label-md">Question Bank</span>
+</a>
+<a class="flex items-center gap-stack-md px-gutter py-stack-md text-on-surface-variant hover:bg-surface-variant/30 rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="live_help">live_help</span>
+<span class="font-label-md text-label-md">Doubt Desk</span>
+</a>
+<a class="flex items-center gap-stack-md px-gutter py-stack-md text-on-surface-variant hover:bg-surface-variant/30 rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-label-md text-label-md">Batches</span>
+</a>
+<a class="flex items-center gap-stack-md px-gutter py-stack-md text-on-surface-variant hover:bg-surface-variant/30 rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-stack-md px-gutter py-stack-md text-on-surface-variant hover:bg-surface-variant/30 rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+<span class="font-label-md text-label-md">User Management</span>
+</a>
+</nav>
+<div class="p-4 border-t border-border-subtle">
+<a class="flex items-center gap-stack-md px-gutter py-stack-md text-on-surface-variant hover:bg-surface-variant/30 rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="support">support</span>
+<span class="font-label-md text-label-md">Help Center</span>
+</a>
+<a class="flex items-center gap-stack-md px-gutter py-stack-md text-on-surface-variant hover:bg-surface-variant/30 rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen">
+<!-- TopAppBar Anchor -->
+<header class="sticky top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-border-subtle shadow-sm flex justify-between items-center px-gutter py-stack-md">
+<div class="flex items-center gap-stack-md">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Create Question</h1>
+<span class="text-outline-variant">/</span>
+<span class="font-label-md text-label-md text-on-surface-variant">JEE Physics 2024</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 px-3 py-1 bg-surface-container-high rounded-full border border-border-subtle">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-tertiary">Autosaved at 14:02</span>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="material-symbols-outlined p-2 text-on-surface-variant hover:text-primary transition-colors cursor-pointer" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined p-2 text-on-surface-variant hover:text-primary transition-colors cursor-pointer" data-icon="help">help</button>
+<button class="material-symbols-outlined p-2 text-on-surface-variant hover:text-primary transition-colors cursor-pointer" data-icon="settings">settings</button>
+<div class="w-10 h-10 rounded-full bg-primary-fixed overflow-hidden border-2 border-primary-container">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of an Indian male educator in his late 30s wearing a smart navy blazer and a light blue shirt. He has a warm, confident smile and is standing in a brightly lit, modern academic office with a bookshelf in the background. High-quality corporate photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_7q7Edg3KRTBjDZaGPdMTjtCut4Pjf6QvashzGRusOJ9eCNWk0XnwAgRgf-2LzxKv0pz2oqCB2tb0j3qahGa5WktT4snvZvImXlGEjXS1DELuD-DsBdM98hL_53yiU_DaGGmADKL5drKnmvXZCymGxe4JTE1Df5rGOhcMqj7gztPOs1lY9yRcTeo1OoxbAzolqBuTUyentFrONKCXPzImq7lH_tSLUrODcoMDbbW7toWl4tC3Nz1IYxV0BAkYL_rq3hNa9Spf4pk"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Editor Content -->
+<div class="flex h-[calc(100vh-72px)] overflow-hidden">
+<!-- Form Area (Left) -->
+<div class="flex-1 overflow-y-auto p-stack-lg custom-scrollbar">
+<div class="max-w-4xl mx-auto space-y-stack-lg">
+<!-- Question Input Card -->
+<div class="glass p-stack-lg rounded-xl space-y-stack-md">
+<div class="flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-primary">Question Body</h3>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-low text-on-surface-variant text-label-md font-label-md hover:bg-surface-variant transition-all flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]" data-icon="functions">functions</span>
+                                    Math Mode
+                                </button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-low text-on-surface-variant text-label-md font-label-md hover:bg-surface-variant transition-all flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]" data-icon="image">image</span>
+                                    Add Media
+                                </button>
+</div>
+</div>
+<div class="relative group">
+<textarea class="w-full h-64 p-stack-md bg-surface-container-lowest border border-border-subtle rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-body-md placeholder:text-outline-variant" placeholder="Enter your question text here. Use $$...$$ for LaTeX equations (e.g. $$\int_a^b f(x) dx$$)"></textarea>
+<div class="absolute bottom-4 right-4 flex gap-2 opacity-0 group-focus-within:opacity-100 transition-opacity">
+<span class="bg-surface-container-high px-2 py-1 rounded text-label-sm font-mono text-on-surface-variant">Char: 142</span>
+</div>
+</div>
+</div>
+<!-- Options Grid -->
+<div class="space-y-stack-md">
+<h3 class="font-headline-md text-headline-md text-primary">Response Options</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<!-- Option A -->
+<div class="glass p-stack-md rounded-xl border-l-4 border-primary transition-all hover:shadow-md group">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-md text-label-md text-primary bg-primary-container/10 px-2 py-0.5 rounded">Option A</span>
+<input class="w-5 h-5 text-primary focus:ring-primary border-outline-variant cursor-pointer" name="correct_answer" type="radio"/>
+</div>
+<input class="w-full bg-transparent border-none focus:ring-0 p-0 text-body-md placeholder:text-outline-variant" placeholder="Enter option text..." type="text"/>
+</div>
+<!-- Option B -->
+<div class="glass p-stack-md rounded-xl border-l-4 border-outline-variant transition-all hover:shadow-md group">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-md text-label-md text-on-surface-variant bg-surface-variant/30 px-2 py-0.5 rounded">Option B</span>
+<input class="w-5 h-5 text-primary focus:ring-primary border-outline-variant cursor-pointer" name="correct_answer" type="radio"/>
+</div>
+<input class="w-full bg-transparent border-none focus:ring-0 p-0 text-body-md placeholder:text-outline-variant" placeholder="Enter option text..." type="text"/>
+</div>
+<!-- Option C -->
+<div class="glass p-stack-md rounded-xl border-l-4 border-outline-variant transition-all hover:shadow-md group">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-md text-label-md text-on-surface-variant bg-surface-variant/30 px-2 py-0.5 rounded">Option C</span>
+<input class="w-5 h-5 text-primary focus:ring-primary border-outline-variant cursor-pointer" name="correct_answer" type="radio"/>
+</div>
+<input class="w-full bg-transparent border-none focus:ring-0 p-0 text-body-md placeholder:text-outline-variant" placeholder="Enter option text..." type="text"/>
+</div>
+<!-- Option D -->
+<div class="glass p-stack-md rounded-xl border-l-4 border-outline-variant transition-all hover:shadow-md group">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-md text-label-md text-on-surface-variant bg-surface-variant/30 px-2 py-0.5 rounded">Option D</span>
+<input class="w-5 h-5 text-primary focus:ring-primary border-outline-variant cursor-pointer" name="correct_answer" type="radio"/>
+</div>
+<input class="w-full bg-transparent border-none focus:ring-0 p-0 text-body-md placeholder:text-outline-variant" placeholder="Enter option text..." type="text"/>
+</div>
+</div>
+<button class="w-full py-4 border-2 border-dashed border-border-subtle rounded-xl text-on-surface-variant font-label-md flex items-center justify-center gap-2 hover:border-primary hover:text-primary transition-all">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                            Add Another Option
+                        </button>
+</div>
+<!-- Solution/Hint Section -->
+<div class="glass p-stack-lg rounded-xl space-y-stack-md">
+<h3 class="font-headline-md text-headline-md text-primary">Detailed Explanation</h3>
+<textarea class="w-full h-40 p-stack-md bg-surface-container-lowest border border-border-subtle rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-body-md placeholder:text-outline-variant" placeholder="Provide a step-by-step solution for the student..."></textarea>
+</div>
+</div>
+</div>
+<!-- Metadata Sidebar (Right) -->
+<aside class="w-80 bg-surface-container-low border-l border-border-subtle overflow-y-auto custom-scrollbar flex flex-col">
+<div class="p-gutter space-y-stack-lg flex-1">
+<!-- Scoring Info -->
+<div class="space-y-stack-md">
+<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]" data-icon="grade">grade</span>
+                            Scoring Configuration
+                        </label>
+<div class="grid grid-cols-2 gap-stack-md">
+<div>
+<p class="text-label-sm font-label-sm text-outline mb-1">Correct</p>
+<input class="w-full bg-surface-container-lowest border border-border-subtle rounded-lg p-2 text-center focus:ring-primary" type="number" value="4"/>
+</div>
+<div>
+<p class="text-label-sm font-label-sm text-outline mb-1">Incorrect</p>
+<input class="w-full bg-surface-container-lowest border border-border-subtle rounded-lg p-2 text-center focus:ring-primary" type="number" value="-1"/>
+</div>
+</div>
+</div>
+<!-- Classification -->
+<div class="space-y-stack-md">
+<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]" data-icon="category">category</span>
+                            Classification
+                        </label>
+<div class="space-y-3">
+<div>
+<p class="text-label-sm font-label-sm text-outline mb-1">Subject</p>
+<select class="w-full bg-surface-container-lowest border border-border-subtle rounded-lg p-2 focus:ring-primary">
+<option>Physics</option>
+<option>Chemistry</option>
+<option>Mathematics</option>
+<option>Biology</option>
+</select>
+</div>
+<div>
+<p class="text-label-sm font-label-sm text-outline mb-1">Chapter</p>
+<select class="w-full bg-surface-container-lowest border border-border-subtle rounded-lg p-2 focus:ring-primary">
+<option>Electrostatics</option>
+<option>Current Electricity</option>
+<option>Magnetism</option>
+<option>Optics</option>
+</select>
+</div>
+<div>
+<p class="text-label-sm font-label-sm text-outline mb-1">Topic</p>
+<input class="w-full bg-surface-container-lowest border border-border-subtle rounded-lg p-2 focus:ring-primary" placeholder="e.g. Gauss's Law" type="text"/>
+</div>
+</div>
+</div>
+<!-- Type & Difficulty -->
+<div class="space-y-stack-md">
+<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]" data-icon="psychology">psychology</span>
+                            Attributes
+                        </label>
+<div class="space-y-3">
+<div>
+<p class="text-label-sm font-label-sm text-outline mb-1">Question Type</p>
+<div class="grid grid-cols-2 gap-1 bg-surface-container-high p-1 rounded-lg">
+<button class="bg-surface-container-lowest shadow-sm rounded-md py-1.5 text-label-sm font-label-md text-primary">MCQ</button>
+<button class="text-on-surface-variant py-1.5 text-label-sm font-label-md hover:bg-surface-container-lowest/50 rounded-md transition-all">Integer</button>
+</div>
+</div>
+<div>
+<p class="text-label-sm font-label-sm text-outline mb-1">Difficulty Level</p>
+<div class="flex flex-wrap gap-2">
+<button class="px-3 py-1 rounded-full border border-border-subtle bg-surface-container-lowest text-label-sm hover:border-tertiary hover:text-tertiary transition-all">Easy</button>
+<button class="px-3 py-1 rounded-full border border-primary bg-primary/5 text-primary text-label-sm font-bold">Medium</button>
+<button class="px-3 py-1 rounded-full border border-border-subtle bg-surface-container-lowest text-label-sm hover:border-error hover:text-error transition-all">Hard</button>
+<button class="px-3 py-1 rounded-full border border-border-subtle bg-surface-container-lowest text-label-sm hover:border-secondary hover:text-secondary transition-all">Advanced</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Tags -->
+<div class="space-y-stack-sm">
+<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]" data-icon="sell">sell</span>
+                            Keywords
+                        </label>
+<div class="flex flex-wrap gap-1">
+<span class="bg-surface-container-high px-2 py-1 rounded text-label-sm flex items-center gap-1">#JEE2024 <span class="material-symbols-outlined text-[14px] cursor-pointer" data-icon="close">close</span></span>
+<span class="bg-surface-container-high px-2 py-1 rounded text-label-sm flex items-center gap-1">#Physics <span class="material-symbols-outlined text-[14px] cursor-pointer" data-icon="close">close</span></span>
+<button class="text-primary text-label-sm font-label-md hover:underline">+ Add Tag</button>
+</div>
+</div>
+</div>
+<!-- Footer CTAs -->
+<div class="p-gutter border-t border-border-subtle bg-surface space-y-3">
+<button class="w-full py-3 rounded-xl bg-surface-container-highest text-primary font-label-md flex items-center justify-center gap-2 hover:bg-primary-container/20 transition-all">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+                        Live Preview
+                    </button>
+<div class="flex gap-2">
+<button class="flex-1 py-3 rounded-xl border border-primary text-primary font-label-md hover:bg-primary/5 transition-all">
+                            Save Draft
+                        </button>
+<button class="flex-1 py-3 rounded-xl bg-primary text-on-primary font-label-md shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all">
+                            Save to Bank
+                        </button>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Micro-interaction Scripts -->
+<script>
+        // Simple UI Interaction logic
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const ripple = document.createElement('div');
+                ripple.className = 'absolute bg-white/20 rounded-full animate-ping pointer-events-none';
+                ripple.style.width = '20px';
+                ripple.style.height = '20px';
+                ripple.style.left = `${e.offsetX}px`;
+                ripple.style.top = `${e.offsetY}px`;
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Theme Toggle Mock (Always Light based on instructions)
+        console.log("Atomic Pathshala UI Loaded Successfully");
+    </script>
+
+  <!-- Ecosystem Switched Widget Overlay -->
+  <script src="../ecosystem-hud.js"></script>
+</body></html>

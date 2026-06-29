@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EduPulse Pro | Student Engagement Dashboard</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Theme Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary": "#ffffff",
+                    "surface-container-high": "#e2e7ff",
+                    "surface-variant": "#dae2fd",
+                    "on-primary-fixed": "#001849",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-light": "#F8FAFC",
+                    "on-tertiary-fixed-variant": "#005235",
+                    "inverse-primary": "#b3c5ff",
+                    "on-primary-container": "#f8f7ff",
+                    "on-secondary-container": "#005266",
+                    "secondary-container": "#00ccf9",
+                    "on-tertiary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#eef0ff",
+                    "surface-container": "#eaedff",
+                    "tertiary": "#006643",
+                    "primary-container": "#0066ff",
+                    "on-tertiary-fixed": "#002113",
+                    "on-tertiary-container": "#e1ffeb",
+                    "tertiary-fixed-dim": "#49df9f",
+                    "primary-fixed": "#dae1ff",
+                    "secondary-fixed": "#b7eaff",
+                    "outline-variant": "#c2c6d8",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed-dim": "#4cd6ff",
+                    "tertiary-fixed": "#6afcb9",
+                    "on-background": "#131b2e",
+                    "bg-light": "#FFFFFF",
+                    "surface": "#faf8ff",
+                    "primary": "#0050cb",
+                    "surface-bright": "#faf8ff",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "bg-dark": "#0B0E14",
+                    "border-subtle": "rgba(0, 102, 255, 0.1)",
+                    "surface-dim": "#d2d9f4",
+                    "on-secondary-fixed-variant": "#004e60",
+                    "on-secondary": "#ffffff",
+                    "inverse-surface": "#283044",
+                    "background": "#faf8ff",
+                    "secondary": "#00677f",
+                    "on-secondary-fixed": "#001f28",
+                    "on-primary-fixed-variant": "#003fa4",
+                    "tertiary-container": "#008256",
+                    "text-light": "#0F172A",
+                    "surface-container-highest": "#dae2fd",
+                    "outline": "#727687",
+                    "error": "#ba1a1a",
+                    "surface-container-low": "#f2f3ff",
+                    "surface-tint": "#0054d6",
+                    "text-dark": "#F1F5F9",
+                    "on-surface": "#131b2e",
+                    "surface-dark": "#161B22",
+                    "on-surface-variant": "#424656"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "16px",
+                    "stack-sm": "8px",
+                    "stack-lg": "32px",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "margin-desktop": "64px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "display-lg": ["Geist"],
+                    "label-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Geist"],
+                    "headline-lg": ["Geist"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+        }
+        .dark .glass-card {
+            background: rgba(22, 27, 34, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .scroll-hide::-webkit-scrollbar { display: none; }
+        .scroll-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .sparkline {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: dash 2s ease-in-out forwards;
+        }
+        @keyframes dash {
+            to { stroke-dashoffset: 0; }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md transition-colors duration-300">
+<!-- Admin View Toggle Badge -->
+<div class="fixed top-20 right-8 z-50 animate-pulse">
+<div class="bg-primary text-on-primary px-4 py-1.5 rounded-full shadow-lg flex items-center gap-2 border border-white/20">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">shield_person</span>
+<span class="font-label-md text-label-md tracking-wide">ADMIN VIEW</span>
+</div>
+</div>
+<!-- Background Shader -->
+
+<!-- SideNavBar -->
+<aside class="flex flex-col h-full p-stack-md bg-white/80 dark:bg-bg-dark/80 backdrop-blur-xl border-r border-border-subtle shadow-sm h-screen w-64 fixed left-0 top-0 z-50">
+<div class="flex items-center gap-3 mb-10 px-2">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed leading-tight">EduPulse Pro</h1>
+<p class="text-[10px] uppercase tracking-widest text-outline">Academic Admin</p>
+</div>
+</div>
+<nav class="flex-1 space-y-2">
+<!-- Active: Analytics -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-light dark:hover:bg-surface-dark transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-light dark:hover:bg-surface-dark transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-label-md text-label-md">Classes</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-primary dark:text-primary-fixed font-bold bg-surface-container-high dark:bg-surface-dark rounded-lg scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-light dark:hover:bg-surface-dark transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Students</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-light dark:hover:bg-surface-dark transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-border-subtle space-y-2">
+<button class="w-full bg-primary text-on-primary py-3 rounded-xl font-label-md text-label-md flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+                Create New Batch
+            </button>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-md text-label-md">Help Center</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-error hover:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="flex justify-between items-center px-gutter h-16 ml-64 bg-white/70 dark:bg-bg-dark/70 backdrop-blur-md border-b border-border-subtle sticky top-0 z-40">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 bg-surface-container-low dark:bg-surface-dark px-4 py-1.5 rounded-full">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-md font-label-md w-64 text-on-surface" placeholder="Search analytics..." type="text"/>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline hover:text-primary transition-all" href="#">Overview</a>
+<a class="font-label-md text-label-md text-primary dark:text-primary-fixed border-b-2 border-primary py-4" href="#">Reports</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline hover:text-primary transition-all" href="#">Schedule</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:bg-surface-container-low dark:hover:bg-surface-dark rounded-full p-2 text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="hover:bg-surface-container-low dark:hover:bg-surface-dark rounded-full p-2 text-on-surface-variant transition-colors" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<div class="h-8 w-px bg-border-subtle mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="font-label-md text-label-md text-on-surface">Dr. Arjun Sharma</p>
+<p class="text-[10px] text-outline uppercase tracking-wider">Physics HOD</p>
+</div>
+<img class="w-10 h-10 rounded-full border-2 border-primary-container object-cover" data-alt="Professional studio portrait of a middle-aged academic educator with a kind expression, wearing a navy blue blazer and glasses, set against a clean minimalist office background with soft bokeh. The lighting is bright and warm, reflecting a premium edtech brand aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNe4uOJvaQB9sWvWq5-yjmXftc3zUiDsFR23kHfL-p-uLbaawSThCkQRiRrvgXyNzaypsQa-kxLY-zmT1gh9zUhin9SsDbFVKAg8lSRiL1QaMtNNHk07vRQdwlyFpSOr4AHtYt69XwxhB1q7-WApe4uCuNyeJC-cuWLTZZkJUgP9FRIsXFOib9zz5ZMae9mgMgUj9sngpRqQYlRntS973unssI2kcFMI7EPqhJPlh8ZqmOp8SN9VMFxEW4VSGU_cofD8PeY2Mi17w"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-64 p-gutter max-w-container-max mx-auto space-y-stack-lg">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-display-lg text-display-lg text-primary leading-tight">Student Engagement</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2">Deep dive into watch patterns and participation across Atomic Pathshala.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="bg-surface-container-high dark:bg-surface-dark px-4 py-2.5 rounded-xl font-label-md text-label-md text-primary flex items-center gap-2 border border-border-subtle hover:bg-surface-variant transition-all">
+<span class="material-symbols-outlined">calendar_today</span>
+                    Last 30 Days
+                </button>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-xl font-label-md text-label-md shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-transform">
+                    Export CSV
+                </button>
+</div>
+</div>
+<!-- Metric Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-stack-md">
+<!-- Avg Watch Time -->
+<div class="glass-card p-stack-md rounded-xl space-y-4 relative overflow-hidden group">
+<div class="flex justify-between items-start">
+<div class="p-2 bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined">timer</span>
+</div>
+<span class="text-tertiary font-label-sm text-label-sm bg-tertiary/10 px-2 py-0.5 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +12%
+                    </span>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">Avg. Watch Time</p>
+<h3 class="text-headline-lg font-headline-lg text-on-surface mt-1">42.5m</h3>
+</div>
+<div class="h-12 w-full mt-4">
+<svg class="w-full h-full" viewbox="0 0 100 20">
+<path class="text-primary sparkline" d="M0 15 Q 10 5, 20 12 T 40 8 T 60 15 T 80 5 T 100 10" fill="none" stroke="currentColor" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<!-- Active Engagement -->
+<div class="glass-card p-stack-md rounded-xl space-y-4 relative overflow-hidden group">
+<div class="flex justify-between items-start">
+<div class="p-2 bg-secondary-container/20 rounded-lg text-secondary">
+<span class="material-symbols-outlined">touch_app</span>
+</div>
+<span class="text-tertiary font-label-sm text-label-sm bg-tertiary/10 px-2 py-0.5 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +5.2%
+                    </span>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">Engagement Rate</p>
+<h3 class="text-headline-lg font-headline-lg text-on-surface mt-1">84.2%</h3>
+</div>
+<div class="h-12 w-full mt-4">
+<svg class="w-full h-full" viewbox="0 0 100 20">
+<path class="text-secondary sparkline" d="M0 10 Q 20 18, 40 10 T 80 5 T 100 15" fill="none" stroke="currentColor" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<!-- Peak Concurrency -->
+<div class="glass-card p-stack-md rounded-xl space-y-4 relative overflow-hidden group">
+<div class="flex justify-between items-start">
+<div class="p-2 bg-tertiary/10 rounded-lg text-tertiary">
+<span class="material-symbols-outlined">group</span>
+</div>
+<span class="text-error font-label-sm text-label-sm bg-error/10 px-2 py-0.5 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_down</span> -2%
+                    </span>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">Peak Concurrency</p>
+<h3 class="text-headline-lg font-headline-lg text-on-surface mt-1">12,402</h3>
+</div>
+<div class="h-12 w-full mt-4">
+<svg class="w-full h-full" viewbox="0 0 100 20">
+<path class="text-tertiary-container sparkline" d="M0 15 Q 10 5, 20 10 T 50 15 T 80 5 T 100 8" fill="none" stroke="currentColor" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<!-- Drop-off Rate -->
+<div class="glass-card p-stack-md rounded-xl space-y-4 relative overflow-hidden group">
+<div class="flex justify-between items-start">
+<div class="p-2 bg-error/10 rounded-lg text-error">
+<span class="material-symbols-outlined">logout</span>
+</div>
+<span class="text-tertiary font-label-sm text-label-sm bg-tertiary/10 px-2 py-0.5 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_down</span> -3.1%
+                    </span>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">Drop-off Rate</p>
+<h3 class="text-headline-lg font-headline-lg text-on-surface mt-1">14.8%</h3>
+</div>
+<div class="h-12 w-full mt-4">
+<svg class="w-full h-full" viewbox="0 0 100 20">
+<path class="text-error sparkline" d="M0 5 Q 30 15, 60 5 T 100 12" fill="none" stroke="currentColor" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- Main Charts Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-stack-lg">
+<!-- Watch Time Trends Area Chart -->
+<div class="lg:col-span-2 glass-card p-stack-lg rounded-xl flex flex-col">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Watch Time Trends</h4>
+<p class="text-on-surface-variant font-body-md text-body-md">Comparing live sessions vs. recorded playback</p>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span class="text-label-sm font-label-sm text-outline">Live</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-secondary-container"></span>
+<span class="text-label-sm font-label-sm text-outline">Recorded</span>
+</div>
+</div>
+</div>
+<div class="flex-1 min-h-[300px] w-full bg-surface-container-low/50 rounded-xl relative overflow-hidden">
+<div class="absolute inset-x-0 bottom-0 h-[80%] opacity-20">
+<!-- Simulated Area Chart -->
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 1000 100">
+<path d="M0,100 L0,40 C100,20 200,60 300,30 C400,10 500,50 600,40 C700,30 800,60 900,20 L1000,40 L1000,100 Z" fill="url(#grad1)"></path>
+<path d="M0,40 C100,20 200,60 300,30 C400,10 500,50 600,40 C700,30 800,60 900,20 L1000,40" fill="none" stroke="#0050cb" stroke-width="2"></path>
+<defs>
+<lineargradient id="grad1" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#0050cb;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#0050cb;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+</svg>
+</div>
+<div class="absolute inset-x-0 bottom-0 h-[60%] opacity-30">
+<!-- Simulated Secondary Area Chart -->
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 1000 100">
+<path d="M0,100 L0,60 C150,80 300,40 450,70 C600,90 750,50 900,65 L1000,80 L1000,100 Z" fill="url(#grad2)"></path>
+<path d="M0,60 C150,80 300,40 450,70 C600,90 750,50 900,65 L1000,80" fill="none" stroke="#00ccf9" stroke-width="2"></path>
+<defs>
+<lineargradient id="grad2" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#00ccf9;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#00ccf9;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+</svg>
+</div>
+</div>
+</div>
+<!-- Top Performing Batches -->
+<div class="glass-card p-stack-lg rounded-xl flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h4 class="font-headline-md text-headline-md text-on-surface">Top Batches</h4>
+<span class="material-symbols-outlined text-outline">more_vert</span>
+</div>
+<div class="space-y-4 flex-1">
+<!-- Batch 1 -->
+<div class="p-4 rounded-xl border border-border-subtle bg-white/50 hover:bg-white transition-colors cursor-pointer group">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface">NEET Target 2025 (Morning)</span>
+<span class="text-tertiary font-bold">98%</span>
+</div>
+<div class="mt-2 w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full transition-all duration-1000 group-hover:w-[98%]" style="width: 85%"></div>
+</div>
+</div>
+<!-- Batch 2 -->
+<div class="p-4 rounded-xl border border-border-subtle bg-white/50 hover:bg-white transition-colors cursor-pointer group">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface">JEE Advanced Sprint</span>
+<span class="text-tertiary font-bold">92%</span>
+</div>
+<div class="mt-2 w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full transition-all duration-1000 group-hover:w-[92%]" style="width: 70%"></div>
+</div>
+</div>
+<!-- Batch 3 -->
+<div class="p-4 rounded-xl border border-border-subtle bg-white/50 hover:bg-white transition-colors cursor-pointer group">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface">Foundation Physics 01</span>
+<span class="text-tertiary font-bold">88%</span>
+</div>
+<div class="mt-2 w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full transition-all duration-1000 group-hover:w-[88%]" style="width: 65%"></div>
+</div>
+</div>
+<!-- Batch 4 -->
+<div class="p-4 rounded-xl border border-border-subtle bg-white/50 hover:bg-white transition-colors cursor-pointer group">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface">Biotech Intensive 2.0</span>
+<span class="text-tertiary font-bold">81%</span>
+</div>
+<div class="mt-2 w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full transition-all duration-1000 group-hover:w-[81%]" style="width: 55%"></div>
+</div>
+</div>
+</div>
+<button class="mt-6 text-primary font-label-md text-label-md hover:underline">View All 42 Batches →</button>
+</div>
+</div>
+<!-- Secondary Grid: Heatmap and Student List -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-stack-lg">
+<!-- Student Engagement Heatmap -->
+<div class="glass-card p-stack-lg rounded-xl overflow-hidden">
+<div class="flex justify-between items-center mb-6">
+<h4 class="font-headline-md text-headline-md text-on-surface">Engagement Heatmap</h4>
+<div class="flex gap-1">
+<div class="w-4 h-4 bg-primary/20 rounded"></div>
+<div class="w-4 h-4 bg-primary/50 rounded"></div>
+<div class="w-4 h-4 bg-primary/80 rounded"></div>
+<div class="w-4 h-4 bg-primary rounded"></div>
+</div>
+</div>
+<div class="overflow-x-auto scroll-hide">
+<div class="min-w-[400px]">
+<div class="grid grid-cols-8 gap-2 mb-2">
+<div class="col-span-1"></div>
+<div class="text-center text-[10px] uppercase text-outline">8am</div>
+<div class="text-center text-[10px] uppercase text-outline">10am</div>
+<div class="text-center text-[10px] uppercase text-outline">12pm</div>
+<div class="text-center text-[10px] uppercase text-outline">2pm</div>
+<div class="text-center text-[10px] uppercase text-outline">4pm</div>
+<div class="text-center text-[10px] uppercase text-outline">6pm</div>
+<div class="text-center text-[10px] uppercase text-outline">8pm</div>
+</div>
+<div class="space-y-2">
+<!-- Mon -->
+<div class="grid grid-cols-8 gap-2 items-center">
+<div class="text-[12px] font-bold text-outline uppercase">Mon</div>
+<div class="h-8 bg-primary/30 rounded-md"></div>
+<div class="h-8 bg-primary/60 rounded-md"></div>
+<div class="h-8 bg-primary rounded-md"></div>
+<div class="h-8 bg-primary/40 rounded-md"></div>
+<div class="h-8 bg-primary/10 rounded-md"></div>
+<div class="h-8 bg-primary/70 rounded-md"></div>
+<div class="h-8 bg-primary/90 rounded-md"></div>
+</div>
+<!-- Tue -->
+<div class="grid grid-cols-8 gap-2 items-center">
+<div class="text-[12px] font-bold text-outline uppercase">Tue</div>
+<div class="h-8 bg-primary/10 rounded-md"></div>
+<div class="h-8 bg-primary/20 rounded-md"></div>
+<div class="h-8 bg-primary/80 rounded-md"></div>
+<div class="h-8 bg-primary rounded-md"></div>
+<div class="h-8 bg-primary/30 rounded-md"></div>
+<div class="h-8 bg-primary/50 rounded-md"></div>
+<div class="h-8 bg-primary/20 rounded-md"></div>
+</div>
+<!-- Wed -->
+<div class="grid grid-cols-8 gap-2 items-center">
+<div class="text-[12px] font-bold text-outline uppercase">Wed</div>
+<div class="h-8 bg-primary/60 rounded-md"></div>
+<div class="h-8 bg-primary/90 rounded-md"></div>
+<div class="h-8 bg-primary/40 rounded-md"></div>
+<div class="h-8 bg-primary/10 rounded-md"></div>
+<div class="h-8 bg-primary/30 rounded-md"></div>
+<div class="h-8 bg-primary/80 rounded-md"></div>
+<div class="h-8 bg-primary rounded-md"></div>
+</div>
+<!-- Thu -->
+<div class="grid grid-cols-8 gap-2 items-center">
+<div class="text-[12px] font-bold text-outline uppercase">Thu</div>
+<div class="h-8 bg-primary/40 rounded-md"></div>
+<div class="h-8 bg-primary/10 rounded-md"></div>
+<div class="h-8 bg-primary/20 rounded-md"></div>
+<div class="h-8 bg-primary/60 rounded-md"></div>
+<div class="h-8 bg-primary/90 rounded-md"></div>
+<div class="h-8 bg-primary/40 rounded-md"></div>
+<div class="h-8 bg-primary/70 rounded-md"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Individual Student Insights -->
+<div class="glass-card p-stack-lg rounded-xl">
+<div class="flex justify-between items-center mb-6">
+<h4 class="font-headline-md text-headline-md text-on-surface">Student Risk Insights</h4>
+<button class="text-label-md font-label-md text-primary bg-primary/10 px-3 py-1.5 rounded-lg hover:bg-primary/20">Filter By Risk</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="border-b border-border-subtle text-[12px] text-outline uppercase tracking-wider">
+<th class="pb-3 pr-4 font-bold">Student</th>
+<th class="pb-3 px-4 font-bold">Watch %</th>
+<th class="pb-3 px-4 font-bold">Quiz</th>
+<th class="pb-3 pl-4 font-bold">Risk</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-subtle">
+<tr class="group hover:bg-surface-container-low transition-colors">
+<td class="py-4 pr-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container text-primary flex items-center justify-center font-bold text-xs">RK</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Rohan Kumar</p>
+<p class="text-[10px] text-outline">Physics Sprint</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-4 font-label-md text-label-md">94%</td>
+<td class="py-4 px-4 font-label-md text-label-md">12/12</td>
+<td class="py-4 pl-4">
+<span class="w-3 h-3 rounded-full bg-tertiary-container inline-block ring-4 ring-tertiary-container/20"></span>
+</td>
+</tr>
+<tr class="group hover:bg-surface-container-low transition-colors">
+<td class="py-4 pr-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container text-secondary flex items-center justify-center font-bold text-xs">AS</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Ananya Singh</p>
+<p class="text-[10px] text-outline">JEE Advanced</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-4 font-label-md text-label-md">42%</td>
+<td class="py-4 px-4 font-label-md text-label-md">02/12</td>
+<td class="py-4 pl-4">
+<span class="w-3 h-3 rounded-full bg-error inline-block ring-4 ring-error/20"></span>
+</td>
+</tr>
+<tr class="group hover:bg-surface-container-low transition-colors">
+<td class="py-4 pr-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container text-primary-fixed-dim flex items-center justify-center font-bold text-xs">VJ</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Vikram Jain</p>
+<p class="text-[10px] text-outline">Foundation 01</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-4 font-label-md text-label-md">68%</td>
+<td class="py-4 px-4 font-label-md text-label-md">08/12</td>
+<td class="py-4 pl-4">
+<span class="w-3 h-3 rounded-full bg-secondary-container inline-block ring-4 ring-secondary-container/20"></span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+<!-- Micro-interaction Scripts -->
+<script>
+        // Tab switching logic (UI only)
+        const navLinks = document.querySelectorAll('aside nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                navLinks.forEach(l => {
+                    l.classList.remove('text-primary', 'dark:text-primary-fixed', 'font-bold', 'bg-surface-container-high', 'dark:bg-surface-dark');
+                    l.classList.add('text-on-surface-variant', 'dark:text-outline');
+                });
+                link.classList.add('text-primary', 'dark:text-primary-fixed', 'font-bold', 'bg-surface-container-high', 'dark:bg-surface-dark');
+                link.classList.remove('text-on-surface-variant', 'dark:text-outline');
+            });
+        });
+
+        // Hover effect for heatmap
+        const heatBlocks = document.querySelectorAll('.h-8[class*="bg-primary"]');
+        heatBlocks.forEach(block => {
+            block.addEventListener('mouseenter', () => {
+                block.style.transform = 'scale(1.1)';
+                block.style.transition = 'transform 0.2s ease';
+                block.style.zIndex = '10';
+            });
+            block.addEventListener('mouseleave', () => {
+                block.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>

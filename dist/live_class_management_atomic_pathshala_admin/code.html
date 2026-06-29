@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Live Class Command Center | Atomic Pathshala</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist:wght@400;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#006643",
+                    "primary-fixed": "#dae1ff",
+                    "on-tertiary-container": "#e1ffeb",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#eaedff",
+                    "inverse-primary": "#b3c5ff",
+                    "surface-bright": "#faf8ff",
+                    "on-secondary-fixed": "#001f28",
+                    "background": "#faf8ff",
+                    "bg-light": "#FFFFFF",
+                    "secondary-fixed": "#b7eaff",
+                    "text-dark": "#F1F5F9",
+                    "secondary": "#00677f",
+                    "tertiary-fixed-dim": "#49df9f",
+                    "on-background": "#131b2e",
+                    "surface-container-low": "#f2f3ff",
+                    "surface-container-highest": "#dae2fd",
+                    "on-primary-fixed-variant": "#003fa4",
+                    "on-surface-variant": "#424656",
+                    "text-light": "#0F172A",
+                    "bg-dark": "#0B0E14",
+                    "surface": "#faf8ff",
+                    "on-secondary-fixed-variant": "#004e60",
+                    "on-error-container": "#93000a",
+                    "on-primary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "surface-dark": "#161B22",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#005235",
+                    "on-primary-fixed": "#001849",
+                    "surface-variant": "#dae2fd",
+                    "tertiary-container": "#008256",
+                    "outline-variant": "#c2c6d8",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "inverse-surface": "#283044",
+                    "primary-container": "#0066ff",
+                    "surface-light": "#F8FAFC",
+                    "on-surface": "#131b2e",
+                    "on-primary-container": "#f8f7ff",
+                    "outline": "#727687",
+                    "surface-dim": "#d2d9f4",
+                    "inverse-on-surface": "#eef0ff",
+                    "surface-container-high": "#e2e7ff",
+                    "secondary-fixed-dim": "#4cd6ff",
+                    "error": "#ba1a1a",
+                    "surface-tint": "#0054d6",
+                    "on-tertiary-fixed": "#002113",
+                    "on-error": "#ffffff",
+                    "primary": "#0050cb",
+                    "tertiary-fixed": "#6afcb9",
+                    "border-subtle": "rgba(0, 102, 255, 0.1)",
+                    "on-secondary-container": "#005266",
+                    "secondary-container": "#00ccf9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "8px",
+                    "margin-mobile": "20px",
+                    "stack-md": "16px",
+                    "container-max": "1280px",
+                    "stack-lg": "32px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "display-lg-mobile": ["Geist"],
+                    "headline-lg": ["Geist"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Geist"],
+                    "display-lg": ["Geist"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.06);
+            transform: translateY(-2px);
+            border-color: rgba(0, 102, 255, 0.2);
+        }
+        .active-glow {
+            box-shadow: 0 0 15px rgba(0, 102, 255, 0.3);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .pulse-live {
+            animation: pulse-red 2s infinite;
+        }
+        @keyframes pulse-red {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(186, 26, 26, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(186, 26, 26, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(186, 26, 26, 0); }
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface">
+<!-- Sidebar (Shared Component Style) -->
+<aside class="hidden lg:flex flex-col h-screen w-72 fixed left-0 top-0 py-6 bg-surface border-r border-outline-variant backdrop-blur-xl z-50">
+<div class="px-6 mb-8">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Atomic Pathshala</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">Admin Console</p>
+</div>
+<button class="mx-6 mb-8 flex items-center justify-center gap-2 bg-primary py-3 rounded-xl text-on-primary font-label-md hover:bg-primary-container transition-all">
+<span class="material-symbols-outlined">add</span>
+            New Course
+        </button>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md">Users</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">book_2</span>
+<span class="font-label-md">Courses</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">layers</span>
+<span class="font-label-md">Batches</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-4 text-primary font-bold bg-primary-container/10 border-r-4 border-primary transition-all translate-x-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">live_tv</span>
+<span class="font-label-md">Live Classes</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md">Payments</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md">Settings</span>
+</a>
+</nav>
+</aside>
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-40 flex justify-between items-center w-full px-8 py-3 lg:pl-80 bg-surface/80 backdrop-blur-xl border-b border-outline-variant shadow-sm">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 focus:ring-2 focus:ring-primary/20 text-body-md" placeholder="Search sessions, instructors, or events..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-on-surface-variant hover:text-primary relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<div class="flex items-center gap-3 pl-6 border-l border-outline-variant">
+<div class="text-right">
+<p class="font-label-md text-on-surface">Admin Profile</p>
+<p class="text-[10px] text-on-surface-variant">Super Admin</p>
+</div>
+<img class="w-10 h-10 rounded-full border-2 border-primary-container" data-alt="A professional studio portrait of a corporate education administrator, wearing a tailored navy suit, looking confident and approachable. The background is a clean, modern office with soft-focus books and tech equipment. Bright, high-key studio lighting with a clean, high-contrast modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoNqMI9zE4fuu8ROyXFLZKoCRbjBDQlIKulZoCDUS7c95x5vP9Vt-4EC4wV35IgGFdAa3dNJ22aUV11DiL67U_iiXwuiotIAZhqXGjbXeQpCUtuSuCdDt9DweIp-w6z4kshC_Qrnc0E0mCuhd1CCr2HcKHFM_iIOYD6OzqpvbUP7A_gmxdBoryu5K0LhaXnMFA42Ide6Vg1coiQnpysW10Bb2LkfxOZMdIR60GHkGP9BODwZA9tDvSW9CjW5DBH0bG58IokdVveGs"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="lg:pl-80 p-8 space-y-stack-lg max-w-[1440px] mx-auto">
+<!-- Header & Quick Actions -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Live Class Command Center</h2>
+<p class="text-body-md text-on-surface-variant">Real-time monitoring and management of ongoing academic sessions.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-primary text-primary font-label-md hover:bg-primary-container/10 transition-all">
+<span class="material-symbols-outlined">upload_file</span>
+                    Upload Recording
+                </button>
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-on-primary font-label-md hover:shadow-lg transition-all">
+<span class="material-symbols-outlined">videocam</span>
+                    Schedule Live Class
+                </button>
+</div>
+</div>
+<!-- Real-time Metrics Overview -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<div class="glass-card p-6 rounded-2xl">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined">calendar_today</span>
+</div>
+<span class="text-success-green font-label-md text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span> +12%
+                    </span>
+</div>
+<p class="text-on-surface-variant font-label-sm uppercase tracking-wider">Total Classes Today</p>
+<h3 class="text-display-lg font-display-lg text-on-surface">24</h3>
+</div>
+<div class="glass-card p-6 rounded-2xl">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-secondary/10 rounded-lg text-secondary">
+<span class="material-symbols-outlined">groups</span>
+</div>
+<span class="text-tertiary font-label-md flex items-center gap-1">
+                        Peak Reached
+                    </span>
+</div>
+<p class="text-on-surface-variant font-label-sm uppercase tracking-wider">Peak Concurrent</p>
+<h3 class="text-display-lg font-display-lg text-on-surface">1.2k</h3>
+</div>
+<div class="glass-card p-6 rounded-2xl">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-tertiary/10 rounded-lg text-tertiary">
+<span class="material-symbols-outlined">query_stats</span>
+</div>
+<span class="text-error font-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_down</span> -2%
+                    </span>
+</div>
+<p class="text-on-surface-variant font-label-sm uppercase tracking-wider">Avg. Engagement</p>
+<h3 class="text-display-lg font-display-lg text-on-surface">86%</h3>
+</div>
+<div class="glass-card p-6 rounded-2xl">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-primary-container/20 rounded-lg text-primary">
+<span class="material-symbols-outlined">ballot</span>
+</div>
+<span class="text-on-surface-variant font-label-md">12 Active</span>
+</div>
+<p class="text-on-surface-variant font-label-sm uppercase tracking-wider">Active Polls</p>
+<h3 class="text-display-lg font-display-lg text-on-surface">42</h3>
+</div>
+</section>
+<!-- Ongoing Sessions Grid -->
+<section class="space-y-stack-md">
+<div class="flex items-center justify-between">
+<h4 class="font-headline-md text-headline-md flex items-center gap-3">
+                    Ongoing Sessions
+                    <span class="flex items-center gap-1 bg-error/10 text-error px-2 py-0.5 rounded text-[12px] font-bold uppercase tracking-widest pulse-live">
+<span class="w-1.5 h-1.5 bg-error rounded-full"></span> Live
+                    </span>
+</h4>
+<button class="text-primary font-label-md hover:underline">View All Active</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-gutter">
+<!-- Live Class Card 1 -->
+<div class="glass-card rounded-2xl overflow-hidden flex flex-col">
+<div class="relative h-48 group">
+<div class="w-full h-full bg-cover bg-center" data-alt="A high-resolution screen capture of a digital live classroom. A physics instructor is explaining projectile motion on an interactive 4K whiteboard with glowing neon blue diagrams. The interface shows a sidebar with a scrolling chat of eager students. Cinematic lighting, sharp focus, professional tech-education style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBPAcnCh_giM8IquKltHTYOIw1-05FaYc6CJaWoFi563vCy238Uy2TihqPUzoGrluNyKCLL2wFe191BHSI6DA1RWgQ9aPwpZH6YLGvoa-FkIj03G2UU-ChBe8PHQpSs6L5UHasj4DihJpuY0o0jvufapvfq9HF_HNLOcATuF7U9GnuQyfECA8iaEGOVGyoc5XXagdop6Cp_RBepREKMr0YmswVmZEWgtptKTZfigVE5UPt7SL7keBDLnTZroEb-aOWR-QXo5mE01RU')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute top-4 left-4 bg-error text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-1">
+<span class="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span> Streaming
+                        </div>
+<div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+<div>
+<h5 class="text-white font-headline-md leading-tight">Advanced Physics: NEET 2025</h5>
+<p class="text-white/80 text-body-md">By Dr. Arvind Sharma</p>
+</div>
+<div class="bg-white/20 backdrop-blur-md px-2 py-1 rounded text-white text-[12px] font-bold">
+                                428 students
+                            </div>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between gap-4">
+<div class="flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-white bg-primary text-[10px] flex items-center justify-center text-white">AS</div>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-secondary text-[10px] flex items-center justify-center text-white">MD</div>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-tertiary text-[10px] flex items-center justify-center text-white">+4</div>
+</div>
+<p class="text-label-sm text-on-surface-variant italic">Started 45m ago</p>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 py-2 rounded-lg bg-surface-container text-on-surface font-label-md hover:bg-surface-container-high transition-all">Moderate</button>
+<button class="flex-1 py-2 rounded-lg bg-primary text-on-primary font-label-md hover:shadow-lg transition-all">Join Live</button>
+</div>
+</div>
+</div>
+<!-- Live Class Card 2 -->
+<div class="glass-card rounded-2xl overflow-hidden flex flex-col">
+<div class="relative h-48 group">
+<div class="w-full h-full bg-cover bg-center" data-alt="A vivid digital scene of a live chemistry lecture. Molecular structures of organic compounds are displayed in glowing 3D models against a dark blue grid background. The instructor's silhouette is visible in the corner webcam frame. High-tech, futuristic educational aesthetic with vibrant teal and primary blue accents." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCCjwlmmf6NL7ZNTFdcGyjF7RhDLeczJJVtmmhDxBsBSr6tCqqzX72_SZQrJDXfxTThsA2NkOvZMz9XnqtxH3jRS6eoE7p7qI-SOtArcY7LYfvl9BuBIe0TBjynDCXPM-ImbYPEk5MkUdlzozEC1ek2V1R1caVo3j-qPAKmDcFT5P_lk6lg7xStZcceqAUBhCTS9noVjYQXFYfz4uDRD4oAKoitQUlJ6m6ui2tzcIyPJ9Q6Fz0BeZUCJK_nVeNsXMJKc8F1A5AaKqU')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute top-4 left-4 bg-error text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-1">
+<span class="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span> Streaming
+                        </div>
+<div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+<div>
+<h5 class="text-white font-headline-md leading-tight">Organic Chemistry: JEE 2025</h5>
+<p class="text-white/80 text-body-md">Prof. S. Mukerjee</p>
+</div>
+<div class="bg-white/20 backdrop-blur-md px-2 py-1 rounded text-white text-[12px] font-bold">
+                                1.1k students
+                            </div>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between gap-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">chat</span>
+<span class="text-label-sm font-bold text-on-surface">High Activity</span>
+</div>
+<p class="text-label-sm text-on-surface-variant italic">Started 12m ago</p>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 py-2 rounded-lg bg-surface-container text-on-surface font-label-md hover:bg-surface-container-high transition-all">Moderate</button>
+<button class="flex-1 py-2 rounded-lg bg-primary text-on-primary font-label-md hover:shadow-lg transition-all">Join Live</button>
+</div>
+</div>
+</div>
+<!-- Live Class Card 3 -->
+<div class="glass-card rounded-2xl overflow-hidden flex flex-col">
+<div class="relative h-48 group">
+<div class="w-full h-full bg-cover bg-center" data-alt="A macro-style digital artwork representing biology education. High-resolution 3D cell diagrams with labeled organelles are being manipulated in a virtual space. The visual style is crisp, clean, and medical-grade with a focus on deep blues and vibrant greens. Glassy surfaces reflect soft lighting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDASgeKvNzgmoj8m1rLBHmeG-vjoNvLpyGp141IFhCAYx5I-Bv4sdiYWhsJDJcZKZkfQQtG-OTWx8_A7UOWNrDKdwhmIc4T0VeIBragw0GEKUqmwj2ZzR4IasD8wrP9nQi24-R6Fwfo6WhqY2SjQoDPWZBlN8l_Lju84XfOoZ6PYEkIKoq4A12CoNa86PheRB8rG5t6fiH7BnTMOr0JMFcPoOc2BJMoRKGPG6vZsy2ADzIfBgfk70z-dpnZNpQMp5qR_IpkD_nQd10')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute top-4 left-4 bg-error text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-1">
+<span class="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span> Streaming
+                        </div>
+<div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+<div>
+<h5 class="text-white font-headline-md leading-tight">Human Physiology</h5>
+<p class="text-white/80 text-body-md">By Dr. Meera Deshmukh</p>
+</div>
+<div class="bg-white/20 backdrop-blur-md px-2 py-1 rounded text-white text-[12px] font-bold">
+                                892 students
+                            </div>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between gap-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm">poll</span>
+<span class="text-label-sm font-bold text-on-surface">Poll Running</span>
+</div>
+<p class="text-label-sm text-on-surface-variant italic">Started 1h 05m ago</p>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 py-2 rounded-lg bg-surface-container text-on-surface font-label-md hover:bg-surface-container-high transition-all">Moderate</button>
+<button class="flex-1 py-2 rounded-lg bg-primary text-on-primary font-label-md hover:shadow-lg transition-all">Join Live</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Middle Section Grid -->
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-gutter">
+<!-- Upcoming Class Schedule -->
+<section class="xl:col-span-2 glass-card rounded-2xl overflow-hidden border border-outline-variant">
+<div class="p-6 border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest">
+<h4 class="font-headline-md text-headline-md">Upcoming Schedule</h4>
+<div class="flex gap-2">
+<button class="p-2 rounded hover:bg-surface-container"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="p-2 rounded hover:bg-surface-container"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+<div class="divide-y divide-outline-variant">
+<!-- Schedule Item 1 -->
+<div class="p-6 flex flex-col md:flex-row justify-between items-center gap-4 hover:bg-surface-container-low transition-all">
+<div class="flex items-center gap-6 w-full md:w-auto">
+<div class="text-center min-w-[60px]">
+<p class="text-label-sm font-bold text-primary">02:30</p>
+<p class="text-[10px] uppercase font-bold text-on-surface-variant">PM Today</p>
+</div>
+<div class="w-12 h-12 rounded-xl bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">calculate</span>
+</div>
+<div>
+<h6 class="font-bold text-on-surface">Vector Algebra Mastery</h6>
+<p class="text-label-sm text-on-surface-variant">Maths • Er. Vinay Pratap • Target JEE 2025</p>
+</div>
+</div>
+<div class="flex gap-2 w-full md:w-auto">
+<button class="p-2 text-on-surface-variant hover:text-primary rounded-lg transition-colors"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-2 text-on-surface-variant hover:text-primary rounded-lg transition-colors"><span class="material-symbols-outlined">schedule</span></button>
+<button class="p-2 text-on-surface-variant hover:text-error rounded-lg transition-colors"><span class="material-symbols-outlined">delete</span></button>
+<button class="px-4 py-2 bg-surface text-on-surface border border-outline rounded-xl font-label-sm hover:border-primary transition-all ml-2">Edit Details</button>
+</div>
+</div>
+<!-- Schedule Item 2 -->
+<div class="p-6 flex flex-col md:flex-row justify-between items-center gap-4 hover:bg-surface-container-low transition-all">
+<div class="flex items-center gap-6 w-full md:w-auto">
+<div class="text-center min-w-[60px]">
+<p class="text-label-sm font-bold text-primary">04:15</p>
+<p class="text-[10px] uppercase font-bold text-on-surface-variant">PM Today</p>
+</div>
+<div class="w-12 h-12 rounded-xl bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">biotech</span>
+</div>
+<div>
+<h6 class="font-bold text-on-surface">Molecular Basis of Inheritance</h6>
+<p class="text-label-sm text-on-surface-variant">Biology • Dr. Anjali Singh • FastTrack NEET</p>
+</div>
+</div>
+<div class="flex gap-2 w-full md:w-auto">
+<button class="p-2 text-on-surface-variant hover:text-primary rounded-lg transition-colors"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-2 text-on-surface-variant hover:text-primary rounded-lg transition-colors"><span class="material-symbols-outlined">schedule</span></button>
+<button class="p-2 text-on-surface-variant hover:text-error rounded-lg transition-colors"><span class="material-symbols-outlined">delete</span></button>
+<button class="px-4 py-2 bg-surface text-on-surface border border-outline rounded-xl font-label-sm hover:border-primary transition-all ml-2">Edit Details</button>
+</div>
+</div>
+<!-- Schedule Item 3 -->
+<div class="p-6 flex flex-col md:flex-row justify-between items-center gap-4 hover:bg-surface-container-low transition-all">
+<div class="flex items-center gap-6 w-full md:w-auto">
+<div class="text-center min-w-[60px]">
+<p class="text-label-sm font-bold text-primary">06:00</p>
+<p class="text-[10px] uppercase font-bold text-on-surface-variant">PM Today</p>
+</div>
+<div class="w-12 h-12 rounded-xl bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">science</span>
+</div>
+<div>
+<h6 class="font-bold text-on-surface">Electrochemistry: Concepts</h6>
+<p class="text-label-sm text-on-surface-variant">Chemistry • Dr. S. K. Gupta • Rankers 2.0</p>
+</div>
+</div>
+<div class="flex gap-2 w-full md:w-auto">
+<button class="p-2 text-on-surface-variant hover:text-primary rounded-lg transition-colors"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-2 text-on-surface-variant hover:text-primary rounded-lg transition-colors"><span class="material-symbols-outlined">schedule</span></button>
+<button class="p-2 text-on-surface-variant hover:text-error rounded-lg transition-colors"><span class="material-symbols-outlined">delete</span></button>
+<button class="px-4 py-2 bg-surface text-on-surface border border-outline rounded-xl font-label-sm hover:border-primary transition-all ml-2">Edit Details</button>
+</div>
+</div>
+</div>
+<div class="p-4 bg-surface-container-low text-center">
+<button class="text-primary font-bold font-label-md flex items-center gap-2 mx-auto hover:underline">
+                        Show Next 7 Days <span class="material-symbols-outlined">expand_more</span>
+</button>
+</div>
+</section>
+<!-- Engagement & Analytics Panel -->
+<section class="space-y-stack-md">
+<div class="glass-card rounded-2xl p-6 border border-outline-variant h-full flex flex-col">
+<h4 class="font-headline-md text-headline-md mb-6">Live Insights</h4>
+<div class="space-y-8 flex-1">
+<!-- Chat Activity Chart Placeholder -->
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<p class="font-label-md text-on-surface">Chat Velocity</p>
+<span class="text-primary text-[12px] font-bold">142 msg/min</span>
+</div>
+<div class="h-24 w-full flex items-end gap-1 px-1">
+<div class="w-full bg-primary/20 rounded-t h-[40%]"></div>
+<div class="w-full bg-primary/40 rounded-t h-[60%]"></div>
+<div class="w-full bg-primary/60 rounded-t h-[90%]"></div>
+<div class="w-full bg-primary rounded-t h-[100%] active-glow"></div>
+<div class="w-full bg-primary/80 rounded-t h-[80%]"></div>
+<div class="w-full bg-primary/60 rounded-t h-[70%]"></div>
+<div class="w-full bg-primary/40 rounded-t h-[50%]"></div>
+<div class="w-full bg-primary/20 rounded-t h-[30%]"></div>
+</div>
+</div>
+<!-- Poll Participation -->
+<div class="space-y-4">
+<p class="font-label-md text-on-surface">Latest Poll Participation</p>
+<div class="space-y-3">
+<div>
+<div class="flex justify-between text-[12px] mb-1">
+<span>Option A: 45%</span>
+<span class="text-on-surface-variant">612 students</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-2">
+<div class="bg-primary h-full rounded-full" style="width: 45%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-[12px] mb-1">
+<span>Option B: 32%</span>
+<span class="text-on-surface-variant">435 students</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-2">
+<div class="bg-secondary h-full rounded-full" style="width: 32%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-[12px] mb-1">
+<span>Option C: 23%</span>
+<span class="text-on-surface-variant">312 students</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-2">
+<div class="bg-tertiary h-full rounded-full" style="width: 23%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Alerts -->
+<div class="space-y-3">
+<p class="font-label-md text-on-surface">Critical Alerts</p>
+<div class="flex items-center gap-3 p-3 bg-error/5 rounded-xl border border-error/10">
+<span class="material-symbols-outlined text-error">report_problem</span>
+<div>
+<p class="text-[12px] font-bold text-on-surface">Drift detected in Stream 04</p>
+<p class="text-[10px] text-on-surface-variant">Lag: +450ms • Region: Mumbai-1</p>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 bg-secondary/5 rounded-xl border border-secondary/10">
+<span class="material-symbols-outlined text-secondary">forum</span>
+<div>
+<p class="text-[12px] font-bold text-on-surface">Chat filter auto-triggered</p>
+<p class="text-[10px] text-on-surface-variant">Session ID: NEET_PH09 • 12 blocks</p>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full mt-8 py-3 rounded-xl border-2 border-dashed border-outline-variant text-on-surface-variant font-label-md hover:border-primary hover:text-primary transition-all">
+                        Configure Dashboard Layout
+                    </button>
+</div>
+</section>
+</div>
+<!-- Attendance Logs / Detailed Monitoring -->
+<section class="glass-card rounded-2xl overflow-hidden mb-12">
+<div class="p-6 border-b border-outline-variant flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<h4 class="font-headline-md text-headline-md">Class Attendance Monitoring</h4>
+<div class="flex items-center gap-2">
+<button class="px-4 py-2 rounded-lg bg-surface-container text-on-surface font-label-sm border border-outline-variant">Download Logs</button>
+<button class="px-4 py-2 rounded-lg bg-primary text-on-primary font-label-sm">Export Detailed Report</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low text-on-surface-variant text-[12px] uppercase tracking-wider font-bold">
+<tr>
+<th class="px-6 py-4">Student Name</th>
+<th class="px-6 py-4">Class Session</th>
+<th class="px-6 py-4">Watch Time</th>
+<th class="px-6 py-4">Status</th>
+<th class="px-6 py-4">Questions Asked</th>
+<th class="px-6 py-4">Device</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-primary-container/5 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-dim flex items-center justify-center font-bold text-[10px]">RV</div>
+<span class="font-label-md">Rohan Verma</span>
+</div>
+</td>
+<td class="px-6 py-4 text-label-sm">NEET Physics 2025</td>
+<td class="px-6 py-4 text-label-sm">42m / 45m</td>
+<td class="px-6 py-4">
+<span class="bg-tertiary/10 text-tertiary px-2 py-1 rounded text-[10px] font-bold">ACTIVE</span>
+</td>
+<td class="px-6 py-4 text-label-sm text-center">4</td>
+<td class="px-6 py-4">
+<span class="material-symbols-outlined text-on-surface-variant text-lg">laptop_mac</span>
+</td>
+</tr>
+<tr class="hover:bg-primary-container/5 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-dim flex items-center justify-center font-bold text-[10px]">SJ</div>
+<span class="font-label-md">Sneha Jain</span>
+</div>
+</td>
+<td class="px-6 py-4 text-label-sm">NEET Physics 2025</td>
+<td class="px-6 py-4 text-label-sm">38m / 45m</td>
+<td class="px-6 py-4">
+<span class="bg-tertiary/10 text-tertiary px-2 py-1 rounded text-[10px] font-bold">ACTIVE</span>
+</td>
+<td class="px-6 py-4 text-label-sm text-center">2</td>
+<td class="px-6 py-4">
+<span class="material-symbols-outlined text-on-surface-variant text-lg">smartphone</span>
+</td>
+</tr>
+<tr class="hover:bg-primary-container/5 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-dim flex items-center justify-center font-bold text-[10px]">AK</div>
+<span class="font-label-md">Arjun Kapoor</span>
+</div>
+</td>
+<td class="px-6 py-4 text-label-sm">Organic Chemistry</td>
+<td class="px-6 py-4 text-label-sm">05m / 12m</td>
+<td class="px-6 py-4">
+<span class="bg-error/10 text-error px-2 py-1 rounded text-[10px] font-bold">OFFLINE</span>
+</td>
+<td class="px-6 py-4 text-label-sm text-center">0</td>
+<td class="px-6 py-4">
+<span class="material-symbols-outlined text-on-surface-variant text-lg">tablet_android</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 bg-surface-container-low border-t border-outline-variant flex justify-between items-center">
+<p class="text-[12px] text-on-surface-variant">Showing 1-10 of 2,428 students currently across all sessions.</p>
+<div class="flex gap-1">
+<button class="px-3 py-1 border border-outline rounded text-[12px] font-bold hover:bg-white transition-colors">1</button>
+<button class="px-3 py-1 border border-outline rounded text-[12px] font-bold bg-primary text-on-primary">2</button>
+<button class="px-3 py-1 border border-outline rounded text-[12px] font-bold hover:bg-white transition-colors">3</button>
+<span class="px-2">...</span>
+<button class="px-3 py-1 border border-outline rounded text-[12px] font-bold hover:bg-white transition-colors">243</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action Button for Mobile -->
+<button class="lg:hidden fixed bottom-6 right-6 w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center z-50">
+<span class="material-symbols-outlined">add</span>
+</button>
+<script>
+        // Micro-interaction for sidebar tabs
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                navLinks.forEach(l => {
+                    l.classList.remove('text-primary', 'font-bold', 'bg-primary-container/10', 'border-r-4', 'border-primary', 'translate-x-1');
+                    l.classList.add('text-on-surface-variant');
+                    const icon = l.querySelector('.material-symbols-outlined');
+                    if(icon) icon.style.fontVariationSettings = "'FILL' 0";
+                });
+                link.classList.add('text-primary', 'font-bold', 'bg-primary-container/10', 'border-r-4', 'border-primary', 'translate-x-1');
+                link.classList.remove('text-on-surface-variant');
+                const activeIcon = link.querySelector('.material-symbols-outlined');
+                if(activeIcon) activeIcon.style.fontVariationSettings = "'FILL' 1";
+            });
+        });
+
+        // Simple real-time counter simulation
+        const studentsCount = document.querySelector('.text-display-lg');
+        setInterval(() => {
+            if(Math.random() > 0.5) {
+                // Just for visual effect
+            }
+        }, 3000);
+    </script>
+
+  <!-- Ecosystem Switched Widget Overlay -->
+  <script src="../ecosystem-hud.js"></script>
+</body></html>

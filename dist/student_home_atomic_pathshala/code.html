@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Atomic Pathshala | Student Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;family=Manrope:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .active-tab-indicator {
+            box-shadow: 0 0 15px rgba(192, 193, 255, 0.3);
+        }
+        .streak-glow {
+            filter: drop-shadow(0 0 8px rgba(255, 185, 95, 0.4));
+        }
+        body {
+            background-color: #0b1326;
+            color: #dae2fd;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#c0c1ff",
+                        "secondary": "#44e2cd",
+                        "tertiary": "#ffb95f",
+                        "surface": "#0b1326",
+                        "bg-dark": "#0b1326",
+                        "primary-container": "#8083ff",
+                        "on-primary-container": "#0d0096",
+                        "on-surface": "#dae2fd",
+                        "on-surface-variant": "#c7c4d7",
+                        "outline-variant": "#464554",
+                        "secondary-container": "#03c6b2",
+                        "on-secondary-container": "#004d44"
+                    },
+                    "spacing": {
+                        "gutter-mobile": "1rem",
+                        "stack-lg": "2rem",
+                        "stack-md": "1rem",
+                        "stack-sm": "0.5rem",
+                        "margin-mobile": "1.25rem",
+                        "touch-target-min": "48px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "display-lg-mobile": ["Manrope"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["JetBrains Mono"],
+                        "label-md": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-bg-dark/80 backdrop-blur-xl border-b border-outline-variant/20 dark:border-white/10 shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center px-margin-mobile h-16 w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-stack-sm">
+<button class="material-symbols-outlined text-primary active:scale-95 duration-200 transition-transform">menu</button>
+<h1 class="font-display-lg-mobile text-display-lg-mobile font-bold tracking-tighter text-primary">Atomic Pathshala</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1 bg-tertiary/10 px-3 py-1 rounded-full streak-glow">
+<span class="material-symbols-outlined text-tertiary text-[20px]" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-label-md text-label-md text-tertiary">12</span>
+</div>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary/30">
+<img class="w-full h-full object-cover" data-alt="A professional studio headshot of a young South Asian student with a friendly expression, set against a blurred academic background with cool blue and indigo tones. The lighting is soft and cinematic, emphasizing a premium educational app aesthetic with high clarity and detail." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCh-Z5TL2dxBg6y2AM9L0EgklIgE2eCfeGFEKrWYw5vXSr-QH_bQYLXwlLfquNSrYCiRCIsz_T9_KOCXTHtJypbFdBiaX3_TDVvyXJ9oeSPQOkldMBKRPsdNgA6aN34SrU079hK4U21C71mSNUB5F85kWqbjQtmD14Ga2PY1Rm2Q279ozhKEEzr2YLk5H8Zk5lYPlKCWPNoGZPVgyaD8vGGnmN1Js7A8H0lh_PQI8KGohb4ROQuF6upBwueZB8ilqYE__dGW4pfO28"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 mt-16 mb-24 px-margin-mobile pt-stack-md space-y-stack-lg overflow-y-auto">
+<!-- Welcome Section & Shader Backdrop -->
+<section class="relative overflow-hidden rounded-3xl p-6 glass-card border-primary/20">
+
+<div class="relative z-10">
+<h2 class="font-headline-md text-headline-md text-primary">Hello, Deepak!</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">You've completed 70% of your daily goal. Keep going!</p>
+<div class="mt-stack-md bg-white/5 rounded-2xl p-4 border border-white/5">
+<div class="flex justify-between items-end mb-2">
+<span class="font-label-sm text-label-sm text-secondary">Daily Progress</span>
+<span class="font-label-md text-label-md text-secondary">7/10 Units</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[70%] rounded-full shadow-[0_0_8px_rgba(68,226,205,0.5)]"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid: Daily Study Planner & AI Mentor -->
+<section class="grid grid-cols-2 gap-4">
+<!-- AI Mentor Call-to-Action (Large Card) -->
+<div class="col-span-2 glass-card rounded-3xl p-5 flex items-center justify-between border-primary/30 relative overflow-hidden group active:scale-[0.98] transition-transform">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">psychology</span>
+<span class="font-label-md text-label-md text-primary uppercase tracking-widest">AI Mentor</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-white">Ask anything...</h3>
+<p class="text-on-surface-variant text-sm">Stuck on a Physics problem?</p>
+</div>
+<div class="bg-primary/20 p-3 rounded-2xl">
+<span class="material-symbols-outlined text-primary text-3xl">arrow_forward_ios</span>
+</div>
+</div>
+<!-- Daily Study Planner -->
+<div class="col-span-1 glass-card rounded-3xl p-4 space-y-3">
+<div class="flex justify-between items-center">
+<span class="material-symbols-outlined text-secondary">event_note</span>
+<span class="font-label-sm text-label-sm text-secondary">Planner</span>
+</div>
+<div>
+<h4 class="font-body-md font-bold text-white">Next Up</h4>
+<p class="font-label-sm text-xs text-on-surface-variant">Organic Chem • 2PM</p>
+</div>
+<button class="w-full py-2 bg-secondary/10 border border-secondary/20 rounded-xl font-label-sm text-secondary">Join Class</button>
+</div>
+<!-- Mock Test Progress -->
+<div class="col-span-1 glass-card rounded-3xl p-4 space-y-3">
+<div class="flex justify-between items-center">
+<span class="material-symbols-outlined text-tertiary">analytics</span>
+<span class="font-label-sm text-label-sm text-tertiary">Mock Tests</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="text-2xl font-bold text-white">94</span>
+<span class="text-xs text-on-surface-variant">/100</span>
+</div>
+<p class="font-label-sm text-[10px] text-on-surface-variant leading-tight">Top 2% in JEE Mock #14</p>
+</div>
+</section>
+<!-- Subjects Grid -->
+<section class="space-y-stack-sm">
+<div class="flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-white text-[20px]">My Subjects</h3>
+<button class="font-label-md text-primary text-sm">View All</button>
+</div>
+<div class="flex gap-4 overflow-x-auto no-scrollbar pb-2">
+<!-- Subject Card 1 -->
+<div class="min-w-[140px] glass-card rounded-2xl p-4 flex flex-col items-center gap-3 border-outline-variant/30">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">function</span>
+</div>
+<span class="font-label-md text-white">Mathematics</span>
+</div>
+<!-- Subject Card 2 -->
+<div class="min-w-[140px] glass-card rounded-2xl p-4 flex flex-col items-center gap-3 border-outline-variant/30">
+<div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">experiment</span>
+</div>
+<span class="font-label-md text-white">Physics</span>
+</div>
+<!-- Subject Card 3 -->
+<div class="min-w-[140px] glass-card rounded-2xl p-4 flex flex-col items-center gap-3 border-outline-variant/30">
+<div class="w-12 h-12 rounded-full bg-tertiary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary">science</span>
+</div>
+<span class="font-label-md text-white">Chemistry</span>
+</div>
+</div>
+</section>
+<!-- Recent Activity / Timeline -->
+<section class="space-y-stack-sm">
+<h3 class="font-headline-md text-headline-md text-white text-[20px]">Recent Activity</h3>
+<div class="space-y-3">
+<div class="flex items-center gap-4 glass-card p-4 rounded-2xl border-white/5">
+<div class="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-green-400">check_circle</span>
+</div>
+<div class="flex-1">
+<h5 class="font-label-md text-white">Mock Test #12 Submitted</h5>
+<p class="font-label-sm text-on-surface-variant text-[11px]">2 hours ago</p>
+</div>
+<span class="text-secondary font-bold text-sm">+240 XP</span>
+</div>
+<div class="flex items-center gap-4 glass-card p-4 rounded-2xl border-white/5">
+<div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">menu_book</span>
+</div>
+<div class="flex-1">
+<h5 class="font-label-md text-white">Finished "Calculus III"</h5>
+<p class="font-label-sm text-on-surface-variant text-[11px]">Yesterday</p>
+</div>
+<span class="text-secondary font-bold text-sm">+150 XP</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface/90 dark:bg-bg-dark/90 backdrop-blur-2xl border-t border-outline-variant/20 dark:border-white/10 shadow-[0_-4px_20px_rgba(0,102,255,0.05)]">
+<div class="flex justify-around items-center h-20 px-2 pb-safe w-full">
+<!-- Home (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container/20 dark:bg-primary-container text-primary dark:text-on-primary-container rounded-full px-4 py-1 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-sm text-label-sm mt-0.5">Home</span>
+</a>
+<!-- Tests -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-variant/30 dark:hover:bg-white/5 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">quiz</span>
+<span class="font-label-sm text-label-sm mt-0.5">Tests</span>
+</a>
+<!-- AI -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-variant/30 dark:hover:bg-white/5 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<span class="font-label-sm text-label-sm mt-0.5">AI</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-variant/30 dark:hover:bg-white/5 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm mt-0.5">Profile</span>
+</a>
+</div>
+</nav>
+<script>
+        // Micro-interactions and subtle scroll effects
+        document.addEventListener('DOMContentLoaded', () => {
+            const mainContent = document.querySelector('main');
+            const header = document.querySelector('header');
+            
+            mainContent.addEventListener('scroll', () => {
+                if (mainContent.scrollTop > 20) {
+                    header.classList.add('shadow-lg');
+                    header.style.backgroundColor = 'rgba(11, 19, 38, 0.95)';
+                } else {
+                    header.classList.remove('shadow-lg');
+                    header.style.backgroundColor = 'rgba(11, 19, 38, 0.8)';
+                }
+            });
+
+            // Ripple effect on tap (simulation)
+            const interactiveElements = document.querySelectorAll('.glass-card, button, a');
+            interactiveElements.forEach(el => {
+                el.addEventListener('touchstart', () => {
+                    el.style.opacity = '0.7';
+                });
+                el.addEventListener('touchend', () => {
+                    el.style.opacity = '1';
+                });
+            });
+        });
+    </script>
+
+  <!-- Ecosystem Switched Widget Overlay -->
+  <script src="../ecosystem-hud.js"></script>
+</body></html>

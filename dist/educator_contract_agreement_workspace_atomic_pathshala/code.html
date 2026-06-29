@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EduPulse AI | Digital Contract Workspace</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-container": "#005266",
+                    "secondary-fixed": "#b7eaff",
+                    "text-light": "#0F172A",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#001849",
+                    "tertiary": "#006643",
+                    "surface-container": "#eaedff",
+                    "surface-container-high": "#e2e7ff",
+                    "bg-light": "#FFFFFF",
+                    "background": "#faf8ff",
+                    "inverse-primary": "#b3c5ff",
+                    "primary": "#0050cb",
+                    "on-background": "#131b2e",
+                    "on-tertiary-fixed-variant": "#005235",
+                    "error-container": "#ffdad6",
+                    "surface-container-highest": "#dae2fd",
+                    "on-surface-variant": "#424656",
+                    "tertiary-fixed": "#6afcb9",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "on-tertiary-container": "#e1ffeb",
+                    "surface-variant": "#dae2fd",
+                    "surface": "#faf8ff",
+                    "bg-dark": "#0B0E14",
+                    "secondary": "#00677f",
+                    "on-primary-container": "#f8f7ff",
+                    "on-secondary-fixed-variant": "#004e60",
+                    "secondary-container": "#00ccf9",
+                    "on-secondary-fixed": "#001f28",
+                    "surface-container-low": "#f2f3ff",
+                    "tertiary-fixed-dim": "#49df9f",
+                    "outline": "#727687",
+                    "border-subtle": "rgba(0, 102, 255, 0.1)",
+                    "primary-fixed": "#dae1ff",
+                    "on-tertiary-fixed": "#002113",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#0054d6",
+                    "on-error": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-tertiary": "#ffffff",
+                    "outline-variant": "#c2c6d8",
+                    "surface-dim": "#d2d9f4",
+                    "secondary-fixed-dim": "#4cd6ff",
+                    "surface-light": "#F8FAFC",
+                    "primary-container": "#0066ff",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#003fa4",
+                    "surface-bright": "#faf8ff",
+                    "surface-dark": "#161B22",
+                    "inverse-on-surface": "#eef0ff",
+                    "tertiary-container": "#008256",
+                    "inverse-surface": "#283044",
+                    "on-surface": "#131b2e",
+                    "text-dark": "#F1F5F9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "16px",
+                    "stack-lg": "32px",
+                    "margin-mobile": "20px",
+                    "container-max": "1280px",
+                    "stack-sm": "8px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Geist"],
+                    "headline-lg": ["Geist"],
+                    "headline-md": ["Geist"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+        }
+        .contract-shadow {
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.08);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .step-active::before {
+            content: '';
+            position: absolute;
+            left: -17px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #0050cb;
+        }
+        .step-inactive::before {
+            content: '';
+            position: absolute;
+            left: -17px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #c2c6d8;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #dae2fd;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-hidden">
+<!-- TopNavBar Shell -->
+<nav class="fixed top-0 w-full z-40 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm flex justify-between items-center h-16 px-6 lg:px-margin-desktop">
+<div class="flex items-center gap-4">
+<span class="font-display-lg text-display-lg font-bold text-primary">EduPulse AI</span>
+<div class="h-6 w-[1px] bg-outline-variant/50 hidden md:block"></div>
+<span class="font-label-md text-label-md text-on-surface-variant hidden md:block uppercase tracking-widest">Legal Workspace</span>
+</div>
+<div class="flex items-center gap-stack-md">
+<div class="hidden lg:flex items-center gap-6 px-4">
+<span class="font-label-md text-label-md text-primary font-bold border-b-2 border-primary cursor-pointer h-16 flex items-center">Agreements</span>
+<span class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer h-16 flex items-center">Archive</span>
+<span class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer h-16 flex items-center">Compliance</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-colors cursor-pointer active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-colors cursor-pointer active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant">help</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary font-bold text-xs cursor-pointer active:scale-95">
+                    JS
+                </div>
+</div>
+</div>
+</nav>
+<!-- Main Workspace -->
+<main class="pt-16 h-screen flex overflow-hidden">
+<!-- Side Navigation (Suppressed/Minimal version for task focus) -->
+<aside class="w-16 lg:w-20 bg-surface-container-lowest border-r border-outline-variant/30 flex flex-col items-center py-6 gap-8 z-30">
+<div class="p-3 bg-primary-container/10 text-primary rounded-xl cursor-pointer hover:translate-x-1 transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+</div>
+<div class="p-3 text-outline hover:bg-surface-container rounded-xl cursor-pointer hover:translate-x-1 transition-all">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div class="p-3 text-outline hover:bg-surface-container rounded-xl cursor-pointer hover:translate-x-1 transition-all">
+<span class="material-symbols-outlined">folder_shared</span>
+</div>
+<div class="mt-auto p-3 text-outline hover:bg-surface-container rounded-xl cursor-pointer hover:translate-x-1 transition-all">
+<span class="material-symbols-outlined">settings</span>
+</div>
+</aside>
+<!-- Content Canvas -->
+<section class="flex-1 flex flex-col lg:flex-row overflow-hidden">
+<!-- Center: Legal Document Viewer -->
+<div class="flex-1 bg-surface-container-low overflow-y-auto p-6 lg:p-10 flex flex-col items-center">
+<div class="w-full max-w-[850px] mb-6 flex justify-between items-center">
+<div>
+<h1 class="font-headline-md text-headline-md text-on-surface mb-1">Educator Service Agreement</h1>
+<p class="font-label-sm text-label-sm text-outline flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+                            Encrypted &amp; Secure • ID: ESA-2024-0892-AP
+                        </p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 bg-white border border-outline-variant text-on-surface font-label-md rounded-lg flex items-center gap-2 hover:bg-surface-container transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px]">download</span>
+                            PDF
+                        </button>
+<button class="px-4 py-2 bg-white border border-outline-variant text-on-surface font-label-md rounded-lg flex items-center gap-2 hover:bg-surface-container transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px]">print</span>
+</button>
+</div>
+</div>
+<!-- High-Fidelity Document Page -->
+<div class="w-full max-w-[850px] bg-white rounded-lg contract-shadow p-12 lg:p-20 relative overflow-hidden">
+<!-- Atomic Pathshala Watermark -->
+<div class="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none select-none">
+<span class="font-display-lg text-[120px] rotate-[-35deg] font-extrabold uppercase">Atomic Pathshala</span>
+</div>
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-16">
+<div class="w-24 h-24 bg-primary-container/10 flex items-center justify-center rounded-2xl">
+<span class="material-symbols-outlined text-primary text-[48px]">school</span>
+</div>
+<div class="text-right">
+<h2 class="font-bold text-primary uppercase tracking-tighter">Atomic Pathshala</h2>
+<p class="text-xs text-outline leading-tight">Quantum Tower, Tech City<br/>Bangalore, KA 560103</p>
+</div>
+</div>
+<div class="space-y-6 text-on-surface-variant font-body-md leading-relaxed">
+<p class="font-bold text-on-surface mb-4">SERVICE AGREEMENT FOR SENIOR FACULTY (IIT-JEE DIVISION)</p>
+<p>This Agreement is made on this 24th day of May, 2024 between <span class="font-semibold text-on-surface">Atomic Pathshala Private Limited</span> (the "Company") and <span class="font-semibold text-on-surface">Prof. James Sterling</span> (the "Educator").</p>
+<h3 class="font-bold text-on-surface mt-8 mb-2">1. SCOPE OF WORK</h3>
+<p>The Educator agrees to provide high-performance educational content, live mentoring sessions, and academic curriculum design for the 'NEET Accelerator 2025' batch. Duties include recorded lectures (6 hours/week) and live doubt-solving sessions (4 hours/week).</p>
+<h3 class="font-bold text-on-surface mt-8 mb-2">2. INTELLECTUAL PROPERTY</h3>
+<p>All curriculum designs, lecture notes, and video recordings generated during the tenure of this agreement shall remain the exclusive intellectual property of Atomic Pathshala. The Educator retains credit but waives distribution rights except as authorized by the Board.</p>
+<h3 class="font-bold text-on-surface mt-8 mb-2">3. REMUNERATION</h3>
+<p>Remuneration shall be strictly based on the performance milestones defined in Appendix A, including Student Retention Rates (Target &gt; 92%) and Average Test Improvement Scores.</p>
+<div class="mt-20 pt-10 border-t border-outline-variant flex justify-between items-end gap-10">
+<div class="flex-1">
+<p class="text-[10px] uppercase text-outline mb-12">Educator Signature</p>
+<div class="h-10 border-b border-dashed border-primary flex items-center">
+<span class="text-primary italic font-serif opacity-0 animate-pulse">Signature Required</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface mt-2">Prof. James Sterling</p>
+</div>
+<div class="flex-1">
+<p class="text-[10px] uppercase text-outline mb-12">Authorized Signatory</p>
+<div class="h-10 border-b border-dashed border-outline-variant"></div>
+<p class="font-label-sm text-label-sm text-on-surface mt-2">Human Resources Department</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="h-20"></div>
+</div>
+<!-- Right Panel: Signature Status & Timeline -->
+<aside class="w-full lg:w-[380px] bg-white border-l border-outline-variant/30 flex flex-col h-full overflow-y-auto">
+<!-- Signature Status Section -->
+<div class="p-6 border-b border-outline-variant/20">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6">Signature Status</h2>
+<div class="space-y-4">
+<!-- Slot 1: Educator (Active) -->
+<div class="p-4 rounded-xl border-2 border-primary bg-primary/5 relative">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-md text-label-md text-primary">Educator</span>
+<span class="px-2 py-0.5 bg-primary text-white text-[10px] font-bold rounded uppercase">Active</span>
+</div>
+<div class="flex items-center gap-3 mb-4">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Professional headshot of a senior professor in his 40s, looking confident and wearing professional business casual attire. Soft studio lighting with a neutral gray background, high-end corporate photography style consistent with a premium education brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdVrzSVPd2ii6w0W9xCTs7NSUTP3eqiCP_xh423WeAV_5rO1_TuSKcTqtJiUapk-A3Zr8GmGptD0t4HYPnpf4S4HV0xWlmGn-Fa4wn8-eNRGWaQcNhkBO6DIrCM8dMDfH7RturipbyD5sNNTCAe40uYWnOtmxVWFJz2NRY30rfVIn2NZ7bz2FrxkqhYVi1M3S2RIqjSkizzd88dasArBJ-sY3g4SqihN2HX8gPYBIEvzp72eYoRC07H4WAXCu-XUUsW0BIzFjdy6s"/>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Prof. James Sterling</p>
+<p class="text-[12px] text-outline">Waiting for signature</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<button class="py-2 bg-primary text-white font-label-md rounded-lg hover:bg-primary-container transition-all active:scale-95 shadow-md">Sign with OTP</button>
+<button class="py-2 bg-white border border-primary text-primary font-label-md rounded-lg hover:bg-primary/5 transition-all active:scale-95">Digital Sign</button>
+</div>
+</div>
+<!-- Slot 2: Category Manager (Pending) -->
+<div class="p-4 rounded-xl border border-outline-variant bg-surface-container-lowest">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-md text-label-md text-on-surface">Category Manager</span>
+<span class="px-2 py-0.5 bg-surface-container-high text-on-surface-variant text-[10px] font-bold rounded uppercase">Pending</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">person</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Meera Iyer</p>
+<p class="text-[12px] text-outline">Awaiting Educator signature</p>
+</div>
+</div>
+</div>
+<!-- Slot 3: Admin (Locked) -->
+<div class="p-4 rounded-xl border border-outline-variant bg-surface-container-lowest opacity-60">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-md text-label-md text-on-surface">System Admin</span>
+<span class="material-symbols-outlined text-outline text-[18px]">lock</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">verified_user</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Institutional Seal</p>
+<p class="text-[12px] text-outline">Final validation only</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Contract Timeline Section -->
+<div class="p-6 flex-1">
+<h3 class="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-6">Contract Timeline</h3>
+<div class="ml-4 space-y-8 relative">
+<!-- Step 1 -->
+<div class="relative step-active pb-2">
+<div class="absolute -left-[24px] top-0 w-4 h-4 bg-primary rounded-full border-4 border-primary-fixed shadow-sm"></div>
+<p class="font-label-md text-label-md text-on-surface leading-tight">Contract Generated</p>
+<p class="text-[12px] text-outline">May 24, 2024 • 09:15 AM</p>
+<p class="mt-1 text-[11px] px-2 py-0.5 bg-green-50 text-green-700 rounded-md inline-block">Draft version 1.0 verified</p>
+</div>
+<!-- Step 2 -->
+<div class="relative step-active pb-2">
+<div class="absolute -left-[24px] top-0 w-4 h-4 bg-primary rounded-full border-4 border-primary-fixed shadow-sm"></div>
+<p class="font-label-md text-label-md text-on-surface leading-tight">Sent to Educator</p>
+<p class="text-[12px] text-outline">May 24, 2024 • 10:30 AM</p>
+<p class="mt-1 text-[11px] text-outline italic">via secure-relay-04.ap.com</p>
+</div>
+<!-- Step 3 -->
+<div class="relative step-active pb-2">
+<div class="absolute -left-[24px] top-0 w-4 h-4 bg-primary rounded-full border-4 border-primary-fixed shadow-sm animate-pulse"></div>
+<p class="font-label-md text-label-md text-primary leading-tight">Opened by Educator</p>
+<p class="text-[12px] text-outline">May 24, 2024 • 11:42 AM</p>
+<p class="mt-1 text-[11px] text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">visibility</span>
+                                IP: 182.xx.xx.12
+                            </p>
+</div>
+<!-- Step 4 -->
+<div class="relative step-inactive pb-2">
+<div class="absolute -left-[24px] top-0 w-4 h-4 bg-outline-variant rounded-full border-4 border-surface-container shadow-sm"></div>
+<p class="font-label-md text-label-md text-outline leading-tight">Signature Verification</p>
+<p class="text-[12px] text-outline-variant italic">Awaiting action...</p>
+</div>
+</div>
+</div>
+<!-- Bottom Action -->
+<div class="p-6 bg-surface-container-low mt-auto">
+<button class="w-full flex items-center justify-center gap-2 text-outline font-label-md hover:text-primary transition-colors py-2 group">
+<span>Contact Support</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</aside>
+</section>
+</main>
+<!-- Floating Security Tag -->
+<div class="fixed bottom-6 left-24 bg-on-background/90 text-white px-4 py-2 rounded-full flex items-center gap-3 shadow-2xl backdrop-blur-md border border-white/10 z-50 animate-bounce cursor-help">
+<div class="w-2 h-2 bg-green-500 rounded-full"></div>
+<span class="text-[11px] font-bold tracking-widest uppercase">256-Bit SSL Secured</span>
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+<!-- Micro-interaction Scripts -->
+<script>
+        // Simple hover effect for document interaction simulation
+        const documentViewer = document.querySelector('.contract-shadow');
+        documentViewer.addEventListener('mousemove', (e) => {
+            const rect = documentViewer.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Subtle parallax effect or light reflection simulation could go here
+        });
+
+        // Toggle Signature Button Animation
+        const signBtn = document.querySelector('button.bg-primary');
+        if(signBtn) {
+            signBtn.addEventListener('click', () => {
+                signBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Sending OTP...';
+                setTimeout(() => {
+                    signBtn.innerHTML = 'Sign with OTP';
+                    alert('For demonstration: An OTP has been sent to Prof. James Sterling\'s registered mobile number.');
+                }, 1500);
+            });
+        }
+    </script>
+</body></html>

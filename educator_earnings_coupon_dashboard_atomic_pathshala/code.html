@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Earnings &amp; Referrals | EduPulse AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-container": "#005266",
+                    "secondary-fixed": "#b7eaff",
+                    "text-light": "#0F172A",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#001849",
+                    "tertiary": "#006643",
+                    "surface-container": "#eaedff",
+                    "surface-container-high": "#e2e7ff",
+                    "bg-light": "#FFFFFF",
+                    "background": "#faf8ff",
+                    "inverse-primary": "#b3c5ff",
+                    "primary": "#0050cb",
+                    "on-background": "#131b2e",
+                    "on-tertiary-fixed-variant": "#005235",
+                    "error-container": "#ffdad6",
+                    "surface-container-highest": "#dae2fd",
+                    "on-surface-variant": "#424656",
+                    "tertiary-fixed": "#6afcb9",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "on-tertiary-container": "#e1ffeb",
+                    "surface-variant": "#dae2fd",
+                    "surface": "#faf8ff",
+                    "bg-dark": "#0B0E14",
+                    "secondary": "#00677f",
+                    "on-primary-container": "#f8f7ff",
+                    "on-secondary-fixed-variant": "#004e60",
+                    "secondary-container": "#00ccf9",
+                    "on-secondary-fixed": "#001f28",
+                    "surface-container-low": "#f2f3ff",
+                    "tertiary-fixed-dim": "#49df9f",
+                    "outline": "#727687",
+                    "border-subtle": "rgba(0, 102, 255, 0.1)",
+                    "primary-fixed": "#dae1ff",
+                    "on-tertiary-fixed": "#002113",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#0054d6",
+                    "on-error": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-tertiary": "#ffffff",
+                    "outline-variant": "#c2c6d8",
+                    "surface-dim": "#d2d9f4",
+                    "secondary-fixed-dim": "#4cd6ff",
+                    "surface-light": "#F8FAFC",
+                    "primary-container": "#0066ff",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#003fa4",
+                    "surface-bright": "#faf8ff",
+                    "surface-dark": "#161B22",
+                    "inverse-on-surface": "#eef0ff",
+                    "tertiary-container": "#008256",
+                    "inverse-surface": "#283044",
+                    "on-surface": "#131b2e",
+                    "text-dark": "#F1F5F9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "16px",
+                    "stack-lg": "32px",
+                    "margin-mobile": "20px",
+                    "container-max": "1280px",
+                    "stack-sm": "8px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Geist"],
+                    "headline-lg": ["Geist"],
+                    "headline-md": ["Geist"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+        }
+        .coupon-shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #0050cb33; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- SideNavBar (Desktop) -->
+<aside class="hidden md:flex fixed left-0 top-0 h-full w-64 z-50 bg-surface-container-lowest flex-col p-4 gap-stack-md border-r border-outline-variant/30">
+<div class="flex flex-col gap-1 mb-6">
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface">Acme Academy</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">Premium Educator Portal</p>
+</div>
+<nav class="flex flex-col gap-2 flex-grow">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container rounded-lg transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container rounded-lg transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-md text-label-md">Attendance</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container rounded-lg transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">verified_user</span>
+<span class="font-label-md text-label-md">Compliance</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container rounded-lg transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">event_note</span>
+<span class="font-label-md text-label-md">Schedules</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container/20 text-primary rounded-lg font-semibold transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+</nav>
+<div class="mt-auto pt-4 border-t border-outline-variant/30 flex flex-col gap-2">
+<button class="w-full bg-primary-container text-on-primary-container py-3 rounded-xl font-label-md text-label-md hover:shadow-lg active:scale-95 transition-all mb-4">
+                Generate Report
+            </button>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">contact_support</span>
+<span class="font-label-md text-label-md">Support</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="md:ml-64 min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-0 md:left-64 z-40 h-16 px-6 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 flex justify-between items-center shadow-sm">
+<div class="flex items-center gap-4">
+<h2 class="font-headline-md text-headline-md font-bold text-primary">EduPulse AI</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden sm:flex bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant/30 items-center gap-3 w-64">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-md w-full" placeholder="Search data..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:scale-95">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:scale-95">help</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-primary/20">
+<img class="h-full w-full object-cover" data-alt="A professional headshot of a smiling female educator in a modern office environment with soft natural lighting and a minimalist background. The style is clean, corporate, and high-fidelity, using a color palette of soft blues and crisp whites to match the EduPulse AI brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtHMwfLcgv39dGIhIcpkV4NZsH82GNvnTs4yd7-zbtCN3kBsY19XWXa8oIDznuIIpeRhfjOSawRpFbfYv35XLGzixVNqkqsCGm-fa9m0reFZmTDdkjk_-wAb4K8PvJypCiCtuyyu-0SV8pwV9zRQtd3pLtVlDOzJ1148bgD1sDXwjwvl55W-N2SnebmEB-23ZPTe_xA4ST7jsVjieT9UvouennQWyCyUBYMjwYf4zaHqxlp_xFfijmldcQ6A3z0BA3HC2RvkLwLks"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Dashboard Body -->
+<div class="pt-24 px-6 pb-12 max-w-container-max mx-auto space-y-stack-lg">
+<!-- Hero Section: Coupon & Summaries -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Personal Coupon Card -->
+<div class="lg:col-span-5 glass-card rounded-3xl p-8 relative overflow-hidden flex flex-col justify-between min-h-[280px]">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
+<div>
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full font-label-sm text-label-sm mb-4 inline-block">Exclusive Referral Code</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Share &amp; Earn Commissions</h3>
+<p class="text-on-surface-variant font-body-md text-body-md mb-6">Students get 10% off and you earn 15% commission on every enrollment.</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative flex-grow group">
+<div class="bg-primary px-6 py-4 rounded-2xl flex items-center justify-between overflow-hidden cursor-pointer" onclick="copyToClipboard('ATOMIC_AMAN10')">
+<span class="font-display-lg text-display-lg text-white tracking-widest" id="couponCode">ATOMIC_AMAN10</span>
+<div class="coupon-shimmer absolute inset-0 opacity-20"></div>
+<span class="material-symbols-outlined text-white group-hover:scale-110 transition-transform">content_copy</span>
+</div>
+</div>
+<button class="bg-secondary-container text-on-secondary-container p-4 rounded-2xl hover:brightness-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</div>
+<!-- Earnings Summaries -->
+<div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="glass-card rounded-3xl p-6 flex flex-col justify-between">
+<div class="bg-tertiary-fixed/30 w-12 h-12 rounded-2xl flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-tertiary">payments</span>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-md text-label-md">Total Commission</p>
+<h4 class="font-headline-lg text-headline-lg text-on-surface">₹4,28,500</h4>
+<span class="text-tertiary font-label-sm text-label-sm flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +12.5% vs last month
+                            </span>
+</div>
+</div>
+<div class="glass-card rounded-3xl p-6 flex flex-col justify-between">
+<div class="bg-primary-fixed/30 w-12 h-12 rounded-2xl flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-primary">group_add</span>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-md text-label-md">Student Enrolled</p>
+<h4 class="font-headline-lg text-headline-lg text-on-surface">156</h4>
+<span class="text-primary font-label-sm text-label-sm flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">calendar_month</span> Through your code
+                            </span>
+</div>
+</div>
+<div class="glass-card rounded-3xl p-6 flex flex-col justify-between border-primary/20">
+<div class="bg-secondary-fixed/30 w-12 h-12 rounded-2xl flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-secondary">pending_actions</span>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-md text-label-md">Pending Payout</p>
+<h4 class="font-headline-lg text-headline-lg text-on-surface">₹84,200</h4>
+<button class="mt-3 w-full bg-on-background text-white py-2 rounded-lg font-label-sm text-label-sm hover:opacity-90 active:scale-95 transition-all">
+                                Request Payout
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Performance Graph & Secondary Stats -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Main Enrollment Trend Graph -->
+<div class="lg:col-span-8 glass-card rounded-3xl p-8">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Monthly Enrollment Trends</h3>
+<p class="text-on-surface-variant font-label-md text-label-md">Visualizing your referral success over the last 6 months</p>
+</div>
+<select class="bg-surface-container-low border border-outline-variant/30 rounded-lg text-label-sm py-2 px-4 focus:ring-primary focus:border-primary">
+<option>Last 6 Months</option>
+<option>Yearly</option>
+</select>
+</div>
+<div class="h-64 relative flex items-end justify-between gap-2 px-4">
+<!-- Simulated Bar Chart -->
+<div class="flex flex-col items-center gap-2 group w-full max-w-[40px]">
+<div class="bg-surface-container-highest w-full rounded-t-lg transition-all duration-500 hover:bg-primary-container" style="height: 40%"></div>
+<span class="text-label-sm text-on-surface-variant">Jan</span>
+</div>
+<div class="flex flex-col items-center gap-2 group w-full max-w-[40px]">
+<div class="bg-surface-container-highest w-full rounded-t-lg transition-all duration-500 hover:bg-primary-container" style="height: 55%"></div>
+<span class="text-label-sm text-on-surface-variant">Feb</span>
+</div>
+<div class="flex flex-col items-center gap-2 group w-full max-w-[40px]">
+<div class="bg-surface-container-highest w-full rounded-t-lg transition-all duration-500 hover:bg-primary-container" style="height: 45%"></div>
+<span class="text-label-sm text-on-surface-variant">Mar</span>
+</div>
+<div class="flex flex-col items-center gap-2 group w-full max-w-[40px]">
+<div class="bg-primary-container w-full rounded-t-lg transition-all duration-500 hover:brightness-110" style="height: 75%"></div>
+<span class="text-label-sm text-on-surface-variant font-bold text-primary">Apr</span>
+</div>
+<div class="flex flex-col items-center gap-2 group w-full max-w-[40px]">
+<div class="bg-surface-container-highest w-full rounded-t-lg transition-all duration-500 hover:bg-primary-container" style="height: 60%"></div>
+<span class="text-label-sm text-on-surface-variant">May</span>
+</div>
+<div class="flex flex-col items-center gap-2 group w-full max-w-[40px]">
+<div class="bg-surface-container-highest w-full rounded-t-lg transition-all duration-500 hover:bg-primary-container" style="height: 90%"></div>
+<span class="text-label-sm text-on-surface-variant">Jun</span>
+</div>
+<!-- Absolute grid lines -->
+<div class="absolute inset-0 flex flex-col justify-between -z-10 opacity-50">
+<div class="border-b border-outline-variant/30 w-full h-0"></div>
+<div class="border-b border-outline-variant/30 w-full h-0"></div>
+<div class="border-b border-outline-variant/30 w-full h-0"></div>
+<div class="border-b border-outline-variant/30 w-full h-0"></div>
+</div>
+</div>
+</div>
+<!-- Leaderboard / Top performing batches -->
+<div class="lg:col-span-4 glass-card rounded-3xl p-8 flex flex-col">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-6">Top Performing Batches</h3>
+<div class="space-y-4 flex-grow">
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-2xl border border-outline-variant/10">
+<div class="flex items-center gap-3">
+<div class="bg-primary/10 text-primary p-2 rounded-lg"><span class="material-symbols-outlined">science</span></div>
+<div>
+<p class="font-label-md text-on-surface">Target NEET 2025</p>
+<p class="font-label-sm text-on-surface-variant">42 Enrolled</p>
+</div>
+</div>
+<span class="text-tertiary font-bold">₹1.2L</span>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-2xl border border-outline-variant/10">
+<div class="flex items-center gap-3">
+<div class="bg-secondary/10 text-secondary p-2 rounded-lg"><span class="material-symbols-outlined">calculate</span></div>
+<div>
+<p class="font-label-md text-on-surface">JEE Main Sprint</p>
+<p class="font-label-sm text-on-surface-variant">38 Enrolled</p>
+</div>
+</div>
+<span class="text-tertiary font-bold">₹94K</span>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-2xl border border-outline-variant/10">
+<div class="flex items-center gap-3">
+<div class="bg-tertiary/10 text-tertiary p-2 rounded-lg"><span class="material-symbols-outlined">menu_book</span></div>
+<div>
+<p class="font-label-md text-on-surface">Foundation Plus</p>
+<p class="font-label-sm text-on-surface-variant">25 Enrolled</p>
+</div>
+</div>
+<span class="text-tertiary font-bold">₹48K</span>
+</div>
+</div>
+<button class="mt-6 text-primary font-label-md text-center hover:underline">View All Batch Stats</button>
+</div>
+</div>
+<!-- Transaction History Table -->
+<div class="glass-card rounded-3xl overflow-hidden">
+<div class="p-8 border-b border-outline-variant/30 flex justify-between items-center bg-surface-container-lowest/50">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Recent Referral Transactions</h3>
+<p class="text-on-surface-variant font-label-md text-label-md">A detailed log of all students who used your code.</p>
+</div>
+<button class="flex items-center gap-2 bg-surface-container-high px-4 py-2 rounded-xl text-label-md hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-[18px]">download</span> Export CSV
+                    </button>
+</div>
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-8 py-4 font-label-md text-on-surface-variant border-b border-outline-variant/20">Student Name</th>
+<th class="px-8 py-4 font-label-md text-on-surface-variant border-b border-outline-variant/20">Course/Batch</th>
+<th class="px-8 py-4 font-label-md text-on-surface-variant border-b border-outline-variant/20">Date</th>
+<th class="px-8 py-4 font-label-md text-on-surface-variant border-b border-outline-variant/20">Transaction ID</th>
+<th class="px-8 py-4 font-label-md text-on-surface-variant border-b border-outline-variant/20">Commission</th>
+<th class="px-8 py-4 font-label-md text-on-surface-variant border-b border-outline-variant/20 text-right">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<tr class="hover:bg-primary-container/5 transition-colors group">
+<td class="px-8 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-[12px]">AS</div>
+<span class="font-label-md text-on-surface">Arjun Sharma</span>
+</div>
+</td>
+<td class="px-8 py-4 font-body-md text-on-surface-variant">NEET 2025 Dropper's Batch</td>
+<td class="px-8 py-4 font-body-md text-on-surface-variant">Oct 12, 2023</td>
+<td class="px-8 py-4 font-label-sm text-outline">#TRX-9920110</td>
+<td class="px-8 py-4 font-bold text-tertiary">₹4,500.00</td>
+<td class="px-8 py-4 text-right">
+<span class="bg-tertiary-fixed/40 text-on-tertiary-fixed-variant px-3 py-1 rounded-full font-label-sm text-[11px]">Paid</span>
+</td>
+</tr>
+<tr class="hover:bg-primary-container/5 transition-colors group">
+<td class="px-8 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center text-secondary font-bold text-[12px]">RV</div>
+<span class="font-label-md text-on-surface">Riya Verma</span>
+</div>
+</td>
+<td class="px-8 py-4 font-body-md text-on-surface-variant">JEE Main Power Course</td>
+<td class="px-8 py-4 font-body-md text-on-surface-variant">Oct 10, 2023</td>
+<td class="px-8 py-4 font-label-sm text-outline">#TRX-9920085</td>
+<td class="px-8 py-4 font-bold text-tertiary">₹3,200.00</td>
+<td class="px-8 py-4 text-right">
+<span class="bg-tertiary-fixed/40 text-on-tertiary-fixed-variant px-3 py-1 rounded-full font-label-sm text-[11px]">Paid</span>
+</td>
+</tr>
+<tr class="hover:bg-primary-container/5 transition-colors group">
+<td class="px-8 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-error-container/20 flex items-center justify-center text-error font-bold text-[12px]">KP</div>
+<span class="font-label-md text-on-surface">Kabir Pandey</span>
+</div>
+</td>
+<td class="px-8 py-4 font-body-md text-on-surface-variant">Class 12th Board Booster</td>
+<td class="px-8 py-4 font-body-md text-on-surface-variant">Oct 09, 2023</td>
+<td class="px-8 py-4 font-label-sm text-outline">#TRX-9919954</td>
+<td class="px-8 py-4 font-bold text-primary">₹1,850.00</td>
+<td class="px-8 py-4 text-right">
+<span class="bg-secondary-fixed/40 text-on-secondary-fixed-variant px-3 py-1 rounded-full font-label-sm text-[11px]">Pending</span>
+</td>
+</tr>
+<tr class="hover:bg-primary-container/5 transition-colors group">
+<td class="px-8 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center text-primary font-bold text-[12px]">SM</div>
+<span class="font-label-md text-on-surface">Sanya Malhotra</span>
+</div>
+</td>
+<td class="px-8 py-4 font-body-md text-on-surface-variant">Target NEET 2025</td>
+<td class="px-8 py-4 font-body-md text-on-surface-variant">Oct 07, 2023</td>
+<td class="px-8 py-4 font-label-sm text-outline">#TRX-9919812</td>
+<td class="px-8 py-4 font-bold text-tertiary">₹4,500.00</td>
+<td class="px-8 py-4 text-right">
+<span class="bg-tertiary-fixed/40 text-on-tertiary-fixed-variant px-3 py-1 rounded-full font-label-sm text-[11px]">Paid</span>
+</td>
+</tr>
+<tr class="hover:bg-primary-container/5 transition-colors group">
+<td class="px-8 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-on-surface-variant/20 flex items-center justify-center text-on-surface-variant font-bold text-[12px]">DK</div>
+<span class="font-label-md text-on-surface">Dev Kumar</span>
+</div>
+</td>
+<td class="px-8 py-4 font-body-md text-on-surface-variant">Physics Alpha Module</td>
+<td class="px-8 py-4 font-body-md text-on-surface-variant">Oct 05, 2023</td>
+<td class="px-8 py-4 font-label-sm text-outline">#TRX-9919701</td>
+<td class="px-8 py-4 font-bold text-primary">₹750.00</td>
+<td class="px-8 py-4 text-right">
+<span class="bg-secondary-fixed/40 text-on-secondary-fixed-variant px-3 py-1 rounded-full font-label-sm text-[11px]">Pending</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-6 bg-surface-container-low/30 flex items-center justify-between border-t border-outline-variant/30">
+<p class="text-label-sm text-on-surface-variant">Showing 5 of 156 referrals</p>
+<div class="flex gap-2">
+<button class="w-8 h-8 rounded-lg border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[18px]">chevron_left</span></button>
+<button class="w-8 h-8 rounded-lg bg-primary text-white flex items-center justify-center text-label-sm">1</button>
+<button class="w-8 h-8 rounded-lg border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">2</button>
+<button class="w-8 h-8 rounded-lg border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">3</button>
+<button class="w-8 h-8 rounded-lg border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[18px]">chevron_right</span></button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="mt-12 bg-on-background text-surface-container-low py-16 px-6">
+<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-4 gap-stack-lg">
+<div class="space-y-6">
+<h2 class="font-headline-md text-headline-md font-bold text-white">EduPulse AI</h2>
+<p class="text-label-md opacity-70">Empowering educators with data-driven insights and premium student growth tools.</p>
+</div>
+<div>
+<h4 class="font-label-md text-white mb-6">Quick Links</h4>
+<ul class="space-y-3 opacity-70 text-label-md">
+<li><a class="hover:text-secondary-fixed-dim transition-colors" href="#">Educator Guide</a></li>
+<li><a class="hover:text-secondary-fixed-dim transition-colors" href="#">Commission Structure</a></li>
+<li><a class="hover:text-secondary-fixed-dim transition-colors" href="#">Marketing Kit</a></li>
+<li><a class="hover:text-secondary-fixed-dim transition-colors" href="#">Payout Policy</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md text-white mb-6">Support</h4>
+<ul class="space-y-3 opacity-70 text-label-md">
+<li><a class="hover:text-secondary-fixed-dim transition-colors" href="#">Help Center</a></li>
+<li><a class="hover:text-secondary-fixed-dim transition-colors" href="#">Contact Partner Support</a></li>
+<li><a class="hover:text-secondary-fixed-dim transition-colors" href="#">Webinars</a></li>
+<li><a class="hover:text-secondary-fixed-dim transition-colors" href="#">API Docs</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<h4 class="font-label-md text-white">Newsletter</h4>
+<div class="flex gap-2">
+<input class="bg-surface-dark border-none rounded-xl text-label-sm w-full py-3 px-4 focus:ring-1 focus:ring-primary-container" placeholder="Email address" type="email"/>
+<button class="bg-primary-container text-white px-4 py-3 rounded-xl hover:brightness-110 transition-all">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center opacity-50 text-label-sm">
+<p>© 2023 Acme Academy (EduPulse AI). All rights reserved.</p>
+<div class="flex gap-6 mt-4 md:mt-0">
+<a href="#">Privacy Policy</a>
+<a href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+</main>
+<!-- FAB (Suppressed on Details but kept for Dashboards as per rules) -->
+<button class="fixed bottom-8 right-8 bg-primary-container text-white p-4 rounded-2xl shadow-2xl hover:scale-105 active:scale-95 transition-all z-50 flex items-center gap-3">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-label-md">New Campaign</span>
+</button>
+<script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = event.currentTarget;
+                const originalContent = btn.innerHTML;
+                btn.innerHTML = `<span class="font-display-lg text-display-lg text-white tracking-widest">COPIED!</span>`;
+                setTimeout(() => {
+                    btn.innerHTML = originalContent;
+                }, 2000);
+            });
+        }
+    </script>
+
+  <!-- Ecosystem Switched Widget Overlay -->
+  <script src="../ecosystem-hud.js"></script>
+</body></html>

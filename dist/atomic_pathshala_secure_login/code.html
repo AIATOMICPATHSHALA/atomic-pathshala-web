@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Atomic Pathshala | Secure Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;family=Manrope:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-stroke {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .input-glow:focus {
+            outline: none;
+            border-bottom-color: #c0c1ff;
+            box-shadow: 0 4px 12px -4px rgba(192, 193, 255, 0.3);
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#c0c1ff",
+                        "secondary": "#44e2cd",
+                        "tertiary": "#ffb95f",
+                        "background": "#0b1326",
+                        "surface": "#0b1326",
+                        "on-surface": "#dae2fd",
+                        "on-surface-variant": "#c7c4d7",
+                        "outline-variant": "#464554",
+                        "primary-container": "#8083ff",
+                        "on-primary-container": "#0d0096",
+                        "secondary-container": "#03c6b2",
+                        "on-secondary-container": "#004d44",
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Manrope"],
+                        "body-md": ["Inter"],
+                        "label-md": ["JetBrains Mono"],
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary/30 min-h-screen flex items-center justify-center p-gutter-mobile overflow-x-hidden">
+<!-- Atmospheric Background Animation -->
+<div class="fixed inset-0 z-0">
+
+<div class="absolute top-[-10%] right-[-10%] w-[400px] h-[400px] bg-primary/20 rounded-full blur-[120px] animate-pulse"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-[350px] h-[350px] bg-secondary/10 rounded-full blur-[100px]"></div>
+</div>
+<!-- Login Container -->
+<main class="relative z-10 w-full max-w-[440px] flex flex-col gap-stack-lg">
+<!-- Brand Identity -->
+<header class="flex flex-col items-center gap-stack-sm text-center">
+<div class="w-full max-w-[280px] mb-stack-sm animate-float">
+<img alt="Atomic Pathshala Logo" class="w-full h-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAg9A_xjtTaudp1AEQRmeCH2cE6zmZy095ZyLmG4vYnf3dIhZEForI56H5zxjh1UyXbmYr-P5Xg_SIua-m0lc90oKiBQXGOD5z8MtOQLd2ehCuWXZTqKqhViGcpB_LrnD_KnfTIr58q40lMdruHhtL1gWuH_pa_0tJW_iUQM_UDs8XklFzzOwAxB_cSvhmNohV1EloWH8LMWtQBPc9rq2xjEoGKGnbNtm0Ogmg1ROrdnSqORGAqAR8XtJYlfiYSJvA-okAHJ_Txk58"/>
+</div>
+<p class="font-label-md text-label-md text-primary tracking-widest uppercase opacity-80">Quantum Learning Secured</p>
+</header>
+<!-- Main Auth Card -->
+<section class="glass-card glass-stroke rounded-[2rem] p-8 shadow-2xl">
+<!-- Role Selection (Tab Style) -->
+<div class="flex p-1 bg-white/5 rounded-xl mb-8">
+<button class="flex-1 py-2.5 rounded-lg font-label-md text-label-md transition-all duration-300 bg-primary-container text-on-primary-container shadow-lg" id="role-student" onclick="setRole('student')">
+                    Student
+                </button>
+<button class="flex-1 py-2.5 rounded-lg font-label-md text-label-md transition-all duration-300 text-on-surface-variant hover:text-on-surface" id="role-educator" onclick="setRole('educator')">
+                    Educator
+                </button>
+</div>
+<form class="space-y-6" id="loginForm" onsubmit="return handleLogin(event)" onsubmit="event.preventDefault(); window.location.href='../student_home_atomic_pathshala/code.html';">
+<!-- Identity Inputs -->
+<div class="space-y-4">
+<div class="relative group">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1 ml-1">Academic Email</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-0 text-outline-variant group-focus-within:text-primary transition-colors">mail</span>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant/40 pl-8 pb-2 pt-1 font-body-md text-on-surface input-glow transition-all placeholder:text-outline-variant/50" placeholder="name@university.edu" required="" type="email"/>
+</div>
+</div>
+<div class="relative group">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1 ml-1">Access Key</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-0 text-outline-variant group-focus-within:text-primary transition-colors">lock</span>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant/40 pl-8 pb-2 pt-1 font-body-md text-on-surface input-glow transition-all placeholder:text-outline-variant/50" placeholder="••••••••" required="" type="password"/>
+<button class="absolute right-0 text-outline-variant hover:text-on-surface" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Security Verification -->
+<div class="p-4 bg-white/5 rounded-xl space-y-4 border border-white/5">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-tighter">Human Verification</span>
+<span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex-1 h-12 glass-card rounded-lg flex items-center justify-center font-label-md text-on-surface select-none border-dashed border-primary/20 italic" id="captcha-box">
+                            7 8 + 1 2 = ?
+                        </div>
+<input class="w-20 bg-white/10 border-0 rounded-lg h-12 text-center font-bold focus:ring-2 focus:ring-secondary" id="captcha-input" placeholder="Ans" required="" type="number"/>
+</div>
+<p class="text-[11px] text-on-surface-variant leading-tight italic">Enter the result of the atomic equation above to confirm session integrity.</p>
+</div>
+<!-- Action & Routing -->
+<div class="space-y-4 pt-2">
+<button class="w-full h-[52px] bg-gradient-to-r from-primary to-primary-container text-on-primary-container font-headline-md rounded-xl flex items-center justify-center gap-2 hover:brightness-110 active:scale-[0.98] transition-all shadow-xl shadow-primary/20" type="submit" onclick="window.location.href='../student_home_atomic_pathshala/code.html';">
+<span>Initialize Session</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<div class="flex items-center justify-between px-1">
+<a class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Forgot Credentials?</a>
+<a class="text-label-sm font-label-sm text-secondary hover:underline underline-offset-4" href="#">Create Account</a>
+</div>
+</div>
+</form>
+</section>
+<!-- Dynamic Security Footer -->
+<footer class="flex items-center justify-center gap-6 opacity-40 hover:opacity-100 transition-opacity duration-500">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">gpp_good</span>
+<span class="font-label-sm text-[10px] uppercase tracking-widest">AES-256 Encrypted</span>
+</div>
+<div class="w-1.5 h-1.5 rounded-full bg-outline-variant"></div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">hub</span>
+<span class="font-label-sm text-[10px] uppercase tracking-widest">Edge Node: 04-IND</span>
+</div>
+</footer>
+</main>
+<!-- Interactive Logic Script -->
+<script>
+        function setRole(role) {
+            const studentBtn = document.getElementById('role-student');
+            const educatorBtn = document.getElementById('role-educator');
+            const captchaBox = document.getElementById('captcha-box');
+
+            if (role === 'student') {
+                studentBtn.classList.add('bg-primary-container', 'text-on-primary-container', 'shadow-lg');
+                studentBtn.classList.remove('text-on-surface-variant');
+                educatorBtn.classList.remove('bg-secondary-container', 'text-on-secondary-container', 'shadow-lg');
+                educatorBtn.classList.add('text-on-surface-variant');
+                captchaBox.innerText = "7 8 + 1 2 = ?";
+            } else {
+                educatorBtn.classList.add('bg-secondary-container', 'text-on-secondary-container', 'shadow-lg');
+                educatorBtn.classList.remove('text-on-surface-variant');
+                studentBtn.classList.remove('bg-primary-container', 'text-on-primary-container', 'shadow-lg');
+                studentBtn.classList.add('text-on-surface-variant');
+                captchaBox.innerText = "√ 8 1 + 1 1 = ?";
+            }
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalContent = btn.innerHTML;
+            
+            // Animation Feedback
+            btn.disabled = true;
+            btn.innerHTML = `<span class="animate-spin material-symbols-outlined">sync</span> <span>Syncing...</span>`;
+            
+            setTimeout(() => {
+                btn.innerHTML = `<span class="material-symbols-outlined">check_circle</span> <span>Access Granted</span>`;
+                btn.classList.remove('from-primary', 'to-primary-container');
+                btn.classList.add('bg-secondary', 'text-on-secondary-container');
+                
+                // Simulate redirect
+                setTimeout(() => {
+                    alert("Security Check Passed. Redirecting to your Dashboard...");
+                    window.location.reload(); 
+                }, 1000);
+            }, 2000);
+            
+            return false;
+        }
+
+        // Mouse trail effect for atmospheric feel
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth) * 10 - 5;
+            const y = (e.clientY / window.innerHeight) * 10 - 5;
+            document.querySelector('.relative.z-10').style.transform = `translate(${x}px, ${y}px)`;
+        });
+    </script>
+
+  <!-- Ecosystem Switched Widget Overlay -->
+  <script src="../ecosystem-hud.js"></script>
+</body></html>

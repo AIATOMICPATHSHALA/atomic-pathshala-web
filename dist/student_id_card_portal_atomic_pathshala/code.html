@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student ID Management | EduPulse AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#dae2fd",
+                    "on-secondary-container": "#005266",
+                    "surface-container": "#eaedff",
+                    "inverse-primary": "#b3c5ff",
+                    "primary-container": "#0066ff",
+                    "bg-light": "#FFFFFF",
+                    "on-background": "#131b2e",
+                    "on-tertiary-container": "#e1ffeb",
+                    "outline-variant": "#c2c6d8",
+                    "on-surface": "#131b2e",
+                    "on-tertiary-fixed": "#002113",
+                    "surface-dark": "#161B22",
+                    "on-error-container": "#93000a",
+                    "secondary": "#00677f",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "surface-container-high": "#e2e7ff",
+                    "inverse-surface": "#283044",
+                    "bg-dark": "#0B0E14",
+                    "tertiary-container": "#008256",
+                    "surface-tint": "#0054d6",
+                    "surface-variant": "#dae2fd",
+                    "error": "#ba1a1a",
+                    "text-light": "#0F172A",
+                    "on-secondary-fixed": "#001f28",
+                    "surface-dim": "#d2d9f4",
+                    "tertiary": "#006643",
+                    "secondary-fixed": "#b7eaff",
+                    "surface-light": "#F8FAFC",
+                    "background": "#faf8ff",
+                    "on-secondary-fixed-variant": "#004e60",
+                    "primary": "#0050cb",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#005235",
+                    "primary-fixed": "#dae1ff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#001849",
+                    "tertiary-fixed": "#6afcb9",
+                    "on-surface-variant": "#424656",
+                    "on-error": "#ffffff",
+                    "text-dark": "#F1F5F9",
+                    "surface-bright": "#faf8ff",
+                    "outline": "#727687",
+                    "tertiary-fixed-dim": "#49df9f",
+                    "on-primary-container": "#f8f7ff",
+                    "border-subtle": "rgba(0, 102, 255, 0.1)",
+                    "secondary-container": "#00ccf9",
+                    "secondary-fixed-dim": "#4cd6ff",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#eef0ff",
+                    "on-primary-fixed-variant": "#003fa4",
+                    "surface-container-low": "#f2f3ff",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "surface": "#faf8ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-lg": "32px",
+                    "stack-md": "16px",
+                    "gutter": "24px",
+                    "stack-sm": "8px",
+                    "container-max": "1280px",
+                    "margin-mobile": "20px",
+                    "margin-desktop": "64px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "display-lg": ["Geist"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Geist"],
+                    "headline-lg": ["Geist"],
+                    "label-sm": ["Inter"],
+                    "display-lg-mobile": ["Geist"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(0, 80, 203, 0.1);
+        }
+
+        .id-card-pattern {
+            background-image: radial-gradient(#0050cb 0.5px, transparent 0.5px);
+            background-size: 20px 20px;
+            opacity: 0.05;
+        }
+
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        @media print {
+            .no-print { display: none; }
+            body { background: white; }
+            .print-container { padding: 0; margin: 0; }
+            .glass-card { 
+                box-shadow: none; 
+                border: 1px solid #e2e7ff;
+                backdrop-filter: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-40 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm flex justify-between items-center h-16 px-6 lg:px-64 no-print">
+<div class="flex items-center gap-4">
+<span class="font-display-lg text-headline-md font-bold text-primary">EduPulse AI</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex gap-8">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="font-label-md text-label-md text-primary font-bold border-b-2 border-primary" href="#">ID Portal</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Academics</a>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-surface-container-low p-2 rounded-full transition-colors">notifications</span>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold text-xs">AS</div>
+</div>
+</div>
+</header>
+<!-- SideNavBar (Hidden on small screens, shown as fixed on large) -->
+<aside class="hidden lg:flex fixed left-0 top-0 h-full w-64 z-50 bg-surface-container-lowest border-r border-outline-variant/30 flex-col p-4 gap-4 no-print">
+<div class="mb-8 px-2 pt-4">
+<img alt="EduPulse Logo" class="h-10 object-contain mb-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNqlruZcrh_kOt6ZQ3JWW42EG6kCTCEYPxCP3Ef-VeNpddRvtAWqP6idzxK3LZDXwIfcQ0mQYxgY4uDPC4KPHqKMWRhebi4e_FXhc1FgPSr-cnh5jX7RQncsJYaW5rsoL8dx5eV7CtbyL7VqWKjlXMxwVg6gknqAQin-tKVLb3cCd2NDfEtk_SFjZvMfd_MmlNrcFK00lWmzqLzkEbBdGScUUV-9R4XsGvjSui6aMoqAWDAUCbIV1AwzY6jV1GfvNkRI-s6Vk1QqI"/>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Acme Academy</h2>
+<p class="text-on-surface-variant text-label-sm opacity-70">Premium Educator Portal</p>
+</div>
+<nav class="flex flex-col gap-1">
+<div class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container rounded-lg cursor-pointer transition-all hover:translate-x-1">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</div>
+<div class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container rounded-lg cursor-pointer transition-all hover:translate-x-1">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-md text-label-md">Attendance</span>
+</div>
+<div class="flex items-center gap-3 p-3 bg-primary-container/20 text-primary rounded-lg font-semibold cursor-pointer">
+<span class="material-symbols-outlined">badge</span>
+<span class="font-label-md text-label-md">Digital ID</span>
+</div>
+<div class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container rounded-lg cursor-pointer transition-all hover:translate-x-1">
+<span class="material-symbols-outlined">event_note</span>
+<span class="font-label-md text-label-md">Schedules</span>
+</div>
+<div class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container rounded-lg cursor-pointer transition-all hover:translate-x-1">
+<span class="material-symbols-outlined">monitoring</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</div>
+</nav>
+<div class="mt-auto pt-4 border-t border-outline-variant/20">
+<div class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</div>
+<div class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+<span class="material-symbols-outlined">contact_support</span>
+<span class="font-label-md text-label-md">Support</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="pt-24 pb-12 px-6 lg:pl-80 lg:pr-12 max-w-[1440px] mx-auto print-container">
+<!-- Header Section -->
+<div class="mb-10 no-print">
+<h1 class="font-headline-lg text-headline-lg text-on-background mb-2">Student Digital Identity</h1>
+<p class="text-on-surface-variant font-body-md max-w-2xl">Access your verified digital identification. This card is valid for campus entry, library access, and examination verification for the current academic session.</p>
+</div>
+<div class="flex flex-col xl:flex-row gap-12 items-start">
+<!-- Digital ID Card Container -->
+<div class="relative w-full max-w-md group no-print">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary to-secondary-container rounded-[2rem] blur opacity-15 group-hover:opacity-30 transition duration-1000 group-hover:duration-200"></div>
+<!-- The ID Card -->
+<div class="relative glass-card rounded-[1.5rem] overflow-hidden aspect-[1.58/1] flex flex-col shadow-2xl transition-transform duration-500 hover:scale-[1.02]" id="digital-id-card">
+<div class="absolute inset-0 id-card-pattern pointer-events-none"></div>
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
+<!-- Card Header -->
+<div class="p-6 flex justify-between items-start relative z-10">
+<div class="flex flex-col">
+<img alt="Institution Logo" class="h-8 object-contain object-left mb-1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNqlruZcrh_kOt6ZQ3JWW42EG6kCTCEYPxCP3Ef-VeNpddRvtAWqP6idzxK3LZDXwIfcQ0mQYxgY4uDPC4KPHqKMWRhebi4e_FXhc1FgPSr-cnh5jX7RQncsJYaW5rsoL8dx5eV7CtbyL7VqWKjlXMxwVg6gknqAQin-tKVLb3cCd2NDfEtk_SFjZvMfd_MmlNrcFK00lWmzqLzkEbBdGScUUV-9R4XsGvjSui6aMoqAWDAUCbIV1AwzY6jV1GfvNkRI-s6Vk1QqI"/>
+<span class="text-[10px] font-bold uppercase tracking-widest text-primary/60">Official Student Identity</span>
+</div>
+<div class="text-right">
+<div class="bg-primary/10 px-3 py-1 rounded-full text-[10px] font-bold text-primary uppercase border border-primary/20">Active</div>
+</div>
+</div>
+<!-- Card Body -->
+<div class="px-6 flex gap-6 flex-1 relative z-10">
+<!-- Student Photo -->
+<div class="w-32 h-40 rounded-xl overflow-hidden border-2 border-white shadow-inner bg-surface-container-high shrink-0">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a young Indian male student named Aryan Sharma, wearing a clean white shirt. He has a friendly but focused expression, short dark hair, and is set against a solid neutral grey studio background. High-quality lighting, crisp details, academic professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAr3MB1uIgNhb3tAXSnk9PYSDeFNZf1z32oYOPvvHpd_NFA9zPJNdiXaCssS3CFx2uOPLV3SMS4Y-9Tia25YEQt0RZ44vsmzkOuXw46_VtoS6UMwRT7XN6iKgeVp4soQdTQphFO8RrpoEuN4VytRESp1IfyPu8Q2E3RRg_D1B_E-I2x7Y4eop0kX4megLT4OgKXuRKfv0-h4_xupRz8rB4_V2b-W9dgYofjRImT5CXvGgOmP_Td65aqM6XayYMYONHZ9WL4WlVw0g4"/>
+</div>
+<!-- Student Info -->
+<div class="flex flex-col justify-center py-2">
+<h3 class="font-headline-md text-on-surface leading-tight mb-1">Aryan Sharma</h3>
+<p class="font-label-md text-primary mb-3">AP-STU-2024-0892</p>
+<div class="grid grid-cols-2 gap-y-3 gap-x-4">
+<div>
+<p class="text-[9px] uppercase tracking-tighter text-on-surface-variant font-bold">Batch</p>
+<p class="text-xs font-semibold text-on-surface">Phoenix NEET 2025</p>
+</div>
+<div>
+<p class="text-[9px] uppercase tracking-tighter text-on-surface-variant font-bold">Year</p>
+<p class="text-xs font-semibold text-on-surface">2024-25</p>
+</div>
+<div>
+<p class="text-[9px] uppercase tracking-tighter text-on-surface-variant font-bold">DOB</p>
+<p class="text-xs font-semibold text-on-surface">14 May 2007</p>
+</div>
+<div>
+<p class="text-[9px] uppercase tracking-tighter text-on-surface-variant font-bold">Valid Until</p>
+<p class="text-xs font-semibold text-on-surface">31 Mar 2025</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="mt-auto px-6 py-4 border-t border-primary/10 flex justify-between items-center relative z-10 bg-primary/5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">verified</span>
+<span class="text-[10px] font-bold text-primary/80 uppercase">Verified Digitally</span>
+</div>
+<div class="w-10 h-10 bg-white p-1 rounded-sm shadow-sm">
+<!-- Minimal QR Representation -->
+<div class="w-full h-full bg-on-surface/10 flex flex-wrap gap-[2px] p-[2px]">
+<div class="w-[30%] h-[30%] bg-on-surface"></div>
+<div class="w-[30%] h-[30%] bg-transparent"></div>
+<div class="w-[30%] h-[30%] bg-on-surface"></div>
+<div class="w-[30%] h-[30%] bg-on-surface"></div>
+<div class="w-[30%] h-[30%] bg-on-surface"></div>
+<div class="w-[30%] h-[30%] bg-transparent"></div>
+<div class="w-[30%] h-[30%] bg-transparent"></div>
+<div class="w-[30%] h-[30%] bg-on-surface"></div>
+<div class="w-[30%] h-[30%] bg-on-surface"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Buttons (Mobile visible/Tablet+) -->
+<div class="mt-8 flex gap-4 no-print">
+<button class="flex-1 flex items-center justify-center gap-2 bg-primary text-white py-3 rounded-xl font-label-md hover:bg-primary-container transition-all active:scale-95 shadow-lg shadow-primary/20" onclick="window.print()">
+<span class="material-symbols-outlined">download</span>
+                        Download ID Card
+                    </button>
+<button class="w-14 flex items-center justify-center border border-outline-variant text-on-surface-variant py-3 rounded-xl hover:bg-surface-container transition-all active:scale-95" onclick="window.print()">
+<span class="material-symbols-outlined">print</span>
+</button>
+</div>
+</div>
+<!-- Profile Details & Metadata Section -->
+<div class="flex-1 w-full no-print">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Registration Details -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/30">
+<h4 class="font-label-md text-primary uppercase mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">how_to_reg</span>
+                            Enrollment Details
+                        </h4>
+<div class="space-y-4">
+<div class="flex justify-between items-center border-b border-outline-variant/10 pb-2">
+<span class="text-on-surface-variant text-sm">Registration Date</span>
+<span class="font-semibold text-on-surface">12 Aug 2024</span>
+</div>
+<div class="flex justify-between items-center border-b border-outline-variant/10 pb-2">
+<span class="text-on-surface-variant text-sm">Academic Stream</span>
+<span class="font-semibold text-on-surface">Medical (NEET)</span>
+</div>
+<div class="flex justify-between items-center border-b border-outline-variant/10 pb-2">
+<span class="text-on-surface-variant text-sm">Center Code</span>
+<span class="font-semibold text-on-surface">ACME-DL-01</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant text-sm">Roll Number</span>
+<span class="font-semibold text-on-surface">24089201</span>
+</div>
+</div>
+</div>
+<!-- Usage Stats -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/30">
+<h4 class="font-label-md text-primary uppercase mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">analytics</span>
+                            Access Log
+                        </h4>
+<div class="space-y-4">
+<div class="flex justify-between items-center border-b border-outline-variant/10 pb-2">
+<span class="text-on-surface-variant text-sm">Last Entry</span>
+<span class="font-semibold text-on-surface">Today, 08:45 AM</span>
+</div>
+<div class="flex justify-between items-center border-b border-outline-variant/10 pb-2">
+<span class="text-on-surface-variant text-sm">Library Checkouts</span>
+<span class="font-semibold text-on-surface">04 Active</span>
+</div>
+<div class="flex justify-between items-center border-b border-outline-variant/10 pb-2">
+<span class="text-on-surface-variant text-sm">Exam Clearances</span>
+<span class="font-semibold text-on-surface">02 Verified</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant text-sm">Status</span>
+<span class="px-2 py-0.5 bg-tertiary-container/20 text-tertiary text-[10px] font-bold rounded uppercase">In Good Standing</span>
+</div>
+</div>
+</div>
+<!-- Security Info Bento Box (Full width on md+) -->
+<div class="md:col-span-2 bg-primary-container/5 p-8 rounded-2xl border border-primary/10 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-8 opacity-10">
+<span class="material-symbols-outlined text-[120px]" style="font-variation-settings: 'FILL' 1;">shield</span>
+</div>
+<div class="relative z-10 max-w-lg">
+<h4 class="font-headline-md text-on-surface mb-2">Secure Digital Identity</h4>
+<p class="text-on-surface-variant text-sm mb-6">Your digital ID is encrypted and linked to your biometric profile. Misuse or sharing of this ID is strictly prohibited as per institution compliance guidelines.</p>
+<div class="flex flex-wrap gap-4">
+<div class="flex items-center gap-2 bg-white px-3 py-2 rounded-lg border border-outline-variant/20 shadow-sm">
+<span class="material-symbols-outlined text-primary text-sm">lock</span>
+<span class="text-xs font-semibold">256-bit AES Encryption</span>
+</div>
+<div class="flex items-center gap-2 bg-white px-3 py-2 rounded-lg border border-outline-variant/20 shadow-sm">
+<span class="material-symbols-outlined text-primary text-sm">qr_code_2</span>
+<span class="text-xs font-semibold">Dynamic QR Validation</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Print-only View (Hidden normally) -->
+<div class="hidden print:block w-full">
+<div class="mb-8 border-b-2 border-primary pb-4 flex justify-between items-end">
+<div>
+<h1 class="text-3xl font-bold text-primary">Student Identity Card</h1>
+<p class="text-sm text-gray-500">Official Academic Record - 2024-25</p>
+</div>
+<img alt="EduPulse" class="h-12" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNqlruZcrh_kOt6ZQ3JWW42EG6kCTCEYPxCP3Ef-VeNpddRvtAWqP6idzxK3LZDXwIfcQ0mQYxgY4uDPC4KPHqKMWRhebi4e_FXhc1FgPSr-cnh5jX7RQncsJYaW5rsoL8dx5eV7CtbyL7VqWKjlXMxwVg6gknqAQin-tKVLb3cCd2NDfEtk_SFjZvMfd_MmlNrcFK00lWmzqLzkEbBdGScUUV-9R4XsGvjSui6aMoqAWDAUCbIV1AwzY6jV1GfvNkRI-s6Vk1QqI"/>
+</div>
+<div class="border-2 border-gray-200 rounded-xl p-8 flex gap-8">
+<div class="w-48 h-60 bg-gray-100 rounded-lg overflow-hidden border">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a young Indian male student named Aryan Sharma, wearing a clean white shirt. He has a friendly but focused expression, short dark hair, and is set against a solid neutral grey studio background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDj2c1F2mczykbdjqGVY1NGd763NDUR0lqCj-IuAlFM2s2oxlTAM4D6Ot1ucZflieT4fUYTkzHshmfQxdvG-BiDHmMZ3FARejK_NV5Sz1va4IB11AaBkGWGdwgqS44FP8TqU9zD_W_BF0nm1Gq6gg42JWdty4rqdk5URjvqfceb1wlw8Pkm_gbPFlRIYZYc9ObYbl68ZgnSKVFoWnfKqkhHP2n7qhubQPJ4x_uNVWiTjVl0OVB23G115Bpzmjs8EiASYtqbTzHyaSU"/>
+</div>
+<div class="flex-1 space-y-4">
+<div>
+<p class="text-xs font-bold text-gray-400 uppercase">Student Full Name</p>
+<p class="text-2xl font-bold">Aryan Sharma</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<p class="text-xs font-bold text-gray-400 uppercase">Student ID</p>
+<p class="text-lg font-semibold">AP-STU-2024-0892</p>
+</div>
+<div>
+<p class="text-xs font-bold text-gray-400 uppercase">Batch</p>
+<p class="text-lg font-semibold">Phoenix NEET 2025</p>
+</div>
+<div>
+<p class="text-xs font-bold text-gray-400 uppercase">Date of Birth</p>
+<p class="text-lg font-semibold">14 May 2007</p>
+</div>
+<div>
+<p class="text-xs font-bold text-gray-400 uppercase">Registration</p>
+<p class="text-lg font-semibold">12 Aug 2024</p>
+</div>
+</div>
+<div class="pt-4 mt-4 border-t border-dashed">
+<p class="text-[10px] text-gray-400 leading-tight">This document is digitally signed and serves as a valid institutional identity proof. If found, please return to: Acme Academy Administrative Office, Academic District, Sector-12.</p>
+</div>
+</div>
+<div class="w-32 flex flex-col items-center justify-center border-l pl-8">
+<div class="w-24 h-24 bg-gray-200 mb-2"></div>
+<p class="text-[8px] font-bold text-center">SCAN TO VERIFY</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Interactive Footer (No Print) -->
+<footer class="bg-[#0F172A] text-white py-12 px-6 lg:pl-80 lg:pr-12 no-print">
+<div class="max-w-[1280px] mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="col-span-1 md:col-span-1">
+<div class="font-display-lg text-headline-md font-bold text-white mb-4">EduPulse AI</div>
+<p class="text-gray-400 text-sm">Empowering students through AI-driven academic acceleration and performance tracking.</p>
+</div>
+<div>
+<h5 class="font-label-md text-white mb-4">Navigation</h5>
+<ul class="space-y-2 text-sm text-gray-400">
+<li><a class="hover:text-primary transition-colors" href="#">Course Catalog</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Faculty Profiles</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Test Series</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Scholarship Hub</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-md text-white mb-4">Institutional</h5>
+<ul class="space-y-2 text-sm text-gray-400">
+<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Terms of Service</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Honor Code</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Cookie Policy</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-md text-white mb-4">Stay Updated</h5>
+<div class="flex gap-2">
+<input class="bg-white/10 border-white/20 rounded-lg px-4 py-2 text-sm w-full focus:ring-primary focus:border-primary" placeholder="Email address" type="email"/>
+<button class="bg-primary hover:bg-primary-container px-4 py-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-sm">send</span>
+</button>
+</div>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-white/10 text-center text-xs text-gray-500">
+                © 2024 EduPulse AI Academic Portal. All Rights Reserved.
+            </div>
+</div>
+</footer>
+<script>
+        // Micro-interaction: Shimmer effect on the card when hovered
+        const card = document.getElementById('digital-id-card');
+        card.addEventListener('mouseenter', () => {
+            const shimmerDiv = document.createElement('div');
+            shimmerDiv.className = 'absolute inset-0 shimmer pointer-events-none z-20';
+            card.appendChild(shimmerDiv);
+            setTimeout(() => {
+                shimmerDiv.remove();
+            }, 3000);
+        });
+
+        // 3D Tilt Effect on mouse move
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 20;
+            const rotateY = (centerX - x) / 20;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
+        });
+    </script>
+</body></html>

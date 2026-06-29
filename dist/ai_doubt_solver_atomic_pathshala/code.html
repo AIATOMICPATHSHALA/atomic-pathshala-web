@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Atomic Pathshala - AI Doubt Solver</title>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Geist Font Emulation (using standard sans as fallback) -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- BEGIN: Tailwind Configuration -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#0066ff',
+              light: '#eef4ff',
+            },
+            surface: {
+              DEFAULT: '#faf8ff',
+              dim: '#d2d9f4',
+              bright: '#faf8ff',
+              lowest: '#ffffff',
+              low: '#f2f3ff',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'Geist', 'system-ui', 'sans-serif'],
+          },
+          borderRadius: {
+            'custom': '8px',
+          }
+        }
+      }
+    }
+  </script>
+<!-- END: Tailwind Configuration -->
+<style data-purpose="custom-layout">
+    body {
+      background-color: #ffffff;
+      font-family: 'Inter', sans-serif;
+    }
+    /* Glassmorphism effect for various components */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background-color: #e2e8f0;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body class="h-screen flex overflow-hidden">
+<!-- BEGIN: LeftSidebar -->
+<aside class="w-72 flex-shrink-0 border-r border-gray-100 flex flex-col h-full bg-white" data-purpose="sidebar">
+<!-- Brand Logo Section -->
+<div class="p-6 flex items-center space-x-3">
+<div class="w-10 h-10 bg-white rounded-lg shadow-sm flex items-center justify-center p-1 border border-gray-100">
+<img alt="Logo" class="w-full h-full object-contain overflow-hidden" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg" style="object-position: 21px 20px; transform: scale(4.5);"/>
+</div>
+<div>
+<h1 class="font-bold text-gray-900 text-sm leading-tight">Atomic Pathshala</h1>
+<p class="text-orange-500 text-[10px] font-semibold uppercase tracking-wider">AI Doubt Solver</p>
+</div>
+</div>
+<!-- New Doubt Button -->
+<div class="px-4 py-2">
+<button class="w-full py-2.5 px-4 rounded-xl border-2 border-dashed border-orange-200 text-orange-600 flex items-center justify-center space-x-2 font-medium hover:bg-orange-50 transition-colors">
+<svg class="h-5 w-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">New Doubt</span>
+</button>
+</div>
+<!-- Chat History Placeholder -->
+<div class="flex-grow flex flex-col items-center justify-center p-8 text-center">
+<p class="text-gray-400 text-xs leading-relaxed">No chat history yet. Ask your first doubt!</p>
+</div>
+<!-- Sidebar Footer -->
+<div class="p-4 border-t border-gray-50 text-center">
+<p class="text-[10px] text-gray-400">© Atomic Pathshala 2025</p>
+</div>
+</aside>
+<!-- END: LeftSidebar -->
+<!-- BEGIN: MainContent -->
+<main class="flex-grow flex flex-col h-full bg-[#faf8ff] relative">
+<!-- BEGIN: TopNavigationBar -->
+<header class="h-16 px-6 flex items-center justify-between border-b border-gray-100 bg-white/80 backdrop-blur-md sticky top-0 z-10" data-purpose="top-nav">
+<h2 class="text-gray-700 font-medium text-sm">New Doubt</h2>
+<div class="flex items-center space-x-4">
+<!-- Language Selector -->
+<div class="flex items-center bg-gray-50 p-1 rounded-full border border-gray-100">
+<button class="px-3 py-1 text-xs font-medium text-gray-600 flex items-center space-x-1.5 hover:text-brand transition-colors">
+<span class="w-4 h-3 bg-blue-600 inline-block rounded-sm"></span>
+<span>English</span>
+</button>
+<button class="px-3 py-1 text-xs font-medium text-gray-600 flex items-center space-x-1.5 hover:text-brand transition-colors">
+<span class="w-4 h-3 bg-orange-400 inline-block rounded-sm"></span>
+<span>हिंदी</span>
+</button>
+<button class="px-3 py-1 text-xs font-medium text-white bg-orange-600 rounded-full flex items-center space-x-1.5 shadow-sm">
+<span class="w-4 h-4 bg-blue-400 rounded-full flex items-center justify-center text-[8px]">💡</span>
+<span>Hinglish</span>
+</button>
+</div>
+<!-- Theme Switcher -->
+<button class="p-2 text-gray-400 hover:text-gray-600 transition-colors">
+<svg class="h-5 w-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</header>
+<!-- END: TopNavigationBar -->
+<!-- BEGIN: DashboardBody -->
+<div class="flex-grow flex flex-col items-center justify-center px-4 overflow-y-auto custom-scrollbar pb-32">
+<!-- Central Branding -->
+<div class="text-center mb-10">
+<div class="inline-block p-4 bg-white rounded-2xl shadow-xl shadow-blue-100/50 mb-6 border border-gray-50">
+<img alt="AI Logo" class="w-16 h-16 object-contain overflow-hidden" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg" style="object-position: 21px 20px; transform: scale(4.5);"/>
+</div>
+<h1 class="text-4xl font-bold text-gray-900 mb-2">Atomic Pathshala</h1>
+<p class="text-orange-500 font-semibold text-lg mb-4">AI Doubt Solver</p>
+<p class="text-gray-400 text-sm max-w-md mx-auto">
+          Ask any academic doubt in English, Hindi, or Hinglish. Upload a photo of your question or use your camera on mobile.
+        </p>
+</div>
+<!-- Quick Action Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-3xl">
+<!-- Math Prompt -->
+<button class="flex items-start p-5 bg-white border border-gray-100 rounded-2xl hover:border-brand/30 hover:shadow-lg hover:shadow-blue-50/50 transition-all text-left group">
+<div class="bg-orange-50 p-2.5 rounded-lg mr-4 group-hover:bg-orange-100 transition-colors">
+<svg class="h-5 w-5 text-orange-600" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<p class="text-sm text-gray-700 font-medium">Solve: If x² + 5x + 6 = 0, find the values of x</p>
+</button>
+<!-- Science Prompt (Hindi) -->
+<button class="flex items-start p-5 bg-white border border-gray-100 rounded-2xl hover:border-brand/30 hover:shadow-lg hover:shadow-blue-50/50 transition-all text-left group">
+<div class="bg-orange-50 p-2.5 rounded-lg mr-4 group-hover:bg-orange-100 transition-colors">
+<svg class="h-5 w-5 text-orange-600" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.675.337a4 4 0 01-2.547.547l-2.434-.487a2 2 0 00-1.022.547l-1.013 1.013a2 2 0 000 2.828l1.013 1.013a2 2 0 002.828 0l1.013-1.013a2 2 0 00.547-1.022l.487-2.434a4 4 0 01.547-2.547l.337-.675a6 6 0 01.517-3.86l.477-2.387a2 2 0 01.547-1.022l1.013-1.013a2 2 0 012.828 0l1.013 1.013a2 2 0 010 2.828l-1.013 1.013z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<p class="text-sm text-gray-700 font-medium">प्रकाश संश्लेषण क्या है? सरल भाषा में समझाइए</p>
+</button>
+<!-- Physics Prompt -->
+<button class="flex items-start p-5 bg-white border border-gray-100 rounded-2xl hover:border-brand/30 hover:shadow-lg hover:shadow-blue-50/50 transition-all text-left group">
+<div class="bg-orange-50 p-2.5 rounded-lg mr-4 group-hover:bg-orange-100 transition-colors">
+<svg class="h-5 w-5 text-orange-600" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<p class="text-sm text-gray-700 font-medium">Explain Newton's Third Law with a real-life example</p>
+</button>
+<!-- Chemistry Prompt (Hinglish) -->
+<button class="flex items-start p-5 bg-white border border-gray-100 rounded-2xl hover:border-brand/30 hover:shadow-lg hover:shadow-blue-50/50 transition-all text-left group">
+<div class="bg-orange-50 p-2.5 rounded-lg mr-4 group-hover:bg-orange-100 transition-colors">
+<svg class="h-5 w-5 text-orange-600" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<p class="text-sm text-gray-700 font-medium">H2SO4 ka chemical name aur uses batao</p>
+</button>
+</div>
+</div>
+<!-- END: DashboardBody -->
+<!-- BEGIN: ChatInputArea -->
+<footer class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-[#faf8ff] via-[#faf8ff] to-transparent" data-purpose="chat-input">
+<div class="max-w-4xl mx-auto flex flex-col items-center space-y-3">
+<div class="w-full flex items-center space-x-3">
+<!-- Image Attachment Button -->
+<button class="p-3 text-gray-500 hover:text-brand transition-colors rounded-xl hover:bg-white/50">
+<svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<!-- Input Wrapper -->
+<div class="flex-grow relative">
+<input class="w-full bg-white/70 border border-gray-200 rounded-2xl px-6 py-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition-all shadow-sm placeholder-gray-400" placeholder="Apna doubt yahan likho..." type="text"/>
+</div>
+<!-- Send Button -->
+<button class="p-3 bg-orange-100 text-orange-600 rounded-2xl hover:bg-orange-200 transition-all transform hover:scale-105">
+<svg class="h-6 w-6 transform rotate-45" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<!-- Footer Info -->
+<p class="text-[10px] text-gray-400 font-medium">
+          Supports English, Hindi &amp; Hinglish • Upload images or use camera on mobile
+        </p>
+</div>
+</footer>
+<!-- END: ChatInputArea -->
+</main>
+<!-- END: MainContent -->
+
+<script>
+    // Custom active chat engine for AI Doubt Solver
+    const chatContainer = document.querySelector('main > div.flex-grow');
+    const inputEl = document.querySelector('footer input[placeholder="Apna doubt yahan likho..."]');
+    const sendBtn = document.querySelector('footer button:has(svg.rotate-45)') || document.querySelectorAll('footer button')[1];
+    const newDoubtBtn = document.querySelector('aside button');
+    const historyPlaceholder = document.querySelector('aside .flex-grow');
+    const topNavHeader = document.querySelector('header h2');
+    
+    let isChatActive = false;
+
+    // Presets Responses Map
+    const answersMap = {
+      "solve: if x² + 5x + 6 = 0, find the values of x": `
+        <h3 class="font-bold text-gray-900 text-base mb-2">Quadratic Equation Solution</h3>
+        <p class="mb-4">Here is the step-by-step solution for your quadratic equation:</p>
+        <div class="bg-gray-50 p-4 rounded-xl font-mono text-sm border border-gray-100 mb-4 text-brand">
+          x² + 5x + 6 = 0
+        </div>
+        <p class="font-semibold mb-2">Step 1: Factorize the equation</p>
+        <p class="mb-4 text-gray-600">We need two numbers that multiply to 6 and add to 5. These numbers are 2 and 3.</p>
+        <div class="bg-gray-50 p-3 rounded-lg font-mono text-xs border border-gray-50 mb-4">
+          x² + 2x + 3x + 6 = 0<br>
+          x(x + 2) + 3(x + 2) = 0<br>
+          (x + 2)(x + 3) = 0
+        </div>
+        <p class="font-semibold mb-2">Step 2: Solve for x</p>
+        <p class="mb-4 text-gray-600">Set each factor to zero:</p>
+        <ul class="list-disc pl-5 space-y-1 text-gray-700 mb-4">
+          <li>x + 2 = 0 &rArr; <strong class="text-orange-600">x = -2</strong></li>
+          <li>x + 3 = 0 &rArr; <strong class="text-orange-600">x = -3</strong></li>
+        </ul>
+        <div class="bg-orange-50 border border-orange-100 p-4 rounded-xl">
+          <p class="text-orange-800 font-semibold">Final Roots: x = -2, -3</p>
+        </div>
+      `,
+      "प्रकाश संश्लेषण क्या है? सरल भाषा में समझाइए": `
+        <h3 class="font-bold text-gray-900 text-base mb-2">प्रकाश संश्लेषण (Photosynthesis)</h3>
+        <p class="mb-4">हरे पौधे सूर्य के प्रकाश की उपस्थिति में कार्बन डाइऑक्साइड (CO₂) और जल (H₂O) लेकर कार्बोहाइड्रेट (भोजन) बनाते हैं और ऑक्सीजन गैस मुक्त करते हैं।</p>
+        <p class="font-semibold mb-2">रासायनिक समीकरण (Chemical Equation):</p>
+        <div class="bg-gray-50 p-4 rounded-xl font-mono text-xs border border-gray-100 mb-4 text-brand overflow-x-auto">
+          6CO₂ + 6H₂O + Sunlight &rArr; C₆H₁₂O₆ (Glucose) + 6O₂
+        </div>
+        <p class="font-semibold mb-2">मुख्य तत्व:</p>
+        <ul class="list-decimal pl-5 space-y-1.5 text-gray-700">
+          <li><strong>क्लोरोफिल:</strong> पत्तियों का हरा रंग जो सूर्य का प्रकाश सोखता है।</li>
+          <li><strong>रंध्र (Stomata):</strong> पत्तियों पर छिद्र जिनसे हवा से CO₂ अंदर ली जाती है।</li>
+          <li><strong>जड़ें:</strong> मिट्टी से खनिज और जल का अवशोषण करती हैं।</li>
+        </ul>
+      `,
+      "explain newton's third law with a real-life example": `
+        <h3 class="font-bold text-gray-900 text-base mb-2">Newton's Third Law of Motion</h3>
+        <p class="mb-4">Newton's Third Law states: <em class="text-brand">"To every action, there is always an equal and opposite reaction."</em></p>
+        <p class="mb-3">This means forces always occur in pairs. If Object A exerts a force on Object B, Object B exerts an equal force in the opposite direction back on Object A.</p>
+        <div class="border-l-4 border-orange-500 pl-4 py-1 my-4 bg-orange-50/50 rounded-r-xl">
+          <p class="font-semibold text-gray-900">Real-life Example: Recoil of a Gun</p>
+          <p class="text-gray-600 text-sm mt-1">When a bullet is fired from a gun, the gun exerts a forward force on the bullet (Action). Simultaneously, the bullet exerts an equal backward force on the gun (Reaction), causing it to kick back.</p>
+        </div>
+        <p class="font-semibold mb-2">Other Examples:</p>
+        <ul class="list-disc pl-5 space-y-1 text-gray-700">
+          <li><strong>Rocket Launch:</strong> Hot gases exhaust downward (Action) pushing the rocket upward (Reaction).</li>
+          <li><strong>Swimming:</strong> Hands push water backward (Action) pushing the swimmer forward (Reaction).</li>
+        </ul>
+      `,
+      "h2so4 ka chemical name aur uses batao": `
+        <h3 class="font-bold text-gray-900 text-base mb-2">Sulfuric Acid (H₂SO₄) Overview</h3>
+        <p class="mb-4"><strong>Chemical Name:</strong> Sulfuric Acid (सल्फ्यूरिक एसिड)</p>
+        <p class="mb-4">It is highly corrosive strong mineral acid. Often referred to as the <strong class="text-brand">"King of Chemicals"</strong> due to its massive scale of utilization in chemical industries.</p>
+        <p class="font-semibold mb-2">Key Industrial Uses:</p>
+        <ul class="list-disc pl-5 space-y-1.5 text-gray-700">
+          <li><strong>Lead-Acid Batteries:</strong> Serves as the electrolyte in vehicular and home power backups.</li>
+          <li><strong>Fertilizers:</strong> Essential for manufacturing superphosphates and ammonium sulfate.</li>
+          <li><strong>Iron & Steel:</strong> Used for pickling (rust removal) before plating or galvanization.</li>
+          <li><strong>Detergents & Fibers:</strong> Integral reactant in sulfonation of organic compounds.</li>
+        </ul>
+      `
+    };
+
+    function startChat(initialMsgText) {
+      if (!isChatActive) {
+        // Switch container layout from centering logo to chat thread styling
+        chatContainer.classList.remove('items-center', 'justify-center');
+        chatContainer.classList.add('items-stretch', 'justify-start', 'w-full', 'max-w-4xl', 'mx-auto', 'py-8', 'px-6', 'pb-40');
+        chatContainer.innerHTML = ''; // Clear layout
+        isChatActive = true;
+        
+        // Update sidebar history placeholder
+        if (historyPlaceholder) {
+          historyPlaceholder.className = "flex-grow overflow-y-auto p-4 space-y-2 custom-scrollbar";
+          historyPlaceholder.innerHTML = '';
+        }
+      }
+
+      // Add user message
+      addUserMessage(initialMsgText);
+
+      // Add loading state
+      const loadingId = addAiLoading();
+
+      // Scroll to bottom
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+
+      // Simulate AI typing delay
+      setTimeout(() => {
+        removeAiLoading(loadingId);
+        
+        // Lookup response
+        const cleanMsg = initialMsgText.trim().toLowerCase();
+        let aiResponseHtml = answersMap[cleanMsg];
+        if (!aiResponseHtml) {
+          // Check for sub-strings
+          const matchingKey = Object.keys(answersMap).find(key => cleanMsg.includes(key) || key.includes(cleanMsg));
+          if (matchingKey) aiResponseHtml = answersMap[matchingKey];
+        }
+
+        if (!aiResponseHtml) {
+          aiResponseHtml = `
+            <h3 class="font-bold text-gray-900 text-base mb-2">AI Explanation</h3>
+            <p class="mb-4">Thanks for asking your doubt in Atomic Pathshala! Here is a conceptual breakdown:</p>
+            <div class="bg-blue-50 border border-blue-100 p-4 rounded-xl mb-4">
+              <p class="text-blue-800 font-semibold">Inquiry: "${initialMsgText}"</p>
+            </div>
+            <p class="text-gray-700">According to the NEET/JEE syllabus, this topic carries crucial weight. Make sure you practice the daily DPP exercises on this section and take mock tests in our student dashboard to fully master the concepts.</p>
+          `;
+        }
+
+        addAiMessage(aiResponseHtml);
+        addSidebarHistoryItem(initialMsgText);
+        
+        // Update Nav header
+        if (topNavHeader) topNavHeader.textContent = initialMsgText.length > 25 ? initialMsgText.substring(0, 22) + '...' : initialMsgText;
+
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+      }, 1500);
+    }
+
+    function addUserMessage(text) {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'flex justify-end mb-6';
+      wrapper.innerHTML = `
+        <div class="bg-brand text-white rounded-2xl rounded-tr-none px-6 py-4 max-w-xl shadow-md text-sm leading-relaxed">
+          ${text}
+        </div>
+      `;
+      chatContainer.appendChild(wrapper);
+    }
+
+    function addAiLoading() {
+      const loadingId = 'loading-' + Date.now();
+      const wrapper = document.createElement('div');
+      wrapper.id = loadingId;
+      wrapper.className = 'flex justify-start mb-6 items-start space-x-3';
+      wrapper.innerHTML = `
+        <div class="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center text-sm flex-shrink-0 shadow-sm border border-orange-200">🤖</div>
+        <div class="bg-white border border-gray-100 rounded-2xl rounded-tl-none px-6 py-4 max-w-lg shadow-sm">
+          <div class="flex items-center space-x-1.5 py-1">
+            <span class="w-2.5 h-2.5 bg-orange-400 rounded-full animate-bounce" style="animation-delay: 0.1s"></span>
+            <span class="w-2.5 h-2.5 bg-orange-400 rounded-full animate-bounce" style="animation-delay: 0.25s"></span>
+            <span class="w-2.5 h-2.5 bg-orange-400 rounded-full animate-bounce" style="animation-delay: 0.4s"></span>
+          </div>
+        </div>
+      `;
+      chatContainer.appendChild(wrapper);
+      return loadingId;
+    }
+
+    function removeAiLoading(id) {
+      const el = document.getElementById(id);
+      if (el) el.remove();
+    }
+
+    function addAiMessage(htmlContent) {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'flex justify-start mb-6 items-start space-x-3';
+      wrapper.innerHTML = `
+        <div class="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center text-sm flex-shrink-0 shadow-sm border border-orange-200">🤖</div>
+        <div class="bg-white border border-gray-100 rounded-2xl rounded-tl-none px-6 py-5 max-w-2xl shadow-sm text-sm text-gray-800 space-y-4 leading-relaxed">
+          ${htmlContent}
+        </div>
+      `;
+      chatContainer.appendChild(wrapper);
+    }
+
+    function addSidebarHistoryItem(titleText) {
+      if (!historyPlaceholder) return;
+      
+      const item = document.createElement('button');
+      item.className = 'w-full text-left p-3 hover:bg-gray-50 border border-transparent hover:border-gray-100 rounded-xl transition-all flex items-center space-x-2.5 text-gray-700 font-medium group';
+      
+      // Clean up title text for display
+      const displayTitle = titleText.length > 25 ? titleText.substring(0, 22) + '...' : titleText;
+      
+      item.innerHTML = `
+        <svg class="h-4 w-4 text-orange-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+        </svg>
+        <span class="text-xs truncate flex-grow group-hover:text-brand transition-colors">${displayTitle}</span>
+      `;
+      
+      item.addEventListener('click', () => {
+        // Just reload the presets if clicked
+        if (isChatActive) {
+          startChat(titleText);
+        }
+      });
+
+      historyPlaceholder.appendChild(item);
+    }
+
+    // Attach click events to predefined prompt cards
+    document.querySelectorAll('.grid button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const queryText = btn.querySelector('p').textContent;
+        startChat(queryText);
+      });
+    });
+
+    // Send Button Action
+    sendBtn.addEventListener('click', () => {
+      const text = inputEl.value.trim();
+      if (text) {
+        startChat(text);
+        inputEl.value = '';
+      }
+    });
+
+    // Enter Key Action
+    inputEl.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const text = inputEl.value.trim();
+        if (text) {
+          startChat(text);
+          inputEl.value = '';
+        }
+      }
+    });
+
+    // New Doubt Reset Action
+    newDoubtBtn.addEventListener('click', () => {
+      window.location.reload();
+    });
+  </script>
+  
+  <!-- Ecosystem Switched Widget Overlay -->
+  <script src="../ecosystem-hud.js"></script>
+</body></html>
